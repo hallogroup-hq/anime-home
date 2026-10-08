@@ -6,10 +6,14 @@ import { MediaType, AiringStatus } from '@/types';
 import { Plus, Layers, Check, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
+import { createAnimeAction, batchCreateEpisodesAction } from '@/lib/actions';
+
 export default function AdminContentPage() {
   const allAnime = db.getAnimeList();
   const [activeTab, setActiveTab] = useState<'anime' | 'batch_episodes'>('anime');
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Form State: Tambah Anime
   const [title, setTitle] = useState('');
@@ -37,46 +41,66 @@ export default function AdminContentPage() {
     setSlug(generatedSlug);
   };
 
-  const handleCreateAnime = (e: React.FormEvent) => {
+  const handleCreateAnime = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title || !slug) return;
+    setLoading(true);
+    setErrorMessage('');
 
-    const genres = genresInput.split(',').map(g => g.trim()).filter(Boolean);
-
-    const created = db.addAnime({
-      canonicalTitle: title,
-      slug,
-      mediaType,
-      year: Number(year),
-      seasonPeriod,
-      maturityRating,
-      airingStatus,
-      publishState: 'published',
-      genres,
-      synopsis: synopsis || `Sinopsis untuk ${title}.`,
-      posterUrl,
-      bannerUrl,
-      firstAirDate: new Date().toISOString().slice(0, 10),
-      aliases: [
+    try {
+      const genres = genresInput.split(',').map(g => g.trim()).filter(Boolean);
+      const res = await createAnimeAction({
+        canonicalTitle: title,
+        slug,
+        mediaType,
+        year: Number(year),
+        seasonPeriod,
+        maturityRating,
+        airingStatus,
+        publishState: 'published',
+        genres,
+        synopsis: synopsis || `Sinopsis untuk ${title}.`,
+        posterUrl,
+        bannerUrl,
+        firstAirDate: new Date().toISOString().slice(0, 10),
+      }, [
         { id: `alt-${Date.now()}-1`, animeId: '', locale: 'en-US', title, titleType: 'canonical', normalizedTitle: title.toLowerCase() },
-      ],
-    });
+      ]);
 
-    setSuccessMessage(`Berhasil menambahkan judul baru: "${created.canonicalTitle}"!`);
-    setTitle('');
-    setSlug('');
-    setSynopsis('');
-    setTimeout(() => setSuccessMessage(''), 3000);
+      if (res.success && res.anime) {
+        db.addAnime(res.anime);
+        setSuccessMessage(`Berhasil menambahkan judul baru ke PostgreSQL: "${res.anime.canonicalTitle}"!`);
+        setTitle('');
+        setSlug('');
+        setSynopsis('');
+        setTimeout(() => setSuccessMessage(''), 4000);
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Gagal menyimpan anime ke database');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleBatchEpisodes = (e: React.FormEvent) => {
+  const handleBatchEpisodes = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedAnimeId || batchCount <= 0) return;
+    setLoading(true);
+    setErrorMessage('');
 
-    const episodes = db.batchCreateEpisodes(selectedAnimeId, Number(batchCount), Number(startOrdinal), Number(durationMinutes));
-    const targetAnime = allAnime.find(a => a.id === selectedAnimeId);
-    setSuccessMessage(`Berhasil membuat ${episodes.length} episode shell untuk "${targetAnime?.canonicalTitle}"!`);
-    setTimeout(() => setSuccessMessage(''), 3000);
+    try {
+      const res = await batchCreateEpisodesAction(selectedAnimeId, Number(batchCount), Number(startOrdinal));
+      if (res.success && res.episodes) {
+        db.batchCreateEpisodes(selectedAnimeId, Number(batchCount), Number(startOrdinal), Number(durationMinutes));
+        const targetAnime = allAnime.find(a => a.id === selectedAnimeId);
+        setSuccessMessage(`Berhasil membuat ${res.count} episode shell di PostgreSQL untuk "${targetAnime?.canonicalTitle}"!`);
+        setTimeout(() => setSuccessMessage(''), 4000);
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Gagal membuat batch episode');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Zap
 } from 'lucide-react';
+import { restoreVariantAction, resolveReportAction } from '@/lib/actions';
 
 export default function AdminMonitoringPage() {
   const [reports, setReports] = useState<BrokenStreamReport[]>(() => db.getReports());
@@ -38,16 +39,26 @@ export default function AdminMonitoringPage() {
     setTimeout(() => setNotice(null), 4000);
   };
 
-  const handleResolve = (reportId: string, status: 'resolved' | 'dismissed') => {
-    db.resolveReport(reportId, status);
-    showNotification(`Laporan berhasil diubah menjadi: ${status === 'resolved' ? 'Selesai' : 'Diabaikan'}`);
-    reloadData();
+  const handleResolve = async (reportId: string, status: 'resolved' | 'dismissed') => {
+    try {
+      await resolveReportAction(reportId, status);
+      db.resolveReport(reportId, status);
+      showNotification(`Laporan berhasil diubah menjadi: ${status === 'resolved' ? 'Selesai' : 'Diabaikan'} di PostgreSQL.`);
+      reloadData();
+    } catch (err: any) {
+      showNotification(`Gagal: ${err.message}`);
+    }
   };
 
-  const handleRestoreVariant = (variantId: string) => {
-    db.restoreSource(variantId);
-    showNotification(`Stream ${variantId} berhasil dipulihkan ke status aktif.`);
-    reloadData();
+  const handleRestoreVariant = async (variantId: string) => {
+    try {
+      await restoreVariantAction(variantId);
+      db.restoreSource(variantId);
+      showNotification(`Stream ${variantId} berhasil dipulihkan ke status aktif di PostgreSQL.`);
+      reloadData();
+    } catch (err: any) {
+      showNotification(`Gagal: ${err.message}`);
+    }
   };
 
   const handlePingVariant = (variantId: string) => {

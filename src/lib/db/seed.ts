@@ -212,6 +212,63 @@ async function runSeed() {
       }).onConflictDoNothing();
     }
 
+    // 11. User Profiles & RBAC
+    console.log('  -> Seeding user profiles & RBAC accounts...');
+    const defaultUsers = [
+      {
+        id: 'user-guest-01',
+        email: 'guest@animehome.id',
+        username: 'Tamu Anime Home',
+        role: 'user',
+        avatarUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+        isLoggedIn: false,
+      },
+      {
+        id: 'admin-owner-01',
+        email: 'owner@animehome.id',
+        username: 'Chief Executive Owner',
+        role: 'owner',
+        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop',
+        isLoggedIn: true,
+      },
+      {
+        id: 'admin-operator-01',
+        email: 'operator@animehome.id',
+        username: 'Streaming Operator',
+        role: 'operator',
+        avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&fit=crop',
+        isLoggedIn: true,
+      },
+      {
+        id: 'admin-editor-01',
+        email: 'editor@animehome.id',
+        username: 'Content Editor',
+        role: 'editor',
+        avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&fit=crop',
+        isLoggedIn: true,
+      },
+      {
+        id: 'admin-moderator-01',
+        email: 'moderator@animehome.id',
+        username: 'Community Moderator',
+        role: 'moderator',
+        avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&fit=crop',
+        isLoggedIn: true,
+      },
+      {
+        id: 'user-member-01',
+        email: 'member@animehome.id',
+        username: 'Akmal Otaku',
+        role: 'user',
+        avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&fit=crop',
+        isLoggedIn: true,
+      },
+    ];
+
+    for (const u of defaultUsers) {
+      await db.insert(schema.userProfiles).values(u).onConflictDoNothing();
+    }
+
     console.log('✅ SEEDING COMPLETE! All relational data inserted successfully into PostgreSQL.');
   } catch (err) {
     console.error('❌ Error during seeding:', err);

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { db } from '@/lib/services/store';
+import { emergencyTakedownAction } from '@/lib/actions';
 
 export default function RightsTakedownPage() {
   const [takedownReason, setTakedownReason] = useState('');
@@ -10,15 +11,19 @@ export default function RightsTakedownPage() {
   const [statusMessage, setStatusMessage] = useState('');
   const [auditLogs, setAuditLogs] = useState(db.getAuditLogs());
 
-  const handleTakedown = (e: React.FormEvent) => {
+  const handleTakedown = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!takedownReason) return;
-    const ok = db.emergencyPauseSource(selectedVariantId, takedownReason);
-    if (ok) {
-      setStatusMessage(`Sumber [${selectedVariantId}] dinonaktifkan dari pemutar publik.`);
+
+    try {
+      await emergencyTakedownAction(selectedVariantId, takedownReason);
+      db.emergencyPauseSource(selectedVariantId, takedownReason);
+      setStatusMessage(`Sumber [${selectedVariantId}] berhasil di-takedown seketika dan tersimpan di PostgreSQL audit log.`);
       setTakedownReason('');
       setAuditLogs(db.getAuditLogs());
-      setTimeout(() => setStatusMessage(''), 3000);
+      setTimeout(() => setStatusMessage(''), 4000);
+    } catch (err: any) {
+      alert(err.message || 'Gagal mengeksekusi takedown');
     }
   };
 

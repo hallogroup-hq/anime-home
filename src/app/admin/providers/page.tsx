@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { db } from '@/lib/services/store';
 import { Provider } from '@/types';
 import { Plus, Check, ShieldCheck, ShieldAlert, Globe } from 'lucide-react';
+import { registerProviderAction, toggleProviderStatusAction } from '@/lib/actions';
 
 export default function ProvidersRegistryPage() {
   const [providers, setProviders] = useState(db.getAllProviders());
@@ -21,32 +22,44 @@ export default function ProvidersRegistryPage() {
     setProviders(db.getAllProviders());
   };
 
-  const handleCreateProvider = (e: React.FormEvent) => {
+  const handleCreateProvider = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !domain) return;
 
-    db.addProvider({
-      name,
-      domain,
-      providerType,
-      apiAdapterKey,
-      status: 'active',
-      termsUrl: termsUrl || undefined,
-    });
+    try {
+      const res = await registerProviderAction({
+        name,
+        domain,
+        providerType,
+        apiAdapterKey,
+        status: 'active',
+        termsUrl: termsUrl || undefined,
+      });
 
-    refreshList();
-    setShowAddForm(false);
-    setName('');
-    setDomain('');
-    setTermsUrl('');
-    setSuccessMessage(`Provider "${name}" berhasil didaftarkan ke registry.`);
-    setTimeout(() => setSuccessMessage(''), 3000);
+      if (res.success && res.provider) {
+        db.addProvider(res.provider);
+      }
+      refreshList();
+      setShowAddForm(false);
+      setName('');
+      setDomain('');
+      setTermsUrl('');
+      setSuccessMessage(`Provider "${name}" berhasil didaftarkan ke PostgreSQL registry.`);
+      setTimeout(() => setSuccessMessage(''), 3000);
+    } catch (err: any) {
+      alert(err.message || 'Gagal mendaftarkan provider');
+    }
   };
 
-  const handleToggleStatus = (providerId: string, currentStatus: Provider['status']) => {
+  const handleToggleStatus = async (providerId: string, currentStatus: Provider['status']) => {
     const nextStatus = currentStatus === 'active' ? 'paused' : 'active';
-    db.updateProviderStatus(providerId, nextStatus);
-    refreshList();
+    try {
+      await toggleProviderStatusAction(providerId, nextStatus);
+      db.updateProviderStatus(providerId, nextStatus);
+      refreshList();
+    } catch (err: any) {
+      alert(err.message || 'Gagal memperbarui status provider');
+    }
   };
 
   return (

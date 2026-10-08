@@ -5,6 +5,7 @@ import { db } from '@/lib/services/store';
 import { QualityLabel } from '@/types';
 import { Plus, Check, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { addStreamVariantAction, emergencyTakedownAction } from '@/lib/actions';
 
 export default function QualityMatrixPage() {
   const allEpisodes = db.getAllEpisodes();
@@ -40,36 +41,48 @@ export default function QualityMatrixPage() {
     }
   };
 
-  const handleAddVariant = (e: React.FormEvent) => {
+  const handleAddVariant = async (e: React.FormEvent) => {
     e.preventDefault();
     const provider = providers.find(p => p.id === newProviderId);
     if (!provider) return;
 
-    db.addStreamVariant({
-      episodeId: selectedEpisodeId,
-      providerId: provider.id,
-      providerName: provider.name,
-      qualityLabel: newQuality,
-      sourceRef: newSourceRef || `ref-${Date.now()}`,
-      embedUrl: newEmbedUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      audioLocale: 'ja-JP',
-      subtitleLocale: 'id-ID',
-      priority: Number(newPriority),
-      verificationState: 'verified',
-      moderationState: 'approved',
-    });
+    try {
+      const res = await addStreamVariantAction({
+        episodeId: selectedEpisodeId,
+        providerId: provider.id,
+        providerName: provider.name,
+        qualityLabel: newQuality,
+        sourceRef: newSourceRef || `ref-${Date.now()}`,
+        embedUrl: newEmbedUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        audioLocale: 'ja-JP',
+        subtitleLocale: 'id-ID',
+        priority: Number(newPriority),
+        verificationState: 'verified',
+        moderationState: 'approved',
+      });
 
-    refreshMatrix();
-    setShowAddForm(false);
-    setNewSourceRef('');
-    setNewEmbedUrl('');
-    setSuccessMessage(`Berhasil menambahkan server pada ${newQuality}.`);
-    setTimeout(() => setSuccessMessage(''), 2500);
+      if (res.success && res.variant) {
+        db.addStreamVariant(res.variant);
+      }
+      refreshMatrix();
+      setShowAddForm(false);
+      setNewSourceRef('');
+      setNewEmbedUrl('');
+      setSuccessMessage(`Berhasil menambahkan server pada ${newQuality} di PostgreSQL.`);
+      setTimeout(() => setSuccessMessage(''), 3000);
+    } catch (err: any) {
+      alert(err.message || 'Gagal menambahkan varian stream');
+    }
   };
 
-  const handlePauseVariant = (variantId: string) => {
-    db.emergencyPauseSource(variantId, 'Dinonaktifkan via Quality Matrix');
-    refreshMatrix();
+  const handlePauseVariant = async (variantId: string) => {
+    try {
+      await emergencyTakedownAction(variantId, 'Dinonaktifkan via Quality Matrix');
+      db.emergencyPauseSource(variantId, 'Dinonaktifkan via Quality Matrix');
+      refreshMatrix();
+    } catch (err: any) {
+      alert(err.message || 'Gagal menonaktifkan varian');
+    }
   };
 
   const currentVariants = variantsList[activeTabQuality] || [];

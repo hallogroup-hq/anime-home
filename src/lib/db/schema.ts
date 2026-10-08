@@ -166,19 +166,77 @@ export const adCampaigns = pgTable('ad_campaigns', {
 // 13. AUDIT LOGS
 export const auditLogs = pgTable('audit_logs', {
   id: text('id').primaryKey(),
+  actorId: text('actor_id').default('system').notNull(),
+  role: text('role').default('system').notNull(),
   action: text('action').notNull(),
-  target: text('target').notNull(),
-  details: text('details').notNull(),
+  resource: text('resource').default('system').notNull(),
+  target: text('target'),
+  details: text('details'),
+  reason: text('reason'),
   timestamp: timestamp('timestamp', { withTimezone: true }).defaultNow().notNull(),
 });
 
-// 14. PROFIL PENGGUNA
+// 14. PROFIL PENGGUNA & RBAC
 export const userProfiles = pgTable('user_profiles', {
   id: text('id').primaryKey(),
   email: text('email').notNull().unique(),
   username: text('username').notNull(),
+  passwordHash: text('password_hash'),
+  role: text('role').default('user').notNull(), // 'owner' | 'admin' | 'editor' | 'operator' | 'moderator' | 'user'
   avatarUrl: text('avatar_url'),
   isLoggedIn: boolean('is_logged_in').default(false).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 15. SESI OTENTIKASI PERSISTEN
+export const sessions = pgTable('sessions', {
+  id: text('id').primaryKey(), // Session token
+  userId: text('user_id').notNull().references(() => userProfiles.id, { onDelete: 'cascade' }),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 16. WATCHLIST PENGGUNA
+export const watchlists = pgTable('watchlists', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => userProfiles.id, { onDelete: 'cascade' }),
+  animeId: text('anime_id').notNull().references(() => anime.id, { onDelete: 'cascade' }),
+  status: text('status').default('watching').notNull(), // 'plan_to_watch' | 'watching' | 'completed' | 'on_hold' | 'dropped'
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 17. PROGRESS MENONTON EPISODE
+export const watchProgress = pgTable('watch_progress', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => userProfiles.id, { onDelete: 'cascade' }),
+  episodeId: text('episode_id').notNull().references(() => episodes.id, { onDelete: 'cascade' }),
+  animeId: text('anime_id').notNull(),
+  watched: boolean('watched').default(false).notNull(),
+  positionSeconds: integer('position_seconds').default(0),
+  sourceVariantId: text('source_variant_id'),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 18. ANTRIAN INGEST METADATA EKSTERNAL (ANILIST)
+export const metadataCandidates = pgTable('metadata_candidates', {
+  id: text('id').primaryKey(),
+  externalId: integer('external_id').notNull(),
+  sourceApi: text('source_api').default('anilist').notNull(),
+  canonicalTitle: text('canonical_title').notNull(),
+  romajiTitle: text('romaji_title').notNull(),
+  englishTitle: text('english_title'),
+  year: integer('year'),
+  seasonPeriod: text('season_period'),
+  mediaType: text('media_type').default('TV').notNull(),
+  genres: text('genres').notNull(), // JSON array
+  synopsis: text('synopsis'),
+  posterUrl: text('poster_url'),
+  bannerUrl: text('banner_url'),
+  totalEpisodes: integer('total_episodes'),
+  duplicateMatchId: text('duplicate_match_id'),
+  duplicateReason: text('duplicate_reason'),
+  status: text('status').default('pending').notNull(), // 'pending' | 'approved' | 'rejected' | 'synced'
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 });
 
@@ -189,15 +247,61 @@ export const animeRelations = relations(anime, ({ many }) => ({
   characters: many(characters),
   watchOrders: many(watchOrders),
   merchandise: many(merchandise),
+  watchlists: many(watchlists),
+}));
+
+export const animeTitlesRelations = relations(animeTitles, ({ one }) => ({
+  anime: one(anime, { fields: [animeTitles.animeId], references: [anime.id] }),
 }));
 
 export const episodeRelations = relations(episodes, ({ one, many }) => ({
   anime: one(anime, { fields: [episodes.animeId], references: [anime.id] }),
   variants: many(streamVariants),
   comments: many(comments),
+  watchProgress: many(watchProgress),
+}));
+
+export const providerRelations = relations(providers, ({ many }) => ({
+  variants: many(streamVariants),
 }));
 
 export const streamVariantRelations = relations(streamVariants, ({ one }) => ({
   episode: one(episodes, { fields: [streamVariants.episodeId], references: [episodes.id] }),
   provider: one(providers, { fields: [streamVariants.providerId], references: [providers.id] }),
+}));
+
+export const charactersRelations = relations(characters, ({ one }) => ({
+  anime: one(anime, { fields: [characters.animeId], references: [anime.id] }),
+}));
+
+export const merchandiseRelations = relations(merchandise, ({ one }) => ({
+  anime: one(anime, { fields: [merchandise.animeId], references: [anime.id] }),
+}));
+
+export const watchOrdersRelations = relations(watchOrders, ({ one }) => ({
+  anime: one(anime, { fields: [watchOrders.animeId], references: [anime.id] }),
+}));
+
+export const commentsRelations = relations(comments, ({ one }) => ({
+  episode: one(episodes, { fields: [comments.episodeId], references: [episodes.id] }),
+}));
+
+export const userProfilesRelations = relations(userProfiles, ({ many }) => ({
+  sessions: many(sessions),
+  watchlists: many(watchlists),
+  watchProgress: many(watchProgress),
+}));
+
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(userProfiles, { fields: [sessions.userId], references: [userProfiles.id] }),
+}));
+
+export const watchlistsRelations = relations(watchlists, ({ one }) => ({
+  user: one(userProfiles, { fields: [watchlists.userId], references: [userProfiles.id] }),
+  anime: one(anime, { fields: [watchlists.animeId], references: [anime.id] }),
+}));
+
+export const watchProgressRelations = relations(watchProgress, ({ one }) => ({
+  user: one(userProfiles, { fields: [watchProgress.userId], references: [userProfiles.id] }),
+  episode: one(episodes, { fields: [watchProgress.episodeId], references: [episodes.id] }),
 }));

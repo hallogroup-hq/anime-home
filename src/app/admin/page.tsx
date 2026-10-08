@@ -3,15 +3,21 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { db } from '@/lib/services/store';
+import { resolveReportAction } from '@/lib/actions';
 
 export default function AdminActionCenterPage() {
   const [metrics, setMetrics] = useState(db.getActionCenterMetrics());
   const [reports, setReports] = useState(db.getReports());
 
-  const handleResolveReport = (reportId: string, status: 'resolved' | 'dismissed') => {
-    db.resolveReport(reportId, status);
-    setReports(db.getReports());
-    setMetrics(db.getActionCenterMetrics());
+  const handleResolveReport = async (reportId: string, status: 'resolved' | 'dismissed') => {
+    try {
+      await resolveReportAction(reportId, status);
+      db.resolveReport(reportId, status);
+      setReports(db.getReports());
+      setMetrics(db.getActionCenterMetrics());
+    } catch (err: any) {
+      alert(err.message || 'Gagal mengubah status laporan');
+    }
   };
 
   return (

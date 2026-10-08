@@ -5,6 +5,7 @@ import { db } from '@/lib/services/store';
 import { HomepageConfig } from '@/types';
 import { ArrowUp, ArrowDown, Eye, EyeOff, Save, Check } from 'lucide-react';
 import Link from 'next/link';
+import { updateHomepageConfigAction } from '@/lib/actions';
 
 export default function HomepageCMSPage() {
   const allAnime = db.getAnimeList();
@@ -45,11 +46,16 @@ export default function HomepageCMSPage() {
     setSaved(false);
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    db.updateHomepageConfig(config);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+    try {
+      await updateHomepageConfigAction(config);
+      db.updateHomepageConfig(config);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err: any) {
+      alert(err.message || 'Gagal menyimpan konfigurasi CMS');
+    }
   };
 
   const heroAnime = allAnime.find(a => a.id === config.heroAnimeId);

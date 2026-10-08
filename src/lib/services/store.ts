@@ -10,9 +10,8 @@ import {
   INITIAL_MERCH_ITEMS, INITIAL_WATCH_ORDERS, INITIAL_CHARACTERS,
   INITIAL_COMMENTS
 } from '@/lib/data/seed';
-import { dbOrm, schema } from '@/lib/db';
 
-// Singleton In-Memory / Database State Controller
+// Singleton In-Memory / Client State Controller
 class AnimeHomeDataStore {
   private anime: Anime[] = [...INITIAL_ANIME];
   private episodes: Episode[] = [...INITIAL_EPISODES];
@@ -194,19 +193,6 @@ class AnimeHomeDataStore {
       createdAt: new Date().toISOString(),
     };
     this.comments.unshift(newComm);
-    if (dbOrm) {
-      dbOrm.insert(schema.comments).values({
-        id: newComm.id,
-        episodeId: newComm.episodeId,
-        userId: `usr-${newComm.id}`,
-        username: newComm.authorName,
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop',
-        content: newComm.content,
-        isSpoiler: newComm.isSpoiler,
-        likesCount: newComm.likes,
-        createdAt: new Date(newComm.createdAt),
-      }).catch((err: any) => console.error('Database sync error (addComment):', err));
-    }
     return newComm;
   }
 
@@ -335,22 +321,6 @@ class AnimeHomeDataStore {
     };
     this.variants.push(newVariant);
     this.addAuditLog('admin-operator', 'Stream Manager', 'ADD_STREAM_VARIANT', `Episode: ${variant.episodeId}`, `Added provider ${variant.providerName} on ${variant.qualityLabel}`);
-    if (dbOrm) {
-      dbOrm.insert(schema.streamVariants).values({
-        id: newVariant.id,
-        episodeId: newVariant.episodeId,
-        providerId: newVariant.providerId,
-        providerName: newVariant.providerName,
-        qualityLabel: newVariant.qualityLabel,
-        sourceRef: newVariant.sourceRef,
-        embedUrl: newVariant.embedUrl,
-        audioLocale: newVariant.audioLocale,
-        subtitleLocale: newVariant.subtitleLocale,
-        priority: newVariant.priority,
-        verificationState: newVariant.verificationState,
-        moderationState: newVariant.moderationState,
-      }).catch((err: any) => console.error('Database sync error (addStreamVariant):', err));
-    }
     return newVariant;
   }
 
@@ -425,18 +395,6 @@ class AnimeHomeDataStore {
           `Auto-quarantined: ${pendingForVariant.length} pending user reports reached threshold (>=3)`
         );
       }
-    }
-
-    if (dbOrm) {
-      dbOrm.insert(schema.brokenReports).values({
-        id: newReport.id,
-        variantId: newReport.variantId,
-        episodeId: newReport.episodeId,
-        reason: newReport.reason,
-        notes: newReport.notes || null,
-        status: newReport.status,
-        reportedAt: new Date(newReport.reportedAt),
-      }).catch((err: any) => console.error('Database sync error (reportBrokenStream):', err));
     }
 
     return newReport;
@@ -660,20 +618,6 @@ class AnimeHomeDataStore {
   public updateHomepageConfig(config: HomepageConfig): void {
     this.homepageConfig = JSON.parse(JSON.stringify(config));
     this.addAuditLog('admin-cms', 'Visual CMS Editor', 'UPDATE_HOMEPAGE_CONFIG', 'HOMEPAGE', `Set hero to ${config.heroAnimeId} and updated section ordering`);
-    if (dbOrm) {
-      dbOrm.insert(schema.homepageConfigs).values({
-        id: (this.homepageConfig as any).id || 'cfg-default',
-        heroAnimeId: this.homepageConfig.heroAnimeId,
-        sections: JSON.stringify(this.homepageConfig.sections),
-      }).onConflictDoUpdate({
-        target: schema.homepageConfigs.id,
-        set: {
-          heroAnimeId: this.homepageConfig.heroAnimeId,
-          sections: JSON.stringify(this.homepageConfig.sections),
-          updatedAt: new Date(),
-        }
-      }).catch((err: any) => console.error('Database sync error (updateHomepageConfig):', err));
-    }
   }
 
   // --- CONTENT MANAGER: CRUD ANIME & BATCH EPISODES ---
@@ -687,24 +631,6 @@ class AnimeHomeDataStore {
     };
     this.anime.unshift(newAnime);
     this.addAuditLog('admin-content', 'Content Editor', 'ADD_ANIME', `Anime: ${id}`, `Added ${animeData.canonicalTitle}`);
-    if (dbOrm) {
-      dbOrm.insert(schema.anime).values({
-        id: newAnime.id,
-        canonicalTitle: newAnime.canonicalTitle,
-        slug: newAnime.slug,
-        mediaType: newAnime.mediaType,
-        synopsis: newAnime.synopsis || null,
-        firstAirDate: newAnime.firstAirDate || null,
-        year: newAnime.year,
-        seasonPeriod: newAnime.seasonPeriod,
-        maturityRating: newAnime.maturityRating,
-        airingStatus: newAnime.airingStatus,
-        publishState: newAnime.publishState,
-        posterUrl: newAnime.posterUrl,
-        bannerUrl: newAnime.bannerUrl,
-        genres: JSON.stringify(newAnime.genres),
-      }).catch((err: any) => console.error('Database sync error (addAnime):', err));
-    }
     return newAnime;
   }
 
@@ -737,24 +663,6 @@ class AnimeHomeDataStore {
     }
 
     this.addAuditLog('admin-content', 'Content Editor', 'BATCH_CREATE_EPISODES', `Anime: ${animeId}`, `Batch created ${count} episodes starting at ${startOrdinal}`);
-    if (dbOrm && createdEpisodes.length > 0) {
-      for (const ep of createdEpisodes) {
-        dbOrm.insert(schema.episodes).values({
-          id: ep.id,
-          animeId: ep.animeId,
-          ordinal: ep.ordinal,
-          displayNumber: ep.displayNumber,
-          episodeType: ep.episodeType,
-          title: ep.title,
-          durationMinutes: ep.durationMinutes,
-          publishState: ep.publishState,
-          airingState: ep.airingState,
-          subtitleState: ep.subtitleState,
-          watchabilityState: ep.watchabilityState,
-          airedAt: ep.airedAt ? new Date(ep.airedAt) : null,
-        }).catch((err: any) => console.error('Database sync error (batchCreateEpisodes):', err));
-      }
-    }
     return createdEpisodes;
   }
 
