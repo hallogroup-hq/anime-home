@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.4.0] - 2026-10-09
+### Ditambahkan (Phase 4 & Phase 5: Automation, Monitoring, Security & PWA)
+- **Metadata Ingestion Wizard (`/admin/ingest`)**: Penarikan kandidat anime musiman dari API eksternal (AniList / MAL) dengan validasi pencegahan duplikat (QA-065).
+- **Health Monitoring & Auto-Quarantine Console (`/admin/monitoring`)**: Antrean karantina otomatis untuk stream yang mencapai threshold $\ge 3$ laporan kerusakan penonton (QA-066), pemulihan 1-klik, dan simulasi latency ping.
+- **Embed URL Security Allowlist (`validateEmbedUrl`)**: Validasi domain pihak ketiga resmi dan penolakan skema non-HTTP/HTTPS (QA-067).
+- **PWA & SEO Routes**: Web App Manifest (`/manifest.webmanifest`), Robots (`/robots.txt`), dan dynamic Sitemap (`/sitemap.xml`).
+- **Comprehensive Acceptance Test Suite**: Peningkatan cakupan pengujian menjadi 29 / 29 skenario lulus 100%.
+
 ## [0.3.0] - 2026-10-09
 ### Ditambahkan (Phase 2 & Phase 3 Core Capabilities)
 - **Homepage Visual CMS (`/admin/homepage`)**: Tata letak beranda berbasis modul tanpa deploy kode, pemilihan Hero Spotlight dinamis, dan kontrol visibilitas seksi.

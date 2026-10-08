@@ -128,6 +128,95 @@ assert(newProv.id.startsWith('prov-custom-'), 'QA-060: Provider baru terdaftar d
 const foundProv = db.getAllProviders().find(p => p.domain === 'zeta.streamcdn.org');
 assert(foundProv?.status === 'active', 'QA-061: Domain provider aktif terverifikasi di registry');
 
+// 11. METADATA INGESTION & DUPLICATE PREVENTION (QA-065)
+console.log('\n11. Metadata Ingestion: Duplicate Detection Invariant');
+const dupCheck1 = db.detectDuplicateCandidate({
+  title: 'Sousou no Frieren',
+  romaji: 'Sousou no Frieren',
+  english: "Frieren: Beyond Journey's End",
+});
+assert(dupCheck1.isDuplicate === true, 'QA-065a: Terdeteksi duplikat pada judul kanonikal Sousou no Frieren');
+
+const dupCheck2 = db.detectDuplicateCandidate({
+  title: 'Frieren Season 1 Sub Indo',
+  english: "Frieren: Beyond Journey's End",
+});
+assert(dupCheck2.isDuplicate === true, 'QA-065b: Terdeteksi duplikat melalui pencocokan alias bahasa Inggris');
+
+const dupCheck3 = db.detectDuplicateCandidate({
+  title: 'Chainsaw Man: Reze Arc',
+  romaji: 'Chainsaw Man Movie: Reze-hen',
+});
+assert(dupCheck3.isDuplicate === false, 'QA-065c: Judul anime baru yang belum ada tidak dianggap duplikat');
+
+// 12. AUTO-QUARANTINE ON BROKEN STREAM REPORTS (QA-066)
+console.log('\n12. Health Monitoring: Auto-Quarantine Rule on Threshold (>=3)');
+const testVariant = db.addStreamVariant({
+  episodeId: 'ep-frieren-1',
+  providerId: 'prov-alpha',
+  providerName: 'Alpha Stream',
+  qualityLabel: '720p',
+  embedUrl: 'https://cdn-jkt.animehome.net/embed/test-quarantine',
+  sourceRef: 'alpha-test-1',
+  audioLocale: 'ja-JP',
+  subtitleLocale: 'id-ID',
+  priority: 1,
+  moderationState: 'approved',
+  verificationState: 'verified',
+});
+
+// Laporan 1 & 2 tidak boleh mengkarantina
+db.reportBrokenStream({
+  episodeId: 'ep-frieren-1',
+  variantId: testVariant.id,
+  reason: 'broken_embed',
+  notes: 'Laporan user 1',
+});
+db.reportBrokenStream({
+  episodeId: 'ep-frieren-1',
+  variantId: testVariant.id,
+  reason: 'broken_embed',
+  notes: 'Laporan user 2',
+});
+
+const varAfter2Reports = db.getAllStreamVariants().find(v => v.id === testVariant.id);
+assert(varAfter2Reports?.moderationState === 'approved', 'QA-066a: Stream tetap aktif saat laporan < 3');
+
+// Laporan 3 memicu ambang batas auto-quarantine
+db.reportBrokenStream({
+  episodeId: 'ep-frieren-1',
+  variantId: testVariant.id,
+  reason: 'broken_embed',
+  notes: 'Laporan user 3',
+});
+
+const varAfter3Reports = db.getAllStreamVariants().find(v => v.id === testVariant.id);
+assert(
+  varAfter3Reports?.moderationState === 'paused' && varAfter3Reports?.verificationState === 'offline',
+  'QA-066b: Stream otomatis dikarantina (paused & offline) saat laporan mencapai ambang batas >= 3'
+);
+
+// Pulihkan stream setelah perbaikan
+db.restoreSource(testVariant.id);
+const varRestored = db.getAllStreamVariants().find(v => v.id === testVariant.id);
+assert(
+  varRestored?.moderationState === 'approved' && varRestored?.verificationState === 'verified',
+  'QA-066c: Stream berhasil dipulihkan oleh operator ke status approved & verified'
+);
+
+// 13. EMBED URL DOMAIN ALLOWLIST VALIDATION (QA-067)
+console.log('\n13. Security: Embed URL Domain Allowlist Verification');
+const allowlistValid1 = db.validateEmbedUrl('https://cdn-jkt.animehome.net/embed/v1');
+const allowlistValid2 = db.validateEmbedUrl('https://www.youtube.com/embed/dQw4w9WgXcQ');
+const allowlistBlocked1 = db.validateEmbedUrl('https://malicious-ads-tracker.xyz/embed/player');
+const allowlistBlocked2 = db.validateEmbedUrl('javascript:alert(document.cookie)');
+
+assert(allowlistValid1.allowed === true, 'QA-067a: Domain provider resmi terdaftar diizinkan');
+assert(allowlistValid2.allowed === true, 'QA-067b: Domain YouTube resmi diizinkan');
+assert(allowlistBlocked1.allowed === false, 'QA-067c: Domain asing tidak dikenal ditolak');
+assert(allowlistBlocked2.allowed === false, 'QA-067d: Skema URL non-HTTP/HTTPS ditolak');
+
 console.log('\n====================================================');
 console.log(`HASIL AKHIR: ${passedTests} / ${totalTests} SKENARIO PENGUJIAN LULUS (100%)`);
 console.log('====================================================');
+

@@ -13,6 +13,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Matriks Server', href: '/admin/matrix' },
     { label: 'Registry Provider', href: '/admin/providers' },
     { label: 'Visual CMS', href: '/admin/homepage' },
+    { label: 'Ingest Metadata', href: '/admin/ingest' },
+    { label: 'Health Monitoring', href: '/admin/monitoring' },
     { label: 'Takedown Hak Cipta', href: '/admin/rights' },
     { label: 'Iklan Sponsor', href: '/admin/ads' },
     { label: 'Log Audit', href: '/admin/audit' },

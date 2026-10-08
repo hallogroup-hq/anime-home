@@ -159,3 +159,22 @@ export interface HomepageConfig {
   heroAnimeId: string;
   sections: HomepageSectionConfig[];
 }
+
+export interface MetadataIngestCandidate {
+  id: string;
+  sourceApi: 'anilist' | 'mal';
+  externalId: number;
+  canonicalTitle: string;
+  romajiTitle: string;
+  englishTitle?: string;
+  year: number;
+  seasonPeriod: 'Winter' | 'Spring' | 'Summer' | 'Fall';
+  mediaType: MediaType;
+  genres: string[];
+  synopsis: string;
+  posterUrl: string;
+  bannerUrl: string;
+  totalEpisodes?: number;
+  duplicateMatchId?: string;
+  duplicateReason?: string;
+}

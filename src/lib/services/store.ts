@@ -1,6 +1,7 @@
 import { 
   Anime, Episode, Provider, StreamVariant, AdCampaign, AdPlacement, 
-  MerchItem, BrokenStreamReport, AuditLog, QualityLabel, HomepageConfig 
+  MerchItem, BrokenStreamReport, AuditLog, QualityLabel, HomepageConfig,
+  MetadataIngestCandidate
 } from '@/types';
 import { 
   INITIAL_ANIME, INITIAL_EPISODES, INITIAL_PROVIDERS, 
@@ -179,8 +180,30 @@ class AnimeHomeDataStore {
     const idx = this.variants.findIndex(v => v.id === variantId);
     if (idx === -1) return false;
     this.variants[idx].moderationState = 'approved';
-    this.addAuditLog('admin-rights', 'Rights Reviewer', 'RESTORE_SOURCE', `Variant: ${variantId}`, 'Restored by dual verification');
+    this.variants[idx].verificationState = 'verified';
+    this.addAuditLog('admin-rights', 'Rights Reviewer', 'RESTORE_SOURCE', `Variant: ${variantId}`, 'Restored by dual verification & marked verified');
     return true;
+  }
+
+  public pingStreamVariant(variantId: string): { 
+    success: boolean; 
+    status: 'online' | 'offline'; 
+    latencyMs: number; 
+    reason?: string 
+  } {
+    const variant = this.variants.find(v => v.id === variantId);
+    if (!variant) return { success: false, status: 'offline', latencyMs: 0, reason: 'Variant tidak ditemukan' };
+
+    const validation = this.validateEmbedUrl(variant.embedUrl);
+    if (!validation.allowed) {
+      variant.verificationState = 'offline';
+      variant.lastCheckedAt = new Date().toISOString();
+      return { success: false, status: 'offline', latencyMs: 0, reason: validation.reason };
+    }
+
+    const latency = Math.floor(Math.random() * 80) + 45;
+    variant.lastCheckedAt = new Date().toISOString();
+    return { success: true, status: 'online', latencyMs: latency };
   }
 
   public updateProviderStatus(providerId: string, status: 'active' | 'paused' | 'blocked'): boolean {
@@ -199,6 +222,25 @@ class AnimeHomeDataStore {
       status: 'pending',
     };
     this.reports.unshift(newReport);
+
+    // AUTO-QUARANTINE RULE (PRD Chapter 12 & QA-066):
+    // Jika laporan pending untuk varian ini mencapai threshold >= 3, otomatis karantina varian
+    const pendingForVariant = this.reports.filter(r => r.variantId === report.variantId && r.status === 'pending');
+    if (pendingForVariant.length >= 3) {
+      const vIdx = this.variants.findIndex(v => v.id === report.variantId);
+      if (vIdx !== -1 && this.variants[vIdx].moderationState === 'approved') {
+        this.variants[vIdx].moderationState = 'paused';
+        this.variants[vIdx].verificationState = 'offline';
+        this.addAuditLog(
+          'system-monitor', 
+          'Auto-Health Daemon', 
+          'AUTO_QUARANTINE_STREAM', 
+          `Variant: ${report.variantId}`, 
+          `Auto-quarantined: ${pendingForVariant.length} pending user reports reached threshold (>=3)`
+        );
+      }
+    }
+
     return newReport;
   }
 
@@ -211,6 +253,161 @@ class AnimeHomeDataStore {
     if (idx === -1) return false;
     this.reports[idx].status = status;
     return true;
+  }
+
+  // --- SECURITY: EMBED URL ALLOWLIST VALIDATOR ---
+  public validateEmbedUrl(urlStr: string): { allowed: boolean; reason?: string } {
+    try {
+      const parsed = new URL(urlStr);
+      if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+        return { allowed: false, reason: 'Hanya protokol HTTP/HTTPS yang diizinkan' };
+      }
+
+      const activeDomains = this.providers.map(p => p.domain.toLowerCase());
+      const host = parsed.hostname.toLowerCase();
+
+      const isWhitelisted = activeDomains.some(d => host === d || host.endsWith(`.${d}`)) ||
+        host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be';
+
+      if (!isWhitelisted) {
+        return { allowed: false, reason: `Domain "${host}" tidak terdaftar dalam allowlist provider resmi.` };
+      }
+
+      return { allowed: true };
+    } catch {
+      return { allowed: false, reason: 'Format URL tidak valid' };
+    }
+  }
+
+  // --- METADATA INGEST WIZARD & DUPLICATE DETECTION ---
+  public detectDuplicateCandidate(candidate: { title: string; romaji?: string; english?: string }): { 
+    isDuplicate: boolean; 
+    matchAnime?: Anime; 
+    reason?: string 
+  } {
+    const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const candidateNorm = normalize(candidate.title);
+    const romajiNorm = candidate.romaji ? normalize(candidate.romaji) : '';
+    const engNorm = candidate.english ? normalize(candidate.english) : '';
+
+    for (const a of this.anime) {
+      const canonicalNorm = normalize(a.canonicalTitle);
+      if (canonicalNorm === candidateNorm) {
+        return { isDuplicate: true, matchAnime: a, reason: `Cocok sempurna dengan judul kanonikal "${a.canonicalTitle}"` };
+      }
+      if (romajiNorm && canonicalNorm === romajiNorm) {
+        return { isDuplicate: true, matchAnime: a, reason: `Cocok dengan Romaji "${candidate.romaji}"` };
+      }
+      if (a.aliases) {
+        for (const alias of a.aliases) {
+          const aliasNorm = normalize(alias.title);
+          if (candidateNorm === aliasNorm || (romajiNorm && romajiNorm === aliasNorm) || (engNorm && engNorm === aliasNorm)) {
+            return { isDuplicate: true, matchAnime: a, reason: `Cocok dengan alias [${alias.titleType}] "${alias.title}" pada "${a.canonicalTitle}"` };
+          }
+        }
+      }
+    }
+
+    return { isDuplicate: false };
+  }
+
+  public getIngestCandidates(): MetadataIngestCandidate[] {
+    const rawCandidates: Omit<MetadataIngestCandidate, 'duplicateMatchId' | 'duplicateReason'>[] = [
+      {
+        id: 'cand-dandadan',
+        sourceApi: 'anilist',
+        externalId: 171018,
+        canonicalTitle: 'DanDaDan',
+        romajiTitle: 'Dan Da Dan',
+        englishTitle: 'DAN DA DAN',
+        year: 2024,
+        seasonPeriod: 'Fall',
+        mediaType: 'TV',
+        genres: ['Action', 'Comedy', 'Supernatural', 'Sci-Fi'],
+        synopsis: 'Momo Ayase berteman dengan teman sekelas penggemar UFO yang ia juluki Okarun. Keduanya membuktikan eksistensi alien dan hantu yang membawa mereka ke petualangan supernatural tak terduga.',
+        posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
+        bannerUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+        totalEpisodes: 12,
+      },
+      {
+        id: 'cand-bleach-tybw',
+        sourceApi: 'anilist',
+        externalId: 169419,
+        canonicalTitle: 'Bleach: Sennen Kessen-hen - Soukoku-tan',
+        romajiTitle: 'Bleach: Thousand-Year Blood War - The Conflict',
+        englishTitle: 'Bleach: Thousand-Year Blood War Part 3',
+        year: 2024,
+        seasonPeriod: 'Fall',
+        mediaType: 'TV',
+        genres: ['Action', 'Adventure', 'Supernatural'],
+        synopsis: 'Bagian ketiga perang penentuan antara Soul Society dan Wandenreich yang dipimpin oleh Yhwach.',
+        posterUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80',
+        bannerUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80',
+        totalEpisodes: 13,
+      },
+      {
+        id: 'cand-frieren-dup',
+        sourceApi: 'mal',
+        externalId: 52991,
+        canonicalTitle: 'Sousou no Frieren',
+        romajiTitle: 'Sousou no Frieren',
+        englishTitle: "Frieren: Beyond Journey's End",
+        year: 2023,
+        seasonPeriod: 'Fall',
+        mediaType: 'TV',
+        genres: ['Adventure', 'Fantasy'],
+        synopsis: 'Setelah perjalanan panjang mengalahkan Raja Iblis, Frieren menghadapi keabadian dan nilai kenangan manusia.',
+        posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
+        bannerUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+        totalEpisodes: 28,
+      },
+    ];
+
+    return rawCandidates.map(c => {
+      const dupCheck = this.detectDuplicateCandidate({
+        title: c.canonicalTitle,
+        romaji: c.romajiTitle,
+        english: c.englishTitle,
+      });
+      return {
+        ...c,
+        duplicateMatchId: dupCheck.isDuplicate ? dupCheck.matchAnime?.id : undefined,
+        duplicateReason: dupCheck.isDuplicate ? dupCheck.reason : undefined,
+      };
+    });
+  }
+
+  public importCandidate(candidateId: string): Anime | null {
+    const candidate = this.getIngestCandidates().find(c => c.id === candidateId);
+    if (!candidate) return null;
+
+    const slug = candidate.canonicalTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const newAnime = this.addAnime({
+      canonicalTitle: candidate.canonicalTitle,
+      slug,
+      mediaType: candidate.mediaType,
+      year: candidate.year,
+      seasonPeriod: candidate.seasonPeriod,
+      maturityRating: 'PG-13',
+      airingStatus: 'airing',
+      publishState: 'published',
+      genres: candidate.genres,
+      synopsis: candidate.synopsis,
+      posterUrl: candidate.posterUrl,
+      bannerUrl: candidate.bannerUrl,
+      firstAirDate: `${candidate.year}-10-01`,
+      aliases: [
+        { id: `alt-${Date.now()}-1`, animeId: '', locale: 'en-US', title: candidate.englishTitle || candidate.canonicalTitle, titleType: 'english', normalizedTitle: (candidate.englishTitle || candidate.canonicalTitle).toLowerCase() },
+        { id: `alt-${Date.now()}-2`, animeId: '', locale: 'ja-Latn', title: candidate.romajiTitle, titleType: 'romaji', normalizedTitle: candidate.romajiTitle.toLowerCase() },
+      ],
+    });
+
+    if (candidate.totalEpisodes && candidate.totalEpisodes > 0) {
+      this.batchCreateEpisodes(newAnime.id, Math.min(candidate.totalEpisodes, 12), 1, 24);
+    }
+
+    this.addAuditLog('admin-ingest', 'Metadata Ingestion', 'INGEST_ANIME_SUCCESS', `Anime: ${newAnime.id}`, `Ingested from ${candidate.sourceApi} (ExtID: ${candidate.externalId})`);
+    return newAnime;
   }
 
   // --- ADVERTISING & MONETIZATION ---
@@ -332,6 +529,7 @@ class AnimeHomeDataStore {
       activeVariants: this.variants.filter(v => v.moderationState === 'approved').length,
       takedownVariants: this.variants.filter(v => v.moderationState === 'takedown').length,
       pendingReports: this.reports.filter(r => r.status === 'pending').length,
+      quarantinedVariants: this.variants.filter(v => v.moderationState === 'paused' || v.verificationState === 'offline').length,
       activeCampaigns: this.campaigns.filter(c => c.status === 'active').length,
       activeProviders: this.providers.filter(p => p.status === 'active').length,
     };
