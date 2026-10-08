@@ -7,12 +7,13 @@ import { Plus, Check, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
 export default function QualityMatrixPage() {
-  const episodeId = 'ep-frieren-8';
-  const matrix = db.getStreamMatrix(episodeId);
+  const allEpisodes = db.getAllEpisodes();
+  const allAnime = db.getAnimeList();
   const providers = db.getAllProviders();
 
+  const [selectedEpisodeId, setSelectedEpisodeId] = useState('ep-frieren-8');
   const [activeTabQuality, setActiveTabQuality] = useState<QualityLabel>('720p');
-  const [variantsList, setVariantsList] = useState(matrix.variantsByQuality);
+  const [variantsList, setVariantsList] = useState(() => db.getStreamMatrix('ep-frieren-8').variantsByQuality);
 
   const [newProviderId, setNewProviderId] = useState(providers[0]?.id || 'prov-alpha');
   const [newQuality, setNewQuality] = useState<QualityLabel>('720p');
@@ -22,9 +23,21 @@ export default function QualityMatrixPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const refreshMatrix = () => {
-    const updated = db.getStreamMatrix(episodeId);
+  const currentEpisode = allEpisodes.find(e => e.id === selectedEpisodeId) || allEpisodes[0];
+  const currentAnime = allAnime.find(a => a.id === currentEpisode?.animeId);
+
+  const refreshMatrix = (epId = selectedEpisodeId) => {
+    const updated = db.getStreamMatrix(epId);
     setVariantsList(updated.variantsByQuality);
+  };
+
+  const handleSelectEpisode = (epId: string) => {
+    setSelectedEpisodeId(epId);
+    const updated = db.getStreamMatrix(epId);
+    setVariantsList(updated.variantsByQuality);
+    if (updated.qualities.length > 0 && !updated.qualities.includes(activeTabQuality)) {
+      setActiveTabQuality(updated.qualities[0]);
+    }
   };
 
   const handleAddVariant = (e: React.FormEvent) => {
@@ -33,7 +46,7 @@ export default function QualityMatrixPage() {
     if (!provider) return;
 
     db.addStreamVariant({
-      episodeId,
+      episodeId: selectedEpisodeId,
       providerId: provider.id,
       providerName: provider.name,
       qualityLabel: newQuality,
@@ -67,7 +80,7 @@ export default function QualityMatrixPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-white">
-            Matriks Server: Sousou no Frieren (Ep 08)
+            Matriks Server: {currentAnime?.canonicalTitle} (Ep {currentEpisode?.displayNumber})
           </h1>
           <p className="text-xs text-zinc-400 mt-0.5">
             Kelola daftar server dan resolusi tanpa perubahan kode atau database.
@@ -75,8 +88,24 @@ export default function QualityMatrixPage() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Episode Selector Dropdown */}
+          <select
+            value={selectedEpisodeId}
+            onChange={(e) => handleSelectEpisode(e.target.value)}
+            className="rounded-lg border border-white/[0.08] bg-zinc-900 px-3 py-1.5 text-xs text-zinc-200 focus:outline-none"
+          >
+            {allEpisodes.map((ep) => {
+              const anime = allAnime.find(a => a.id === ep.animeId);
+              return (
+                <option key={ep.id} value={ep.id}>
+                  {anime?.canonicalTitle} - Ep {ep.displayNumber}
+                </option>
+              );
+            })}
+          </select>
+
           <Link
-            href="/watch/ep-frieren-8"
+            href={`/watch/${selectedEpisodeId}`}
             target="_blank"
             className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-zinc-900 px-3 py-1.5 text-xs text-zinc-300 hover:text-white"
           >
@@ -85,7 +114,7 @@ export default function QualityMatrixPage() {
           </Link>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="flex items-center gap-1.5 rounded-lg bg-red-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-red-700 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg bg-red-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-red-700 transition-colors cursor-pointer"
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Tambah Server</span>

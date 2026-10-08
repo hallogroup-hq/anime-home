@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { EpisodeList } from '@/components/catalog/EpisodeList';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
-import { setWatchlistStatus, getLocalWatchlist } from '@/lib/services/watchlist';
+import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
 import { Play, Bookmark, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -29,6 +29,7 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
 
   const handleToggleWatchlist = () => {
     if (isInWatchlist) {
+      removeFromWatchlist(anime.id);
       setIsInWatchlist(false);
     } else {
       setWatchlistStatus(anime.id, 'plan_to_watch');

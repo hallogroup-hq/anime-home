@@ -5,7 +5,8 @@ import { db } from '@/lib/services/store';
 
 export default function RightsTakedownPage() {
   const [takedownReason, setTakedownReason] = useState('');
-  const [selectedVariantId, setSelectedVariantId] = useState('var-f8-720-beta');
+  const allVariants = db.getAllStreamVariants().filter(v => v.moderationState === 'approved');
+  const [selectedVariantId, setSelectedVariantId] = useState(allVariants[0]?.id || 'var-f8-720-beta');
   const [statusMessage, setStatusMessage] = useState('');
   const [auditLogs, setAuditLogs] = useState(db.getAuditLogs());
 
@@ -52,9 +53,11 @@ export default function RightsTakedownPage() {
               onChange={(e) => setSelectedVariantId(e.target.value)}
               className="rounded-lg bg-zinc-950 border border-zinc-700 p-2 text-white"
             >
-              <option value="var-f8-720-beta">var-f8-720-beta (Server Beta 720p)</option>
-              <option value="var-f8-720-delta">var-f8-720-delta (Server Delta 720p)</option>
-              <option value="var-f8-1080-epsilon">var-f8-1080-epsilon (Server Epsilon 1080p)</option>
+              {allVariants.map(v => (
+                <option key={v.id} value={v.id}>
+                  {v.id} ({v.providerName} - {v.qualityLabel} / {v.episodeId})
+                </option>
+              ))}
             </select>
           </div>
 

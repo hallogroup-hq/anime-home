@@ -61,6 +61,38 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
         episodeTitle={episode.title}
       />
 
+      {/* QUICK EPISODE SELECTOR */}
+      <div className="flex flex-col gap-2 pt-1">
+        <div className="flex items-center justify-between text-xs text-zinc-400">
+          <span className="font-semibold text-zinc-300">Daftar Episode:</span>
+          <Link href={`/anime/${anime.slug}`} className="hover:text-white transition-colors">
+            Semua ({allEpisodes.length})
+          </Link>
+        </div>
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {allEpisodes.map((ep) => {
+            const isCurrent = ep.id === episode.id;
+            const isPlayable = ep.watchabilityState === 'eligible_verified';
+            return (
+              <Link
+                key={ep.id}
+                href={isPlayable ? `/watch/${ep.id}` : '#'}
+                className={`flex items-center justify-center min-w-[42px] h-9 px-3 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  isCurrent
+                    ? 'bg-red-600 text-white shadow-sm'
+                    : isPlayable
+                    ? 'bg-zinc-900 border border-white/[0.08] text-zinc-300 hover:bg-zinc-800 hover:text-white'
+                    : 'bg-zinc-950 border border-white/[0.04] text-zinc-600 cursor-not-allowed'
+                }`}
+                title={ep.title}
+              >
+                {ep.displayNumber}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
       {/* NEXT / PREV EPISODE BUTTONS */}
       <div className="flex items-center justify-between py-2 border-y border-white/[0.06]">
         {prevEpisode ? (
@@ -75,7 +107,7 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
           <div />
         )}
 
-        {nextEpisode ? (
+        {nextEpisode && nextEpisode.watchabilityState === 'eligible_verified' ? (
           <Link
             href={`/watch/${nextEpisode.id}`}
             className="flex items-center gap-1.5 rounded-lg bg-red-600 px-4 py-2 text-xs font-bold text-white hover:bg-red-700 transition-colors ml-auto shadow-sm"

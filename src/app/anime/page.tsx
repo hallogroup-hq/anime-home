@@ -1,14 +1,24 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
 import { Search, X } from 'lucide-react';
 
-export default function CatalogPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+function CatalogContent() {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get('q') || '';
+
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedGenre, setSelectedGenre] = useState<string>('Semua');
   const [selectedStatus, setSelectedStatus] = useState<string>('Semua');
+
+  useEffect(() => {
+    if (initialQuery) {
+      setSearchQuery(initialQuery);
+    }
+  }, [initialQuery]);
 
   const genres = ['Semua', 'Action', 'Adventure', 'Fantasy', 'Drama', 'Comedy', 'Sci-Fi'];
   const statuses = [
@@ -34,7 +44,7 @@ export default function CatalogPage() {
         </h1>
 
         <div className="relative w-full max-w-xl">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
@@ -45,7 +55,7 @@ export default function CatalogPage() {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-white"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-white cursor-pointer"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -60,7 +70,7 @@ export default function CatalogPage() {
             <button
               key={g}
               onClick={() => setSelectedGenre(g)}
-              className={`rounded-lg px-3 py-1.5 font-medium whitespace-nowrap transition-colors ${
+              className={`rounded-lg px-3 py-1.5 font-medium whitespace-nowrap transition-colors cursor-pointer ${
                 selectedGenre === g
                   ? 'bg-white text-black font-bold'
                   : 'bg-zinc-900 text-zinc-400 hover:text-white'
@@ -74,7 +84,7 @@ export default function CatalogPage() {
         <select
           value={selectedStatus}
           onChange={(e) => setSelectedStatus(e.target.value)}
-          className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 focus:outline-none"
+          className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 focus:outline-none cursor-pointer"
         >
           {statuses.map((s) => (
             <option key={s.value} value={s.value}>
@@ -99,5 +109,13 @@ export default function CatalogPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function CatalogPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-xs text-zinc-500">Memuat katalog...</div>}>
+      <CatalogContent />
+    </Suspense>
   );
 }

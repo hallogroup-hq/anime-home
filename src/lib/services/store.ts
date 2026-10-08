@@ -89,6 +89,14 @@ class AnimeHomeDataStore {
     return this.episodes.find(e => e.id === episodeId);
   }
 
+  public getAllEpisodes(): Episode[] {
+    return [...this.episodes];
+  }
+
+  public getAllStreamVariants(): StreamVariant[] {
+    return [...this.variants];
+  }
+
   // --- STREAMING MATRIX & INVARIANT ---
   // count(provider for episode=E and quality=Q) can be 0, 1, or N!
   public getStreamMatrix(episodeId: string): {

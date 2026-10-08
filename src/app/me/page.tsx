@@ -12,6 +12,7 @@ export default function MePage() {
   const [watchlist, setWatchlist] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<'all' | 'watching' | 'plan_to_watch' | 'completed'>('all');
 
+  // Fixed: Empty dependency array [] prevents infinite re-render loop
   useEffect(() => {
     const rawList = getLocalWatchlist();
     const resolved = rawList.map(entry => {
@@ -19,7 +20,7 @@ export default function MePage() {
       return anime ? { ...entry, anime } : null;
     }).filter(Boolean);
     setWatchlist(resolved);
-  }, [allAnime]);
+  }, []);
 
   const handleRemove = (animeId: string) => {
     removeFromWatchlist(animeId);
@@ -60,7 +61,7 @@ export default function MePage() {
         {watchlist.length > 0 && (
           <button
             onClick={handleExportData}
-            className="flex items-center gap-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 hover:text-white transition-colors cursor-pointer"
           >
             <Download className="h-3.5 w-3.5" />
             <span>Ekspor JSON</span>
@@ -79,7 +80,7 @@ export default function MePage() {
           <button
             key={t.key}
             onClick={() => setActiveTab(t.key as any)}
-            className={`rounded-lg px-3 py-1.5 font-medium transition-colors ${
+            className={`rounded-lg px-3 py-1.5 font-medium transition-colors cursor-pointer ${
               activeTab === t.key
                 ? 'bg-white text-black font-bold'
                 : 'text-zinc-400 hover:text-white'
@@ -101,7 +102,7 @@ export default function MePage() {
                   e.preventDefault();
                   handleRemove(anime.id);
                 }}
-                className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/80 text-zinc-400 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/80 text-zinc-400 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity z-20 cursor-pointer"
                 title="Hapus dari koleksi"
               >
                 <Trash2 className="h-3.5 w-3.5" />

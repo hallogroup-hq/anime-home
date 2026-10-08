@@ -1,10 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { db } from '@/lib/services/store';
 import { ExternalLink } from 'lucide-react';
 
 export default function DiscoverPage() {
   const merchItems = db.getAllMerch();
+  const [selectedFilter, setSelectedFilter] = useState('Semua');
+
+  const animeTitles = ['Semua', ...Array.from(new Set(merchItems.map(m => m.animeTitle)))];
+
+  const filteredItems = selectedFilter === 'Semua'
+    ? merchItems
+    : merchItems.filter(m => m.animeTitle === selectedFilter);
 
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
@@ -13,13 +21,30 @@ export default function DiscoverPage() {
           Merchandise Anime
         </h1>
         <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-          Koleksi merchandise dan figur anime resmi dari toko mitra.
+          Koleksi merchandise dan figur anime resmi dari toko mitra terverifikasi.
         </p>
+      </div>
+
+      {/* Filter Tabs */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-white/[0.06] scrollbar-none text-xs">
+        {animeTitles.map((title) => (
+          <button
+            key={title}
+            onClick={() => setSelectedFilter(title)}
+            className={`rounded-xl px-3.5 py-1.5 font-medium whitespace-nowrap transition-colors cursor-pointer ${
+              selectedFilter === title
+                ? 'bg-white text-black font-bold'
+                : 'bg-zinc-900 text-zinc-400 hover:text-white'
+            }`}
+          >
+            {title}
+          </button>
+        ))}
       </div>
 
       {/* Merch Grid: Clean & Direct */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {merchItems.map((item) => (
+        {filteredItems.map((item) => (
           <div
             key={item.id}
             className="flex flex-col rounded-xl bg-zinc-900 border border-white/[0.06] overflow-hidden group"
