@@ -228,6 +228,28 @@ export const INITIAL_ANIME: Anime[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+  {
+    id: 'anime-jujutsu',
+    canonicalTitle: "Jujutsu Kaisen Season 2",
+    slug: 'jujutsu-kaisen-season-2',
+    mediaType: 'TV',
+    synopsis: 'Masa lalu Satoru Gojo dan Suguru Geto saat masa SMA Jujutsu terungkap dalam misi pengawalan Wadah Plasma Bintang, mengawali tragedi Insiden Shibuya.',
+    firstAirDate: '2023-07-06',
+    year: 2023,
+    seasonPeriod: 'Summer',
+    maturityRating: 'R-17',
+    airingStatus: 'completed',
+    publishState: 'published',
+    posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
+    bannerUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+    genres: ['Action', 'Fantasy', 'Supernatural'],
+    aliases: [
+      { id: 't-13', animeId: 'anime-jujutsu', locale: 'ja-Latn', title: "Jujutsu Kaisen 2nd Season", titleType: 'romaji', normalizedTitle: 'jujutsu kaisen 2nd season' },
+      { id: 't-14', animeId: 'anime-jujutsu', locale: 'en-US', title: "Sorcery Fight Season 2", titleType: 'english', normalizedTitle: 'sorcery fight season 2' },
+    ],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
 ];
 
 export const INITIAL_EPISODES: Episode[] = [
@@ -584,6 +606,20 @@ export const INITIAL_EPISODES: Episode[] = [
     subtitleState: 'available',
     watchabilityState: 'eligible_verified',
   },
+  {
+    id: 'ep-jjk-1',
+    animeId: 'anime-jujutsu',
+    ordinal: 1,
+    displayNumber: '01',
+    episodeType: 'standard',
+    title: 'Masa Muda Tersembunyi (Hidden Inventory)',
+    durationMinutes: 24,
+    publishState: 'published',
+    airedAt: '2023-07-06T21:00:00Z',
+    airingState: 'aired',
+    subtitleState: 'available',
+    watchabilityState: 'eligible_verified',
+  },
 ];
 
 // Helper untuk membuat varian multi-provider standar pada episode
@@ -911,6 +947,7 @@ export const INITIAL_STREAM_VARIANTS: StreamVariant[] = [
   ...createStandardVariants('ep-oshi-2', 'o2'),
   ...createStandardVariants('ep-mushoku-1', 'm1'),
   ...createStandardVariants('ep-mushoku-12', 'm12'),
+  ...createStandardVariants('ep-jjk-1', 'jjk1'),
 ];
 
 export const INITIAL_AD_PLACEMENTS: AdPlacement[] = [
@@ -1081,7 +1118,7 @@ export const INITIAL_WATCH_ORDERS: FranchiseWatchOrderItem[] = [
     franchiseId: 'fr-demonslayer',
     franchiseName: 'Kimetsu no Yaiba (Demon Slayer)',
     orderNumber: 5,
-    animeId: 'anime-demonslayer',
+    animeId: 'anime-hashira',
     title: 'Demon Slayer: Hashira Training Arc (Season 4)',
     slug: 'kimetsu-no-yaiba-hashira-geiko-hen',
     year: 2024,
@@ -1242,7 +1279,7 @@ export const INITIAL_CHARACTERS: AnimeCharacter[] = [
   // Demon Slayer
   {
     id: 'char-tanjiro',
-    animeId: 'anime-demonslayer',
+    animeId: 'anime-hashira',
     name: 'Tanjiro Kamado',
     role: 'Main',
     imageUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=300&fit=crop',
@@ -1251,7 +1288,7 @@ export const INITIAL_CHARACTERS: AnimeCharacter[] = [
   },
   {
     id: 'char-nezuko',
-    animeId: 'anime-demonslayer',
+    animeId: 'anime-hashira',
     name: 'Nezuko Kamado',
     role: 'Main',
     imageUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=300&fit=crop',
@@ -1260,7 +1297,7 @@ export const INITIAL_CHARACTERS: AnimeCharacter[] = [
   },
   {
     id: 'char-gyomei',
-    animeId: 'anime-demonslayer',
+    animeId: 'anime-hashira',
     name: 'Gyomei Himejima',
     role: 'Supporting',
     imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=300&fit=crop',
@@ -1339,7 +1376,7 @@ export const INITIAL_COMMENTS: EpisodeComment[] = [
   },
   {
     id: 'comm-4',
-    episodeId: 'ep-kny-1',
+    episodeId: 'ep-hashira-1',
     authorName: 'DemonHunter99',
     content: 'Visual Ufotable di pembuka Hashira Training Arc mulus banget, 60fps berasa cinematic film!',
     isSpoiler: false,
