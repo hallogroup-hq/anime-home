@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { db } from '@/lib/services/store';
 import { getLocalWatchlist, getLocalProgress, removeFromWatchlist } from '@/lib/services/watchlist';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
-import { Bookmark, Download, Trash2, CheckCircle2, User, Film } from 'lucide-react';
+import { Trash2, Download } from 'lucide-react';
 
 export default function MePage() {
   const allAnime = db.getAnimeList();
@@ -31,13 +31,12 @@ export default function MePage() {
       watchlist: getLocalWatchlist(),
       progress: getLocalProgress(),
       exportedAt: new Date().toISOString(),
-      platform: 'ANIME HOME',
     };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `animehome-library-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `koleksi-animehome-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -48,33 +47,29 @@ export default function MePage() {
 
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
-      {/* Profile Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-3xl bg-surface-900 border border-border-800">
-        <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white font-black text-xl shadow-lg shadow-brand/20">
-            <User className="h-7 w-7" />
-          </div>
-          <div>
-            <h1 className="text-lg sm:text-xl font-black text-white">
-              Tamu / Tamu Penonton (Penyimpanan Lokal Aktif)
-            </h1>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Progres tontonan dan daftar pantau Anda tersimpan aman di browser Anda saat ini.
-            </p>
-          </div>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-black text-white">
+            Koleksi Saya
+          </h1>
+          <p className="text-xs text-zinc-400 mt-0.5">
+            Daftar anime dan episode yang Anda simpan.
+          </p>
         </div>
 
-        <button
-          onClick={handleExportData}
-          className="flex items-center gap-2 rounded-2xl bg-surface-800 border border-border-700 px-4 py-2.5 text-xs font-bold text-slate-200 hover:bg-surface-700 hover:text-white transition-colors"
-        >
-          <Download className="h-4 w-4" />
-          <span>Ekspor Data Tontonan (JSON)</span>
-        </button>
+        {watchlist.length > 0 && (
+          <button
+            onClick={handleExportData}
+            className="flex items-center gap-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
+          >
+            <Download className="h-3.5 w-3.5" />
+            <span>Ekspor JSON</span>
+          </button>
+        )}
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-border-800 pb-2">
+      <div className="flex items-center gap-2 border-b border-white/[0.06] pb-2 text-xs">
         {[
           { key: 'all', label: `Semua (${watchlist.length})` },
           { key: 'watching', label: 'Sedang Ditonton' },
@@ -84,10 +79,10 @@ export default function MePage() {
           <button
             key={t.key}
             onClick={() => setActiveTab(t.key as any)}
-            className={`rounded-xl px-3.5 py-1.5 text-xs font-bold transition-colors ${
+            className={`rounded-lg px-3 py-1.5 font-medium transition-colors ${
               activeTab === t.key
-                ? 'bg-brand text-white'
-                : 'text-slate-400 hover:text-white bg-surface-900'
+                ? 'bg-white text-black font-bold'
+                : 'text-zinc-400 hover:text-white'
             }`}
           >
             {t.label}
@@ -95,7 +90,7 @@ export default function MePage() {
         ))}
       </div>
 
-      {/* Watchlist Grid */}
+      {/* Grid */}
       {filteredItems.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
           {filteredItems.map(({ anime }) => (
@@ -106,8 +101,8 @@ export default function MePage() {
                   e.preventDefault();
                   handleRemove(anime.id);
                 }}
-                className="absolute top-2 right-2 p-1.5 rounded-lg bg-red-950/90 text-red-400 opacity-0 group-hover:opacity-100 hover:bg-red-900 transition-opacity z-20 border border-red-500/40"
-                title="Hapus dari Library"
+                className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/80 text-zinc-400 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                title="Hapus dari koleksi"
               >
                 <Trash2 className="h-3.5 w-3.5" />
               </button>
@@ -115,17 +110,10 @@ export default function MePage() {
           ))}
         </div>
       ) : (
-        <div className="rounded-3xl border border-border-800 bg-surface-900/40 p-12 text-center flex flex-col items-center">
-          <Bookmark className="h-10 w-10 text-slate-600 mb-2" />
-          <h3 className="text-base font-bold text-white">Belum Ada Anime di Daftar Ini</h3>
-          <p className="text-xs text-slate-400 mt-1 max-w-xs">
-            Buka katalog anime dan klik &quot;Tambah ke Watchlist&quot; untuk menyimpan judul tontonan Anda.
-          </p>
-          <Link
-            href="/anime"
-            className="mt-4 rounded-xl bg-brand px-5 py-2.5 text-xs font-bold text-white hover:bg-brand-hover shadow-lg shadow-brand/20"
-          >
-            Jelajahi Katalog Anime
+        <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/40 p-12 text-center text-xs text-zinc-500">
+          Belum ada anime di daftar ini.{' '}
+          <Link href="/anime" className="text-red-500 hover:underline ml-1">
+            Jelajahi katalog
           </Link>
         </div>
       )}

@@ -1,7 +1,7 @@
 'use client';
 
 import { db } from '@/lib/services/store';
-import { ShoppingBag, ExternalLink, ShieldCheck, AlertCircle } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export default function DiscoverPage() {
   const merchItems = db.getAllMerch();
@@ -9,65 +9,51 @@ export default function DiscoverPage() {
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
       <div>
-        <div className="flex items-center gap-2">
-          <ShoppingBag className="h-6 w-6 text-amber-400" />
-          <h1 className="text-xl sm:text-3xl font-black text-white tracking-tight">
-            Merchandise & Fandom Discovery
-          </h1>
-        </div>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
-          Etalase kurasi barang anime resmi dari toko dan kreator terverifikasi. Kami memprioritaskan keamanan pembeli dan keterbukaan tautan.
+        <h1 className="text-xl sm:text-2xl font-black text-white">
+          Merchandise Anime
+        </h1>
+        <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+          Koleksi merchandise dan figur anime resmi dari toko mitra.
         </p>
       </div>
 
-      {/* Shopee Gating Transparency Disclosure Banner (PRD Bab 13.4 & Gate) */}
-      <div className="rounded-2xl border border-amber-500/30 bg-amber-950/20 p-4 flex items-start gap-3">
-        <ShieldCheck className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
-        <div className="flex flex-col text-xs text-slate-300">
-          <span className="font-bold text-amber-300">Kebijakan Kemitraan & Penautan Toko:</span>
-          <p className="mt-0.5 text-slate-400">
-            Seluruh tautan mengarah langsung ke toko resmi mitra. Sesuai dengan kepatuhan kebijakan Shopee Affiliate untuk platform penyiaran media, pelacakan komisi otomatis saat ini berstatus <span className="text-white font-semibold underline">Gated / Dinonaktifkan</span> sampai proses izin resmi diterbitkan.
-          </p>
-        </div>
-      </div>
-
-      {/* Merch Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {/* Merch Grid: Clean & Direct */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {merchItems.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col rounded-3xl bg-surface-900 border border-border-800 overflow-hidden hover:border-slate-700 transition-all group"
+            className="flex flex-col rounded-xl bg-zinc-900 border border-white/[0.06] overflow-hidden group"
           >
-            <div className="relative aspect-square w-full overflow-hidden bg-ink-950">
+            <div className="relative aspect-square w-full overflow-hidden bg-black">
               <img
                 src={item.imageUrl}
                 alt={item.name}
                 className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <span className="absolute top-3 left-3 rounded-lg bg-ink-950/80 backdrop-blur-md px-2 py-1 text-[10px] font-bold text-slate-300 border border-white/10">
+              <span className="absolute bottom-2 left-2 rounded bg-black/80 px-1.5 py-0.5 text-[10px] font-medium text-zinc-300">
                 {item.animeTitle}
               </span>
             </div>
 
-            <div className="p-4 flex flex-col flex-1 justify-between gap-3">
+            <div className="p-3.5 flex flex-col flex-1 justify-between gap-3">
               <div>
-                <h3 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-2">
+                <h3 className="text-xs sm:text-sm font-semibold text-white line-clamp-2">
                   {item.name}
                 </h3>
-                <p className="text-base font-extrabold text-amber-400 mt-1">
+                <p className="text-sm font-bold text-white mt-1">
                   Rp {item.price.toLocaleString('id-ID')}
                 </p>
-                <span className="text-xs text-slate-500 block mt-0.5">{item.storeName}</span>
+                <span className="text-[11px] text-zinc-500 block mt-0.5">{item.storeName}</span>
               </div>
 
               <a
                 href={item.destinationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl bg-surface-800 border border-border-700 py-2.5 text-xs font-bold text-white hover:bg-amber-500 hover:text-black transition-colors"
+                className="flex items-center justify-center gap-1.5 rounded-lg bg-zinc-800 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors"
               >
-                <span>Kunjungi Toko Mitra</span>
-                <ExternalLink className="h-3.5 w-3.5" />
+                <span>Lihat di Toko</span>
+                <ExternalLink className="h-3 w-3" />
               </a>
             </div>
           </div>

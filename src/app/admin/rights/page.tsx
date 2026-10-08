@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { db } from '@/lib/services/store';
-import { AlertOctagon, CheckCircle2, ShieldCheck, History, Undo2 } from 'lucide-react';
 
 export default function RightsTakedownPage() {
   const [takedownReason, setTakedownReason] = useState('');
@@ -15,108 +14,89 @@ export default function RightsTakedownPage() {
     if (!takedownReason) return;
     const ok = db.emergencyPauseSource(selectedVariantId, takedownReason);
     if (ok) {
-      setStatusMessage(`Sumber [${selectedVariantId}] berhasil di-takedown seketika dan dihapus dari watch page publik.`);
+      setStatusMessage(`Sumber [${selectedVariantId}] dinonaktifkan dari pemutar publik.`);
       setTakedownReason('');
       setAuditLogs(db.getAuditLogs());
-      setTimeout(() => setStatusMessage(''), 4000);
-    }
-  };
-
-  const handleRestore = (variantId: string) => {
-    const ok = db.restoreSource(variantId);
-    if (ok) {
-      setStatusMessage(`Sumber [${variantId}] berhasil dipulihkan setelah verifikasi hak cipta.`);
-      setAuditLogs(db.getAuditLogs());
-      setTimeout(() => setStatusMessage(''), 4000);
+      setTimeout(() => setStatusMessage(''), 3000);
     }
   };
 
   return (
     <div className="flex flex-col gap-6 pb-12">
       <div>
-        <div className="flex items-center gap-2">
-          <AlertOctagon className="h-6 w-6 text-rose-500" />
-          <h1 className="text-xl sm:text-2xl font-black text-white">
-            Konsol Hak Cipta & Emergency Takedown (ADM-RIGHTS & SOP-05)
-          </h1>
-        </div>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
-          Hentikan sumber penayangan yang bermasalah secara hukum seketika. Sumber yang ditakedown langsung hilang dari pilihan server di sisi publik.
+        <h1 className="text-xl font-bold text-white">
+          Takedown & Keluhan Hak Cipta
+        </h1>
+        <p className="text-xs text-zinc-400 mt-0.5">
+          Menonaktifkan server yang bermasalah secara langsung dari sisi publik.
         </p>
       </div>
 
       {statusMessage && (
-        <div className="rounded-2xl border border-rose-500/50 bg-rose-950/40 p-4 text-xs font-bold text-rose-300 flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4" />
+        <div className="rounded-lg bg-zinc-900 border border-red-500/40 p-3 text-xs text-red-400">
           {statusMessage}
         </div>
       )}
 
-      {/* Emergency Form */}
-      <form onSubmit={handleTakedown} className="rounded-3xl border border-border-700 bg-surface-900 p-6 flex flex-col gap-4">
-        <h3 className="text-sm font-extrabold text-white flex items-center gap-2">
-          <AlertOctagon className="h-4 w-4 text-rose-500" />
-          Formulir Penarikan Sumber Penayangan (Takedown Rehearsal)
+      {/* Form Takedown */}
+      <form onSubmit={handleTakedown} className="rounded-xl border border-white/[0.08] bg-zinc-900 p-5 flex flex-col gap-3">
+        <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+          Formulir Takedown Cepat
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-300">Pilih ID Sumber / Varian:</label>
+            <label className="text-zinc-400">ID Varian Server:</label>
             <select
               value={selectedVariantId}
               onChange={(e) => setSelectedVariantId(e.target.value)}
-              className="rounded-xl bg-ink-950 border border-border-700 p-2.5 text-xs text-white focus:outline-none focus:border-brand"
+              className="rounded-lg bg-zinc-950 border border-zinc-700 p-2 text-white"
             >
-              <option value="var-f8-720-beta">var-f8-720-beta (Server Beta - FastStream 720p)</option>
-              <option value="var-f8-720-delta">var-f8-720-delta (Server Delta - EdgeMirror 720p)</option>
-              <option value="var-f8-1080-epsilon">var-f8-1080-epsilon (Server Epsilon - VIP 1080p)</option>
+              <option value="var-f8-720-beta">var-f8-720-beta (Server Beta 720p)</option>
+              <option value="var-f8-720-delta">var-f8-720-delta (Server Delta 720p)</option>
+              <option value="var-f8-1080-epsilon">var-f8-1080-epsilon (Server Epsilon 1080p)</option>
             </select>
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-300">Dasar Tuntutan / Alasan Legal:</label>
+            <label className="text-zinc-400">Alasan / Referensi Tiket:</label>
             <input
               type="text"
               required
-              placeholder="Contoh: Notice of DMCA / distributor request ID-2026-09"
+              placeholder="Contoh: Tiket DMCA #4928"
               value={takedownReason}
               onChange={(e) => setTakedownReason(e.target.value)}
-              className="rounded-xl bg-ink-950 border border-border-700 p-2.5 text-xs text-white focus:outline-none focus:border-brand"
+              className="rounded-lg bg-zinc-950 border border-zinc-700 p-2 text-white"
             />
           </div>
         </div>
 
-        <div className="flex justify-end gap-2 mt-2">
+        <div className="flex justify-end mt-2">
           <button
             type="submit"
-            className="rounded-xl bg-rose-600 px-5 py-2.5 text-xs font-bold text-white hover:bg-rose-700 shadow-lg shadow-rose-600/30 transition-all flex items-center gap-1.5"
+            className="rounded-lg bg-red-600 hover:bg-red-700 px-4 py-2 text-xs font-bold text-white transition-colors"
           >
-            <AlertOctagon className="h-4 w-4" />
-            <span>Eksekusi Emergency Takedown Sekarang</span>
+            Eksekusi Takedown
           </button>
         </div>
       </form>
 
-      {/* Audit Trail Riwayat Aksi */}
-      <section className="flex flex-col gap-3 rounded-3xl bg-surface-900 border border-border-800 p-6">
-        <h3 className="text-sm font-extrabold text-white flex items-center gap-2">
-          <History className="h-4 w-4 text-slate-400" />
-          Audit Trail Log Penegakan Hak & Operasional
+      {/* Log Riwayat */}
+      <section className="flex flex-col gap-2 rounded-xl bg-zinc-900 border border-white/[0.08] p-5">
+        <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">
+          Riwayat Audit Terakhir
         </h3>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col divide-y divide-white/[0.06]">
           {auditLogs.slice(0, 5).map((log) => (
-            <div
-              key={log.id}
-              className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-xl bg-ink-950 border border-border-800 text-xs"
-            >
+            <div key={log.id} className="py-2.5 flex items-center justify-between text-xs">
               <div>
-                <span className="font-bold text-brand uppercase mr-2">[{log.action}]</span>
-                <span className="text-white font-medium">{log.resource}</span>
-                {log.reason && <span className="text-slate-400 ml-2">— {log.reason}</span>}
+                <span className="font-bold text-red-500 mr-2">[{log.action}]</span>
+                <span className="text-zinc-200">{log.resource}</span>
+                {log.reason && <span className="text-zinc-500 ml-2">- {log.reason}</span>}
               </div>
-              <span className="text-[10px] text-slate-500 whitespace-nowrap">
-                {new Date(log.timestamp).toLocaleString('id-ID')}
+              <span className="text-[10px] text-zinc-500">
+                {new Date(log.timestamp).toLocaleTimeString('id-ID')}
               </span>
             </div>
           ))}
