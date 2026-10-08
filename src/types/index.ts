@@ -148,3 +148,14 @@ export interface AuditLog {
   reason?: string;
   timestamp: string;
 }
+
+export interface HomepageSectionConfig {
+  id: 'hero' | 'continue_watching' | 'latest_episodes' | 'ad_banner' | 'popular';
+  name: string;
+  enabled: boolean;
+}
+
+export interface HomepageConfig {
+  heroAnimeId: string;
+  sections: HomepageSectionConfig[];
+}

@@ -1,6 +1,6 @@
 import { 
   Anime, Episode, Provider, StreamVariant, AdCampaign, AdPlacement, 
-  MerchItem, BrokenStreamReport, AuditLog, QualityLabel 
+  MerchItem, BrokenStreamReport, AuditLog, QualityLabel, HomepageConfig 
 } from '@/types';
 import { 
   INITIAL_ANIME, INITIAL_EPISODES, INITIAL_PROVIDERS, 
@@ -17,6 +17,16 @@ class AnimeHomeDataStore {
   private campaigns: AdCampaign[] = [...INITIAL_CAMPAIGNS];
   private adPlacements: AdPlacement[] = [...INITIAL_AD_PLACEMENTS];
   private merch: MerchItem[] = [...INITIAL_MERCH_ITEMS];
+  private homepageConfig: HomepageConfig = {
+    heroAnimeId: 'anime-frieren',
+    sections: [
+      { id: 'hero', name: 'Sorotan Utama (Hero Spotlight)', enabled: true },
+      { id: 'continue_watching', name: 'Lanjutkan Menonton', enabled: true },
+      { id: 'latest_episodes', name: 'Episode Terbaru', enabled: true },
+      { id: 'ad_banner', name: 'Banner Sponsor (Leaderboard)', enabled: true },
+      { id: 'popular', name: 'Populer Musim Ini', enabled: true },
+    ],
+  };
   private reports: BrokenStreamReport[] = [
     {
       id: 'rep-01',
@@ -245,6 +255,73 @@ class AnimeHomeDataStore {
 
   public getAuditLogs(): AuditLog[] {
     return [...this.auditLogs];
+  }
+
+  // --- HOMEPAGE VISUAL CMS ---
+  public getHomepageConfig(): HomepageConfig {
+    return JSON.parse(JSON.stringify(this.homepageConfig));
+  }
+
+  public updateHomepageConfig(config: HomepageConfig): void {
+    this.homepageConfig = JSON.parse(JSON.stringify(config));
+    this.addAuditLog('admin-cms', 'Visual CMS Editor', 'UPDATE_HOMEPAGE_CONFIG', 'HOMEPAGE', `Set hero to ${config.heroAnimeId} and updated section ordering`);
+  }
+
+  // --- CONTENT MANAGER: CRUD ANIME & BATCH EPISODES ---
+  public addAnime(animeData: Omit<Anime, 'id' | 'createdAt' | 'updatedAt'>): Anime {
+    const id = `anime-custom-${Date.now()}`;
+    const newAnime: Anime = {
+      ...animeData,
+      id,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    this.anime.unshift(newAnime);
+    this.addAuditLog('admin-content', 'Content Editor', 'ADD_ANIME', `Anime: ${id}`, `Added ${animeData.canonicalTitle}`);
+    return newAnime;
+  }
+
+  public batchCreateEpisodes(animeId: string, count: number, startOrdinal = 1, durationMinutes = 24): Episode[] {
+    const createdEpisodes: Episode[] = [];
+    const now = new Date();
+
+    for (let i = 0; i < count; i++) {
+      const ordinal = startOrdinal + i;
+      const displayNumber = ordinal < 10 ? `0${ordinal}` : `${ordinal}`;
+      const epId = `ep-${animeId.replace('anime-', '')}-${ordinal}`;
+      
+      const ep: Episode = {
+        id: epId,
+        animeId,
+        ordinal,
+        displayNumber,
+        episodeType: 'standard',
+        title: `Episode ${displayNumber}`,
+        durationMinutes,
+        publishState: 'published',
+        airedAt: new Date(now.getTime() + i * 86400000 * 7).toISOString(),
+        airingState: 'aired',
+        subtitleState: 'available',
+        watchabilityState: 'eligible_verified',
+      };
+      
+      this.episodes.push(ep);
+      createdEpisodes.push(ep);
+    }
+
+    this.addAuditLog('admin-content', 'Content Editor', 'BATCH_CREATE_EPISODES', `Anime: ${animeId}`, `Batch created ${count} episodes starting at ${startOrdinal}`);
+    return createdEpisodes;
+  }
+
+  // --- PROVIDER REGISTRY ---
+  public addProvider(data: Omit<Provider, 'id'>): Provider {
+    const newProv: Provider = {
+      ...data,
+      id: `prov-custom-${Date.now()}`,
+    };
+    this.providers.push(newProv);
+    this.addAuditLog('admin-ops', 'Operations Admin', 'ADD_PROVIDER', `Provider: ${newProv.id}`, `Registered ${data.name}`);
+    return newProv;
   }
 
   // --- ADMIN METRICS SNAPSHOT ---

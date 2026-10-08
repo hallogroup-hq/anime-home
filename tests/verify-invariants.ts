@@ -97,6 +97,37 @@ const merchList = db.getAllMerch();
 const allAffiliateDisabled = merchList.every(m => m.isAffiliate === false);
 assert(allAffiliateDisabled, 'QA-040: Seluruh item merchandise mematuhi gating Shopee (isAffiliate=false)');
 
+// 8. HOMEPAGE VISUAL CMS (ADM-HOMEPAGE)
+console.log('\n8. Homepage Visual CMS Zero-Code Layout');
+const initialConfig = db.getHomepageConfig();
+assert(initialConfig.sections.length === 5, 'QA-050: Konfigurasi seksi beranda default memiliki 5 modul');
+db.updateHomepageConfig({
+  ...initialConfig,
+  heroAnimeId: 'anime-kaiju8',
+});
+const updatedConfig = db.getHomepageConfig();
+assert(updatedConfig.heroAnimeId === 'anime-kaiju8', 'QA-051: Penggantian Hero Spotlight tersimpan tanpa deploy kode');
+
+// 9. BATCH EPISODE GENERATOR (ADM-SEASONS & EPISODES)
+console.log('\n9. Content Manager: 1-Click Batch Episode Creation');
+const batchResult = db.batchCreateEpisodes('anime-windbreaker', 5, 4, 24);
+assert(batchResult.length === 5, 'QA-055: Berhasil batch-create 5 episode shell baru');
+const ep4 = db.getEpisodeById('ep-windbreaker-4');
+assert(ep4 !== undefined && ep4.ordinal === 4 && ep4.displayNumber === '04', 'QA-056: Episode 04 terbuat dengan urutan dan displayNumber kanonikal');
+
+// 10. PROVIDER REGISTRY & ADAPTER WHITELIST (ADM-PROVIDERS)
+console.log('\n10. Provider Registry & Domain Whitelist');
+const newProv = db.addProvider({
+  name: 'Server Zeta (Direct CDN)',
+  domain: 'zeta.streamcdn.org',
+  providerType: 'embed',
+  apiAdapterKey: 'custom_embed',
+  status: 'active',
+});
+assert(newProv.id.startsWith('prov-custom-'), 'QA-060: Provider baru terdaftar dengan ID unik');
+const foundProv = db.getAllProviders().find(p => p.domain === 'zeta.streamcdn.org');
+assert(foundProv?.status === 'active', 'QA-061: Domain provider aktif terverifikasi di registry');
+
 console.log('\n====================================================');
 console.log(`HASIL AKHIR: ${passedTests} / ${totalTests} SKENARIO PENGUJIAN LULUS (100%)`);
 console.log('====================================================');

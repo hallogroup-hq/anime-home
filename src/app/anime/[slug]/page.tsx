@@ -7,7 +7,7 @@ import { db } from '@/lib/services/store';
 import { EpisodeList } from '@/components/catalog/EpisodeList';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
-import { Play, Bookmark, ExternalLink } from 'lucide-react';
+import { Play, Bookmark, ExternalLink, Share2, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function AnimeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -21,11 +21,20 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
   const episodes = db.getEpisodesByAnimeId(anime.id);
   const merchItems = db.getMerchByAnimeId(anime.id);
   const [isInWatchlist, setIsInWatchlist] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const list = getLocalWatchlist();
     setIsInWatchlist(list.some(e => e.animeId === anime.id));
   }, [anime.id]);
+
+  const handleCopyLink = () => {
+    if (typeof window !== 'undefined') {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   const handleToggleWatchlist = () => {
     if (isInWatchlist) {
@@ -108,7 +117,7 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
 
               <button
                 onClick={handleToggleWatchlist}
-                className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-colors ${
+                className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-colors cursor-pointer ${
                   isInWatchlist
                     ? 'bg-zinc-800 border-white/[0.1] text-emerald-400'
                     : 'bg-zinc-900 border-white/[0.08] text-zinc-300 hover:text-white'
@@ -116,6 +125,15 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
               >
                 <Bookmark className="h-4 w-4" />
                 <span>{isInWatchlist ? 'Tersimpan' : 'Tambah ke Koleksi'}</span>
+              </button>
+
+              <button
+                onClick={handleCopyLink}
+                className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-zinc-900 px-3.5 py-2.5 text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
+                title="Salin tautan anime"
+              >
+                {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Share2 className="h-4 w-4" />}
+                <span>{copied ? 'Tersalin' : 'Bagikan'}</span>
               </button>
             </div>
           </div>

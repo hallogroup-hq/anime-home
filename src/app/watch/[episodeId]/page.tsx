@@ -6,11 +6,13 @@ import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { MultiProviderPlayer } from '@/components/player/MultiProviderPlayer';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
-import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight, ArrowLeft, Share2, Check } from 'lucide-react';
 
 export default function WatchPage({ params }: { params: Promise<{ episodeId: string }> }) {
   const resolvedParams = use(params);
   const episode = db.getEpisodeById(resolvedParams.episodeId);
+  const [copied, setCopied] = useState(false);
 
   if (!episode) {
     notFound();
@@ -26,20 +28,38 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
   const prevEpisode = currentIndex > 0 ? allEpisodes[currentIndex - 1] : null;
   const nextEpisode = currentIndex < allEpisodes.length - 1 ? allEpisodes[currentIndex + 1] : null;
 
+  const handleCopyLink = () => {
+    if (typeof window !== 'undefined') {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-5 px-4 sm:px-6 max-w-5xl mx-auto pt-3 pb-16">
       {/* Top Breadcrumb & Episode Badge */}
       <div className="flex items-center justify-between">
         <Link
           href={`/anime/${anime.slug}`}
-          className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors cursor-pointer"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           <span>Kembali ke {anime.canonicalTitle}</span>
         </Link>
-        <span className="text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg">
-          Episode {episode.displayNumber}
-        </span>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleCopyLink}
+            className="flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-white bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
+            title="Salin tautan video"
+          >
+            {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Share2 className="h-3 w-3" />}
+            <span>{copied ? 'Tersalin' : 'Bagikan'}</span>
+          </button>
+          <span className="text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg">
+            Episode {episode.displayNumber}
+          </span>
+        </div>
       </div>
 
       {/* Title */}

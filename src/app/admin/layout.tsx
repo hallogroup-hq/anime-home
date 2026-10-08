@@ -8,9 +8,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
 
   const navItems = [
-    { label: 'Ringkasan & Laporan', href: '/admin' },
+    { label: 'Ringkasan', href: '/admin' },
+    { label: 'Katalog & Episode', href: '/admin/content' },
     { label: 'Matriks Server', href: '/admin/matrix' },
-    { label: 'Takedown & Hak Cipta', href: '/admin/rights' },
+    { label: 'Registry Provider', href: '/admin/providers' },
+    { label: 'Visual CMS', href: '/admin/homepage' },
+    { label: 'Takedown Hak Cipta', href: '/admin/rights' },
     { label: 'Iklan Sponsor', href: '/admin/ads' },
     { label: 'Log Audit', href: '/admin/audit' },
   ];
