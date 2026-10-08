@@ -62,13 +62,20 @@ export default function HomePage() {
 
                   {/* Action Buttons: Explicit click targets */}
                   <div className="mt-6 flex items-center gap-3 relative z-20">
-                    <Link
-                      href={`/anime/${heroAnime.slug}`}
-                      className="flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-bold text-white hover:bg-red-700 active:scale-95 transition-all shadow-lg shadow-red-600/30 cursor-pointer"
-                    >
-                      <Play className="h-4 w-4 fill-current" />
-                      <span>Tonton Sekarang</span>
-                    </Link>
+                    {(() => {
+                      const heroEpisodes = db.getEpisodesByAnimeId(heroAnime.id);
+                      const firstEp = heroEpisodes.find(e => e.watchabilityState === 'eligible_verified') || heroEpisodes[0];
+                      const watchHref = firstEp ? `/watch/${firstEp.id}` : `/anime/${heroAnime.slug}`;
+                      return (
+                        <Link
+                          href={watchHref}
+                          className="flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-bold text-white hover:bg-red-700 active:scale-95 transition-all shadow-lg shadow-red-600/30 cursor-pointer"
+                        >
+                          <Play className="h-4 w-4 fill-current" />
+                          <span>Tonton Sekarang</span>
+                        </Link>
+                      );
+                    })()}
                     <Link
                       href={`/anime/${heroAnime.slug}`}
                       className="rounded-xl border border-white/[0.15] bg-zinc-900/80 hover:bg-zinc-800 active:scale-95 px-5 py-3 text-sm font-medium text-zinc-200 transition-all cursor-pointer"
