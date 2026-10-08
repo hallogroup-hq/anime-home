@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { EpisodeList } from '@/components/catalog/EpisodeList';
+import { WatchOrderGuide } from '@/components/franchise/WatchOrderGuide';
+import { CharacterList } from '@/components/catalog/CharacterList';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
-import { Play, Bookmark, ExternalLink, Share2, Check } from 'lucide-react';
+import { Play, Bookmark, ExternalLink, Share2, Check, Film, Users, ListVideo } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function AnimeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -20,6 +22,10 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
 
   const episodes = db.getEpisodesByAnimeId(anime.id);
   const merchItems = db.getMerchByAnimeId(anime.id);
+  const watchOrder = db.getWatchOrderForAnime(anime.id);
+  const characters = db.getCharactersByAnimeId(anime.id);
+
+  const [activeTab, setActiveTab] = useState<'episodes' | 'watch_order' | 'characters'>('episodes');
   const [isInWatchlist, setIsInWatchlist] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -150,12 +156,58 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
         {/* 4. AD BANNER */}
         <SafeAdSlot slotKey="anime_detail_inline" />
 
-        {/* 5. EPISODES LIST */}
-        <section className="flex flex-col gap-3">
-          <h2 className="text-base font-bold text-white">
-            Episode ({episodes.length})
-          </h2>
-          <EpisodeList episodes={episodes} animeSlug={anime.slug} />
+        {/* 5. INTERACTIVE CONTENT TABS */}
+        <section className="flex flex-col gap-4">
+          <div className="flex items-center gap-2 border-b border-white/[0.08] pb-1 overflow-x-auto scrollbar-none">
+            <button
+              onClick={() => setActiveTab('episodes')}
+              className={`flex items-center gap-2 py-2.5 px-3.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                activeTab === 'episodes'
+                  ? 'bg-zinc-800 text-white shadow-sm'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              <ListVideo className="h-4 w-4" />
+              <span>Daftar Episode ({episodes.length})</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('watch_order')}
+              className={`flex items-center gap-2 py-2.5 px-3.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                activeTab === 'watch_order'
+                  ? 'bg-zinc-800 text-white shadow-sm'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              <Film className="h-4 w-4 text-red-500" />
+              <span>Urutan Nonton ({watchOrder.length})</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('characters')}
+              className={`flex items-center gap-2 py-2.5 px-3.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                activeTab === 'characters'
+                  ? 'bg-zinc-800 text-white shadow-sm'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              <Users className="h-4 w-4 text-sky-400" />
+              <span>Karakter & Seiyuu ({characters.length})</span>
+            </button>
+          </div>
+
+          {/* TAB CONTENTS */}
+          {activeTab === 'episodes' && (
+            <EpisodeList episodes={episodes} animeSlug={anime.slug} />
+          )}
+
+          {activeTab === 'watch_order' && (
+            <WatchOrderGuide items={watchOrder} currentAnimeId={anime.id} />
+          )}
+
+          {activeTab === 'characters' && (
+            <CharacterList characters={characters} />
+          )}
         </section>
 
         {/* 6. MERCHANDISE IF ANY */}

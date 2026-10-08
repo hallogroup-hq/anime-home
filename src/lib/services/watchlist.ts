@@ -110,3 +110,13 @@ export function getContinueWatchingList(): { animeId: string; episodeId: string;
     updatedAt: p.updatedAt,
   }));
 }
+
+export function clearAllWatchlist() {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(WATCHLIST_STORAGE_KEY);
+  } catch (e) {
+    console.error('Failed to clear watchlist', e);
+  }
+}
+

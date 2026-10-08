@@ -216,6 +216,51 @@ assert(allowlistValid2.allowed === true, 'QA-067b: Domain YouTube resmi diizinka
 assert(allowlistBlocked1.allowed === false, 'QA-067c: Domain asing tidak dikenal ditolak');
 assert(allowlistBlocked2.allowed === false, 'QA-067d: Skema URL non-HTTP/HTTPS ditolak');
 
+// 14. FRANCHISE WATCH ORDER NAVIGATION (QA-071)
+console.log('\n14. Franchise Watch Order Navigation');
+const knyOrder = db.getWatchOrderForAnime('anime-demonslayer');
+assert(knyOrder.length >= 5, 'QA-071a: Waralaba Demon Slayer memiliki panduan urutan nonton >= 5 instalasi');
+assert(knyOrder[0].orderNumber === 1 && knyOrder[0].title.includes('Season 1'), 'QA-071b: Urutan pertama adalah Season 1');
+assert(knyOrder[1].canonStatus === 'Canon Movie', 'QA-071c: Mugen Train berstatus Canon Movie');
+
+// 15. CHARACTERS & SEIYUU DIRECTORY (QA-072)
+console.log('\n15. Character & Voice Actors (Seiyuu) Directory');
+const frierenChars = db.getCharactersByAnimeId('anime-frieren');
+assert(frierenChars.length >= 4, 'QA-072a: Karakter Frieren memiliki minimal 4 entri');
+const frierenMain = frierenChars.find(c => c.name === 'Frieren');
+assert(Boolean(frierenMain && frierenMain.voiceActorName.includes('Atsumi Tanezaki')), 'QA-072b: Seiyuu Frieren terdata dengan benar (Atsumi Tanezaki)');
+
+// 16. SPOILER-MASKED DISCUSSION FEED (QA-073)
+console.log('\n16. Spoiler-Masked Discussion Feed');
+const newComm = db.addEpisodeComment({
+  episodeId: 'ep-frieren-8',
+  authorName: 'Tester_Otaku',
+  content: 'Spoiler plot twist ep 9!',
+  isSpoiler: true,
+});
+assert(newComm.isSpoiler === true, 'QA-073a: Komentar berhasil tersimpan dengan bendera spoiler');
+const ep8Comments = db.getCommentsByEpisodeId('ep-frieren-8');
+assert(ep8Comments.some(c => c.id === newComm.id), 'QA-073b: Komentar baru muncul di feed episode');
+db.likeEpisodeComment(newComm.id);
+const likedComm = db.getCommentsByEpisodeId('ep-frieren-8').find(c => c.id === newComm.id);
+assert(Boolean(likedComm && likedComm.likes === 1), 'QA-073c: Counter likes komentar bertambah menjadi 1');
+
+// 17. USER AUTHENTICATION & CLOUD SYNC (QA-074)
+console.log('\n17. User Profile & Cloud Sync');
+const loggedUser = db.loginUser('Rian_Gamer', 'rian@animehome.id');
+assert(loggedUser.isLoggedIn === true && loggedUser.username === 'Rian_Gamer', 'QA-074a: User login berhasil mengubah profil aktif');
+const syncResult = db.syncUserData([{ animeId: 'anime-frieren', status: 'watching' }], [{ episodeId: 'ep-frieren-1' }]);
+assert(syncResult.success === true && syncResult.syncedCount === 2, 'QA-074b: Sinkronisasi data lokal ke cloud berhasil mencakup 2 entri');
+const guestUser = db.logoutUser();
+assert(guestUser.isLoggedIn === false, 'QA-074c: User logout berhasil kembali ke sesi tamu');
+
+// 18. ADVANCED MULTI-FILTER CATALOG & SORTING (QA-075)
+console.log('\n18. Advanced Multi-Filter Catalog & Sorting');
+const year2024Anime = db.getAnimeList({ year: 2024 });
+assert(year2024Anime.every(a => a.year === 2024), 'QA-075a: Seluruh hasil filter tahun 2024 memiliki year=2024');
+const sortedAsc = db.getAnimeList({ sortBy: 'title_asc' });
+assert(sortedAsc[0].canonicalTitle <= sortedAsc[1].canonicalTitle, 'QA-075b: Pengurutan A-Z mengurutkan judul secara leksikografis');
+
 console.log('\n====================================================');
 console.log(`HASIL AKHIR: ${passedTests} / ${totalTests} SKENARIO PENGUJIAN LULUS (100%)`);
 console.log('====================================================');

@@ -5,7 +5,7 @@ import { QualityLabel } from '@/types';
 import { getVideoAdapter } from '@/lib/adapters/video';
 import { db } from '@/lib/services/store';
 import { markEpisodeWatched } from '@/lib/services/watchlist';
-import { AlertCircle, RefreshCw, Flag, Check } from 'lucide-react';
+import { AlertCircle, RefreshCw, Flag, Check, Maximize2, Minimize2, Moon, Sun } from 'lucide-react';
 
 interface MultiProviderPlayerProps {
   episodeId: string;
@@ -40,6 +40,8 @@ export function MultiProviderPlayer({
 
   const [hasError, setHasError] = useState(false);
   const [isWatched, setIsWatched] = useState(false);
+  const [isTheaterMode, setIsTheaterMode] = useState(false);
+  const [isDimmed, setIsDimmed] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [reportReason, setReportReason] = useState('broken_embed');
   const [reportSuccess, setReportSuccess] = useState(false);
@@ -112,9 +114,23 @@ export function MultiProviderPlayer({
   const embedUrl = adapter ? adapter.buildEmbedUrl(activeVariant.embedUrl) : activeVariant.embedUrl;
 
   return (
-    <div className="flex flex-col w-full gap-4">
-      {/* 1. VIDEO PLAYER VIEWPORT (16:9) */}
-      <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl">
+    <>
+      {/* Light Dimmer Overlay */}
+      {isDimmed && (
+        <div
+          onClick={() => setIsDimmed(false)}
+          className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xs transition-opacity cursor-pointer"
+          title="Klik di mana saja untuk menyalakan lampu kembali"
+        />
+      )}
+
+      <div className={`flex flex-col w-full gap-4 transition-all duration-300 ${
+        isDimmed ? 'relative z-50' : ''
+      } ${
+        isTheaterMode ? 'sm:-mx-8 lg:-mx-20 sm:w-[calc(100%+4rem)] lg:w-[calc(100%+10rem)]' : ''
+      }`}>
+        {/* 1. VIDEO PLAYER VIEWPORT (16:9) */}
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl">
         {!hasError ? (
           <iframe
             key={activeVariant.id}
@@ -205,22 +221,50 @@ export function MultiProviderPlayer({
           </div>
         </div>
 
-        {/* ROW 3: AKSI RINGKAS (TANDAI SELESAI & LAPOR) */}
-        <div className="flex items-center justify-between pt-2 border-t border-white/[0.06] text-xs">
-          <button
-            onClick={handleToggleWatched}
-            className={`rounded-lg px-3 py-1.5 font-medium transition-colors ${
-              isWatched
-                ? 'bg-zinc-800 text-emerald-400 font-semibold'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            {isWatched ? '✓ Sudah Ditonton' : 'Tandai Selesai Nonton'}
-          </button>
+        {/* ROW 3: AKSI RINGKAS (TANDAI SELESAI, THEATER, DIMMER & LAPOR) */}
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/[0.06] text-xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={handleToggleWatched}
+              className={`rounded-lg px-3 py-1.5 font-medium transition-colors cursor-pointer ${
+                isWatched
+                  ? 'bg-zinc-800 text-emerald-400 font-semibold'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              {isWatched ? '✓ Sudah Ditonton' : 'Tandai Selesai Nonton'}
+            </button>
+
+            <button
+              onClick={() => setIsTheaterMode(!isTheaterMode)}
+              className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 transition-colors cursor-pointer ${
+                isTheaterMode 
+                  ? 'bg-zinc-800 border-white/[0.2] text-white font-semibold' 
+                  : 'border-white/[0.06] bg-zinc-950 text-zinc-400 hover:text-white'
+              }`}
+              title="Mode Teater (Perlebar layar)"
+            >
+              {isTheaterMode ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
+              <span className="hidden sm:inline">{isTheaterMode ? 'Mode Standar' : 'Mode Teater'}</span>
+            </button>
+
+            <button
+              onClick={() => setIsDimmed(!isDimmed)}
+              className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 transition-colors cursor-pointer ${
+                isDimmed 
+                  ? 'bg-amber-500/20 border-amber-500/40 text-amber-300 font-semibold' 
+                  : 'border-white/[0.06] bg-zinc-950 text-zinc-400 hover:text-white'
+              }`}
+              title="Matikan / Nyalakan Lampu"
+            >
+              {isDimmed ? <Sun className="h-3.5 w-3.5 text-amber-400" /> : <Moon className="h-3.5 w-3.5" />}
+              <span className="hidden sm:inline">{isDimmed ? 'Nyalakan Lampu' : 'Matikan Lampu'}</span>
+            </button>
+          </div>
 
           <button
             onClick={() => setIsReportOpen(true)}
-            className="text-zinc-500 hover:text-zinc-300 flex items-center gap-1"
+            className="text-zinc-500 hover:text-zinc-300 flex items-center gap-1 cursor-pointer"
           >
             <Flag className="h-3 w-3" />
             <span>Lapor Video Rusak</span>
@@ -268,5 +312,6 @@ export function MultiProviderPlayer({
         </div>
       )}
     </div>
+    </>
   );
 }

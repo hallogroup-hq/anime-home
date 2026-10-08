@@ -1,12 +1,14 @@
 import { 
   Anime, Episode, Provider, StreamVariant, AdCampaign, AdPlacement, 
   MerchItem, BrokenStreamReport, AuditLog, QualityLabel, HomepageConfig,
-  MetadataIngestCandidate
+  MetadataIngestCandidate, FranchiseWatchOrderItem, AnimeCharacter,
+  EpisodeComment, UserProfile, MediaType
 } from '@/types';
 import { 
   INITIAL_ANIME, INITIAL_EPISODES, INITIAL_PROVIDERS, 
   INITIAL_STREAM_VARIANTS, INITIAL_CAMPAIGNS, INITIAL_AD_PLACEMENTS, 
-  INITIAL_MERCH_ITEMS 
+  INITIAL_MERCH_ITEMS, INITIAL_WATCH_ORDERS, INITIAL_CHARACTERS,
+  INITIAL_COMMENTS
 } from '@/lib/data/seed';
 
 // Singleton In-Memory / Database State Controller
@@ -18,6 +20,16 @@ class AnimeHomeDataStore {
   private campaigns: AdCampaign[] = [...INITIAL_CAMPAIGNS];
   private adPlacements: AdPlacement[] = [...INITIAL_AD_PLACEMENTS];
   private merch: MerchItem[] = [...INITIAL_MERCH_ITEMS];
+  private watchOrders: FranchiseWatchOrderItem[] = [...INITIAL_WATCH_ORDERS];
+  private characters: AnimeCharacter[] = [...INITIAL_CHARACTERS];
+  private comments: EpisodeComment[] = [...INITIAL_COMMENTS];
+  private userProfile: UserProfile = {
+    id: 'user-guest-01',
+    username: 'Tamu Anime Home',
+    email: 'guest@animehome.id',
+    avatarUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+    isLoggedIn: false,
+  };
   private homepageConfig: HomepageConfig = {
     heroAnimeId: 'anime-frieren',
     sections: [
@@ -57,6 +69,9 @@ class AnimeHomeDataStore {
     genre?: string; 
     status?: string;
     year?: number;
+    seasonPeriod?: string;
+    mediaType?: MediaType;
+    sortBy?: 'popular' | 'latest' | 'score' | 'title_asc';
   }): Anime[] {
     let result = this.anime.filter(a => a.publishState === 'published');
 
@@ -71,19 +86,155 @@ class AnimeHomeDataStore {
       });
     }
 
-    if (params?.genre) {
+    if (params?.genre && params.genre !== 'Semua') {
       result = result.filter(a => a.genres.includes(params.genre!));
     }
 
-    if (params?.status) {
+    if (params?.status && params.status !== 'Semua') {
       result = result.filter(a => a.airingStatus === params.status);
     }
 
     if (params?.year) {
-      result = result.filter(a => a.year === params.year);
+      result = result.filter(a => a.year === Number(params.year));
+    }
+
+    if (params?.seasonPeriod && params.seasonPeriod !== 'Semua') {
+      result = result.filter(a => a.seasonPeriod.toLowerCase() === params.seasonPeriod!.toLowerCase());
+    }
+
+    if (params?.mediaType && (params.mediaType as string) !== 'Semua') {
+      result = result.filter(a => a.mediaType === params.mediaType);
+    }
+
+    if (params?.sortBy) {
+      switch (params.sortBy) {
+        case 'latest':
+          result.sort((a, b) => (b.year !== a.year ? b.year - a.year : (b.firstAirDate || '').localeCompare(a.firstAirDate || '')));
+          break;
+        case 'title_asc':
+          result.sort((a, b) => a.canonicalTitle.localeCompare(b.canonicalTitle));
+          break;
+        case 'score':
+        case 'popular':
+        default:
+          result.sort((a, b) => b.year - a.year);
+          break;
+      }
     }
 
     return result;
+  }
+
+  // --- FRANCHISE WATCH ORDER ---
+  public getWatchOrderForAnime(animeId: string): FranchiseWatchOrderItem[] {
+    const match = this.watchOrders.find(wo => wo.animeId === animeId);
+    if (match) {
+      return this.watchOrders
+        .filter(wo => wo.franchiseId === match.franchiseId)
+        .sort((a, b) => a.orderNumber - b.orderNumber);
+    }
+
+    const anime = this.anime.find(a => a.id === animeId);
+    if (!anime) return [];
+
+    const norm = anime.canonicalTitle.toLowerCase();
+    const matchedItems = this.watchOrders.filter(wo => 
+      wo.franchiseName.toLowerCase().includes(norm.split(' ')[0]) ||
+      norm.includes(wo.franchiseName.toLowerCase().split(' ')[0])
+    );
+
+    if (matchedItems.length > 0) {
+      const fId = matchedItems[0].franchiseId;
+      return this.watchOrders
+        .filter(wo => wo.franchiseId === fId)
+        .sort((a, b) => a.orderNumber - b.orderNumber);
+    }
+
+    return [
+      {
+        id: `wo-single-${anime.id}`,
+        franchiseId: `fr-${anime.id}`,
+        franchiseName: anime.canonicalTitle,
+        orderNumber: 1,
+        animeId: anime.id,
+        title: anime.canonicalTitle,
+        slug: anime.slug,
+        year: anime.year,
+        type: anime.mediaType as any,
+        canonStatus: 'Canon',
+        episodesCount: this.getEpisodesByAnimeId(anime.id).length || 12,
+        note: 'Seri utama / Musim penayangan kanonikal.',
+      }
+    ];
+  }
+
+  // --- CHARACTERS & SEIYUU ---
+  public getCharactersByAnimeId(animeId: string): AnimeCharacter[] {
+    return this.characters.filter(c => c.animeId === animeId);
+  }
+
+  // --- EPISODE COMMENTS & DISCUSSION ---
+  public getCommentsByEpisodeId(episodeId: string): EpisodeComment[] {
+    return this.comments
+      .filter(c => c.episodeId === episodeId)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  public addEpisodeComment(comment: Omit<EpisodeComment, 'id' | 'createdAt' | 'likes'>): EpisodeComment {
+    const newComm: EpisodeComment = {
+      ...comment,
+      id: `comm-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      likes: 0,
+      createdAt: new Date().toISOString(),
+    };
+    this.comments.unshift(newComm);
+    return newComm;
+  }
+
+  public likeEpisodeComment(commentId: string): boolean {
+    const comm = this.comments.find(c => c.id === commentId);
+    if (!comm) return false;
+    comm.likes += 1;
+    return true;
+  }
+
+  // --- USER PROFILE & CLOUD SYNC ---
+  public getUserProfile(): UserProfile {
+    return { ...this.userProfile };
+  }
+
+  public loginUser(username: string, email: string): UserProfile {
+    this.userProfile = {
+      id: `user-${Date.now()}`,
+      username: username.trim() || 'Anime Fan',
+      email: email.trim() || 'user@animehome.id',
+      avatarUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=100&fit=crop',
+      isLoggedIn: true,
+      syncedAt: new Date().toISOString(),
+    };
+    this.addAuditLog('auth-system', 'User Authentication', 'USER_LOGIN', `User: ${this.userProfile.id}`, `User ${username} logged in`);
+    return { ...this.userProfile };
+  }
+
+  public logoutUser(): UserProfile {
+    this.userProfile = {
+      id: 'user-guest-01',
+      username: 'Tamu Anime Home',
+      email: 'guest@animehome.id',
+      avatarUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+      isLoggedIn: false,
+    };
+    return { ...this.userProfile };
+  }
+
+  public syncUserData(localWatchlist: any[], localProgress: any[]): { success: boolean; syncedCount: number; message: string } {
+    const syncedCount = (localWatchlist?.length || 0) + (localProgress?.length || 0);
+    this.userProfile.syncedAt = new Date().toISOString();
+    return {
+      success: true,
+      syncedCount,
+      message: `Berhasil menyinkronkan ${syncedCount} data progres ke akun ${this.userProfile.username}`,
+    };
   }
 
   public getAnimeBySlug(slug: string): Anime | undefined {

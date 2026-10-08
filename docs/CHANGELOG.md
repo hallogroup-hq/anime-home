@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [0.5.0] - 2026-10-09
+### Ditambahkan (Pillar 4 & Pillar 5 Core Fandom & Community Capabilities)
+- **Panduan Urutan Nonton Waralaba (Franchise Watch Order Guide)**: Pemetaan urutan tontonan kronologis vs tanggal rilis, penandaan Canon/Movie/Filler, dan navigasi lintas seri (`WatchOrderGuide.tsx`, QA-071).
+- **Direktori Karakter & Pengisi Suara (Seiyuu / Cast)**: Tampilan visual karakter utama & pendukung beserta nama seiyuu Jepang (`CharacterList.tsx`, QA-072).
+- **Diskusi Episode Ramah Spoiler (Spoiler-Masked Comments)**: Feed komentar episode dengan proteksi sensor blur klik-untuk-buka dan voting reaksi like (`EpisodeDiscussion.tsx`, QA-073).
+- **Mode Teater & Matikan Lampu (Theater Mode & Focus Dimmer)**: Kontrol perlebar layar dan redup latar belakang langsung pada pemutar video (`MultiProviderPlayer.tsx`).
+- **Autentikasi Pengguna & Sinkronisasi Cloud**: Modal login/daftar akun dengan sinkronisasi otomatis riwayat tontonan dan koleksi lintas peramban (`AuthModal.tsx`, QA-074).
+- **Filter Multi-Kriteria & Pengurutan Katalog**: Filter berdasarkan tahun, musim tayang, format (TV/Movie/OVA), genre, dan pengurutan judul A-Z / rilis terbaru (`/anime`, QA-075).
+- **Tri-State Status Badging pada Episode**: Indikator ketersediaan Sub Indo terverifikasi, episode berjadwal, dan badge status tayang (`EpisodeList.tsx`).
+- **Acceptance Test Suite Expansion**: Peningkatan cakupan menjadi 42 / 42 skenario pengujian lulus 100%.
+
 ## [0.4.0] - 2026-10-09
 ### Ditambahkan (Phase 4 & Phase 5: Automation, Monitoring, Security & PWA)
 - **Metadata Ingestion Wizard (`/admin/ingest`)**: Penarikan kandidat anime musiman dari API eksternal (AniList / MAL) dengan validasi pencegahan duplikat (QA-065).

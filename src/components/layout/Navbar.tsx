@@ -3,13 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Bookmark } from 'lucide-react';
+import { Search, Bookmark, User } from 'lucide-react';
 import { db } from '@/lib/services/store';
+import { AuthModal } from '@/components/auth/AuthModal';
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [user, setUser] = useState(() => db.getUserProfile());
 
   if (pathname.startsWith('/admin')) {
     return null;
@@ -135,8 +138,24 @@ export function Navbar() {
             <Bookmark className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Koleksi</span>
           </Link>
+
+          <button
+            onClick={() => setIsAuthOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs font-medium text-zinc-300 hover:text-white transition-colors cursor-pointer"
+            title={user.isLoggedIn ? `Masuk sebagai ${user.username}` : 'Masuk ke Akun'}
+          >
+            <User className="h-3.5 w-3.5 text-red-500" />
+            <span className="hidden sm:inline">{user.isLoggedIn ? user.username : 'Masuk'}</span>
+          </button>
         </div>
       </div>
+
+      {/* Auth & Cloud Sync Modal */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onProfileUpdated={setUser}
+      />
     </header>
   );
 }

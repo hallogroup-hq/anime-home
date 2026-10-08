@@ -178,3 +178,49 @@ export interface MetadataIngestCandidate {
   duplicateMatchId?: string;
   duplicateReason?: string;
 }
+
+export interface FranchiseWatchOrderItem {
+  id: string;
+  franchiseId: string;
+  franchiseName: string;
+  orderNumber: number;
+  animeId?: string;
+  title: string;
+  slug?: string;
+  year: number;
+  type: 'TV Series' | 'Movie' | 'OVA' | 'Special';
+  canonStatus: 'Canon' | 'Canon Movie' | 'Filler / Optional';
+  episodesCount: number;
+  note?: string;
+}
+
+export interface AnimeCharacter {
+  id: string;
+  animeId: string;
+  name: string;
+  role: 'Main' | 'Supporting';
+  imageUrl: string;
+  voiceActorName: string;
+  voiceActorLanguage: string;
+}
+
+export interface EpisodeComment {
+  id: string;
+  episodeId: string;
+  authorName: string;
+  avatarUrl?: string;
+  content: string;
+  isSpoiler: boolean;
+  likes: number;
+  createdAt: string;
+}
+
+export interface UserProfile {
+  id: string;
+  username: string;
+  email: string;
+  avatarUrl: string;
+  isLoggedIn: boolean;
+  syncedAt?: string;
+}
+

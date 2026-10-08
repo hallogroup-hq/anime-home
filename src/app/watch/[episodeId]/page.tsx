@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { MultiProviderPlayer } from '@/components/player/MultiProviderPlayer';
+import { EpisodeDiscussion } from '@/components/player/EpisodeDiscussion';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, ArrowLeft, Share2, Check } from 'lucide-react';
@@ -142,6 +143,12 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
 
       {/* DISCRETE AD BANNER */}
       <SafeAdSlot slotKey="watch_below_controls" />
+
+      {/* SPOILER-MASKED EPISODE DISCUSSION FEED */}
+      <EpisodeDiscussion
+        episodeId={episode.id}
+        episodeNumber={episode.displayNumber}
+      />
     </div>
   );
 }
