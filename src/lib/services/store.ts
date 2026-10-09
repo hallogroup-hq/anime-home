@@ -36,10 +36,10 @@ class AnimeHomeDataStore {
     heroAnimeId: 'anime-shokugeki',
     sections: [
       { id: 'hero', name: 'Sorotan Utama (Hero Spotlight)', enabled: true },
+      { id: 'latest_episodes', name: 'Episode Baru Tayang (Ongoing)', enabled: true },
       { id: 'continue_watching', name: 'Lanjutkan Menonton', enabled: true },
-      { id: 'latest_episodes', name: 'Episode Terbaru', enabled: true },
       { id: 'ad_banner', name: 'Banner Sponsor (Leaderboard)', enabled: true },
-      { id: 'popular', name: 'Populer Musim Ini', enabled: true },
+      { id: 'popular', name: 'Populer & Koleksi Lengkap', enabled: true },
     ],
   };
   private reports: BrokenStreamReport[] = [

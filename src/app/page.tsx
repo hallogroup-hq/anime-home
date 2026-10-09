@@ -6,15 +6,43 @@ import { db } from '@/lib/services/store';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { getContinueWatchingList } from '@/lib/services/watchlist';
-import { Play, ChevronRight } from 'lucide-react';
+import { Play, ChevronRight, Calendar, Sparkles } from 'lucide-react';
 
 export default function HomePage() {
   const allAnime = db.getAnimeList();
   const cmsConfig = db.getHomepageConfig();
   const heroAnime = allAnime.find(a => a.id === cmsConfig.heroAnimeId) || allAnime[0];
   const [continueWatching, setContinueWatching] = useState<{ anime: any; episodeId: string }[]>([]);
+  const [selectedDay, setSelectedDay] = useState<string>('Semua');
 
-  // Fixed: Empty dependency array [] prevents infinite re-render loop on client mount
+  // Day order based on real Otakudesu update schedule (Jumat -> Kamis -> Rabu -> Selasa -> Senin -> Minggu)
+  const DAY_ORDER: Record<string, number> = {
+    'Jumat': 1,
+    'Kamis': 2,
+    'Rabu': 3,
+    'Selasa': 4,
+    'Senin': 5,
+    'Minggu': 6,
+    'Sabtu': 7,
+  };
+
+  const ongoingAnime = allAnime
+    .filter(a => a.airingStatus === 'airing')
+    .sort((a, b) => {
+      const dayA = a.scheduleWIB?.split(',')[0]?.trim() || '';
+      const dayB = b.scheduleWIB?.split(',')[0]?.trim() || '';
+      const weightA = DAY_ORDER[dayA] || 99;
+      const weightB = DAY_ORDER[dayB] || 99;
+      return weightA - weightB;
+    });
+
+  const filteredOngoing = selectedDay === 'Semua'
+    ? ongoingAnime
+    : ongoingAnime.filter(a => a.scheduleWIB?.includes(selectedDay));
+
+  const completedAnime = allAnime.filter(a => a.airingStatus === 'completed');
+
+  // Empty dependency array [] prevents infinite re-render loop on client mount
   useEffect(() => {
     const list = getContinueWatchingList();
     const resolved = list.map(item => ({
@@ -45,6 +73,10 @@ export default function HomePage() {
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-12 z-10 pointer-events-none">
                 <div className="max-w-2xl pointer-events-auto">
                   <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 mb-2">
+                    <span className="rounded bg-red-600/90 text-white font-bold px-2 py-0.5 text-[10px]">
+                      Pilihan Redaksi
+                    </span>
+                    <span>•</span>
                     <span>{heroAnime.mediaType}</span>
                     <span>•</span>
                     <span>{heroAnime.year}</span>
@@ -91,6 +123,73 @@ export default function HomePage() {
           </section>
         );
 
+      case 'latest_episodes':
+        return (
+          <section key="latest_episodes" className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                    Episode Baru Tayang (Ongoing)
+                  </h2>
+                </div>
+                <p className="text-xs text-zinc-400 mt-1">
+                  Diurutkan berdasarkan jadwal rilis riil Otakudesu (Jumat → Kamis → Rabu → Selasa → Senin → Minggu)
+                </p>
+              </div>
+              <Link
+                href="/anime?status=airing"
+                className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Jadwal Lengkap <ChevronRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            {/* Day Filter Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+              {['Semua', 'Jumat', 'Kamis', 'Rabu', 'Selasa', 'Senin', 'Minggu'].map((day) => {
+                const count = day === 'Semua'
+                  ? ongoingAnime.length
+                  : ongoingAnime.filter(a => a.scheduleWIB?.includes(day)).length;
+                const isSelected = selectedDay === day;
+                return (
+                  <button
+                    key={day}
+                    onClick={() => setSelectedDay(day)}
+                    className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                      isSelected
+                        ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                        : 'bg-zinc-900/90 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/[0.08]'
+                    }`}
+                  >
+                    {day} <span className={`ml-1 text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>({count})</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+              {filteredOngoing.map((anime) => {
+                const eps = db.getEpisodesByAnimeId(anime.id);
+                const latestEp = eps.length > 0 ? eps[eps.length - 1] : null;
+                const epNum = latestEp?.title?.match(/Episode\s+(\d+)/i)?.[1] || latestEp?.displayNumber || '1';
+                const dayName = anime.scheduleWIB?.split(',')[0]?.trim() || 'Baru';
+
+                return (
+                  <AnimeCard
+                    key={anime.id}
+                    anime={anime}
+                    badge={`${dayName} • Ep ${epNum}`}
+                    subtitle={`Episode ${epNum} Subtitle Indonesia`}
+                    href={latestEp ? `/watch/${latestEp.id}` : `/anime/${anime.slug}`}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        );
+
       case 'continue_watching':
         if (continueWatching.length === 0) return null;
         return (
@@ -120,34 +219,6 @@ export default function HomePage() {
           </section>
         );
 
-      case 'latest_episodes':
-        return (
-          <section key="latest_episodes" className="flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-base sm:text-lg font-bold text-white">
-                  Episode Terbaru
-                </h2>
-                <p className="text-xs text-zinc-400 mt-0.5">
-                  Pilih anime untuk menonton episode terkini dengan takarir Indonesia
-                </p>
-              </div>
-              <Link
-                href="/anime"
-                className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
-              >
-                Lihat Semua <ChevronRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {allAnime.map((anime) => (
-                <AnimeCard key={anime.id} anime={anime} />
-              ))}
-            </div>
-          </section>
-        );
-
       case 'ad_banner':
         return <SafeAdSlot key="ad_banner" slotKey="home_leaderboard" />;
 
@@ -157,22 +228,22 @@ export default function HomePage() {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-base sm:text-lg font-bold text-white">
-                  Populer Musim Ini
+                  Koleksi Populer & Selesai (Completed)
                 </h2>
                 <p className="text-xs text-zinc-400 mt-0.5">
-                  Judul paling banyak diikuti minggu ini
+                  Serial tamat dengan musim lengkap, verified player, dan takarir Indonesia
                 </p>
               </div>
               <Link
-                href="/anime"
+                href="/anime?status=completed"
                 className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
               >
-                Jelajahi <ChevronRight className="h-3.5 w-3.5" />
+                Lihat Semua <ChevronRight className="h-3.5 w-3.5" />
               </Link>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {allAnime.slice().reverse().map((anime) => (
+              {completedAnime.map((anime) => (
                 <AnimeCard key={anime.id} anime={anime} />
               ))}
             </div>
