@@ -552,6 +552,7 @@ class AnimeHomeDataStore {
         host === 'blogger.com' || host === 'www.blogger.com' ||
         host === 'terabox.com' || host === 'www.terabox.com' ||
         host === 'gdplayer.to' || host.endsWith('.gdplayer.to') ||
+        host === 'gdriveplayer.to' || host.endsWith('.gdriveplayer.to') ||
         host === 'kotakanimeid.link' || host.endsWith('.kotakanimeid.link') ||
         host === 'localhost' || host === '127.0.0.1';
 

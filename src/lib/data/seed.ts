@@ -157,6 +157,14 @@ export const INITIAL_PROVIDERS: Provider[] = [
     apiAdapterKey: 'custom_embed',
     status: 'active',
   },
+  {
+    id: 'prov-gdriveplayer',
+    name: 'GDrivePlayer High-Speed Embed',
+    domain: 'gdriveplayer.to',
+    providerType: 'embed',
+    apiAdapterKey: 'custom_embed',
+    status: 'active',
+  },
   ...ONGOING_PROVIDERS,
 ];
 
