@@ -80,6 +80,8 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
         animeTitle={anime.canonicalTitle}
         episodeNumber={episode.displayNumber}
         episodeTitle={episode.title}
+        nextEpisodeId={nextEpisode && nextEpisode.watchabilityState === 'eligible_verified' ? nextEpisode.id : undefined}
+        nextEpisodeNumber={nextEpisode?.displayNumber}
       />
 
       {/* QUICK EPISODE SELECTOR */}

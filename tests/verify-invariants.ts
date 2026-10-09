@@ -1,5 +1,6 @@
 import { db } from '../src/lib/services/store';
 import { getVideoAdapter } from '../src/lib/adapters/video';
+import { FreshnessSyncService } from '../src/lib/services/sync';
 
 let totalTests = 0;
 let passedTests = 0;
@@ -260,6 +261,53 @@ const year2024Anime = db.getAnimeList({ year: 2024 });
 assert(year2024Anime.every(a => a.year === 2024), 'QA-075a: Seluruh hasil filter tahun 2024 memiliki year=2024');
 const sortedAsc = db.getAnimeList({ sortBy: 'title_asc' });
 assert(sortedAsc[0].canonicalTitle <= sortedAsc[1].canonicalTitle, 'QA-075b: Pengurutan A-Z mengurutkan judul secara leksikografis');
+
+// 19. SEASON-LEVEL VERIFICATION & TRUTHFUL READINESS (QA-080 to QA-084)
+console.log('\n19. Season-Level Verification & Truthful Readiness Invariants');
+
+// QA-080: Hashira Geiko-hen 100% verified complete
+const hashiraVerif = db.getSeasonVerification('anime-hashira');
+assert(
+  hashiraVerif.readinessState === 'READY_COMPLETE' && 
+  hashiraVerif.verifiedEpisodesCount === 8 &&
+  hashiraVerif.missingEpisodes.length === 0,
+  'QA-080: Hashira Geiko-hen berstatus READY_COMPLETE dengan 8/8 episode verified'
+);
+
+// QA-081: Shokugeki no Souma incomplete with honest detected gaps
+const shokugekiVerif = db.getSeasonVerification('anime-shokugeki');
+assert(
+  shokugekiVerif.readinessState === 'INCOMPLETE' &&
+  shokugekiVerif.verifiedEpisodesCount >= 2 &&
+  shokugekiVerif.missingEpisodes.includes(3),
+  'QA-081: Shokugeki no Souma berstatus INCOMPLETE dengan deteksi episode gap kanonikal (ep 3-24)'
+);
+
+// QA-082: AOASHI Season 2 SVOD / Paywall restricted -> UNAVAILABLE with official platform link
+const aoashiSeason = db.getSeasonByAnimeId('anime-aoashi');
+const aoashiVerif = db.getSeasonVerification('anime-aoashi');
+assert(
+  aoashiVerif.readinessState === 'UNAVAILABLE' &&
+  Boolean(aoashiSeason?.externalFreeWatchUrl?.includes('hotstar')),
+  'QA-082: AOASHI Season 2 berstatus UNAVAILABLE dengan tautan platform resmi Disney+'
+);
+
+// QA-083: Scheduled anime awaiting broadcast
+const sbrVerif = db.getSeasonVerification('anime-sbr');
+assert(
+  sbrVerif.readinessState === 'AWAITING_EPISODE',
+  'QA-083: JoJo Steel Ball Run berstatus AWAITING_EPISODE sebelum penayangan perdana'
+);
+
+// QA-084: Freshness sync audit run
+const auditReport = FreshnessSyncService.runFullCatalogAudit();
+assert(
+  auditReport.totalSeasonsAudited >= 20 &&
+  auditReport.seasonReadinessSummary.READY_COMPLETE >= 1 &&
+  auditReport.seasonReadinessSummary.INCOMPLETE >= 1 &&
+  auditReport.seasonReadinessSummary.UNAVAILABLE >= 1,
+  'QA-084: Audit sinkronisasi kesiapan musim mencakup >= 20 judul benchmark dengan rekapitulasi lengkap'
+);
 
 console.log('\n====================================================');
 console.log(`HASIL AKHIR: ${passedTests} / ${totalTests} SKENARIO PENGUJIAN LULUS (100%)`);

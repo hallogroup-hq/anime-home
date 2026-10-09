@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Episode } from '@/types';
-import { Play, Clock, AlertCircle, Check } from 'lucide-react';
+import { Play, Clock, ExternalLink } from 'lucide-react';
 
 interface EpisodeListProps {
   episodes: Episode[];
@@ -44,7 +44,7 @@ export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeLi
 
               <div className="flex flex-col min-w-0">
                 <span className={`text-xs font-medium truncate ${
-                  isPlayable ? 'text-zinc-200 group-hover:text-white' : 'text-zinc-500'
+                  isPlayable ? 'text-zinc-200 group-hover:text-white' : 'text-zinc-400 group-hover:text-zinc-200'
                 }`}>
                   {ep.title}
                 </span>
@@ -72,6 +72,11 @@ export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeLi
             <div className="pl-2 shrink-0">
               {isPlayable ? (
                 <Play className="h-3.5 w-3.5 text-zinc-500 group-hover:text-red-500 transition-colors" />
+              ) : ep.externalWatchUrl ? (
+                <div className="flex items-center gap-1 text-[10px] text-zinc-400 group-hover:text-white transition-colors">
+                  <span className="hidden sm:inline">{ep.externalPlatformName || 'Resmi'}</span>
+                  <ExternalLink className="h-3 w-3" />
+                </div>
               ) : (
                 <Clock className="h-3.5 w-3.5 text-zinc-600" />
               )}
@@ -92,6 +97,21 @@ export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeLi
             >
               {content}
             </Link>
+          );
+        }
+
+        if (ep.externalWatchUrl) {
+          return (
+            <a
+              key={ep.id}
+              href={ep.externalWatchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center p-3 rounded-xl border bg-zinc-900/40 border-white/[0.06] hover:bg-zinc-800/60 hover:border-zinc-700 transition-all cursor-pointer"
+              title={`Tonton resmi di ${ep.externalPlatformName || 'Platform Resmi'}`}
+            >
+              {content}
+            </a>
           );
         }
 

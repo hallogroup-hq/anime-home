@@ -6,6 +6,33 @@ export type AiringState = 'scheduled' | 'airing' | 'aired' | 'delayed' | 'cancel
 export type SubtitleState = 'unknown' | 'not_available' | 'pending' | 'available';
 export type WatchabilityState = 'unknown' | 'eligible_verified' | 'unavailable' | 'restricted' | 'under_review';
 
+export type SeasonReadinessState = 
+  | 'READY_COMPLETE' 
+  | 'READY_ONGOING' 
+  | 'INCOMPLETE' 
+  | 'AWAITING_EPISODE' 
+  | 'SOURCE_UNVERIFIED' 
+  | 'UNAVAILABLE';
+
+export interface Season {
+  id: string;
+  animeId: string;
+  seasonNumber: number;
+  title: string;
+  year: number;
+  seasonPeriod: 'Winter' | 'Spring' | 'Summer' | 'Fall';
+  canonicalEpisodesCount: number;
+  airedEpisodesCount: number;
+  verifiedEpisodesCount: number;
+  missingEpisodes: number[];
+  readinessState: SeasonReadinessState;
+  licenseType: 'free_embed' | 'official_partner' | 'svod_exclusive' | 'unlicensed';
+  externalFreeWatchUrl?: string;
+  officialPlatformName?: string;
+  notes?: string;
+  updatedAt: string;
+}
+
 export interface Anime {
   id: string;
   canonicalTitle: string;
@@ -22,6 +49,12 @@ export interface Anime {
   bannerUrl: string;
   genres: string[];
   aliases?: AnimeTitle[];
+  // Season-Level Verification & Schedule
+  seasonReadinessState?: SeasonReadinessState;
+  totalCanonicalEpisodes?: number;
+  scheduleWIB?: string;
+  officialPlatformName?: string;
+  externalFreeWatchUrl?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -50,6 +83,9 @@ export interface Episode {
   airingState: AiringState;
   subtitleState: SubtitleState;
   watchabilityState: WatchabilityState;
+  // Official External Platform Redirection (when in-site embed is unavailable)
+  externalWatchUrl?: string;
+  externalPlatformName?: string;
 }
 
 export type QualityLabel = 'Auto' | '360p' | '480p' | '720p' | '1080p' | '4K';

@@ -2,14 +2,15 @@ import {
   Anime, Episode, Provider, StreamVariant, AdCampaign, AdPlacement, 
   MerchItem, BrokenStreamReport, AuditLog, QualityLabel, HomepageConfig,
   MetadataIngestCandidate, FranchiseWatchOrderItem, AnimeCharacter,
-  EpisodeComment, UserProfile, MediaType
+  EpisodeComment, UserProfile, MediaType, Season
 } from '@/types';
 import { 
   INITIAL_ANIME, INITIAL_EPISODES, INITIAL_PROVIDERS, 
   INITIAL_STREAM_VARIANTS, INITIAL_CAMPAIGNS, INITIAL_AD_PLACEMENTS, 
   INITIAL_MERCH_ITEMS, INITIAL_WATCH_ORDERS, INITIAL_CHARACTERS,
-  INITIAL_COMMENTS
+  INITIAL_COMMENTS, INITIAL_SEASONS
 } from '@/lib/data/seed';
+import { computeSeasonReadiness, SeasonVerificationResult } from './seasonVerification';
 
 // Singleton In-Memory / Client State Controller
 class AnimeHomeDataStore {
@@ -23,6 +24,7 @@ class AnimeHomeDataStore {
   private watchOrders: FranchiseWatchOrderItem[] = [...INITIAL_WATCH_ORDERS];
   private characters: AnimeCharacter[] = [...INITIAL_CHARACTERS];
   private comments: EpisodeComment[] = [...INITIAL_COMMENTS];
+  private seasons: Season[] = [...INITIAL_SEASONS];
   private userProfile: UserProfile = {
     id: 'user-guest-01',
     username: 'Tamu Anime Home',
@@ -262,6 +264,53 @@ class AnimeHomeDataStore {
 
   public getAllStreamVariants(): StreamVariant[] {
     return [...this.variants];
+  }
+
+  // --- SEASON VERIFICATION & READINESS ---
+  public getAllSeasons(): Season[] {
+    return [...this.seasons];
+  }
+
+  public getSeasonsByAnimeId(animeId: string): Season[] {
+    return this.seasons.filter(s => s.animeId === animeId);
+  }
+
+  public getSeasonByAnimeId(animeId: string): Season | undefined {
+    return this.seasons.find(s => s.animeId === animeId);
+  }
+
+  public getSeasonVerification(animeId: string): SeasonVerificationResult {
+    let season = this.getSeasonByAnimeId(animeId);
+    const episodes = this.getEpisodesByAnimeId(animeId);
+    const anime = this.anime.find(a => a.id === animeId);
+
+    if (!season) {
+      // Buat virtual season shell jika belum terdaftar
+      season = {
+        id: `season-virtual-${animeId}`,
+        animeId,
+        seasonNumber: 1,
+        title: anime?.canonicalTitle || 'Musim 1',
+        year: anime?.year || 2024,
+        seasonPeriod: anime?.seasonPeriod || 'Fall',
+        canonicalEpisodesCount: anime?.totalCanonicalEpisodes || Math.max(episodes.length, 12),
+        airedEpisodesCount: episodes.filter(e => e.airingState === 'aired').length,
+        verifiedEpisodesCount: 0,
+        missingEpisodes: [],
+        readinessState: 'UNAVAILABLE',
+        licenseType: 'unlicensed',
+        updatedAt: new Date().toISOString(),
+      };
+    }
+
+    return computeSeasonReadiness(season, episodes, this.variants, this.providers);
+  }
+
+  public getAllSeasonVerifications(): SeasonVerificationResult[] {
+    return this.seasons.map(s => {
+      const eps = this.getEpisodesByAnimeId(s.animeId);
+      return computeSeasonReadiness(s, eps, this.variants, this.providers);
+    });
   }
 
   // --- STREAMING MATRIX & INVARIANT ---

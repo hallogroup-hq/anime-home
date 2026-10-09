@@ -5,7 +5,7 @@ import { QualityLabel } from '@/types';
 import { getVideoAdapter } from '@/lib/adapters/video';
 import { db } from '@/lib/services/store';
 import { markEpisodeWatched } from '@/lib/services/watchlist';
-import { AlertCircle, RefreshCw, Flag, Check, Maximize2, Minimize2, Moon, Sun } from 'lucide-react';
+import { AlertCircle, RefreshCw, Flag, Check, Maximize2, Minimize2, Moon, Sun, ChevronRight } from 'lucide-react';
 
 interface MultiProviderPlayerProps {
   episodeId: string;
@@ -13,6 +13,8 @@ interface MultiProviderPlayerProps {
   animeTitle: string;
   episodeNumber: string;
   episodeTitle: string;
+  nextEpisodeId?: string;
+  nextEpisodeNumber?: string;
 }
 
 export function MultiProviderPlayer({
@@ -21,6 +23,8 @@ export function MultiProviderPlayer({
   animeTitle,
   episodeNumber,
   episodeTitle,
+  nextEpisodeId,
+  nextEpisodeNumber,
 }: MultiProviderPlayerProps) {
   // Ambil matriks streaming dinamis dari database untuk episode ini
   const matrix = useMemo(() => db.getStreamMatrix(episodeId), [episodeId]);
@@ -301,6 +305,17 @@ export function MultiProviderPlayer({
               {isDimmed ? <Sun className="h-3.5 w-3.5 text-amber-400" /> : <Moon className="h-3.5 w-3.5" />}
               <span className="hidden sm:inline">{isDimmed ? 'Nyalakan Lampu' : 'Matikan Lampu'}</span>
             </button>
+
+            {nextEpisodeId && (
+              <a
+                href={`/watch/${nextEpisodeId}`}
+                className="flex items-center gap-1 rounded-lg bg-red-600/90 hover:bg-red-600 text-white font-bold px-3 py-1.5 transition-colors cursor-pointer text-xs shadow-xs"
+                title={`Lanjut ke Episode ${nextEpisodeNumber || ''}`}
+              >
+                <span>Ep {nextEpisodeNumber || 'Berikutnya'}</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </a>
+            )}
           </div>
 
           <button

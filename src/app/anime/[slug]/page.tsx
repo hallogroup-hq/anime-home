@@ -9,7 +9,8 @@ import { WatchOrderGuide } from '@/components/franchise/WatchOrderGuide';
 import { CharacterList } from '@/components/catalog/CharacterList';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
-import { Play, Bookmark, ExternalLink, Share2, Check, Film, Users, ListVideo } from 'lucide-react';
+import { getReadinessBadge } from '@/lib/services/seasonVerification';
+import { Play, Bookmark, ExternalLink, Share2, Check, Film, Users, ListVideo, AlertCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function AnimeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -24,6 +25,9 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
   const merchItems = db.getMerchByAnimeId(anime.id);
   const watchOrder = db.getWatchOrderForAnime(anime.id);
   const characters = db.getCharactersByAnimeId(anime.id);
+  const season = db.getSeasonByAnimeId(anime.id);
+  const seasonVerification = db.getSeasonVerification(anime.id);
+  const readinessBadge = getReadinessBadge(seasonVerification.readinessState);
 
   const [activeTab, setActiveTab] = useState<'episodes' | 'watch_order' | 'characters'>('episodes');
   const [isInWatchlist, setIsInWatchlist] = useState(false);
@@ -121,6 +125,16 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
                   <Play className="h-4 w-4 fill-current" />
                   <span>Mulai Nonton</span>
                 </Link>
+              ) : (season?.externalFreeWatchUrl || anime.externalFreeWatchUrl) ? (
+                <a
+                  href={season?.externalFreeWatchUrl || anime.externalFreeWatchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl bg-zinc-800 border border-white/[0.1] px-4 py-2.5 text-xs font-bold text-white hover:bg-zinc-700 transition-colors shadow-sm"
+                >
+                  <ExternalLink className="h-3.5 w-3.5 text-sky-400" />
+                  <span>Tonton di {season?.officialPlatformName || anime.officialPlatformName || 'Platform Resmi'}</span>
+                </a>
               ) : (
                 <div className="flex items-center gap-2 rounded-xl bg-zinc-900 border border-white/[0.08] px-4 py-2.5 text-xs font-semibold text-zinc-400">
                   <Play className="h-3.5 w-3.5 text-zinc-600" />
@@ -158,6 +172,86 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
           <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-3xl">
             {anime.synopsis}
           </p>
+        </section>
+
+        {/* 3.1 SEASON READINESS & VERIFIED AVAILABILITY STATUS */}
+        <section className="rounded-2xl border border-white/[0.08] bg-zinc-900/60 p-4 sm:p-5 flex flex-col gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                Status Ketersediaan Musim:
+              </span>
+              <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border ${readinessBadge.bgClass}`}>
+                <span className={`h-1.5 w-1.5 rounded-full ${readinessBadge.dotClass}`} />
+                {readinessBadge.label}
+              </span>
+            </div>
+            {anime.scheduleWIB && (
+              <span className="text-[11px] font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                Jadwal: {anime.scheduleWIB}
+              </span>
+            )}
+          </div>
+
+          <p className="text-xs text-zinc-300 leading-relaxed">
+            {readinessBadge.description}
+          </p>
+
+          {/* Episode Progress Bar */}
+          <div className="flex flex-col gap-1.5 pt-1">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-semibold text-zinc-400">
+                Episode Gratis Terverifikasi:
+              </span>
+              <span className="font-bold text-white">
+                {seasonVerification.verifiedEpisodesCount} / {seasonVerification.canonicalEpisodesCount} Episode ({seasonVerification.completionPercentage}%)
+              </span>
+            </div>
+            <div className="w-full bg-zinc-950 rounded-full h-2 overflow-hidden border border-white/[0.05]">
+              <div
+                className={`h-full rounded-full transition-all duration-500 ${
+                  seasonVerification.readinessState === 'READY_COMPLETE'
+                    ? 'bg-emerald-500'
+                    : seasonVerification.readinessState === 'READY_ONGOING'
+                    ? 'bg-sky-500'
+                    : seasonVerification.readinessState === 'INCOMPLETE'
+                    ? 'bg-amber-500'
+                    : 'bg-zinc-700'
+                }`}
+                style={{ width: `${seasonVerification.completionPercentage}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Gap Alert if incomplete */}
+          {seasonVerification.missingEpisodes.length > 0 && seasonVerification.verifiedEpisodesCount > 0 && (
+            <div className="flex items-start gap-2 rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 text-xs text-amber-300">
+              <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+              <div>
+                <span className="font-bold">Gap Ketersediaan Episode:</span> Episode{' '}
+                {seasonVerification.missingEpisodes.slice(0, 8).join(', ')}
+                {seasonVerification.missingEpisodes.length > 8 ? '...' : ''} belum memiliki sumber video legal gratis. Kami terus mengaudit katalog agar selalu akurat.
+              </div>
+            </div>
+          )}
+
+          {/* Official Provider Notice */}
+          {(season?.externalFreeWatchUrl || anime.externalFreeWatchUrl) && (
+            <div className="flex items-center justify-between gap-3 pt-2 border-t border-white/[0.06] text-xs">
+              <span className="text-zinc-400">
+                Platform Resmi: <strong className="text-white">{season?.officialPlatformName || anime.officialPlatformName || 'Platform Resmi'}</strong>
+              </span>
+              <a
+                href={season?.externalFreeWatchUrl || anime.externalFreeWatchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 font-semibold"
+              >
+                <span>Buka Platform Resmi</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          )}
         </section>
 
         {/* 4. AD BANNER */}
@@ -239,6 +333,9 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
                       <p className="text-xs text-zinc-400 font-medium mt-0.5">
                         Rp {item.price.toLocaleString('id-ID')}
                       </p>
+                      <span className="inline-block mt-1 text-[9px] font-semibold text-zinc-500 bg-zinc-800/80 px-1.5 py-0.5 rounded">
+                        Toko Resmi: {item.storeName}
+                      </span>
                     </div>
                   </div>
                   <ExternalLink className="h-3.5 w-3.5 text-zinc-500" />

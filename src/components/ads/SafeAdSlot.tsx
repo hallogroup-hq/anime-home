@@ -28,9 +28,9 @@ export function SafeAdSlot({ slotKey, className = '' }: SafeAdSlotProps) {
             alt={campaign.name}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
           />
-          <span className="absolute top-2 right-2 rounded bg-black/60 px-1.5 py-0.5 text-[9px] font-medium text-zinc-400">
-            Ad
-          </span>
+          <div className="absolute top-2 right-2 flex items-center gap-1 rounded bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[9px] font-semibold text-zinc-300 border border-white/[0.1]">
+            <span>Sponsor Resmi</span>
+          </div>
         </a>
       </div>
     </div>
