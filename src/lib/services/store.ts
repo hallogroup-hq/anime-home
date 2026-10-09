@@ -511,6 +511,9 @@ class AnimeHomeDataStore {
   // --- SECURITY: EMBED URL ALLOWLIST VALIDATOR ---
   public validateEmbedUrl(urlStr: string): { allowed: boolean; reason?: string } {
     try {
+      if (urlStr.startsWith('/embed/') || urlStr.startsWith('/api/')) {
+        return { allowed: true };
+      }
       const parsed = new URL(urlStr);
       if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
         return { allowed: false, reason: 'Hanya protokol HTTP/HTTPS yang diizinkan' };
@@ -521,7 +524,17 @@ class AnimeHomeDataStore {
 
       const isWhitelisted = activeDomains.some(d => host === d || host.endsWith(`.${d}`)) ||
         host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be' ||
-        host === 'youtube-nocookie.com' || host === 'www.youtube-nocookie.com';
+        host === 'youtube-nocookie.com' || host === 'www.youtube-nocookie.com' ||
+        host === 'mega.nz' || host === 'www.mega.nz' ||
+        host === 'odvidhide.com' || host === 'vidhidepre.com' || host === 'vidhide.com' ||
+        host === 'desustream.net' || host === 'desustream.com' ||
+        host === 'turbovidhls.com' || host === 'streamapi.info' || host === 'api.streamapi.info' ||
+        host === 'kotaksb.fun' || host === 'embed2.kotaksb.fun' ||
+        host === 'archive.org' || host === 'www.archive.org' ||
+        host === 'dailymotion.com' || host === 'www.dailymotion.com' ||
+        host === 'blogger.com' || host === 'www.blogger.com' ||
+        host === 'terabox.com' || host === 'www.terabox.com' ||
+        host === 'localhost' || host === '127.0.0.1';
 
       if (!isWhitelisted) {
         return { allowed: false, reason: `Domain "${host}" tidak terdaftar dalam allowlist provider resmi.` };

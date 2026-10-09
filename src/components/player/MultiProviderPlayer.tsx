@@ -105,6 +105,17 @@ export function MultiProviderPlayer({
     }
   };
 
+  // Dengarkan pesan failover dari embed iframe player jika ada kendala
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data && e.data.type === 'ANIME_HOME_NEXT_SERVER') {
+        handleTryNextServer();
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [currentServers, activeVariant]);
+
   const handleToggleWatched = () => {
     markEpisodeWatched(animeId, episodeId, !isWatched, activeVariant?.id);
     setIsWatched(!isWatched);

@@ -253,6 +253,13 @@ async function verifyConanAndMalCatalog() {
   }
   assert(crossAnimeCollisions === 0, `Zero stream URL collisions between different anime (collisions: ${crossAnimeCollisions})`);
 
+  // 8. ZERO FAKE HOSTNAMES & TOKENLESS BLOGGER INTEGRITY
+  console.log('\n8. Zero Fake Hostnames & Tokenless Blogger URLs');
+  const fakeDomainVars = allVariants.filter(v => v.embedUrl.includes('animehome.net') || v.embedUrl.includes('streamcdn.org'));
+  const tokenlessBloggerVars = allVariants.filter(v => v.embedUrl.includes('blogger.com/video.g?') && !v.embedUrl.includes('token='));
+  assert(fakeDomainVars.length === 0, `Zero variants use fake animehome.net or streamcdn.org (found: ${fakeDomainVars.length})`);
+  assert(tokenlessBloggerVars.length === 0, `Zero variants use tokenless blogger.com/video.g? (found: ${tokenlessBloggerVars.length})`);
+
   console.log('\n====================================================');
   console.log(`FINAL RESULT: ${passed} / ${passed + failed} CHECKS PASSED`);
   console.log('====================================================');

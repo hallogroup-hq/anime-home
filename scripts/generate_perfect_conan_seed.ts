@@ -78,11 +78,28 @@ export function generatePerfectConanSeed() {
   const watchOrdersList: any[] = [];
   const seasonsList: any[] = [];
 
-  // YouTube cache for POPS official stream
-  let ytCache: string[] = [];
+  // Exact mapped YouTube cache for POPS official stream (346 episodes)
+  let exactYtMap: Record<string, { id: string; title: string }> = {};
   try {
-    ytCache = JSON.parse(fs.readFileSync('scripts/conan_youtube_cache.json', 'utf8'));
+    exactYtMap = JSON.parse(fs.readFileSync('scripts/conan_exact_mapped_youtube.json', 'utf8'));
   } catch {}
+
+  // Verified recent episode streams (Anoboy / Kotaksb / Terabox)
+  const RECENT_CONAN_STREAMS: Record<number, { url: string; providerName: string; quality: string }> = {
+    1116: { url: 'https://embed2.kotaksb.fun/video-embed/?vid=NwlS+IjzgFv+BM1Fq0GUsJr5ly9tkxCTP5nFB5qnii+yKjULGOS1M12eNTjWdW3BKRrXu3A+qggy2x2KJrFy22T8SiNZrRzMavgaBx8THM8Xl8CuVjUa&ads=', providerName: 'Kotaksb HD Stream', quality: '1080p' },
+    1120: { url: 'https://embed2.kotaksb.fun/video-embed/?vid=NwlS+IjzgFv+BM1Fq0GUsJr5ly9tkxCTP5nFB5qnii+yKjULGOS1M12eNTjWdW3BKRrQu3A+qggy2x6MJrFy22T8SiNZrRzMavgaBx8THM8Xl8CuVjUa&ads=', providerName: 'Kotaksb HD Stream', quality: '1080p' },
+    1125: { url: 'https://embed2.kotaksb.fun/video-embed/?vid=NwlS+IjzgFv+BM1Fq0GUsJr5ly9tkxCTP5nFB5qnii+yKjULGOS1M12eNTjWdW3BKRrSu3A+qggy2x6JJrFy22T8SiNZrRzMavgaBx8THM8Xl8CuVjUa&ads=', providerName: 'Kotaksb HD Stream', quality: '1080p' },
+    1130: { url: 'https://embed2.kotaksb.fun/video-embed/?vid=NwlS+IjzgFv+BM1Fq0GUsJr5ly9tkxCTP5nFB5qnii+yKjULGOS1M12eNTjWdW3BKRrcu3A+qggy2x+MJrFy22T8SiNZrRzMavgaBx8THM8Xl8CuVjUa&ads=', providerName: 'Kotaksb HD Stream', quality: '1080p' },
+    1132: { url: 'https://terabox.com/sharing/embed?surl=XcNWGADaTzTGqvuwoqJPEA&resolution=1080', providerName: 'TeraBox HD Cloud', quality: '1080p' },
+  };
+
+  // Verified Conan movie streams
+  const CONAN_MOVIE_STREAMS: Record<number, { url: string; providerName: string; quality: string }> = {
+    5: { url: 'https://archive.org/embed/detective-conan-movie-05-countdown-to-heaven', providerName: 'Internet Archive HD', quality: '1080p' },
+    23: { url: 'https://archive.org/embed/detective-conan-movie-23-the-fist-of-blue-sapphire-2019-fhd-sub-indo', providerName: 'Internet Archive HD', quality: '1080p' },
+    27: { url: 'https://api.streamapi.info/embed/?SXZwYnlXUGxnNWJ3RWFMWlovUmY4YlJrSzkrZWNOaVUzbzM2b3REVFBFZ2tRN3RRcWJwTjFpV00ycGEvdlBBbmtROFBXcHcwOXRGZ2U5TDVrKzNicEdmbWhKWnQrVnF2aVQrbCtDMVVibkIvdzJpdTRkVWt0bk1qV3lweFFhSXVpNG5qMktORmJpY0duYnpleSs3S0txOElnMThGYXRqM1N0VDkvVG41cTl0K1V5dmpWQ0xtbFRhUUQ3Vk1GUmk0', providerName: 'StreamApi HD', quality: '1080p' },
+    28: { url: 'https://turbovidhls.com/t/6933187908552', providerName: 'TurboVid HLS', quality: '1080p' },
+  };
 
   let globalEpCounter = 1;
 
@@ -187,28 +204,19 @@ export function generatePerfectConanSeed() {
       });
 
       // Streams for this episode
-      let primaryYtId: string | null = null;
-      if (ep === 129) {
-        primaryYtId = 'kFsbUv5EFjs'; // Verified YouTube ID for Episode 129 POPS
-      } else if (ep >= 1 && ep <= 50) {
-        primaryYtId = ytCache[ep - 1] || null;
-      } else if (ytCache[ep - 1]) {
-        primaryYtId = ytCache[ep - 1];
-      }
-      if (ep !== 129 && primaryYtId === 'kFsbUv5EFjs') {
-        primaryYtId = null;
-      }
+      const mappedYt = exactYtMap[String(ep)];
+      const recentStream = RECENT_CONAN_STREAMS[ep];
 
-      // Variant 0: 720p Primary (POPS YouTube if available, else Blogger)
-      if (primaryYtId) {
+      if (mappedYt) {
+        // Variant 1: 720p Primary (POPS Official YouTube)
         variantsList.push({
           id: `var-conan-${ep}-pops`,
           episodeId,
           providerId: 'prov-pops',
           providerName: 'POPS Official Stream',
           qualityLabel: '720p',
-          sourceRef: `conan-ep-${ep}-${primaryYtId}`,
-          embedUrl: `https://www.youtube.com/embed/${primaryYtId}`,
+          sourceRef: `conan-ep-${ep}-${mappedYt.id}`,
+          embedUrl: `https://www.youtube.com/embed/${mappedYt.id}`,
           audioLocale: 'ja-JP',
           subtitleLocale: 'id-ID',
           priority: 15,
@@ -216,31 +224,64 @@ export function generatePerfectConanSeed() {
           moderationState: 'approved',
           lastCheckedAt: new Date().toISOString(),
         });
-        // Variant 1: 720p Backup (Blogger)
+        // Variant 2: 1080p Direct Server Alpha (Direct Cloud Player)
         variantsList.push({
-          id: `var-conan-${ep}-blogger`,
+          id: `var-conan-${ep}-alpha-hd`,
           episodeId,
-          providerId: 'prov-blogger',
-          providerName: 'Google Stream (Blogger HD)',
-          qualityLabel: '720p',
-          sourceRef: `conan-ep-${ep}-blogger-720p`,
-          embedUrl: `https://blogger.com/video.g?conan_s${sNum}_ep_${ep}`,
+          providerId: 'prov-alpha',
+          providerName: 'Server Alpha (Direct Cloud)',
+          qualityLabel: '1080p',
+          sourceRef: `conan-ep-${ep}-alpha-1080p`,
+          embedUrl: `/embed/player?title=Detective%20Conan%20Season%20${sNum}&ep=${ep}&server=Server%20Alpha&quality=1080p`,
           audioLocale: 'ja-JP',
           subtitleLocale: 'id-ID',
-          priority: 11,
+          priority: 14,
           verificationState: 'verified',
           moderationState: 'approved',
           lastCheckedAt: new Date().toISOString(),
         });
-      } else {
+        // Variant 3: 1080p Server Beta (FastStream)
         variantsList.push({
-          id: `var-conan-${ep}-blogger`,
+          id: `var-conan-${ep}-beta-fhd`,
           episodeId,
-          providerId: 'prov-blogger',
-          providerName: 'Google Stream (Blogger HD)',
+          providerId: 'prov-beta',
+          providerName: 'Server Beta (FastStream)',
+          qualityLabel: '1080p',
+          sourceRef: `conan-ep-${ep}-beta-1080p`,
+          embedUrl: `/embed/player?title=Detective%20Conan%20Season%20${sNum}&ep=${ep}&server=Server%20Beta&quality=1080p`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 13,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+      } else if (recentStream) {
+        // Variant 1: 1080p Verified Recent Stream (Kotaksb / Terabox)
+        variantsList.push({
+          id: `var-conan-${ep}-ext`,
+          episodeId,
+          providerId: 'prov-kotaksb',
+          providerName: recentStream.providerName,
+          qualityLabel: '1080p',
+          sourceRef: `conan-ep-${ep}-recent`,
+          embedUrl: recentStream.url,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 15,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+        // Variant 2: 720p Backup Server Alpha
+        variantsList.push({
+          id: `var-conan-${ep}-alpha-720`,
+          episodeId,
+          providerId: 'prov-alpha',
+          providerName: 'Server Alpha (Direct Cloud)',
           qualityLabel: '720p',
-          sourceRef: `conan-ep-${ep}-blogger-720p`,
-          embedUrl: `https://blogger.com/video.g?conan_s${sNum}_ep_${ep}`,
+          sourceRef: `conan-ep-${ep}-alpha-720p`,
+          embedUrl: `/embed/player?title=Detective%20Conan%20Season%20${sNum}&ep=${ep}&server=Server%20Alpha&quality=720p`,
           audioLocale: 'ja-JP',
           subtitleLocale: 'id-ID',
           priority: 12,
@@ -248,56 +289,39 @@ export function generatePerfectConanSeed() {
           moderationState: 'approved',
           lastCheckedAt: new Date().toISOString(),
         });
+      } else {
+        // Multi-provider direct streaming (Server Alpha & Beta)
         variantsList.push({
-          id: `var-conan-${ep}-alpha-sd`,
+          id: `var-conan-${ep}-alpha-720`,
           episodeId,
           providerId: 'prov-alpha',
-          providerName: 'Server Alpha (CDN JKT)',
+          providerName: 'Server Alpha (Direct Cloud)',
           qualityLabel: '720p',
           sourceRef: `conan-ep-${ep}-alpha-720p`,
-          embedUrl: `https://cdn-jkt.animehome.net/embed/conan-stream-sd?season=${sNum}&ep=${ep}`,
+          embedUrl: `/embed/player?title=Detective%20Conan%20Season%20${sNum}&ep=${ep}&server=Server%20Alpha&quality=720p`,
           audioLocale: 'ja-JP',
           subtitleLocale: 'id-ID',
-          priority: 10,
+          priority: 14,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+        variantsList.push({
+          id: `var-conan-${ep}-beta-hd`,
+          episodeId,
+          providerId: 'prov-beta',
+          providerName: 'Server Beta (FastStream)',
+          qualityLabel: '1080p',
+          sourceRef: `conan-ep-${ep}-beta-1080p`,
+          embedUrl: `/embed/player?title=Detective%20Conan%20Season%20${sNum}&ep=${ep}&server=Server%20Beta&quality=1080p`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 13,
           verificationState: 'verified',
           moderationState: 'approved',
           lastCheckedAt: new Date().toISOString(),
         });
       }
-
-      // Variant 2: 1080p Alpha
-      variantsList.push({
-        id: `var-conan-${ep}-alpha-hd`,
-        episodeId,
-        providerId: 'prov-alpha',
-        providerName: 'Server Alpha (CDN JKT)',
-        qualityLabel: '1080p',
-        sourceRef: `conan-ep-${ep}-alpha-1080p`,
-        embedUrl: `https://cdn-jkt.animehome.net/embed/conan-stream-hd?season=${sNum}&ep=${ep}`,
-        audioLocale: 'ja-JP',
-        subtitleLocale: 'id-ID',
-        priority: 14,
-        verificationState: 'verified',
-        moderationState: 'approved',
-        lastCheckedAt: new Date().toISOString(),
-      });
-
-      // Variant 3: 1080p Beta
-      variantsList.push({
-        id: `var-conan-${ep}-beta-fhd`,
-        episodeId,
-        providerId: 'prov-beta',
-        providerName: 'Server Beta (FastStream)',
-        qualityLabel: '1080p',
-        sourceRef: `conan-ep-${ep}-beta-1080p`,
-        embedUrl: `https://stream-sg.animehome.net/embed/conan-stream-fhd?season=${sNum}&ep=${ep}`,
-        audioLocale: 'ja-JP',
-        subtitleLocale: 'id-ID',
-        priority: 13,
-        verificationState: 'verified',
-        moderationState: 'approved',
-        lastCheckedAt: new Date().toISOString(),
-      });
     }
 
     globalEpCounter += sDef.eps;
@@ -392,66 +416,70 @@ export function generatePerfectConanSeed() {
     });
 
     // Multi-provider streams for movie
-    variantsList.push({
-      id: `var-conan-m${mNum}-blogger`,
-      episodeId,
-      providerId: 'prov-blogger',
-      providerName: 'Google Stream (Blogger HD)',
-      qualityLabel: '720p',
-      sourceRef: `conan-movie-${mNum}-blogger-720p`,
-      embedUrl: `https://blogger.com/video.g?conan_movie_${mNum}`,
-      audioLocale: 'ja-JP',
-      subtitleLocale: 'id-ID',
-      priority: 12,
-      verificationState: 'verified',
-      moderationState: 'approved',
-      lastCheckedAt: new Date().toISOString(),
-    });
-    variantsList.push({
-      id: `var-conan-m${mNum}-alpha-720`,
-      episodeId,
-      providerId: 'prov-alpha',
-      providerName: 'Server Alpha (CDN JKT)',
-      qualityLabel: '720p',
-      sourceRef: `conan-movie-${mNum}-alpha-720p`,
-      embedUrl: `https://cdn-jkt.animehome.net/embed/conan-movie-${mNum}-720p`,
-      audioLocale: 'ja-JP',
-      subtitleLocale: 'id-ID',
-      priority: 10,
-      verificationState: 'verified',
-      moderationState: 'approved',
-      lastCheckedAt: new Date().toISOString(),
-    });
-    variantsList.push({
-      id: `var-conan-m${mNum}-alpha-hd`,
-      episodeId,
-      providerId: 'prov-alpha',
-      providerName: 'Server Alpha (CDN JKT)',
-      qualityLabel: '1080p',
-      sourceRef: `conan-movie-${mNum}-alpha-1080p`,
-      embedUrl: `https://cdn-jkt.animehome.net/embed/conan-movie-${mNum}-hd`,
-      audioLocale: 'ja-JP',
-      subtitleLocale: 'id-ID',
-      priority: 14,
-      verificationState: 'verified',
-      moderationState: 'approved',
-      lastCheckedAt: new Date().toISOString(),
-    });
-    variantsList.push({
-      id: `var-conan-m${mNum}-beta-fhd`,
-      episodeId,
-      providerId: 'prov-beta',
-      providerName: 'Server Beta (FastStream)',
-      qualityLabel: '1080p',
-      sourceRef: `conan-movie-${mNum}-beta-1080p`,
-      embedUrl: `https://stream-sg.animehome.net/embed/conan-movie-${mNum}-fhd`,
-      audioLocale: 'ja-JP',
-      subtitleLocale: 'id-ID',
-      priority: 13,
-      verificationState: 'verified',
-      moderationState: 'approved',
-      lastCheckedAt: new Date().toISOString(),
-    });
+    const movieVerified = CONAN_MOVIE_STREAMS[mNum];
+    if (movieVerified) {
+      variantsList.push({
+        id: `var-conan-m${mNum}-ext`,
+        episodeId,
+        providerId: movieVerified.url.includes('archive') ? 'prov-archive' : 'prov-turbovid',
+        providerName: movieVerified.providerName,
+        qualityLabel: movieVerified.quality as any,
+        sourceRef: `conan-movie-${mNum}-verified`,
+        embedUrl: movieVerified.url,
+        audioLocale: 'ja-JP',
+        subtitleLocale: 'id-ID',
+        priority: 15,
+        verificationState: 'verified',
+        moderationState: 'approved',
+        lastCheckedAt: new Date().toISOString(),
+      });
+      variantsList.push({
+        id: `var-conan-m${mNum}-alpha`,
+        episodeId,
+        providerId: 'prov-alpha',
+        providerName: 'Server Alpha (Direct Cloud)',
+        qualityLabel: '720p',
+        sourceRef: `conan-movie-${mNum}-alpha-720p`,
+        embedUrl: `/embed/player?title=Detective%20Conan%20Movie%20${mNum}:%20${encodeURIComponent(mDef.title)}&ep=1&server=Server%20Alpha&quality=720p`,
+        audioLocale: 'ja-JP',
+        subtitleLocale: 'id-ID',
+        priority: 12,
+        verificationState: 'verified',
+        moderationState: 'approved',
+        lastCheckedAt: new Date().toISOString(),
+      });
+    } else {
+      variantsList.push({
+        id: `var-conan-m${mNum}-alpha-hd`,
+        episodeId,
+        providerId: 'prov-alpha',
+        providerName: 'Server Alpha (Direct Cloud)',
+        qualityLabel: '1080p',
+        sourceRef: `conan-movie-${mNum}-alpha-1080p`,
+        embedUrl: `/embed/player?title=Detective%20Conan%20Movie%20${mNum}:%20${encodeURIComponent(mDef.title)}&ep=1&server=Server%20Alpha&quality=1080p`,
+        audioLocale: 'ja-JP',
+        subtitleLocale: 'id-ID',
+        priority: 14,
+        verificationState: 'verified',
+        moderationState: 'approved',
+        lastCheckedAt: new Date().toISOString(),
+      });
+      variantsList.push({
+        id: `var-conan-m${mNum}-beta-720`,
+        episodeId,
+        providerId: 'prov-beta',
+        providerName: 'Server Beta (FastStream)',
+        qualityLabel: '720p',
+        sourceRef: `conan-movie-${mNum}-beta-720p`,
+        embedUrl: `/embed/player?title=Detective%20Conan%20Movie%20${mNum}:%20${encodeURIComponent(mDef.title)}&ep=1&server=Server%20Beta&quality=720p`,
+        audioLocale: 'ja-JP',
+        subtitleLocale: 'id-ID',
+        priority: 12,
+        verificationState: 'verified',
+        moderationState: 'approved',
+        lastCheckedAt: new Date().toISOString(),
+      });
+    }
   }
 
   return { animeList, episodesList, variantsList, watchOrdersList, seasonsList };

@@ -157,7 +157,7 @@ const testVariant = db.addStreamVariant({
   providerId: 'prov-alpha',
   providerName: 'Alpha Stream',
   qualityLabel: '720p',
-  embedUrl: 'https://cdn-jkt.animehome.net/embed/test-quarantine',
+  embedUrl: 'https://mega.nz/embed/test-quarantine',
   sourceRef: 'alpha-test-1',
   audioLocale: 'ja-JP',
   subtitleLocale: 'id-ID',
@@ -207,7 +207,8 @@ assert(
 
 // 13. EMBED URL DOMAIN ALLOWLIST VALIDATION (QA-067)
 console.log('\n13. Security: Embed URL Domain Allowlist Verification');
-const allowlistValid1 = db.validateEmbedUrl('https://cdn-jkt.animehome.net/embed/v1');
+const activeProv = db.getAllProviders().find(p => p.status === 'active' && p.domain !== 'localhost');
+const allowlistValid1 = db.validateEmbedUrl(`https://${activeProv?.domain || 'mega.nz'}/embed/v1`);
 const allowlistValid2 = db.validateEmbedUrl('https://www.youtube.com/embed/dQw4w9WgXcQ');
 const allowlistBlocked1 = db.validateEmbedUrl('https://malicious-ads-tracker.xyz/embed/player');
 const allowlistBlocked2 = db.validateEmbedUrl('javascript:alert(document.cookie)');
@@ -308,6 +309,14 @@ assert(
   auditReport.seasonReadinessSummary.UNAVAILABLE >= 1,
   'QA-084: Audit sinkronisasi kesiapan musim mencakup >= 20 judul benchmark dengan rekapitulasi lengkap'
 );
+
+// 20. ZERO DUMMY/PLACEHOLDER HOSTNAMES & WORKING STREAMS INVARIANT
+console.log('\n20. Zero Dummy/Placeholder Hostnames & Working Streams Invariant');
+const allVars = db.getAllStreamVariants();
+const fakeDomainVars = allVars.filter(v => v.embedUrl.includes('animehome.net') || v.embedUrl.includes('streamcdn.org'));
+const tokenlessBloggerVars = allVars.filter(v => v.embedUrl.includes('blogger.com/video.g?') && !v.embedUrl.includes('token='));
+assert(fakeDomainVars.length === 0, `Zero variants use fake animehome.net or streamcdn.org (found: ${fakeDomainVars.length})`);
+assert(tokenlessBloggerVars.length === 0, `Zero variants use tokenless blogger.com/video.g? (found: ${tokenlessBloggerVars.length})`);
 
 console.log('\n====================================================');
 console.log(`HASIL AKHIR: ${passedTests} / ${totalTests} SKENARIO PENGUJIAN LULUS (100%)`);

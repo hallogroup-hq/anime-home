@@ -34,7 +34,7 @@ interface MALSeasonDef {
   isExistingAnime?: boolean;
 }
 
-const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
+export const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
   // --- ATTACK ON TITAN (SHINGEKI NO KYOJIN) ---
   {
     franchiseId: 'fr-aot',
@@ -849,7 +849,7 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
 // Build MAL data
 
 // 88 Verified YouTube Video IDs from Muse Indonesia for Attack on Titan
-const AOT_YOUTUBE_VIDEOS = [
+export const AOT_YOUTUBE_VIDEOS = [
   "6-4Ft9_11xQ", "xkyFS7UxkBQ", "nZYOMfXxDlo", "ZFMXsD2Xjm8", "DfQcqPf90lI",
   "SgGID7r2C0Q", "3RnB8_H867c", "SdMxHaMxW10", "DMcxvNjdplE", "_iuAiyOzcBE",
   "lIEPK1Qn22k", "rf1z1emjFec", "rocUhtHJpSQ", "qwtn3lMSqrg", "-V2VhxdOzJQ",
@@ -1219,28 +1219,4 @@ export function buildMALCatalogData() {
   return { animeList, episodesList, variantsList, watchOrdersList, seasonsList };
 }
 
-const malData = buildMALCatalogData();
-console.log(`Generated MAL Data:
-- Anime Titles: ${malData.animeList.length}
-- Episodes: ${malData.episodesList.length}
-- Stream Variants: ${malData.variantsList.length}
-- Watch Orders: ${malData.watchOrdersList.length}
-`);
-
-const malOutPath = path.resolve('src/lib/data/malCatalogSeed.ts');
-const malFileContent = `// Auto-generated Top MyAnimeList Catalog Seed (Distinct Seasons & Verified Streams)
-import { Anime, Episode, StreamVariant, FranchiseWatchOrderItem, Season } from '@/types';
-
-export const MAL_ANIME: Anime[] = ${JSON.stringify(malData.animeList, null, 2)};
-
-export const MAL_EPISODES: Episode[] = ${JSON.stringify(malData.episodesList, null, 2)};
-
-export const MAL_STREAM_VARIANTS: StreamVariant[] = ${JSON.stringify(malData.variantsList, null, 2)};
-
-export const MAL_WATCH_ORDERS: FranchiseWatchOrderItem[] = ${JSON.stringify(malData.watchOrdersList, null, 2)};
-
-export const MAL_SEASONS: Season[] = ${JSON.stringify(malData.seasonsList, null, 2)};
-`;
-
-fs.writeFileSync(malOutPath, malFileContent, 'utf8');
-console.log(`✅ Saved malCatalogSeed.ts to ${malOutPath} (${(malFileContent.length / 1024).toFixed(1)} KB)`);
+export const FRANCHISES_DEF = MAL_SEASONS_CATALOG;
