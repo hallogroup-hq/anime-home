@@ -6,6 +6,7 @@ import { db } from '@/lib/services/store';
 import { getLocalWatchlist, getLocalProgress, removeFromWatchlist, clearAllWatchlist } from '@/lib/services/watchlist';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
 import { AuthModal } from '@/components/auth/AuthModal';
+import { getCurrentUserAction } from '@/lib/actions/authActions';
 import { Trash2, Download, Cloud, User, LogIn, Check, Sparkles } from 'lucide-react';
 import { UserProfile } from '@/types';
 
@@ -28,6 +29,18 @@ export default function MePage() {
 
   useEffect(() => {
     loadData();
+    getCurrentUserAction().then((serverUser) => {
+      if (serverUser) {
+        const synced = db.loginUser(
+          serverUser.username,
+          serverUser.email,
+          serverUser.id,
+          serverUser.role,
+          serverUser.avatarUrl
+        );
+        setUser(synced);
+      }
+    }).catch(() => {});
   }, []);
 
   const handleRemove = (animeId: string) => {

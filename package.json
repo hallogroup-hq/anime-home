@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx tsx tests/verify-invariants.ts && npx tsx tests/verify-persistence-and-security.ts",
+    "test": "npx tsx tests/verify-invariants.ts && npx tsx tests/verify-persistence-and-security.ts && npx tsx tests/verify-real-users-auth.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:seed": "npx tsx src/lib/db/seed.ts",

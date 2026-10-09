@@ -210,13 +210,14 @@ class AnimeHomeDataStore {
     return { ...this.userProfile };
   }
 
-  public loginUser(username: string, email: string): UserProfile {
+  public loginUser(username: string, email: string, id?: string, role?: string, avatarUrl?: string): UserProfile {
     this.userProfile = {
-      id: `user-${Date.now()}`,
+      id: id || `user-${Date.now()}`,
       username: username.trim() || 'Anime Fan',
       email: email.trim() || 'user@animehome.id',
-      avatarUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=100&fit=crop',
+      avatarUrl: avatarUrl || `https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(username.trim() || 'user')}`,
       isLoggedIn: true,
+      role: role || 'user',
       syncedAt: new Date().toISOString(),
     };
     this.addAuditLog('auth-system', 'User Authentication', 'USER_LOGIN', `User: ${this.userProfile.id}`, `User ${username} logged in`);

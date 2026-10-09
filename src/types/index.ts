@@ -258,6 +258,7 @@ export interface UserProfile {
   email: string;
   avatarUrl: string;
   isLoggedIn: boolean;
+  role?: string;
   syncedAt?: string;
 }
 

@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Search, Bookmark, User } from 'lucide-react';
 import { db } from '@/lib/services/store';
 import { AuthModal } from '@/components/auth/AuthModal';
+import { getCurrentUserAction } from '@/lib/actions/authActions';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -13,6 +14,21 @@ export function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [user, setUser] = useState(() => db.getUserProfile());
+
+  useEffect(() => {
+    getCurrentUserAction().then((serverUser) => {
+      if (serverUser) {
+        const synced = db.loginUser(
+          serverUser.username,
+          serverUser.email,
+          serverUser.id,
+          serverUser.role,
+          serverUser.avatarUrl
+        );
+        setUser(synced);
+      }
+    }).catch(() => {});
+  }, []);
 
   if (pathname.startsWith('/admin')) {
     return null;
