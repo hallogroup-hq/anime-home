@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { db } from '@/lib/services/store';
 import { getLocalWatchlist, getLocalProgress } from '@/lib/services/watchlist';
 import { UserProfile } from '@/types';
@@ -13,11 +14,16 @@ interface AuthModalProps {
 }
 
 export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [profile, setProfile] = useState<UserProfile>(() => db.getUserProfile());
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Sync profile immediately whenever modal opens
   useEffect(() => {
@@ -25,10 +31,26 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
       setProfile(db.getUserProfile());
       setSyncStatus(null);
       setErrorMessage(null);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen || !mounted) return null;
 
   const performLogin = (uname: string, umail: string) => {
     if (!uname.trim() || !umail.trim()) {
@@ -85,12 +107,25 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
     setTimeout(() => setSyncStatus(null), 3000);
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="w-full max-w-sm rounded-2xl bg-zinc-900 border border-white/[0.1] shadow-2xl p-6 flex flex-col gap-5 relative animate-in fade-in zoom-in-95 duration-150">
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const modalContent = (
+    <div 
+      onClick={handleBackdropClick}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto"
+      style={{ isolation: 'isolate' }}
+    >
+      <div 
+        className="w-full max-w-sm rounded-2xl bg-zinc-900 border border-white/[0.1] shadow-2xl p-6 flex flex-col gap-5 relative my-auto animate-in fade-in zoom-in-95 duration-150"
+      >
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer"
+          title="Tutup (Esc)"
         >
           <X className="h-4 w-4" />
         </button>
@@ -228,4 +263,6 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }
