@@ -8,7 +8,8 @@ import {
   episodes as episodesTable, 
   streamVariants as streamVariantsTable, 
   providers as providersTable,
-  animeTitles as animeTitlesTable 
+  animeTitles as animeTitlesTable,
+  merchandise as merchandiseTable
 } from '../src/lib/db/schema';
 import { 
   ONGOING_PROVIDERS, 
@@ -16,6 +17,10 @@ import {
   ONGOING_EPISODES, 
   ONGOING_STREAM_VARIANTS 
 } from '../src/lib/data/ongoingSeed';
+import {
+  INITIAL_ANIME,
+  INITIAL_MERCH_ITEMS
+} from '../src/lib/data/seed';
 import { sql } from 'drizzle-orm';
 
 async function syncToPostgres() {
@@ -24,7 +29,7 @@ async function syncToPostgres() {
     return;
   }
 
-  console.log('🔄 Syncing ongoing anime to PostgreSQL...');
+  console.log('🔄 Syncing anime, streams, and merchandise to PostgreSQL...');
 
   // 1. Providers
   console.log('1. Inserting providers...');
@@ -40,9 +45,10 @@ async function syncToPostgres() {
     }).onConflictDoNothing();
   }
 
-  // 2. Anime
-  console.log('2. Inserting ongoing anime...');
-  for (const a of ONGOING_ANIME) {
+  // 2. Anime (Catalog & Ongoing)
+  console.log('2. Inserting catalog & ongoing anime...');
+  const allAnime = [...INITIAL_ANIME, ...ONGOING_ANIME];
+  for (const a of allAnime) {
     await dbOrm.insert(animeTable).values({
       id: a.id,
       canonicalTitle: a.canonicalTitle,
@@ -114,7 +120,24 @@ async function syncToPostgres() {
     }).onConflictDoNothing();
   }
 
-  console.log('✅ PostgreSQL sync complete!');
+  // 5. Authentic Merchandise
+  console.log('5. Inserting authentic merchandise...');
+  await dbOrm.delete(merchandiseTable);
+  for (const m of INITIAL_MERCH_ITEMS) {
+    await dbOrm.insert(merchandiseTable).values({
+      id: m.id,
+      animeId: m.animeId,
+      animeTitle: m.animeTitle,
+      name: m.name,
+      price: m.price,
+      storeName: m.storeName,
+      destinationUrl: m.destinationUrl,
+      imageUrl: m.imageUrl,
+      isAffiliate: m.isAffiliate,
+    });
+  }
+
+  console.log(`✅ PostgreSQL sync complete! (Synced ${INITIAL_MERCH_ITEMS.length} merchandise items)`);
   process.exit(0);
 }
 

@@ -243,7 +243,15 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
                   className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/[0.06] hover:border-zinc-700 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <img src={item.imageUrl} alt={item.name} className="h-12 w-12 rounded-lg object-cover" />
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%2318181b"/><text x="50%" y="50%" fill="%2371717a" font-size="16" font-family="sans-serif" text-anchor="middle">OFFICIAL MERCH</text></svg>';
+                      }}
+                      className="h-12 w-12 rounded-lg object-cover bg-zinc-800"
+                    />
                     <div>
                       <h4 className="text-xs font-semibold text-white">{item.name}</h4>
                       <p className="text-xs text-zinc-400 font-medium mt-0.5">
