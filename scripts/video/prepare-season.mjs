@@ -66,8 +66,12 @@ async function probe(file) {
 }
 
 async function encodeVideo(input, outputDirectory) {
+  // One H.264/AAC encode, then package it as HLS without re-encoding.
+  // The progressive MP4 is a native fallback for browsers without HLS support.
+  const mp4 = path.join(outputDirectory, 'playback.mp4');
   const playlist = path.join(outputDirectory, 'index.m3u8');
   const segmentPattern = path.join(outputDirectory, 'segment-%05d.ts');
+
   await run('ffmpeg', [
     '-hide_banner', '-loglevel', 'error', '-nostdin', '-y',
     '-i', input,
@@ -76,6 +80,14 @@ async function encodeVideo(input, outputDirectory) {
     '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '128k',
     '-force_key_frames', 'expr:gte(t,n_forced*6)',
+    '-movflags', '+faststart',
+    mp4,
+  ]);
+
+  await run('ffmpeg', [
+    '-hide_banner', '-loglevel', 'error', '-nostdin', '-y',
+    '-i', mp4, '-map', '0:v:0', '-map', '0:a:0?',
+    '-c', 'copy',
     '-hls_time', '6', '-hls_list_size', '0',
     '-hls_playlist_type', 'vod',
     '-hls_flags', 'independent_segments',
@@ -144,6 +156,7 @@ async function prepare() {
         durationSeconds: media.durationSeconds,
         audioPresent: media.hasAudio,
         playlist: folderName + '/index.m3u8',
+        mp4: folderName + '/playback.mp4',
         subtitles: tracks,
       });
       console.log('Processed episode ' + episode + ': ' + media.durationSeconds + ' seconds, ' + tracks.length + ' subtitle(s)');
