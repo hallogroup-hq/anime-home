@@ -43,12 +43,16 @@ test('actual FFmpeg end-to-end: two episodes -> HLS segments + subtitle + ready 
     assert.equal(manifest.readiness, 'READY_COMPLETE');
     assert.equal(manifest.episodes.length, 2);
     assert.ok(manifest.episodes[0].subtitles.some(t => t.locale === 'en-US'));
+    assert.ok(manifest.episodes.every(e => e.mp4.endsWith('/playback.mp4')));
     for (const ep of [1, 2]) {
       const epDirectory = path.join(base, 'episode-' + String(ep).padStart(3, '0'));
       const playlist = await readFile(path.join(epDirectory, 'index.m3u8'), 'utf8');
       assert.ok(playlist.includes('#EXT-X-ENDLIST'));
       const files = await readdir(epDirectory);
       assert.ok(files.some(f => f.endsWith('.ts')));
+      assert.ok(files.includes('playback.mp4'));
+      const media = execute('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', path.join(epDirectory, 'playback.mp4')], path.resolve('.'));
+      assert.ok(Number(media.trim()) > 0);
     }
   } finally {
     await rm(root, { recursive: true, force: true });
