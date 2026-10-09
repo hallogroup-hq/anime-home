@@ -45,7 +45,7 @@ export class CommentRepository {
       episodeId: params.episodeId,
       userId: params.userId || 'guest-user',
       username: params.authorName || 'Tamu Anime Home',
-      avatarUrl: params.avatarUrl || 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+      avatarUrl: params.avatarUrl || 'https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png',
       content: params.content,
       isSpoiler: params.isSpoiler,
       likesCount: 0,

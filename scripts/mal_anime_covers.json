@@ -1,0 +1,233 @@
+{
+  "anime-aot-s1": {
+    "id": "anime-aot-s1",
+    "search": "Shingeki no Kyojin",
+    "foundTitle": "Shingeki no Kyojin",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg"
+  },
+  "anime-aot-s2": {
+    "id": "anime-aot-s2",
+    "search": "Shingeki no Kyojin Season 2",
+    "foundTitle": "Shingeki no Kyojin Season 2",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20958-Y7eQdz9VENBD.jpg"
+  },
+  "anime-aot-s3": {
+    "id": "anime-aot-s3",
+    "search": "Shingeki no Kyojin Season 3",
+    "foundTitle": "Shingeki no Kyojin Season 3",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99147-AiPDD8cwlCfi.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/99147-HACsFVrynFf5.jpg"
+  },
+  "anime-aot-s4": {
+    "id": "anime-aot-s4",
+    "search": "Shingeki no Kyojin: The Final Season",
+    "foundTitle": "Shingeki no Kyojin: The Final Season",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx110277-sKUNXAsWMNFw.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/110277-iuGn6F5bK1U1.jpg"
+  },
+  "anime-kny-s1": {
+    "id": "anime-kny-s1",
+    "search": "Kimetsu no Yaiba",
+    "foundTitle": "Kimetsu no Yaiba",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSxga.jpg"
+  },
+  "anime-kny-movie-mugen": {
+    "id": "anime-kny-movie-mugen",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx112151-1qlQwPB1RrJe.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/112151-eHCBz19nf2yC.jpg"
+  },
+  "anime-kny-s2": {
+    "id": "anime-kny-s2",
+    "search": "Kimetsu no Yaiba: Yuukaku-hen",
+    "foundTitle": "Kimetsu no Yaiba: Yuukaku-hen",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx142329-kET1PIXJv2eW.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/142329-i413SzLmToZN.jpg"
+  },
+  "anime-kny-s3": {
+    "id": "anime-kny-s3",
+    "search": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+    "foundTitle": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx145139-rRimpHGWLhym.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/145139-V01Prh6UzfRk.jpg"
+  },
+  "anime-hashira": {
+    "id": "anime-hashira",
+    "search": "Kimetsu no Yaiba: Hashira Geiko-hen",
+    "foundTitle": "Kimetsu no Yaiba: Hashira Geiko-hen",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166240-PBV7zukIHW7V.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/166240-YdxoEhrfwNk0.jpg"
+  },
+  "anime-jjk-s1": {
+    "id": "anime-jjk-s1",
+    "search": "Jujutsu Kaisen",
+    "foundTitle": "Jujutsu Kaisen",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg"
+  },
+  "anime-jjk-movie0": {
+    "id": "anime-jjk-movie0",
+    "search": "Jujutsu Kaisen 0",
+    "foundTitle": "Jujutsu Kaisen 0",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx131573-rpl82vDEDRm6.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/131573-3veuVz5p0z2I.jpg"
+  },
+  "anime-jujutsu": {
+    "id": "anime-jujutsu",
+    "search": "Jujutsu Kaisen 2nd Season",
+    "foundTitle": "Jujutsu Kaisen 2nd Season",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx145064-hSNRJM03pvv1.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/145064-esDtAY2He7sk.jpg"
+  },
+  "anime-mha-s1": {
+    "id": "anime-mha-s1",
+    "search": "Boku no Hero Academia",
+    "foundTitle": "Boku no Hero Academia",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-nYh85uj2Fuwr.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21459-yeVkolGKdGUV.jpg"
+  },
+  "anime-mha-s2": {
+    "id": "anime-mha-s2",
+    "search": "Boku no Hero Academia 2",
+    "foundTitle": "Boku no Hero Academia 2",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21856-gutauxhWAwn6.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21856-wtSHgeHFmzdG.jpg"
+  },
+  "anime-mha-s3": {
+    "id": "anime-mha-s3",
+    "search": "Boku no Hero Academia 3",
+    "foundTitle": "Boku no Hero Academia 3",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx100166-jUCZYbzn2XLw.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/100166-k7RXwN5vZg0r.jpg"
+  },
+  "anime-mha-s4": {
+    "id": "anime-mha-s4",
+    "search": "Boku no Hero Academia 4",
+    "foundTitle": "Boku no Hero Academia 4",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104276-SnEowMvesWIE.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/104276-PQO1pcNzzWT0.jpg"
+  },
+  "anime-mha-s7": {
+    "id": "anime-mha-s7",
+    "search": "Boku no Hero Academia 7",
+    "foundTitle": "Boku no Hero Academia 7",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163139-JchZhUFlNTWU.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163139-UWM3qDG5cRa6.jpg"
+  },
+  "anime-bleach-classic": {
+    "id": "anime-bleach-classic",
+    "search": "Bleach",
+    "foundTitle": "BLEACH",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/269-08ar2HJOUAuL.jpg"
+  },
+  "anime-bleach-tybw1": {
+    "id": "anime-bleach-tybw1",
+    "search": "Bleach: Sennen Kessen-hen",
+    "foundTitle": "BLEACH: Sennen Kessen-hen",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx116674-p3zK4PUX2Aag.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/116674-l2YlIyJzvGSV.jpg"
+  },
+  "anime-bleach-tybw2": {
+    "id": "anime-bleach-tybw2",
+    "search": "Bleach: Sennen Kessen-hen - Ketsubetsu-tan",
+    "foundTitle": "BLEACH: Sennen Kessen-hen - Ketsubetsu-tan",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx159322-Sp1GflRhE6Po.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/159322-biJjvtNkhkxR.jpg"
+  },
+  "anime-bleach-tybw3": {
+    "id": "anime-bleach-tybw3",
+    "search": "Bleach: Sennen Kessen-hen - Soukoku-tan",
+    "foundTitle": "BLEACH: Sennen Kessen-hen - Soukoku-tan",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169755-Rqb7MjnzdTc6.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/169755-hCWjp9ajjMYV.jpg"
+  },
+  "anime-fmab": {
+    "id": "anime-fmab",
+    "search": "Hagane no Renkinjutsushi: Fullmetal Alchemist",
+    "foundTitle": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg"
+  },
+  "anime-deathnote": {
+    "id": "anime-deathnote",
+    "search": "Death Note",
+    "foundTitle": "DEATH NOTE",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-kUgkcrfOrkUM.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1535.jpg"
+  },
+  "anime-hxh-2011": {
+    "id": "anime-hxh-2011",
+    "search": "Hunter x Hunter (2011)",
+    "foundTitle": "HUNTER×HUNTER (2011)",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg"
+  },
+  "anime-spyfam-s1": {
+    "id": "anime-spyfam-s1",
+    "search": "SPY×FAMILY",
+    "foundTitle": "SPY×FAMILY",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140960-Kb6R5nYQfjmP.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/140960-Z7xSvkRxHKfj.jpg"
+  },
+  "anime-spyfam-s2": {
+    "id": "anime-spyfam-s2",
+    "search": "SPY×FAMILY Season 2",
+    "foundTitle": "SPY×FAMILY Season 2",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b158927-lfO85WVguYgc.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/158927-zXtbXUO5iKzX.jpg"
+  },
+  "anime-vinland-s1": {
+    "id": "anime-vinland-s1",
+    "search": "Vinland Saga",
+    "foundTitle": "VINLAND SAGA",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101348-2fhDFPCuMNiz.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101348-pivKKffCAwAY.jpg"
+  },
+  "anime-vinland-s2": {
+    "id": "anime-vinland-s2",
+    "search": "Vinland Saga Season 2",
+    "foundTitle": "VINLAND SAGA SEASON 2",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx136430-gsBsJjA7hGh9.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/136430-ktoFZnyubhHg.jpg"
+  },
+  "anime-haikyuu-s1": {
+    "id": "anime-haikyuu-s1",
+    "search": "Haikyuu!!",
+    "foundTitle": "Haikyuu!!",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20464-ooZUyBe4ptp9.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20464-PpYjO9cPN1gs.jpg"
+  },
+  "anime-haikyuu-s2": {
+    "id": "anime-haikyuu-s2",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20992-aHgNbcalVEqk.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20992-QMdqxEjAIAit.jpg"
+  },
+  "anime-haikyuu-s3": {
+    "id": "anime-haikyuu-s3",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21698-RL71mr1YU5Io.png",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21698-jVFRIHAENS5B.jpg"
+  },
+  "anime-haikyuu-movie-dumpster": {
+    "id": "anime-haikyuu-movie-dumpster",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153658-KVnjW77cQw3y.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/153658-7MePQPgSHrH1.jpg"
+  },
+  "anime-rezero-s1": {
+    "id": "anime-rezero-s1",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21355-wRVUrGxpvIQQ.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21355-f9SjOfEJMk5P.jpg"
+  },
+  "anime-rezero-s2": {
+    "id": "anime-rezero-s2",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108632-lQWnmw7XaNOK.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/108632-yeLbrgPN4Oni.jpg"
+  },
+  "anime-rezero-s3": {
+    "id": "anime-rezero-s3",
+    "poster": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163134-yieRFbvUOH9a.jpg",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163134-CqaXjXVivwJ5.jpg"
+  }
+}

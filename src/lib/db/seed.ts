@@ -176,7 +176,7 @@ async function runSeed() {
         episodeId: cm.episodeId,
         userId: `usr-${cm.id}`,
         username: (cm as any).authorName || (cm as any).username || 'Anonymous',
-        avatarUrl: (cm as any).avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop',
+        avatarUrl: (cm as any).avatarUrl || 'https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png',
         content: cm.content,
         isSpoiler: cm.isSpoiler,
         likesCount: (cm as any).likes || (cm as any).likesCount || 0,
@@ -220,7 +220,7 @@ async function runSeed() {
         email: 'guest@animehome.id',
         username: 'Tamu Anime Home',
         role: 'user',
-        avatarUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+        avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png',
         isLoggedIn: false,
       },
       {
@@ -228,7 +228,7 @@ async function runSeed() {
         email: 'owner@animehome.id',
         username: 'Chief Executive Owner',
         role: 'owner',
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop',
+        avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b127691-9zqh1xpIubn7.png',
         isLoggedIn: true,
       },
       {
@@ -236,7 +236,7 @@ async function runSeed() {
         email: 'operator@animehome.id',
         username: 'Streaming Operator',
         role: 'operator',
-        avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&fit=crop',
+        avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b126071-BTNEc1nRIv68.png',
         isLoggedIn: true,
       },
       {
@@ -244,7 +244,7 @@ async function runSeed() {
         email: 'editor@animehome.id',
         username: 'Content Editor',
         role: 'editor',
-        avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&fit=crop',
+        avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b183965-uGFohBjlFoTp.png',
         isLoggedIn: true,
       },
       {
@@ -252,7 +252,7 @@ async function runSeed() {
         email: 'moderator@animehome.id',
         username: 'Community Moderator',
         role: 'moderator',
-        avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&fit=crop',
+        avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b127518-NRlq1CQ1v1ro.png',
         isLoggedIn: true,
       },
       {
@@ -260,7 +260,7 @@ async function runSeed() {
         email: 'member@animehome.id',
         username: 'Akmal Otaku',
         role: 'user',
-        avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&fit=crop',
+        avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png',
         isLoggedIn: true,
       },
     ];

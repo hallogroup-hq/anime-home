@@ -39,8 +39,8 @@ export default function AdminContentPage() {
   const [airingStatus, setAiringStatus] = useState<AiringStatus>('airing');
   const [genresInput, setGenresInput] = useState('Action, Fantasy');
   const [synopsis, setSynopsis] = useState('');
-  const [posterUrl, setPosterUrl] = useState('https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80');
-  const [bannerUrl, setBannerUrl] = useState('https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80');
+  const [posterUrl, setPosterUrl] = useState('https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171018-U1v5w63g7Lsm.png');
+  const [bannerUrl, setBannerUrl] = useState('https://s4.anilist.co/file/anilistcdn/media/anime/banner/171018-b2k20bH64XbV.jpg');
 
   // Edit Anime Modal State
   const [editingAnime, setEditingAnime] = useState<Anime | null>(null);

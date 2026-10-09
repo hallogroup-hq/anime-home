@@ -12,7 +12,7 @@ export async function postCommentAction(params: {
 }) {
   const user = await getCurrentUser();
   const authorName = user?.username || params.authorName || 'Tamu Anime Home';
-  const avatarUrl = user?.avatarUrl || 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop';
+  const avatarUrl = user?.avatarUrl || 'https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png';
 
   const comment = await CommentRepository.addComment({
     episodeId: params.episodeId,

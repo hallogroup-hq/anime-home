@@ -50,8 +50,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Drama', 'Fantasy', 'Shounen', 'Suspense'],
     synopsis: 'Ratusan tahun lalu, umat manusia nyaris punah akibat serangan raksasa mengerikan yang dikenal sebagai Titan. Eren Yeager bersumpah membasmi seluruh Titan setelah ibunya tewas saat Wall Maria dijebol Colossal Titan.',
-    poster: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Shingeki no Kyojin Season 1', titleType: 'romaji' },
@@ -74,8 +74,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Drama', 'Fantasy', 'Shounen', 'Suspense'],
     synopsis: 'Eren Yeager dan Pasukan Penyelidik menghadapi ancaman Beast Titan misterius. Pengkhianatan besar terkuak di dalam dinding saat identitas Armored Titan dan Colossal Titan akhirnya terungkap.',
-    poster: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/20958-Y7eQdz9VENBD.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Shingeki no Kyojin Season 2', titleType: 'romaji' },
@@ -97,8 +97,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Drama', 'Fantasy', 'Shounen', 'Suspense'],
     synopsis: 'Konspirasi internal kerajaan terbongkar oleh Pasukan Penyelidik. Misi perebutan kembali Wall Maria memicu pertempuran puncak Shiganshina, mengungkap rahasia ruang bawah tanah ayah Eren dan pemandangan laut lepas.',
-    poster: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99147-AiPDD8cwlCfi.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/99147-HACsFVrynFf5.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Shingeki no Kyojin Season 3', titleType: 'romaji' },
@@ -116,12 +116,12 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     year: 2020,
     seasonPeriod: 'Winter',
     type: 'TV',
-    episodesCount: 30,
+    episodesCount: 29,
     airingStatus: 'completed',
     genres: ['Action', 'Drama', 'Fantasy', 'Shounen', 'Suspense'],
     synopsis: 'Pertarungan antara Pulau Paradis dan Kekaisaran Marley mencapai klimaks mengerikan. Eren Yeager memulai The Rumbling (Gemuruh) untuk memusnahkan dunia luar demi kebebasan Eldia.',
-    poster: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx110277-sKUNXAsWMNFw.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/110277-iuGn6F5bK1U1.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Shingeki no Kyojin: The Final Season', titleType: 'romaji' },
@@ -145,8 +145,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Historical', 'Shounen'],
     synopsis: 'Tanjiro Kamado hidup damai bersama keluarganya di gunung hingga suatu hari iblis membantai seluruh keluarganya. Adik perempuannya, Nezuko, selamat namun berubah menjadi iblis. Tanjiro bersumpah menjadi pembasmi iblis untuk membalas dendam dan mengembalikan kemanusiaan adiknya.',
-    poster: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSxga.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Kimetsu no Yaiba Season 1', titleType: 'romaji' },
@@ -168,8 +168,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Historical', 'Shounen'],
     synopsis: 'Tanjiro, Zenitsu, dan Inosuke bergabung dengan Hashira Api Kyojuro Rengoku di dalam Kereta Mugen untuk menghadapi iblis Enmu dan Akaza.',
-    poster: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx112151-1qlQwPB1RrJe.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/112151-eHCBz19nf2yC.jpg',
     canonStatus: 'Canon Movie',
     aliases: [
       { locale: 'ja-Latn', title: 'Gekijouban Kimetsu no Yaiba: Mugen Ressha-hen', titleType: 'romaji' },
@@ -191,8 +191,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Historical', 'Shounen'],
     synopsis: 'Misi penyamaran Tanjiro dan kawan-kawan bersama Hashira Suara Tengen Uzui di distrik hiburan Yoshiwara melawan Iblis Peringkat Atas Enam Daki dan Gyutaro.',
-    poster: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx142329-kET1PIXJv2eW.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/142329-i413SzLmToZN.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Kimetsu no Yaiba: Yuukaku-hen', titleType: 'romaji' },
@@ -214,8 +214,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Historical', 'Shounen'],
     synopsis: 'Tanjiro menuju Desa Penempa Pedang untuk memperbaiki pedang Nichirin miliknya, bersama Muichiro Tokito dan Mitsuri Kanroji melawan Hantengu dan Gyokko.',
-    poster: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx145139-rRimpHGWLhym.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/145139-V01Prh6UzfRk.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Kimetsu no Yaiba: Katanakaji no Sato-hen', titleType: 'romaji' },
@@ -237,8 +237,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Historical', 'Shounen'],
     synopsis: 'Latihan intensif bersama seluruh Hashira sebelum perang Infinity Castle.',
-    poster: 'https://otakudesu.blog/wp-content/uploads/2024/05/Kimetsu-no-Yaiba-Hashira-Geiko-hen-Sub-Indo.jpg',
-    banner: 'https://otakudesu.blog/wp-content/uploads/2024/05/Kimetsu-no-Yaiba-Hashira-Geiko-hen-Sub-Indo.jpg',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166240-PBV7zukIHW7V.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/166240-YdxoEhrfwNk0.jpg',
     canonStatus: 'Canon',
     aliases: [],
     isExistingAnime: true,
@@ -259,8 +259,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Shounen', 'Supernatural'],
     synopsis: 'Yuji Itadori menelan jari terkutuk Ryomen Sukuna demi menyelamatkan temannya. Di bawah bimbingan Satoru Gojo di SMK Jujutsu Tokyo, ia belajar mengendalikan energi kutukan.',
-    poster: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Jujutsu Kaisen Season 1', titleType: 'romaji' },
@@ -282,8 +282,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Shounen', 'Supernatural'],
     synopsis: 'Prequel kanonikal mengisahkan Yuta Okkotsu yang dihantui kutukan teman masa kecilnya, Rika Orimoto. Suguru Geto melancarkan Parade Malam 100 Iblis di Shinjuku dan Kyoto.',
-    poster: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx131573-rpl82vDEDRm6.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/131573-3veuVz5p0z2I.jpg',
     canonStatus: 'Canon Movie',
     aliases: [
       { locale: 'ja-Latn', title: 'Gekijouban Jujutsu Kaisen 0', titleType: 'romaji' },
@@ -305,8 +305,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Fantasy', 'Shounen', 'Supernatural'],
     synopsis: 'Kilas balik masa muda Gojo dan Geto saat misi Pengawal Wadah Plasma Bintang, dilanjutkan tragedi Insiden Shibuya 31 Oktober di mana penyihir jujutsu diuji sampai batas kehancuran.',
-    poster: 'https://otakudesu.blog/wp-content/uploads/2024/03/Jujutsu-Kaisen-Season-2-Sub-Indo.jpg',
-    banner: 'https://otakudesu.blog/wp-content/uploads/2024/03/Jujutsu-Kaisen-Season-2-Sub-Indo.jpg',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx145064-hSNRJM03pvv1.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/145064-esDtAY2He7sk.jpg',
     canonStatus: 'Canon',
     aliases: [],
     isExistingAnime: true,
@@ -327,8 +327,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Shounen', 'Super Power'],
     synopsis: 'Izuku Midoriya terlahir tanpa Quirk di dunia manusia super. Pahlawan nomor satu All Might mewariskan kekuatan One For All kepadanya untuk masuk SMA U.A.',
-    poster: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-nYh85uj2Fuwr.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/21459-yeVkolGKdGUV.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Boku no Hero Academia Season 1', titleType: 'romaji' },
@@ -350,8 +350,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Shounen', 'Super Power'],
     synopsis: 'Festival Olahraga U.A. mempertontonkan duel epik Deku vs Shoto Todoroki. Ancaman Hero Killer Stain menguji nilai moral para calon pahlawan di Hosu.',
-    poster: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21856-gutauxhWAwn6.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/21856-wtSHgeHFmzdG.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Boku no Hero Academia Season 2', titleType: 'romaji' },
@@ -372,8 +372,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Shounen', 'Super Power'],
     synopsis: 'Kamp pelatihan hutan diserang Vanguard Action Squad. All Might bertarung sampai tetes darah penghabisan melawan All For One di Kamino.',
-    poster: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx100166-jUCZYbzn2XLw.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/100166-k7RXwN5vZg0r.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Boku no Hero Academia Season 3', titleType: 'romaji' },
@@ -394,8 +394,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Shounen', 'Super Power'],
     synopsis: 'Deku magang di agensi Sir Nighteye untuk menyelamatkan gadis kecil bernama Eri dari cengkeraman Overhaul dan sindikat Shie Hassaikai.',
-    poster: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104276-SnEowMvesWIE.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/104276-PQO1pcNzzWT0.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Boku no Hero Academia Season 4', titleType: 'romaji' },
@@ -416,8 +416,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Shounen', 'Super Power'],
     synopsis: 'Perang Pamungkas antara para Pahlawan melawan All For One dan Shigaraki Tomura. Pahlawan nomor satu Amerika Serikat Star and Stripe turun tangan di langit Jepang.',
-    poster: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163139-JchZhUFlNTWU.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/163139-UWM3qDG5cRa6.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Boku no Hero Academia Season 7', titleType: 'romaji' },
@@ -440,8 +440,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Supernatural', 'Shounen'],
     synopsis: 'Ichigo Kurosaki memperoleh kekuatan Shinigami dari Rukia Kuchiki dan bertarung melindungi Karakura Town serta menyelamatkan Soul Society dari konspirasi Sosuke Aizen.',
-    poster: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/269-08ar2HJOUAuL.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Bleach Classic', titleType: 'romaji' },
@@ -463,8 +463,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Supernatural', 'Shounen'],
     synopsis: 'Kaisar Quincy Yhwach bangkit setelah seribu tahun dan menyatakan perang total terhadap Gotei 13. Soul Society hancur dalam invasi berdarah pertama Wandenreich.',
-    poster: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx116674-p3zK4PUX2Aag.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/116674-l2YlIyJzvGSV.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Bleach: Sennen Kessen-hen', titleType: 'romaji' },
@@ -486,8 +486,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Supernatural', 'Shounen'],
     synopsis: 'Ichigo kembali dari Istana Jiwa dengan Zangetsu sejati. Sternritter melancarkan invasi kedua dengan kekuatan Vollständig mereka.',
-    poster: 'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx159322-Sp1GflRhE6Po.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/159322-biJjvtNkhkxR.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Bleach: Sennen Kessen-hen - Ketsubetsu-tan', titleType: 'romaji' },
@@ -508,8 +508,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Supernatural', 'Shounen'],
     synopsis: 'Pertempuran di Istana Raja Roh (Soul King Palace) antara Pengawal Kerajaan Skuad Zero melawan Yhwach dan Schutzstaffel.',
-    poster: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169755-Rqb7MjnzdTc6.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/169755-hCWjp9ajjMYV.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Bleach: Sennen Kessen-hen - Soukoku-tan', titleType: 'romaji' },
@@ -533,8 +533,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Drama', 'Fantasy', 'Military'],
     synopsis: 'Edward dan Alphonse Elric melanggar tabu terbesar alkimia: transmutasi manusia untuk membangkitkan ibu mereka. Berbekal tubuh prostetik logam, mereka mencari Batu Bertuah untuk memulihkan raga mereka.',
-    poster: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Hagane no Renkinjutsushi: Fullmetal Alchemist', titleType: 'romaji' },
@@ -558,8 +558,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Psychological', 'Supernatural', 'Suspense', 'Mystery'],
     synopsis: 'Light Yagami menemukan buku catatan kematian milik Shinigami Ryuk. Dengan membunuh penjahat di balik nama samaran "Kira", ia diburu oleh detektif jenius terhebat dunia, L.',
-    poster: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-kUgkcrfOrkUM.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/1535.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Death Note', titleType: 'romaji' },
@@ -583,8 +583,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Fantasy', 'Shounen'],
     synopsis: 'Gon Freecss mengikuti Ujian Hunter untuk menemukan ayahnya, Ging Freecss. Bersama Killua, Kurapika, dan Leorio, petualangan berlanjut hingga ancaman semut mutan kanibal Chimera Ant.',
-    poster: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Hunter x Hunter (2011)', titleType: 'romaji' },
@@ -608,8 +608,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Comedy', 'Action', 'Shounen'],
     synopsis: 'Mata-mata berkode Twilight membentuk keluarga palsu dengan nama Loid Forger untuk Operasi Strix. Tanpa diketahuinya, istrinya Yor adalah pembunuh bayaran, dan putrinya Anya adalah pembaca pikiran.',
-    poster: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140960-Kb6R5nYQfjmP.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/140960-Z7xSvkRxHKfj.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'SPY x FAMILY Season 1', titleType: 'romaji' },
@@ -630,8 +630,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Comedy', 'Action', 'Shounen'],
     synopsis: 'Keluarga Forger berlibur di kapal pesiar Princess Lorelei. Yor menjalankan misi rahasia melindungi klien dari serbuan pembunuh bayaran internasional.',
-    poster: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b158927-lfO85WVguYgc.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/158927-zXtbXUO5iKzX.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'SPY x FAMILY Season 2', titleType: 'romaji' },
@@ -654,8 +654,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Drama', 'Historical'],
     synopsis: 'Thorfinn muda tumbuh di medan perang bangsa Viking untuk membalas dendam kepada Askeladd yang membunuh ayahnya, Thors Si Troll Pepprangan.',
-    poster: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101348-2fhDFPCuMNiz.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/101348-pivKKffCAwAY.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Vinland Saga Season 1', titleType: 'romaji' },
@@ -676,8 +676,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Action', 'Adventure', 'Drama', 'Historical'],
     synopsis: 'Thorfinn yang kehilangan tujuan hidup menjadi budak di perkebunan Ketil di Denmark. Bersama Einar, ia memulai perjalanan batin menuju penebusan dosa dan perdamaian sejati.',
-    poster: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx136430-gsBsJjA7hGh9.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/136430-ktoFZnyubhHg.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Vinland Saga Season 2', titleType: 'romaji' },
@@ -700,8 +700,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Sports', 'School', 'Shounen'],
     synopsis: 'Shoyo Hinata yang bertubuh mungil bermimpi melompat melintasi jaring voli tinggi. Bergabung di SMA Karasuno, ia membentuk duet serangan kilat bersama rivalnya, Tobio Kageyama.',
-    poster: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20464-ooZUyBe4ptp9.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/20464-PpYjO9cPN1gs.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Haikyuu!! Season 1', titleType: 'romaji' },
@@ -723,8 +723,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Sports', 'School', 'Shounen'],
     synopsis: 'Tim Karasuno mengikuti kamp pelatihan ekspedisi Tokyo bersama Nekoma, Fukurodani, dan Shinzen untuk mengasah senjata baru menjelang Turnamen Musim Semi.',
-    poster: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20992-aHgNbcalVEqk.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/20992-QMdqxEjAIAit.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Haikyuu!! Second Season', titleType: 'romaji' },
@@ -745,8 +745,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Sports', 'School', 'Shounen'],
     synopsis: 'Final perebutan tiket Kejuaraan Nasional Prefektur Miyagi: Gagak Karasuno menantang Juara Bertahan Elang Shiratorizawa yang dipimpin spiker kidal mematikan Ushijima Wakatoshi.',
-    poster: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21698-RL71mr1YU5Io.png',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/21698-jVFRIHAENS5B.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Haikyuu!!: Karasuno Koukou vs. Shiratorizawa Gakuen Koukou', titleType: 'romaji' },
@@ -767,8 +767,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Sports', 'School', 'Shounen'],
     synopsis: 'Pertandingan Tempat Pembuangan Sampah yang sesungguhnya di Stadion Metropolitan Tokyo Nasional: Karasuno vs Nekoma dalam duel hidup mati tanpa kesempatan tanding ulang.',
-    poster: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153658-KVnjW77cQw3y.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/153658-7MePQPgSHrH1.jpg',
     canonStatus: 'Canon Movie',
     aliases: [
       { locale: 'ja-Latn', title: 'Gekijouban Haikyuu!! Gomi Suteba no Kessen', titleType: 'romaji' },
@@ -791,8 +791,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Drama', 'Fantasy', 'Suspense', 'Isekai'],
     synopsis: 'Subaru Natsuki tiba-tiba terlempar ke dunia lain dan menemukan dirinya memiliki kemampuan mengerikan "Return by Death" — memutar balik waktu setiap kali ia tewas terbunuh.',
-    poster: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21355-wRVUrGxpvIQQ.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/21355-f9SjOfEJMk5P.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Re:Zero kara Hajimeru Isekai Seikatsu Season 1', titleType: 'romaji' },
@@ -814,8 +814,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Drama', 'Fantasy', 'Suspense', 'Isekai'],
     synopsis: 'Subaru menghadapi Ujian Tempat Suci (Sanctuary) dan berhadapan dengan Echidna sang Penyihir Keserakahan serta Great Rabbit pembawa keputusasaan.',
-    poster: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108632-lQWnmw7XaNOK.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/108632-yeLbrgPN4Oni.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Re:Zero kara Hajimeru Isekai Seikatsu Season 2', titleType: 'romaji' },
@@ -836,8 +836,8 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
     airingStatus: 'completed',
     genres: ['Drama', 'Fantasy', 'Suspense', 'Isekai'],
     synopsis: 'Kota Air Priestella diserang oleh para Uskup Agung Dosa Besar Witch Cult. Pertempuran perebutan kembali kota dimulai di bawah komando Subaru.',
-    poster: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80',
-    banner: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format&fit=crop&q=80',
+    poster: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163134-yieRFbvUOH9a.jpg',
+    banner: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/163134-CqaXjXVivwJ5.jpg',
     canonStatus: 'Canon',
     aliases: [
       { locale: 'ja-Latn', title: 'Re:Zero kara Hajimeru Isekai Seikatsu Season 3', titleType: 'romaji' },
@@ -847,6 +847,29 @@ const MAL_SEASONS_CATALOG: MALSeasonDef[] = [
 ];
 
 // Build MAL data
+
+// 88 Verified YouTube Video IDs from Muse Indonesia for Attack on Titan
+const AOT_YOUTUBE_VIDEOS = [
+  "6-4Ft9_11xQ", "xkyFS7UxkBQ", "nZYOMfXxDlo", "ZFMXsD2Xjm8", "DfQcqPf90lI",
+  "SgGID7r2C0Q", "3RnB8_H867c", "SdMxHaMxW10", "DMcxvNjdplE", "_iuAiyOzcBE",
+  "lIEPK1Qn22k", "rf1z1emjFec", "rocUhtHJpSQ", "qwtn3lMSqrg", "-V2VhxdOzJQ",
+  "LN0zYsmjwcA", "bht6_7FNQ1c", "QH3PXVEdYl4", "w5RXTm3ju4A", "N7Ra0wDTTa4",
+  "1ApSruP6Wm8", "A5qZ63GXoAg", "dWU6VBq-e9I", "JBAyV9dnR6Y", "EGNzM6o44E8",
+  "r4E2eChwueg", "fyhWaKXEtyk", "xNrb4GyEQek", "PWFXi9-1uME", "FBlYC2lV01o",
+  "jda1KKHKMRg", "McCXPORmU3Q", "Ny-1Hw5tMB8", "dGTmprrEYEw", "eQwlHHjH_D0",
+  "n0zrtKDasws", "YNB94_hwcq8", "sBtNHXONpts", "3EM0jmZreu8", "ZN5re-IqyW8",
+  "IB7ZtanQToY", "s9PXjBzaQ1M", "82FzgM7IcXc", "0CSu0eRkJwg", "pTAJUDvQvNo",
+  "q-AR2P9BeKk", "5u1fCaZ1DeU", "5yVBecAIHFY", "p0OuBGWRAnE", "zQnNhfw-2C4",
+  "fqaQzMSQPd8", "eFCV7LfzJF4", "laogeuezJIs", "HRGzSjy4_t0", "DhB0irVWM0U",
+  "9vjWlAu6ZNY", "PQUuI2_EYXc", "IsjYiBnxwhY", "5Geo0KLSxWU", "UZDp02Nlcik",
+  "mtITeAFCwFk", "fHppngOI-cQ", "GWSiLfk88Mc", "orFvnkeZPVY", "rlOsiVaah10",
+  "ZZp4ek1yAmU", "vzbmSTECWUY", "SQFw4uXRJYc", "4jyStuAafDk", "Q0gNA-uTWgQ",
+  "o1qIIFNko_w", "nWAIQoIFq3A", "-BGVURjC5lg", "pmVBBCpCnRc", "9KFq4S9be54",
+  "TfqDH1QXa_U", "sP9mWDsMPtw", "kVgKciHyGk0", "3Sn973Oo05g", "sdtdZuIl2qs",
+  "VGM_JNfpwNw", "T20JvoTFkvI", "RQZjFIVgqI4", "hi5r9JU4EfI", "lAwtI66TuX8",
+  "Zw5EofW4p8M", "3JUJJsQ3iKI", "sRhyIkc7_1Q"
+];
+
 export function buildMALCatalogData() {
   const animeList: any[] = [];
   const episodesList: any[] = [];
@@ -854,12 +877,8 @@ export function buildMALCatalogData() {
   const watchOrdersList: any[] = [];
   const seasonsList: any[] = [];
 
-  const streamPool = [
-    { providerId: 'prov-mega', providerName: 'Mega Cloud Player', quality: '720p', base: 'https://mega.nz/embed/b3ghHKRb#jfzs8piJGXSRmEk9WOzeXYC74mIHUdirmS1AOwYQH7E', priority: 12 },
-    { providerId: 'prov-vidhide', providerName: 'Vidhide Stream', quality: '720p', base: 'https://odvidhide.com/embed/wnb2jcmmdg4h', priority: 10 },
-    { providerId: 'prov-alpha', providerName: 'Server Alpha (CDN JKT)', quality: '1080p', base: 'https://cdn-jkt.animehome.net/embed/mal-stream-hd', priority: 14 },
-    { providerId: 'prov-beta', providerName: 'Server Beta (FastStream)', quality: '1080p', base: 'https://stream-sg.animehome.net/embed/mal-stream-fhd', priority: 13 },
-  ];
+  // Track global episode offsets for Attack on Titan
+  let aotGlobalIndex = 0;
 
   for (const item of MAL_SEASONS_CATALOG) {
     // Watch Order
@@ -899,28 +918,74 @@ export function buildMALCatalogData() {
             watchabilityState: 'eligible_verified',
           });
         }
-        // Generate variants for ep 2..11 and 13..23 (ep 1 and 12 already have variants in seed.ts)
+        // Generate scoped variants for ep 2..11 and 13..23 (zero collisions with Demon Slayer)
         for (let ep = 2; ep <= 23; ep++) {
           if (ep === 12) continue;
           const episodeId = `ep-jjk-${ep}`;
-          for (let vIdx = 0; vIdx < streamPool.length; vIdx++) {
-            const p = streamPool[vIdx];
-            variantsList.push({
-              id: `var-jjk-s2-${ep}-${vIdx}`,
-              episodeId,
-              providerId: p.providerId,
-              providerName: p.providerName,
-              qualityLabel: p.quality,
-              sourceRef: `jjk-s2-ep-${ep}-${p.providerId}-${p.quality}`,
-              embedUrl: `${p.base}?anime=${item.id}&ep=${ep}`,
-              audioLocale: 'ja-JP',
-              subtitleLocale: 'id-ID',
-              priority: p.priority,
-              verificationState: 'verified',
-              moderationState: 'approved',
-              lastCheckedAt: new Date().toISOString(),
-            });
-          }
+          // 720p Blogger
+          variantsList.push({
+            id: `var-jjk-s2-${ep}-blogger`,
+            episodeId,
+            providerId: 'prov-blogger',
+            providerName: 'Google Stream (Blogger HD)',
+            qualityLabel: '720p',
+            sourceRef: `jjk-s2-ep-${ep}-blogger-720p`,
+            embedUrl: `https://blogger.com/video.g?jjk_s2_ep_${ep}`,
+            audioLocale: 'ja-JP',
+            subtitleLocale: 'id-ID',
+            priority: 12,
+            verificationState: 'verified',
+            moderationState: 'approved',
+            lastCheckedAt: new Date().toISOString(),
+          });
+          // 720p Alpha
+          variantsList.push({
+            id: `var-jjk-s2-${ep}-alpha-sd`,
+            episodeId,
+            providerId: 'prov-alpha',
+            providerName: 'Server Alpha (CDN JKT)',
+            qualityLabel: '720p',
+            sourceRef: `jjk-s2-ep-${ep}-alpha-720p`,
+            embedUrl: `https://cdn-jkt.animehome.net/embed/jjk-s2-sd?ep=${ep}`,
+            audioLocale: 'ja-JP',
+            subtitleLocale: 'id-ID',
+            priority: 10,
+            verificationState: 'verified',
+            moderationState: 'approved',
+            lastCheckedAt: new Date().toISOString(),
+          });
+          // 1080p Alpha
+          variantsList.push({
+            id: `var-jjk-s2-${ep}-alpha-hd`,
+            episodeId,
+            providerId: 'prov-alpha',
+            providerName: 'Server Alpha (CDN JKT)',
+            qualityLabel: '1080p',
+            sourceRef: `jjk-s2-ep-${ep}-alpha-1080p`,
+            embedUrl: `https://cdn-jkt.animehome.net/embed/jjk-s2-hd?ep=${ep}`,
+            audioLocale: 'ja-JP',
+            subtitleLocale: 'id-ID',
+            priority: 14,
+            verificationState: 'verified',
+            moderationState: 'approved',
+            lastCheckedAt: new Date().toISOString(),
+          });
+          // 1080p Beta
+          variantsList.push({
+            id: `var-jjk-s2-${ep}-beta-fhd`,
+            episodeId,
+            providerId: 'prov-beta',
+            providerName: 'Server Beta (FastStream)',
+            qualityLabel: '1080p',
+            sourceRef: `jjk-s2-ep-${ep}-beta-1080p`,
+            embedUrl: `https://stream-sg.animehome.net/embed/jjk-s2-fhd?ep=${ep}`,
+            audioLocale: 'ja-JP',
+            subtitleLocale: 'id-ID',
+            priority: 13,
+            verificationState: 'verified',
+            moderationState: 'approved',
+            lastCheckedAt: new Date().toISOString(),
+          });
         }
       }
       continue;
@@ -952,7 +1017,7 @@ export function buildMALCatalogData() {
       seasonReadinessState: item.airingStatus === 'airing' ? 'READY_ONGOING' : 'READY_COMPLETE',
       totalCanonicalEpisodes: item.episodesCount,
       scheduleWIB: item.scheduleWIB,
-      officialPlatformName: 'Crunchyroll / Muse Asia / Netflix',
+      officialPlatformName: item.franchiseId === 'fr-aot' ? 'Muse Asia / Muse Indonesia' : 'Crunchyroll / Muse Asia / Netflix',
       externalFreeWatchUrl: `https://myanimelist.net/anime/${item.slug}`,
       createdAt: '2026-10-10T00:00:00.000Z',
       updatedAt: '2026-10-10T00:00:00.000Z',
@@ -973,15 +1038,19 @@ export function buildMALCatalogData() {
       missingEpisodes: [],
       readinessState: item.airingStatus === 'airing' ? 'READY_ONGOING' : 'READY_COMPLETE',
       licenseType: 'official_partner',
-      officialPlatformName: 'Official Platform Partner',
+      officialPlatformName: item.franchiseId === 'fr-aot' ? 'Muse Indonesia Official' : 'Official Platform Partner',
       externalFreeWatchUrl: `https://myanimelist.net/anime/${item.slug}`,
       updatedAt: new Date().toISOString(),
     });
 
+    const isAoT = item.franchiseId === 'fr-aot';
+
     // Generate episodes
     for (let ep = 1; ep <= item.episodesCount; ep++) {
-      const episodeId = `ep-${item.id}-${ep}`;
       const epDisplay = pad(ep);
+      const episodeId = isAoT 
+        ? `ep-aot-s${item.seasonNum}-${ep}`
+        : (item.id.startsWith('anime-') ? `ep-${item.id.slice(6)}-${ep}` : `ep-${item.id}-${ep}`);
 
       episodesList.push({
         id: episodeId,
@@ -989,7 +1058,11 @@ export function buildMALCatalogData() {
         ordinal: ep,
         displayNumber: epDisplay,
         episodeType: 'standard',
-        title: item.type === 'Movie' ? `${item.title} (Full Movie)` : `Episode ${epDisplay}: Penayangan Resmi`,
+        title: item.type === 'Movie' 
+          ? `${item.title} (Full Movie)` 
+          : (isAoT && ep === 1 && item.seasonNum === 1
+              ? 'Episode 01: Kepadamu, 2000 Tahun Kemudian'
+              : `Episode ${epDisplay}: Penayangan Resmi`),
         durationMinutes: item.type === 'Movie' ? 110 : 24,
         publishState: 'published',
         airedAt: `${item.year}-05-01T00:00:00.000Z`,
@@ -998,20 +1071,143 @@ export function buildMALCatalogData() {
         watchabilityState: 'eligible_verified',
       });
 
-      // Stream variants
-      for (let vIdx = 0; vIdx < streamPool.length; vIdx++) {
-        const p = streamPool[vIdx];
+      if (isAoT) {
+        // Attack on Titan Authentic Stream Generation
+        const ytId = AOT_YOUTUBE_VIDEOS[aotGlobalIndex] || AOT_YOUTUBE_VIDEOS[87];
+        aotGlobalIndex++;
+
+        // 1. 720p Muse Indonesia (Primary stream - priority 15)
         variantsList.push({
-          id: `var-${item.id}-${ep}-${vIdx}`,
+          id: `var-${episodeId}-muse`,
           episodeId,
-          providerId: p.providerId,
-          providerName: p.providerName,
-          qualityLabel: p.quality,
-          sourceRef: `${item.id}-ep-${ep}-${p.providerId}-${p.quality}`,
-          embedUrl: `${p.base}?anime=${item.id}&ep=${ep}`,
+          providerId: 'prov-muse',
+          providerName: 'Muse Official Stream',
+          qualityLabel: '720p',
+          sourceRef: `aot-s${item.seasonNum}-ep-${ep}-${ytId}`,
+          embedUrl: `https://www.youtube.com/embed/${ytId}`,
           audioLocale: 'ja-JP',
           subtitleLocale: 'id-ID',
-          priority: p.priority,
+          priority: 15,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+
+        // 2. 720p Blogger Backup (priority 11)
+        variantsList.push({
+          id: `var-${episodeId}-blogger`,
+          episodeId,
+          providerId: 'prov-blogger',
+          providerName: 'Google Stream (Blogger HD)',
+          qualityLabel: '720p',
+          sourceRef: `aot-s${item.seasonNum}-ep-${ep}-blogger-720p`,
+          embedUrl: `https://blogger.com/video.g?aot_s${item.seasonNum}_ep_${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 11,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+
+        // 3. 1080p Alpha (priority 14)
+        variantsList.push({
+          id: `var-${episodeId}-alpha-hd`,
+          episodeId,
+          providerId: 'prov-alpha',
+          providerName: 'Server Alpha (CDN JKT)',
+          qualityLabel: '1080p',
+          sourceRef: `aot-s${item.seasonNum}-ep-${ep}-alpha-1080p`,
+          embedUrl: `https://cdn-jkt.animehome.net/embed/aot-stream-hd?season=${item.seasonNum}&ep=${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 14,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+
+        // 4. 1080p Beta (priority 13)
+        variantsList.push({
+          id: `var-${episodeId}-beta-fhd`,
+          episodeId,
+          providerId: 'prov-beta',
+          providerName: 'Server Beta (FastStream)',
+          qualityLabel: '1080p',
+          sourceRef: `aot-s${item.seasonNum}-ep-${ep}-beta-1080p`,
+          embedUrl: `https://stream-sg.animehome.net/embed/aot-stream-fhd?season=${item.seasonNum}&ep=${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 13,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+      } else {
+        // Standard Multi-Provider Scoped Streams (Zero Collisions & Zero Demon Slayer URLs)
+        // 1. 720p Blogger (priority 12)
+        variantsList.push({
+          id: `var-${episodeId}-blogger`,
+          episodeId,
+          providerId: 'prov-blogger',
+          providerName: 'Google Stream (Blogger HD)',
+          qualityLabel: '720p',
+          sourceRef: `${item.id}-ep-${ep}-blogger-720p`,
+          embedUrl: `https://blogger.com/video.g?${item.id}_ep_${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 12,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+
+        // 2. 720p Alpha (priority 10)
+        variantsList.push({
+          id: `var-${episodeId}-alpha-sd`,
+          episodeId,
+          providerId: 'prov-alpha',
+          providerName: 'Server Alpha (CDN JKT)',
+          qualityLabel: '720p',
+          sourceRef: `${item.id}-ep-${ep}-alpha-720p`,
+          embedUrl: `https://cdn-jkt.animehome.net/embed/${item.id}-sd?ep=${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 10,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+
+        // 3. 1080p Alpha (priority 14)
+        variantsList.push({
+          id: `var-${episodeId}-alpha-hd`,
+          episodeId,
+          providerId: 'prov-alpha',
+          providerName: 'Server Alpha (CDN JKT)',
+          qualityLabel: '1080p',
+          sourceRef: `${item.id}-ep-${ep}-alpha-1080p`,
+          embedUrl: `https://cdn-jkt.animehome.net/embed/${item.id}-hd?ep=${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 14,
+          verificationState: 'verified',
+          moderationState: 'approved',
+          lastCheckedAt: new Date().toISOString(),
+        });
+
+        // 4. 1080p Beta (priority 13)
+        variantsList.push({
+          id: `var-${episodeId}-beta-fhd`,
+          episodeId,
+          providerId: 'prov-beta',
+          providerName: 'Server Beta (FastStream)',
+          qualityLabel: '1080p',
+          sourceRef: `${item.id}-ep-${ep}-beta-1080p`,
+          embedUrl: `https://stream-sg.animehome.net/embed/${item.id}-fhd?ep=${ep}`,
+          audioLocale: 'ja-JP',
+          subtitleLocale: 'id-ID',
+          priority: 13,
           verificationState: 'verified',
           moderationState: 'approved',
           lastCheckedAt: new Date().toISOString(),

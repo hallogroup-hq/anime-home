@@ -29,7 +29,7 @@ class AnimeHomeDataStore {
     id: 'user-guest-01',
     username: 'Tamu Anime Home',
     email: 'guest@animehome.id',
-    avatarUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+    avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png',
     isLoggedIn: false,
   };
   private homepageConfig: HomepageConfig = {
@@ -229,7 +229,7 @@ class AnimeHomeDataStore {
       id: 'user-guest-01',
       username: 'Tamu Anime Home',
       email: 'guest@animehome.id',
-      avatarUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=100&fit=crop',
+      avatarUrl: 'https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png',
       isLoggedIn: false,
     };
     return { ...this.userProfile };
@@ -256,7 +256,18 @@ class AnimeHomeDataStore {
   }
 
   public getEpisodeById(episodeId: string): Episode | undefined {
-    return this.episodes.find(e => e.id === episodeId);
+    const direct = this.episodes.find(e => e.id === episodeId);
+    if (direct) return direct;
+    if (episodeId.startsWith('ep-anime-')) {
+      const alias = 'ep-' + episodeId.slice('ep-anime-'.length);
+      const found = this.episodes.find(e => e.id === alias);
+      if (found) return found;
+    } else if (episodeId.startsWith('ep-')) {
+      const alias = 'ep-anime-' + episodeId.slice('ep-'.length);
+      const found = this.episodes.find(e => e.id === alias);
+      if (found) return found;
+    }
+    return undefined;
   }
 
   public getAllEpisodes(): Episode[] {
@@ -265,7 +276,17 @@ class AnimeHomeDataStore {
 
   public getAllStreamVariants(episodeId?: string): StreamVariant[] {
     if (episodeId) {
-      return this.variants.filter(v => v.episodeId === episodeId);
+      let vars = this.variants.filter(v => v.episodeId === episodeId);
+      if (vars.length === 0) {
+        if (episodeId.startsWith('ep-anime-')) {
+          const alias = 'ep-' + episodeId.slice('ep-anime-'.length);
+          vars = this.variants.filter(v => v.episodeId === alias);
+        } else if (episodeId.startsWith('ep-')) {
+          const alias = 'ep-anime-' + episodeId.slice('ep-'.length);
+          vars = this.variants.filter(v => v.episodeId === alias);
+        }
+      }
+      return vars;
     }
     return [...this.variants];
   }
@@ -328,8 +349,11 @@ class AnimeHomeDataStore {
       this.providers.filter(p => p.status === 'active').map(p => p.id)
     );
 
+    const resolvedEp = this.getEpisodeById(episodeId);
+    const targetEpId = resolvedEp ? resolvedEp.id : episodeId;
+
     const episodeVariants = this.variants.filter(
-      v => v.episodeId === episodeId && 
+      v => (v.episodeId === episodeId || v.episodeId === targetEpId) && 
            v.moderationState === 'approved' &&
            activeProviderIds.has(v.providerId)
     );
@@ -555,8 +579,8 @@ class AnimeHomeDataStore {
         mediaType: 'TV',
         genres: ['Action', 'Comedy', 'Supernatural', 'Sci-Fi'],
         synopsis: 'Momo Ayase berteman dengan teman sekelas penggemar UFO yang ia juluki Okarun. Keduanya membuktikan eksistensi alien dan hantu yang membawa mereka ke petualangan supernatural tak terduga.',
-        posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-        bannerUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+        posterUrl: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171018-U1v5w63g7Lsm.png',
+        bannerUrl: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/171018-b2k20bH64XbV.jpg',
         totalEpisodes: 12,
       },
       {
@@ -571,8 +595,8 @@ class AnimeHomeDataStore {
         mediaType: 'TV',
         genres: ['Action', 'Adventure', 'Supernatural'],
         synopsis: 'Bagian ketiga perang penentuan antara Soul Society dan Wandenreich yang dipimpin oleh Yhwach.',
-        posterUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80',
-        bannerUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80',
+        posterUrl: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169755-Rqb7MjnzdTc6.jpg',
+        bannerUrl: 'https://s4.anilist.co/file/anilistcdn/media/anime/banner/169755-hCWjp9ajjMYV.jpg',
         totalEpisodes: 13,
       },
       {
@@ -587,8 +611,8 @@ class AnimeHomeDataStore {
         mediaType: 'TV',
         genres: ['Adventure', 'Fantasy'],
         synopsis: 'Setelah perjalanan panjang mengalahkan Raja Iblis, Frieren menghadapi keabadian dan nilai kenangan manusia.',
-        posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-        bannerUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80',
+        posterUrl: 'https://otakudesu.blog/wp-content/uploads/2024/03/Sousou-no-Frieren-Sub-Indo.jpg',
+        bannerUrl: 'https://otakudesu.blog/wp-content/uploads/2024/03/Sousou-no-Frieren-Sub-Indo.jpg',
         totalEpisodes: 28,
       },
     ];

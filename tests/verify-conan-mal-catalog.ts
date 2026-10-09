@@ -157,6 +157,102 @@ async function verifyConanAndMalCatalog() {
     `All tested episodes (${totalSampleEpisodesTested} sampled across ${sampleAnimeToCheck.length} anime, ${totalVariantsTested} stream variants) have verified stream matrix and allowlist-compliant URLs`
   );
 
+  // 6. ZERO UNSPLASH & AUTHENTIC COVER ART INVARIANTS
+  console.log('\n6. Zero Unsplash & Authentic Cover Art Invariants');
+  const unsplashAnime = allAnime.filter(a => 
+    (a.posterUrl && a.posterUrl.includes('unsplash')) ||
+    (a.bannerUrl && a.bannerUrl.includes('unsplash'))
+  );
+  assert(unsplashAnime.length === 0, `Zero Unsplash stock photos anywhere in anime catalog (found: ${unsplashAnime.length})`);
+
+  // Solo Leveling poster is not Frieren and is authentic Solo Leveling
+  const soloLeveling = db.getAnimeList().find(a => a.id === 'anime-sololeveling');
+  assert(!!soloLeveling, 'Solo Leveling anime entry exists');
+  if (soloLeveling) {
+    assert(!soloLeveling.posterUrl.includes('138006'), 'Solo Leveling poster is NOT Sousou no Frieren (no MAL 138006)');
+    assert(soloLeveling.posterUrl.includes('151807'), 'Solo Leveling has authentic AniList Solo Leveling asset');
+  }
+
+  // Conan TV Seasons 1-30 authentic Detective Conan posters (no Magic Kaito, no Zero's Tea Time, no Movie duplicates)
+  const conanTV = allAnime.filter(a => a.id.startsWith('anime-conan-s'));
+  const conanMovies = allAnime.filter(a => a.id.startsWith('anime-conan-m'));
+  const moviePosterSet = new Set(conanMovies.map(m => m.posterUrl));
+  
+  // Assert TV seasons have distinct posters from movies
+  const tvMoviePosterOverlap = conanTV.filter(t => moviePosterSet.has(t.posterUrl));
+  assert(tvMoviePosterOverlap.length === 0, `Conan TV seasons have distinct art from movies (overlapping: ${tvMoviePosterOverlap.length})`);
+
+  // Assert TV seasons do not use Magic Kaito or spin-off anime
+  const invalidConanPosters = conanTV.filter(t => 
+    t.posterUrl.includes('5287') || // Magic Kaito
+    t.posterUrl.includes('140002') || // Zero's Tea Time
+    t.posterUrl.includes('140005') // Culprit Hanzawa
+  );
+  assert(invalidConanPosters.length === 0, `Conan TV seasons contain zero spin-off/Magic Kaito covers (found: ${invalidConanPosters.length})`);
+
+  // Assert all 28 Conan Movie banners are valid and verified
+  const fakeBannerHashes = conanMovies.filter(m => m.bannerUrl.includes('779-iUa2') || m.bannerUrl.includes('780-60fN'));
+  assert(fakeBannerHashes.length === 0, `Zero fake hash banner URLs on Conan Movies (found: ${fakeBannerHashes.length})`);
+
+  // Assert upcoming anime (SBR, Overgeared, Seitokai, Hotaru) have authentic AniList assets
+  const upcomingIds = ['anime-sbr', 'anime-overgeared', 'anime-seitokai', 'anime-firefly'];
+  const upcomingAnime = allAnime.filter(a => upcomingIds.includes(a.id));
+  const brokenUpcoming = upcomingAnime.filter(a => a.posterUrl.includes('otakudesu.blog/wp-content/uploads/2026'));
+  assert(brokenUpcoming.length === 0, `All upcoming benchmark titles have authentic AniList cover art (broken: ${brokenUpcoming.length})`);
+
+
+  // 7. SPECIFIC AUTHENTIC STREAM INTEGRITY & ZERO CROSS-ANIME COLLISIONS
+  console.log('\n7. Specific Authentic Stream Integrity & Zero Collisions');
+  // Conan Ep 129
+  const conan129Ep = db.getEpisodeById('ep-conan-129');
+  assert(!!conan129Ep, 'Detective Conan episode 129 exists');
+  const conan129Variants = db.getAllStreamVariants('ep-conan-129');
+  const conan129Urls = conan129Variants.map(v => v.embedUrl);
+  assert(
+    !conan129Urls.some(u => u.includes('wnb2jcmmdg4h') || u.includes('b3ghHKRb')),
+    'Conan Ep 129 does NOT contain Demon Slayer embed IDs'
+  );
+  assert(
+    conan129Urls.some(u => u.includes('kFsbUv5EFjs')),
+    'Conan Ep 129 contains verified POPS YouTube embed kFsbUv5EFjs'
+  );
+
+  // Attack on Titan Ep 1
+  const aot1Ep = db.getEpisodeById('ep-aot-s1-1');
+  assert(!!aot1Ep, 'Attack on Titan S1 Ep 1 exists');
+  const aot1Variants = db.getAllStreamVariants('ep-aot-s1-1');
+  const aot1Urls = aot1Variants.map(v => v.embedUrl);
+  assert(
+    !aot1Urls.some(u => u.includes('wnb2jcmmdg4h') || u.includes('b3ghHKRb')),
+    'AoT Ep 1 does NOT contain Demon Slayer embed IDs'
+  );
+  assert(
+    aot1Urls.some(u => u.includes('6-4Ft9_11xQ')),
+    'AoT Ep 1 contains verified Muse Indonesia YouTube embed 6-4Ft9_11xQ'
+  );
+
+  // Zero stream collisions between different anime
+  const episodes = db.getAllEpisodes();
+  const epToAnime = new Map(episodes.map(e => [e.id, e.animeId]));
+  const urlToAnimes = new Map<string, Set<string>>();
+  const allVariants = db.getAllStreamVariants();
+  for (const v of allVariants) {
+    const aId = epToAnime.get(v.episodeId);
+    if (!aId) continue;
+    if (!urlToAnimes.has(v.embedUrl)) {
+      urlToAnimes.set(v.embedUrl, new Set());
+    }
+    urlToAnimes.get(v.embedUrl)!.add(aId);
+  }
+
+  let crossAnimeCollisions = 0;
+  for (const [_, animeIds] of urlToAnimes.entries()) {
+    if (animeIds.size > 1) {
+      crossAnimeCollisions++;
+    }
+  }
+  assert(crossAnimeCollisions === 0, `Zero stream URL collisions between different anime (collisions: ${crossAnimeCollisions})`);
+
   console.log('\n====================================================');
   console.log(`FINAL RESULT: ${passed} / ${passed + failed} CHECKS PASSED`);
   console.log('====================================================');
