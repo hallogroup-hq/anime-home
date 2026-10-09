@@ -133,6 +133,30 @@ export const INITIAL_PROVIDERS: Provider[] = [
     apiAdapterKey: 'custom_embed',
     status: 'active',
   },
+  {
+    id: 'prov-gdplayer',
+    name: 'GDPlayer Fast Stream',
+    domain: 'gdplayer.to',
+    providerType: 'embed',
+    apiAdapterKey: 'custom_embed',
+    status: 'active',
+  },
+  {
+    id: 'prov-kotakanime',
+    name: 'KotakAnime Direct Player',
+    domain: 'kotakanimeid.link',
+    providerType: 'embed',
+    apiAdapterKey: 'custom_embed',
+    status: 'active',
+  },
+  {
+    id: 'prov-terabox',
+    name: 'Terabox Cloud Player',
+    domain: 'terabox.com',
+    providerType: 'embed',
+    apiAdapterKey: 'custom_embed',
+    status: 'active',
+  },
   ...ONGOING_PROVIDERS,
 ];
 
