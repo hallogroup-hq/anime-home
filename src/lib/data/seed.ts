@@ -3,6 +3,13 @@ import {
   MerchItem, FranchiseWatchOrderItem, AnimeCharacter, EpisodeComment,
   Season
 } from '@/types';
+import { 
+  ONGOING_PROVIDERS, 
+  ONGOING_ANIME, 
+  ONGOING_EPISODES, 
+  ONGOING_STREAM_VARIANTS, 
+  ONGOING_SEASONS 
+} from './ongoingSeed';
 
 export const INITIAL_PROVIDERS: Provider[] = [
   {
@@ -63,6 +70,7 @@ export const INITIAL_PROVIDERS: Provider[] = [
     apiAdapterKey: 'custom_embed',
     status: 'active',
   },
+  ...ONGOING_PROVIDERS,
 ];
 
 export const INITIAL_ANIME: Anime[] = [
@@ -613,6 +621,7 @@ export const INITIAL_ANIME: Anime[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+  ...ONGOING_ANIME,
 ];
 
 export const INITIAL_EPISODES: Episode[] = [
@@ -1331,6 +1340,7 @@ export const INITIAL_EPISODES: Episode[] = [
     externalPlatformName: 'Crunchyroll / Bstation',
     externalWatchUrl: 'https://www.crunchyroll.com',
   },
+  ...ONGOING_EPISODES,
 ];
 
 // Helper untuk membuat varian multi-provider standar pada episode
@@ -1910,7 +1920,7 @@ export const INITIAL_STREAM_VARIANTS: StreamVariant[] = [
     moderationState: 'approved',
     lastCheckedAt: new Date().toISOString(),
   },
-
+  ...ONGOING_STREAM_VARIANTS,
 ];
 
 export const INITIAL_AD_PLACEMENTS: AdPlacement[] = [
@@ -2721,6 +2731,7 @@ export const INITIAL_SEASONS: Season[] = [
     notes: 'Menunggu jadwal penayangan resmi musim Fall 2026.',
     updatedAt: new Date().toISOString(),
   },
+  ...ONGOING_SEASONS,
 ];
 
 
