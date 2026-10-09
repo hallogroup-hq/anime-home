@@ -1,0 +1,46 @@
+name: 🔄 Ongoing Anime 2-Hour Auto-Sync
+
+on:
+  schedule:
+    # Run every 2 hours UTC (adjusted for continuous ongoing tracking)
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Sync Ongoing Anime Releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Ongoing Dual-Engine Sync Pipeline
+        run: npm run cron:ongoing
+
+      - name: Commit and Push if Updates Detected
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet src/lib/data/live_data.json; then
+            echo "✨ New releases detected! Committing and pushing to main..."
+            git add src/lib/data/live_data.json
+            git commit -m "chore(sync): automated ongoing anime update from Samehadaku & Otakudesu"
+            git push origin main
+            echo "🚀 Pushed to main. Vercel deployment automatically triggered!"
+          else
+            echo "✅ No new releases at this interval. Dataset is already fully up to date."
+          fi

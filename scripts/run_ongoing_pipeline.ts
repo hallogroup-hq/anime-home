@@ -18,6 +18,19 @@ async function main() {
     for (const u of report.updates) {
       console.log(`  ✨ [${u.animeTitle}] Episode ${u.displayNumber} - ${u.variantsAdded} servers (${u.providers.join(', ')})`);
     }
+
+    if (process.argv.includes('--push')) {
+      const { execSync } = await import('child_process');
+      console.log('\n🚀 Auto-push enabled: Committing to git & triggering Vercel deployment...');
+      try {
+        execSync('git add src/lib/data/live_data.json', { stdio: 'inherit' });
+        execSync('git commit -m "chore(sync): automated ongoing anime releases update" --allow-empty', { stdio: 'inherit' });
+        execSync('git push origin main', { stdio: 'inherit' });
+        console.log('✅ Berhasil push ke repository! Vercel production build terpicu.');
+      } catch (pushErr: any) {
+        console.error('⚠️ Gagal auto-push ke git:', pushErr.message);
+      }
+    }
   }
 
   console.log('\n====================================================');

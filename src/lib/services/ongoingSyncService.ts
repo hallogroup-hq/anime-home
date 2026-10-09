@@ -537,15 +537,19 @@ export class OngoingSyncService {
       // 3. Persist to live_data.json
       // -------------------------------------------------------------
       if (!options.dryRun && updates.length > 0) {
-        const payloadToSave = {
-          anime: (db as any).anime,
-          seasons: (db as any).seasons || [],
-          episodes: (db as any).episodes,
-          variants: (db as any).variants,
-          lastSyncAt: timestamp,
-        };
-        fs.writeFileSync(LIVE_DATA_PATH, JSON.stringify(payloadToSave, null, 2), 'utf8');
-        console.log(`[OngoingSyncService] Successfully persisted ${updates.length} updates to ${LIVE_DATA_PATH}`);
+        try {
+          const payloadToSave = {
+            anime: (db as any).anime,
+            seasons: (db as any).seasons || [],
+            episodes: (db as any).episodes,
+            variants: (db as any).variants,
+            lastSyncAt: timestamp,
+          };
+          fs.writeFileSync(LIVE_DATA_PATH, JSON.stringify(payloadToSave, null, 2), 'utf8');
+          console.log(`[OngoingSyncService] Successfully persisted ${updates.length} updates to ${LIVE_DATA_PATH}`);
+        } catch (fsErr: any) {
+          console.warn(`[OngoingSyncService] Warning: Could not write to disk (${fsErr.message}). In-memory store updated.`);
+        }
       }
 
       const report: OngoingSyncReport = {
