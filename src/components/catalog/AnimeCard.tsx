@@ -27,7 +27,11 @@ export function AnimeCard({ anime, badge, subtitle, href }: AnimeCardProps) {
           src={anime.posterUrl}
           alt={anime.canonicalTitle}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src =
+              'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%2318181b"/><text x="50%" y="50%" fill="%2371717a" font-size="14" font-family="sans-serif" text-anchor="middle">ANIME HOME</text></svg>';
+          }}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 bg-zinc-800"
         />
 
         {/* Discrete Top Left Tags */}

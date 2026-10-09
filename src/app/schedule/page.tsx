@@ -3,141 +3,50 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { db } from '@/lib/services/store';
-import { Clock, Play } from 'lucide-react';
-
-interface ScheduleEntry {
-  day: string;
-  time: string;
-  animeId: string;
-  animeTitle: string;
-  slug: string;
-  episodeNumber: string;
-  posterUrl: string;
-  genres: string[];
-}
+import { Clock, Play, Calendar } from 'lucide-react';
 
 export default function SchedulePage() {
-  const [selectedDay, setSelectedDay] = useState('Jumat');
+  const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+  const todayName = DAY_NAMES[new Date().getDay()] || 'Jumat';
+  const [selectedDay, setSelectedDay] = useState<string>(todayName);
 
   const days = [
-    { key: 'Senin', label: 'Senin' },
-    { key: 'Selasa', label: 'Selasa' },
-    { key: 'Rabu', label: 'Rabu' },
-    { key: 'Kamis', label: 'Kamis' },
-    { key: 'Jumat', label: 'Jumat', isToday: true },
-    { key: 'Sabtu', label: 'Sabtu' },
-    { key: 'Minggu', label: 'Minggu' },
+    { key: 'Semua', label: 'Semua Hari' },
+    { key: 'Senin', label: 'Senin', isToday: todayName === 'Senin' },
+    { key: 'Selasa', label: 'Selasa', isToday: todayName === 'Selasa' },
+    { key: 'Rabu', label: 'Rabu', isToday: todayName === 'Rabu' },
+    { key: 'Kamis', label: 'Kamis', isToday: todayName === 'Kamis' },
+    { key: 'Jumat', label: 'Jumat', isToday: todayName === 'Jumat' },
+    { key: 'Sabtu', label: 'Sabtu', isToday: todayName === 'Sabtu' },
+    { key: 'Minggu', label: 'Minggu', isToday: todayName === 'Minggu' },
   ];
 
-  // Data jadwal mingguan realistis untuk seluruh hari
-  const scheduleData: Record<string, ScheduleEntry[]> = {
-    'Senin': [
-      {
-        day: 'Senin',
-        time: '22:30 WIB',
-        animeId: 'anime-windbreaker',
-        animeTitle: 'Wind Breaker',
-        slug: 'wind-breaker',
-        episodeNumber: '02',
-        posterUrl: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&fit=crop',
-        genres: ['Action', 'Delinquents'],
-      },
-    ],
-    'Selasa': [
-      {
-        day: 'Selasa',
-        time: '21:00 WIB',
-        animeId: 'anime-oshinoko',
-        animeTitle: 'Oshi no Ko Season 2',
-        slug: 'oshi-no-ko-season-2',
-        episodeNumber: '02',
-        posterUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&fit=crop',
-        genres: ['Drama', 'Supernatural'],
-      },
-    ],
-    'Rabu': [
-      {
-        day: 'Rabu',
-        time: '22:00 WIB',
-        animeId: 'anime-mushoku',
-        animeTitle: 'Mushoku Tensei Season 2',
-        slug: 'mushoku-tensei-season-2',
-        episodeNumber: '12',
-        posterUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=400&fit=crop',
-        genres: ['Adventure', 'Fantasy'],
-      },
-    ],
-    'Kamis': [
-      {
-        day: 'Kamis',
-        time: '21:30 WIB',
-        animeId: 'anime-dungeon',
-        animeTitle: 'Dungeon Meshi',
-        slug: 'dungeon-meshi',
-        episodeNumber: '14',
-        posterUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&fit=crop',
-        genres: ['Fantasy', 'Gourmet'],
-      },
-    ],
-    'Jumat': [
-      {
-        day: 'Jumat',
-        time: '21:00 WIB',
-        animeId: 'anime-frieren',
-        animeTitle: 'Sousou no Frieren',
-        slug: 'sousou-no-frieren',
-        episodeNumber: '08',
-        posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&fit=crop',
-        genres: ['Adventure', 'Fantasy'],
-      },
-      {
-        day: 'Jumat',
-        time: '23:30 WIB',
-        animeId: 'anime-dungeon',
-        animeTitle: 'Dungeon Meshi',
-        slug: 'dungeon-meshi',
-        episodeNumber: '02',
-        posterUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&fit=crop',
-        genres: ['Gourmet', 'Fantasy'],
-      },
-    ],
-    'Sabtu': [
-      {
-        day: 'Sabtu',
-        time: '22:00 WIB',
-        animeId: 'anime-kaiju8',
-        animeTitle: 'Kaiju No. 8',
-        slug: 'kaiju-no-8',
-        episodeNumber: '11',
-        posterUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=400&fit=crop',
-        genres: ['Action', 'Sci-Fi'],
-      },
-      {
-        day: 'Sabtu',
-        time: '23:00 WIB',
-        animeId: 'anime-sololeveling',
-        animeTitle: 'Solo Leveling: Arise',
-        slug: 'solo-leveling',
-        episodeNumber: '12',
-        posterUrl: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&fit=crop',
-        genres: ['Action', 'Fantasy'],
-      },
-    ],
-    'Minggu': [
-      {
-        day: 'Minggu',
-        time: '22:15 WIB',
-        animeId: 'anime-hashira',
-        animeTitle: 'Kimetsu no Yaiba: Hashira Geiko-hen',
-        slug: 'kimetsu-no-yaiba-hashira-geiko-hen',
-        episodeNumber: '07',
-        posterUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&fit=crop',
-        genres: ['Action', 'Historical'],
-      },
-    ],
+  const allAnime = db.getAnimeList();
+
+  // Day order based on real release cycle
+  const DAY_ORDER: Record<string, number> = {
+    'Senin': 1,
+    'Selasa': 2,
+    'Rabu': 3,
+    'Kamis': 4,
+    'Jumat': 5,
+    'Sabtu': 6,
+    'Minggu': 7,
   };
 
-  const currentShows = scheduleData[selectedDay] || [];
+  const ongoingAnime = allAnime
+    .filter(a => a.airingStatus === 'airing' || Boolean(a.scheduleWIB))
+    .sort((a, b) => {
+      const dayA = a.scheduleWIB?.split(',')[0]?.trim() || '';
+      const dayB = b.scheduleWIB?.split(',')[0]?.trim() || '';
+      const weightA = DAY_ORDER[dayA] || 99;
+      const weightB = DAY_ORDER[dayB] || 99;
+      return weightA - weightB;
+    });
+
+  const displayedAnime = selectedDay === 'Semua'
+    ? ongoingAnime
+    : ongoingAnime.filter(a => a.scheduleWIB?.includes(selectedDay));
 
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
@@ -155,19 +64,26 @@ export default function SchedulePage() {
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-white/[0.06]">
         {days.map((d) => {
           const isSelected = selectedDay === d.key;
+          const count = d.key === 'Semua'
+            ? ongoingAnime.length
+            : ongoingAnime.filter(a => a.scheduleWIB?.includes(d.key)).length;
+
           return (
             <button
               key={d.key}
               onClick={() => setSelectedDay(d.key)}
               className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                 isSelected
-                  ? 'bg-red-600 text-white shadow-sm'
-                  : 'bg-zinc-900 border border-white/[0.06] text-zinc-400 hover:text-white'
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                  : 'bg-zinc-900 border border-white/[0.06] text-zinc-400 hover:text-white hover:bg-zinc-800'
               }`}
             >
               <span>{d.label}</span>
+              <span className={`text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>
+                ({count})
+              </span>
               {d.isToday && (
-                <span className={`text-[9px] px-1.5 py-0.2 rounded font-semibold ${
+                <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${
                   isSelected ? 'bg-black/30 text-white' : 'bg-red-600/20 text-red-400'
                 }`}>
                   Hari Ini
@@ -178,48 +94,70 @@ export default function SchedulePage() {
         })}
       </div>
 
-      {/* Shows on selected day */}
+      {/* Shows Grid */}
       <div className="flex flex-col gap-3">
-        {currentShows.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            {currentShows.map((show) => (
-              <Link
-                key={show.animeId}
-                href={`/anime/${show.slug}`}
-                className="flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 border border-white/[0.06] hover:border-zinc-700 hover:bg-zinc-900/90 transition-all group cursor-pointer"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <img
-                    src={show.posterUrl}
-                    alt={show.animeTitle}
-                    className="h-16 w-12 rounded-lg object-cover shrink-0"
-                  />
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-bold text-white truncate group-hover:text-red-500 transition-colors">
-                      {show.animeTitle}
-                    </span>
-                    <span className="text-[11px] text-zinc-400 mt-0.5">
-                      Episode {show.episodeNumber}
-                    </span>
-                    <span className="text-[10px] text-zinc-500 flex items-center gap-1 mt-1">
-                      <Clock className="h-3 w-3" />
-                      {show.time}
-                    </span>
-                  </div>
-                </div>
+        {displayedAnime.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {displayedAnime.map((anime) => {
+              const eps = db.getEpisodesByAnimeId(anime.id);
+              const latestEp = eps.length > 0 ? eps[eps.length - 1] : null;
+              const epNum = latestEp?.title?.match(/Episode\s+(\d+)/i)?.[1] || latestEp?.displayNumber || '1';
+              const watchHref = latestEp ? `/watch/${latestEp.id}` : `/anime/${anime.slug}`;
+              const dayPart = anime.scheduleWIB?.split(',')[0]?.trim() || '';
+              const timePart = anime.scheduleWIB?.split(',')[1]?.trim() || anime.scheduleWIB || '20:00 WIB';
 
+              return (
                 <div
-                  className="p-2 rounded-lg bg-zinc-800 text-zinc-300 group-hover:bg-red-600 group-hover:text-white transition-colors shrink-0 ml-2"
-                  title="Buka detail anime"
+                  key={anime.id}
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 border border-white/[0.06] hover:border-zinc-700 hover:bg-zinc-900/90 transition-all group"
                 >
-                  <Play className="h-3.5 w-3.5 fill-current" />
+                  <Link
+                    href={`/anime/${anime.slug}`}
+                    className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer"
+                  >
+                    <img
+                      src={anime.posterUrl}
+                      alt={anime.canonicalTitle}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%2318181b"/><text x="50%" y="50%" fill="%2371717a" font-size="14" font-family="sans-serif" text-anchor="middle">ANIME HOME</text></svg>';
+                      }}
+                      className="h-16 w-12 rounded-lg object-cover shrink-0 bg-zinc-800"
+                    />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-xs font-bold text-white truncate group-hover:text-red-500 transition-colors">
+                        {anime.canonicalTitle}
+                      </span>
+                      <span className="text-[11px] text-zinc-400 mt-0.5">
+                        Episode {epNum} Subtitle Indonesia
+                      </span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] text-zinc-400 flex items-center gap-1 font-medium">
+                          <Clock className="h-3 w-3 text-red-500" />
+                          {dayPart ? `${dayPart}, ${timePart}` : timePart}
+                        </span>
+                        <span className="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.2 rounded font-semibold">
+                          Ongoing
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href={watchHref}
+                    className="p-2.5 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-red-600 hover:text-white transition-all shrink-0 ml-2 cursor-pointer shadow-sm group-hover:bg-red-600 group-hover:text-white"
+                    title={`Tonton Episode ${epNum}`}
+                  >
+                    <Play className="h-4 w-4 fill-current" />
+                  </Link>
                 </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         ) : (
-          <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/40 p-12 text-center text-xs text-zinc-500">
-            Tidak ada jadwal rilis episode untuk hari {selectedDay}.
+          <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/40 p-12 text-center text-xs text-zinc-500 flex flex-col items-center gap-2">
+            <Calendar className="h-8 w-8 text-zinc-600" />
+            <span>Tidak ada jadwal rilis episode untuk hari {selectedDay}.</span>
           </div>
         )}
       </div>

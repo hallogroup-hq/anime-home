@@ -28,7 +28,6 @@ export function Footer() {
           <Link href="/anime" className="hover:text-white transition-colors">Katalog</Link>
           <Link href="/schedule" className="hover:text-white transition-colors">Jadwal Rilis</Link>
           <Link href="/discover" className="hover:text-white transition-colors">Merchandise</Link>
-          <Link href="/admin" className="text-zinc-600 hover:text-zinc-400 transition-colors">Konsol Admin</Link>
         </div>
       </div>
     </footer>

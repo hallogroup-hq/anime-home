@@ -162,16 +162,32 @@ export function MultiProviderPlayer({
       }`}>
         {/* 1. VIDEO PLAYER VIEWPORT (16:9) */}
         <div ref={playerViewportRef} className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl">
-        {!hasError ? (
-          <iframe
-            key={activeVariant.id}
-            src={embedUrl}
-            title={`${animeTitle} - Ep ${episodeNumber}`}
-            className="h-full w-full border-0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        ) : (
+          {/* Branded Top Mask Overlay to hide embed filenames and watermarks */}
+          <div className="pointer-events-none absolute top-0 left-0 right-0 z-20">
+            <div className="h-10 bg-[#090A0F] flex items-center justify-between px-4">
+              <div className="flex items-center gap-2">
+                <span className="flex h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+                <span className="text-xs font-bold text-white tracking-wide truncate max-w-[240px] sm:max-w-md">
+                  ANIME HOME • {animeTitle} — Ep {episodeNumber}
+                </span>
+              </div>
+              <span className="text-[11px] font-semibold text-zinc-400 shrink-0 hidden sm:inline">
+                Takarir Indonesia
+              </span>
+            </div>
+            <div className="h-3 bg-gradient-to-b from-[#090A0F] to-transparent" />
+          </div>
+
+          {!hasError ? (
+            <iframe
+              key={activeVariant.id}
+              src={embedUrl}
+              title={`${animeTitle} - Ep ${episodeNumber}`}
+              className="h-full w-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950 p-6 text-center">
             <AlertCircle className="h-10 w-10 text-red-500 mb-2" />
             <p className="text-sm font-bold text-white">Server ini tidak dapat memutar video</p>

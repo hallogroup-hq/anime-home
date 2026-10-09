@@ -75,17 +75,6 @@ export function Navbar() {
             >
               Merchandise
             </Link>
-            <Link
-              href="/prototype"
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                pathname === '/prototype' 
-                  ? 'bg-red-600/20 text-red-400 border border-red-500/30' 
-                  : 'text-zinc-400 hover:text-white bg-zinc-900/60 border border-white/[0.06]'
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Lab Streaming</span>
-            </Link>
           </nav>
         </div>
 

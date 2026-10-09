@@ -11,7 +11,6 @@ import { Play, ChevronRight, Calendar, Sparkles } from 'lucide-react';
 export default function HomePage() {
   const allAnime = db.getAnimeList();
   const cmsConfig = db.getHomepageConfig();
-  const heroAnime = allAnime.find(a => a.id === cmsConfig.heroAnimeId) || allAnime[0];
   const [continueWatching, setContinueWatching] = useState<{ anime: any; episodeId: string }[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>('Semua');
 
@@ -35,6 +34,9 @@ export default function HomePage() {
       const weightB = DAY_ORDER[dayB] || 99;
       return weightA - weightB;
     });
+
+  // Hero anime dynamically follows the latest updated ongoing anime
+  const heroAnime = ongoingAnime[0] || allAnime[0];
 
   const filteredOngoing = selectedDay === 'Semua'
     ? ongoingAnime
@@ -73,8 +75,8 @@ export default function HomePage() {
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-12 z-10 pointer-events-none">
                 <div className="max-w-2xl pointer-events-auto">
                   <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 mb-2">
-                    <span className="rounded bg-red-600/90 text-white font-bold px-2 py-0.5 text-[10px]">
-                      Pilihan Redaksi
+                    <span className="rounded bg-red-600 px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
+                      {heroAnime.airingStatus === 'airing' ? 'Update Terbaru' : 'Populer'}
                     </span>
                     <span>•</span>
                     <span>{heroAnime.mediaType}</span>
@@ -126,20 +128,15 @@ export default function HomePage() {
       case 'latest_episodes':
         return (
           <section key="latest_episodes" className="flex flex-col gap-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight flex items-center gap-2">
-                    Episode Baru Tayang (Ongoing)
-                  </h2>
-                </div>
-                <p className="text-xs text-zinc-400 mt-1">
-                  Diurutkan berdasarkan jadwal rilis riil Otakudesu (Jumat → Kamis → Rabu → Selasa → Senin → Minggu)
-                </p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                  Ongoing
+                </h2>
               </div>
               <Link
-                href="/anime?status=airing"
+                href="/schedule"
                 className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
               >
                 Jadwal Lengkap <ChevronRight className="h-3.5 w-3.5" />

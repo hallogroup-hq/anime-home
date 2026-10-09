@@ -31,7 +31,6 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
     { label: 'Takedown Hak Cipta', href: '/admin/rights' },
     { label: 'Iklan Sponsor', href: '/admin/ads' },
     { label: 'Log Audit', href: '/admin/audit' },
-    { label: 'Lab Pengujian Provider', href: '/admin/lab', icon: true },
   ];
 
   const handleLogout = async () => {
@@ -104,9 +103,8 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
                   isActive
                     ? 'bg-zinc-800 text-white font-bold'
                     : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/40'
-                } ${item.icon ? 'border border-amber-500/30 text-amber-300' : ''}`}
+                }`}
               >
-                {item.icon && <FlaskConical className="h-3.5 w-3.5 text-amber-400 shrink-0" />}
                 <span>{item.label}</span>
               </Link>
             );

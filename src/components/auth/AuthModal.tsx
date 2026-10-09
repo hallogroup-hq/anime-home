@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { db } from '@/lib/services/store';
 import { getLocalWatchlist, getLocalProgress } from '@/lib/services/watchlist';
 import { UserProfile } from '@/types';
-import { User, LogIn, LogOut, CloudCheck, X, Check, Cloud } from 'lucide-react';
+import { User, LogIn, LogOut, X, Check, Cloud, Sparkles, AlertCircle } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -17,41 +17,71 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Sync profile immediately whenever modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setProfile(db.getUserProfile());
+      setSyncStatus(null);
+      setErrorMessage(null);
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
+  const performLogin = (uname: string, umail: string) => {
+    if (!uname.trim() || !umail.trim()) {
+      setErrorMessage('Harap isi nama pengguna dan email.');
+      return;
+    }
+
+    try {
+      const newProfile = db.loginUser(uname.trim(), umail.trim());
+      setProfile(newProfile);
+      setErrorMessage(null);
+
+      // Sinkronkan riwayat lokal ke cloud akun
+      const watchlist = getLocalWatchlist();
+      const progress = getLocalProgress();
+      const syncRes = db.syncUserData(watchlist, progress);
+      
+      setSyncStatus(syncRes.message || 'Berhasil masuk dan sinkronisasi cloud aktif!');
+      if (onProfileUpdated) onProfileUpdated(newProfile);
+      setTimeout(() => {
+        setSyncStatus(null);
+        onClose();
+      }, 1200);
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Gagal masuk akun. Silakan coba lagi.');
+    }
+  };
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username.trim() || !email.trim()) return;
+    performLogin(username, email);
+  };
 
-    const newProfile = db.loginUser(username, email);
-    setProfile(newProfile);
-
-    // Otomatis sinkronkan riwayat lokal ke cloud akun
-    const watchlist = getLocalWatchlist();
-    const progress = getLocalProgress();
-    const syncRes = db.syncUserData(watchlist, progress);
-    
-    setSyncStatus(syncRes.message);
-    if (onProfileUpdated) onProfileUpdated(newProfile);
-    setTimeout(() => {
-      setSyncStatus(null);
-      onClose();
-    }, 1500);
+  const handleQuickDemoLogin = () => {
+    performLogin('Otaku_Member', 'member@animehome.id');
   };
 
   const handleLogout = () => {
     const guestProfile = db.logoutUser();
     setProfile(guestProfile);
     if (onProfileUpdated) onProfileUpdated(guestProfile);
-    onClose();
+    setSyncStatus('Berhasil keluar akun.');
+    setTimeout(() => {
+      setSyncStatus(null);
+      onClose();
+    }, 800);
   };
 
   const handleManualSync = () => {
     const watchlist = getLocalWatchlist();
     const progress = getLocalProgress();
     const syncRes = db.syncUserData(watchlist, progress);
-    setSyncStatus(syncRes.message);
+    setSyncStatus(syncRes.message || 'Sinkronisasi berhasil!');
     setTimeout(() => setSyncStatus(null), 3000);
   };
 
@@ -72,7 +102,7 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
               <img
                 src={profile.avatarUrl}
                 alt={profile.username}
-                className="h-12 w-12 rounded-full border border-red-500/40 object-cover"
+                className="h-12 w-12 rounded-full border border-red-500/40 object-cover bg-zinc-800"
               />
               <div className="flex flex-col min-w-0">
                 <span className="text-sm font-bold text-white truncate">
@@ -80,6 +110,9 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
                 </span>
                 <span className="text-xs text-zinc-400 truncate">
                   {profile.email}
+                </span>
+                <span className="text-[10px] text-emerald-400 font-semibold mt-0.5">
+                  Akun Aktif
                 </span>
               </div>
             </div>
@@ -113,19 +146,35 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
             </button>
           </div>
         ) : (
-          /* Login / Register Form */
-          <form onSubmit={handleLogin} className="flex flex-col gap-4">
+          /* Login Form with Quick 1-Click Option */
+          <div className="flex flex-col gap-4">
             <div>
               <h2 className="text-base font-bold text-white flex items-center gap-2">
                 <LogIn className="h-4 w-4 text-red-500" />
                 <span>Masuk ke Akun ANIME HOME</span>
               </h2>
               <p className="text-xs text-zinc-400 mt-1">
-                Sinkronkan koleksi anime dan riwayat tontonan Anda ke cloud agar tidak hilang saat berganti perangkat.
+                Simpan anime favorit dan lanjutkan tontonan Anda tanpa batas di semua gawai.
               </p>
             </div>
 
-            <div className="flex flex-col gap-3">
+            {/* Quick 1-Click Login Button */}
+            <button
+              type="button"
+              onClick={handleQuickDemoLogin}
+              className="flex items-center justify-center gap-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-white/[0.08] py-2.5 px-4 text-xs font-bold text-white transition-all cursor-pointer shadow-sm hover:border-zinc-500"
+            >
+              <Sparkles className="h-4 w-4 text-amber-400" />
+              <span>Masuk Cepat (1-Klik Akun Demo)</span>
+            </button>
+
+            <div className="flex items-center gap-2 text-[10px] text-zinc-500 uppercase font-semibold">
+              <div className="h-px bg-white/[0.08] flex-1" />
+              <span>atau gunakan data sendiri</span>
+              <div className="h-px bg-white/[0.08] flex-1" />
+            </div>
+
+            <form onSubmit={handleLogin} className="flex flex-col gap-3">
               <div>
                 <label className="text-[11px] font-semibold text-zinc-400 mb-1 block">
                   Nama Pengguna (Username)
@@ -134,9 +183,8 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Contoh: Rian_Otaku99"
+                  placeholder="Contoh: Rian_Otaku"
                   className="w-full rounded-lg border border-white/[0.08] bg-zinc-950 px-3.5 py-2 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-red-500"
-                  required
                 />
               </div>
 
@@ -150,26 +198,32 @@ export function AuthModal({ isOpen, onClose, onProfileUpdated }: AuthModalProps)
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Contoh: rian@email.com"
                   className="w-full rounded-lg border border-white/[0.08] bg-zinc-950 px-3.5 py-2 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-red-500"
-                  required
                 />
               </div>
-            </div>
 
-            {syncStatus && (
-              <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-2.5 text-xs text-emerald-300 flex items-center gap-2">
-                <Check className="h-3.5 w-3.5 shrink-0" />
-                <span>{syncStatus}</span>
-              </div>
-            )}
+              {errorMessage && (
+                <div className="rounded-lg bg-red-500/10 border border-red-500/30 p-2.5 text-xs text-red-300 flex items-center gap-2">
+                  <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
 
-            <button
-              type="submit"
-              className="flex items-center justify-center gap-2 rounded-xl bg-red-600 hover:bg-red-700 py-2.5 text-xs font-bold text-white transition-colors cursor-pointer shadow-lg shadow-red-600/20"
-            >
-              <LogIn className="h-4 w-4" />
-              <span>Masuk & Sinkronkan Data</span>
-            </button>
-          </form>
+              {syncStatus && (
+                <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-2.5 text-xs text-emerald-300 flex items-center gap-2">
+                  <Check className="h-3.5 w-3.5 shrink-0" />
+                  <span>{syncStatus}</span>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="flex items-center justify-center gap-2 rounded-xl bg-red-600 hover:bg-red-700 py-2.5 text-xs font-bold text-white transition-colors cursor-pointer shadow-lg shadow-red-600/20 mt-1"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>Masuk Sekarang</span>
+              </button>
+            </form>
+          </div>
         )}
       </div>
     </div>
