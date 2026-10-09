@@ -75,7 +75,7 @@ async function publish() {
   const dryFlags = dryRun ? ['--dryrun'] : [];
 
   console.log('Publishing', directory, 'to', destination, dryRun ? '[DRY RUN]' : '');
-  await run('aws', [...aws, 'sync', directory, destination, '--no-progress', ...dryFlags], environment);
+  await run('aws', [...aws, 'sync', directory, destination, '--exclude', 'published-manifest.json', '--no-progress', ...dryFlags], environment);
   for (const [pattern, mime] of [
     ['*.m3u8', 'application/vnd.apple.mpegurl'],
     ['*.mp4', 'video/mp4'],
@@ -84,7 +84,7 @@ async function publish() {
     ['*.json', 'application/json'],
   ]) {
     await run('aws', [...aws, 'cp', directory, destination, '--recursive',
-      '--exclude', '*', '--include', pattern, '--content-type', mime,
+      '--exclude', '*', '--include', pattern, '--exclude', 'published-manifest.json', '--content-type', mime,
       '--no-progress', ...dryFlags], environment);
   }
 
