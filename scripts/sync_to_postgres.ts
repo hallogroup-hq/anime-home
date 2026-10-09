@@ -21,7 +21,7 @@ import {
   INITIAL_ANIME,
   INITIAL_MERCH_ITEMS
 } from '../src/lib/data/seed';
-import { sql } from 'drizzle-orm';
+import { sql, eq } from 'drizzle-orm';
 
 async function syncToPostgres() {
   if (!dbOrm) {
@@ -81,8 +81,17 @@ async function syncToPostgres() {
     }
   }
 
-  // 3. Episodes
-  console.log('3. Inserting episodes...');
+  // 3. Clean up and insert fresh ongoing episodes & stream variants
+  console.log('3. Refreshing ongoing episodes & stream variants...');
+  for (const a of ONGOING_ANIME) {
+    const oldEps = await dbOrm.select({ id: episodesTable.id }).from(episodesTable).where(eq(episodesTable.animeId, a.id));
+    for (const e of oldEps) {
+      await dbOrm.delete(streamVariantsTable).where(eq(streamVariantsTable.episodeId, e.id));
+    }
+    await dbOrm.delete(episodesTable).where(eq(episodesTable.animeId, a.id));
+  }
+
+  console.log('Inserting episodes...');
   for (const ep of ONGOING_EPISODES) {
     await dbOrm.insert(episodesTable).values({
       id: ep.id,
@@ -101,7 +110,7 @@ async function syncToPostgres() {
   }
 
   // 4. Stream Variants
-  console.log('4. Inserting stream variants...');
+  console.log('4. Inserting unique stream variants...');
   for (const v of ONGOING_STREAM_VARIANTS) {
     await dbOrm.insert(streamVariantsTable).values({
       id: v.id,
