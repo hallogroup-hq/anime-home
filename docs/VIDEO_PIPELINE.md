@@ -60,6 +60,7 @@ anime-home-prepared/pilot-series/season-01/
   manifest.json
   episode-001/
     index.m3u8
+    playback.mp4
     segment-00000.ts
     ...
     subtitle-en-us.vtt
@@ -69,7 +70,7 @@ anime-home-prepared/pilot-series/season-01/
     ...
 ```
 
-Incomplete and duplicate episodes are rejected. The encoded manifest contains the actual output path and duration for each episode. FFmpeg converts video/audio to H.264/AAC HLS; the pilot produces one encoded rendition per episode, **not multiple fabricated qualities**.
+Incomplete and duplicate episodes are rejected. The encoded manifest contains the actual output path and duration for each episode. FFmpeg converts video/audio once to H.264/AAC progressive MP4, then packages the same encoded media into HLS segments. The pilot produces one rendition per episode, **not multiple fabricated qualities**. On browsers without native HLS (including Chrome), the ANIME HOME pilot player uses MP4. Safari prefers native HLS.
 
 The processing CLI intentionally refuses to overwrite an existing published manifest or episode folder. Use a fresh output directory for retries.
 
@@ -106,7 +107,35 @@ The script uploads segments/playlists/subtitles and enforces appropriate MIME ty
 
 **Important:** CDN caching, custom domain, CORS policy, rate limits, and production access policy must be configured separately. Video delivery is direct from R2; never proxy video bytes through Vercel.
 
-## 3. Verify
+## 3. Watch a published season in ANIME HOME
+
+Set the non-secret server-side environment variable in Vercel Preview:
+
+```bash
+MEDIA_PUBLIC_BASE_URL="https://media.your-domain.com"
+```
+
+Configure the R2 bucket's custom domain for public HTTPS delivery. Configure CORS to allow `GET` and `HEAD` requests from your ANIME HOME preview origin for subtitle tracks; also allow `Range` requests for media seeking. The HLS manifest and video files must have correct MIME types. Avoid using public development R2 URLs intended only for temporary testing.
+
+After the season has been uploaded, visit:
+
+```text
+https://<preview-domain>/media/pilot-series/1/1
+```
+
+The server will fetch:
+
+```text
+https://media.your-domain.com/media/pilot-series/season-01/published-manifest.json
+```
+
+The route uses real remote media, **not fixture videos or YouTube**. It verifies the manifest declares all expected aired episodes, only accepts media URLs under the configured CDN prefix, and provides episode navigation.
+
+If no manifest exists or `MEDIA_PUBLIC_BASE_URL` is unset, the page displays that storage is not configured. This is a separate route during the pilot, not yet integrated with the main public `/watch/[episodeId]` page.
+
+The HTML5 player prefers native HLS on Safari and falls back to progressive MP4 on Chrome/Firefox. Subtitles are delivered as WebVTT sidecars (require CORS). Future work: add HLS.js support to Chrome and adaptive bitrate quality variants.
+
+## 4. Verify
 
 ```bash
 node --test tests/video-season.test.mjs
@@ -115,11 +144,11 @@ node --test tests/video-pipeline-smoke.test.mjs
 
 The smoke test creates tiny original synthetic videos with FFmpeg, ingests both, and verifies generated .m3u8, .ts and WebVTT assets.
 
-## 4. Known blockers / next step
+## 5. Known blockers / next step
 
 - This is a **local ingestion and R2 publishing pilot**, not a fully connected end-user streaming implementation.
 - The public `/watch/[episodeId]` route still reads the legacy store. It must be integrated with persisted media manifests before rollout.
-- Cloud storage and browser playback cannot be marked validated until a real R2 account, configured custom domain, and actual browser tests are available.
+- Cloud storage and browser playback cannot be marked validated until a real R2 account, configured custom domain, and actual browser tests are available. Never commit R2 tokens to Git.
 - Any acquisition adapter must remain a separate input stage; this pipeline accepts local files and does not download from third-party sites.
 - The existing admin authentication remains insecure. Do not enable upload or staff-only operations on production without fixing that entry point.
 
