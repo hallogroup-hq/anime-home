@@ -14,7 +14,11 @@ import {
   Radio, 
   ExternalLink,
   ShieldCheck,
-  Zap
+  Zap,
+  Play,
+  Clock,
+  Layers,
+  Server
 } from 'lucide-react';
 import { restoreVariantAction, resolveReportAction } from '@/lib/actions';
 
@@ -29,6 +33,16 @@ export default function AdminMonitoringPage() {
   const [pingResult, setPingResult] = useState<{ allowed: boolean; reason?: string; latency?: number } | null>(null);
   const [variantPingResults, setVariantPingResults] = useState<Record<string, { status: string; latencyMs: number }>>({});
 
+  // Pipeline ongoing sync state
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncReport, setSyncReport] = useState<{
+    status: string;
+    checkedAnimeCount: number;
+    newEpisodesCount: number;
+    message: string;
+    updates: Array<{ animeTitle: string; displayNumber: number; variantsAdded: number; providers: string[] }>;
+  } | null>(null);
+
   const reloadData = () => {
     setReports(db.getReports());
     setVariants(db.getAllStreamVariants());
@@ -37,6 +51,25 @@ export default function AdminMonitoringPage() {
   const showNotification = (msg: string) => {
     setNotice(msg);
     setTimeout(() => setNotice(null), 4000);
+  };
+
+  const handleManualSync = async () => {
+    setIsSyncing(true);
+    try {
+      const res = await fetch('/api/cron/ongoing-sync', { method: 'POST' });
+      const data = await res.json();
+      if (res.ok) {
+        setSyncReport(data.data);
+        showNotification(`Sinkronisasi selesai! ${data.data?.newEpisodesCount || 0} episode baru ditambahkan.`);
+        reloadData();
+      } else {
+        showNotification(`Gagal sinkronisasi: ${data.error || 'Terjadi kesalahan'}`);
+      }
+    } catch (err: any) {
+      showNotification(`Gagal sinkronisasi: ${err.message}`);
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   const handleResolve = async (reportId: string, status: 'resolved' | 'dismissed') => {
@@ -199,6 +232,110 @@ export default function AdminMonitoringPage() {
             <span className="text-xs text-zinc-500">tiket terdata</span>
           </div>
         </div>
+      </div>
+
+      {/* Section 0: Ongoing 2-Hour Auto-Sync Pipeline */}
+      <div className="rounded-xl border border-indigo-500/30 bg-gradient-to-r from-zinc-900 via-indigo-950/20 to-zinc-900 p-5 flex flex-col gap-4 shadow-lg">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <h2 className="text-sm font-bold text-white flex items-center gap-2">
+                <Clock className="h-4 w-4 text-indigo-400" />
+                <span>Pipeline Pembaruan Ongoing (Otomatis per 2 Jam)</span>
+              </h2>
+              <span className="rounded-md bg-indigo-500/20 border border-indigo-500/40 px-2 py-0.5 text-[10px] font-bold text-indigo-300">
+                CRON: 0 */2 * * *
+              </span>
+            </div>
+            <p className="text-xs text-zinc-400 mt-1 max-w-2xl">
+              Memeriksa rilisan terbaru anime ongoing secara otomatis setiap 2 jam berkala. Episode baru langsung diekstrak multi-server (Mega, Vidhide, DesuStream, Server Alpha & Beta) dan disinkronkan ke website tanpa downtime.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleManualSync}
+              disabled={isSyncing}
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold text-white transition-all shadow-md cursor-pointer ${
+                isSyncing 
+                  ? 'bg-zinc-700 cursor-not-allowed opacity-75' 
+                  : 'bg-indigo-600 hover:bg-indigo-500 active:scale-95'
+              }`}
+            >
+              <RefreshCw className={`h-3.5 w-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
+              <span>{isSyncing ? 'Menjalankan Sync...' : 'Jalankan Sync Sekarang'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Sync Status / Latest Result */}
+        {syncReport ? (
+          <div className="rounded-lg border border-indigo-500/20 bg-zinc-950/60 p-4 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.06] pb-3 mb-3">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                <span className="font-semibold text-white">Status Eksekusi:</span>
+                <span className={`font-mono uppercase font-bold text-[11px] ${syncReport.newEpisodesCount > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
+                  {syncReport.status}
+                </span>
+              </div>
+              <div className="flex items-center gap-4 text-zinc-400 text-[11px]">
+                <span>Anime Diperiksa: <strong className="text-zinc-200">{syncReport.checkedAnimeCount}</strong></span>
+                <span>Episode Ditambahkan: <strong className="text-emerald-400">{syncReport.newEpisodesCount}</strong></span>
+              </div>
+            </div>
+
+            <p className="text-zinc-300 text-[11px] mb-2">{syncReport.message}</p>
+
+            {syncReport.updates && syncReport.updates.length > 0 && (
+              <div className="mt-2 space-y-1.5">
+                <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Episode yang Berhasil Dimasukkan:</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                  {syncReport.updates.map((up, idx) => (
+                    <div key={idx} className="flex items-center justify-between rounded bg-zinc-900/80 px-3 py-1.5 border border-white/[0.04]">
+                      <div className="font-medium text-white truncate max-w-[200px]">
+                        {up.animeTitle} <span className="text-indigo-400">Ep {up.displayNumber}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="rounded bg-indigo-500/20 px-1.5 py-0.5 text-[9px] font-bold text-indigo-300">
+                          {up.variantsAdded} Server
+                        </span>
+                        <span className="text-[9px] text-zinc-400">
+                          ({up.providers.slice(0, 3).join(', ')})
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div className="rounded-lg border border-white/[0.04] bg-zinc-950/40 p-3 flex items-center gap-3">
+              <Server className="h-4 w-4 text-indigo-400 shrink-0" />
+              <div>
+                <div className="font-semibold text-zinc-200">Multi-Provider Scraper</div>
+                <div className="text-[10px] text-zinc-500">Mega, Vidhide, DesuStream, Alpha & Beta</div>
+              </div>
+            </div>
+            <div className="rounded-lg border border-white/[0.04] bg-zinc-950/40 p-3 flex items-center gap-3">
+              <Layers className="h-4 w-4 text-emerald-400 shrink-0" />
+              <div>
+                <div className="font-semibold text-zinc-200">Idempoten & Aman</div>
+                <div className="text-[10px] text-zinc-500">Mencegah duplikasi, link lama tetap utuh</div>
+              </div>
+            </div>
+            <div className="rounded-lg border border-white/[0.04] bg-zinc-950/40 p-3 flex items-center gap-3">
+              <Zap className="h-4 w-4 text-amber-400 shrink-0" />
+              <div>
+                <div className="font-semibold text-zinc-200">Endpoint Webhook / Cron</div>
+                <div className="text-[10px] font-mono text-zinc-500">GET/POST /api/cron/ongoing-sync</div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Section 1: Quarantined Streams Queue */}
