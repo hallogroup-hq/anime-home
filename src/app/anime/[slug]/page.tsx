@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { EpisodeList } from '@/components/catalog/EpisodeList';
 import { WatchOrderGuide } from '@/components/franchise/WatchOrderGuide';
+import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
 import { CharacterList } from '@/components/catalog/CharacterList';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
@@ -172,6 +173,11 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
 
         {/* 4. AD BANNER */}
         <SafeAdSlot slotKey="anime_detail_inline" />
+
+        {/* FRANCHISE SEASON & MOVIE SWITCHER */}
+        {watchOrder.length > 1 && (
+          <FranchiseSeasonSwitcher items={watchOrder} currentAnimeId={anime.id} />
+        )}
 
         {/* 5. INTERACTIVE CONTENT TABS */}
         <section className="flex flex-col gap-4">

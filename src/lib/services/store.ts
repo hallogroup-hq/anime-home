@@ -496,7 +496,8 @@ class AnimeHomeDataStore {
       const host = parsed.hostname.toLowerCase();
 
       const isWhitelisted = activeDomains.some(d => host === d || host.endsWith(`.${d}`)) ||
-        host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be';
+        host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be' ||
+        host === 'youtube-nocookie.com' || host === 'www.youtube-nocookie.com';
 
       if (!isWhitelisted) {
         return { allowed: false, reason: `Domain "${host}" tidak terdaftar dalam allowlist provider resmi.` };

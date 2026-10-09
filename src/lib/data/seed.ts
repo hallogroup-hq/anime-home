@@ -10,6 +10,20 @@ import {
   ONGOING_STREAM_VARIANTS, 
   ONGOING_SEASONS 
 } from './ongoingSeed';
+import { 
+  CONAN_ANIME, 
+  CONAN_EPISODES, 
+  CONAN_STREAM_VARIANTS, 
+  CONAN_WATCH_ORDERS, 
+  CONAN_SEASONS 
+} from './conanSeed';
+import { 
+  MAL_ANIME, 
+  MAL_EPISODES, 
+  MAL_STREAM_VARIANTS, 
+  MAL_WATCH_ORDERS, 
+  MAL_SEASONS 
+} from './malCatalogSeed';
 
 export const INITIAL_PROVIDERS: Provider[] = [
   {
@@ -631,6 +645,8 @@ export const INITIAL_ANIME: Anime[] = [
     updatedAt: new Date().toISOString(),
   },
   ...ONGOING_ANIME,
+  ...CONAN_ANIME,
+  ...MAL_ANIME,
 ];
 
 export const INITIAL_EPISODES: Episode[] = [
@@ -2319,6 +2335,8 @@ export const INITIAL_EPISODES: Episode[] = [
     watchabilityState: 'eligible_verified',
   },
   ...ONGOING_EPISODES,
+  ...CONAN_EPISODES,
+  ...MAL_EPISODES,
 ];
 
 // Helper untuk membuat varian multi-provider standar pada episode
@@ -2447,9 +2465,12 @@ function createStandardVariants(episodeId: string, prefix: string): StreamVarian
   ];
 }
 
-// Matriks Varian Streaming:
-// 1. Matriks Master Episode 08 Frieren (Invariant QA-012, QA-013, QA-014, QA-015, QA-033, QA-035)
-// 2. Matriks untuk semua episode lainnya di dalam katalog
+// Legacy baseline backfill for episodes in INITIAL_EPISODES
+const LEGACY_BACKFILL_VARIANTS: StreamVariant[] = [
+  ...[5, 6, 7, 8, 9, 10, 11, 12].flatMap(num => createStandardVariants(`ep-dungeon-${num}`, `dungeon-${num}`)),
+  ...[1, 2, 3, 4, 6, 8, 10, 11, 12].flatMap(num => createStandardVariants(`ep-tsukimichi-${num}`, `tsukimichi-${num}`)),
+];
+
 export const INITIAL_STREAM_VARIANTS: StreamVariant[] = [
   // --- REAL VERIFIED PLAYABLE STREAMS (OFFICIAL DISTRIBUTORS) ---
   // Shokugeki no Souma Ep 01 (Ani-One ID Official Sub Indo)
@@ -7494,7 +7515,10 @@ export const INITIAL_STREAM_VARIANTS: StreamVariant[] = [
     moderationState: 'approved',
     lastCheckedAt: new Date().toISOString(),
   },
+  ...LEGACY_BACKFILL_VARIANTS,
   ...ONGOING_STREAM_VARIANTS,
+  ...CONAN_STREAM_VARIANTS,
+  ...MAL_STREAM_VARIANTS,
 ];
 
 export const INITIAL_AD_PLACEMENTS: AdPlacement[] = [
@@ -8342,162 +8366,6 @@ export const INITIAL_MERCH_ITEMS: MerchItem[] = [
 ];
 
 export const INITIAL_WATCH_ORDERS: FranchiseWatchOrderItem[] = [
-  // Kimetsu no Yaiba Franchise
-  {
-    id: 'wo-kny-1',
-    franchiseId: 'fr-demonslayer',
-    franchiseName: 'Kimetsu no Yaiba (Demon Slayer)',
-    orderNumber: 1,
-    title: 'Demon Slayer: Kimetsu no Yaiba (Season 1)',
-    year: 2019,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 26,
-    note: 'Awal mula perjalanan Tanjiro & Nezuko menjadi Demon Slayer.',
-  },
-  {
-    id: 'wo-kny-2',
-    franchiseId: 'fr-demonslayer',
-    franchiseName: 'Kimetsu no Yaiba (Demon Slayer)',
-    orderNumber: 2,
-    title: 'Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train',
-    year: 2020,
-    type: 'Movie',
-    canonStatus: 'Canon Movie',
-    episodesCount: 1,
-    note: 'Arc Kereta Mugen bersama Kyojuro Rengoku. Wajib ditonton sebelum Season 2.',
-  },
-  {
-    id: 'wo-kny-3',
-    franchiseId: 'fr-demonslayer',
-    franchiseName: 'Kimetsu no Yaiba (Demon Slayer)',
-    orderNumber: 3,
-    title: 'Demon Slayer: Entertainment District Arc (Season 2)',
-    year: 2021,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 11,
-    note: 'Misi di Yoshiwara bersama Tengen Uzui melawan Daki & Gyutaro.',
-  },
-  {
-    id: 'wo-kny-4',
-    franchiseId: 'fr-demonslayer',
-    franchiseName: 'Kimetsu no Yaiba (Demon Slayer)',
-    orderNumber: 4,
-    title: 'Demon Slayer: Swordsmith Village Arc (Season 3)',
-    year: 2023,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 11,
-    note: 'Pertempuran di Desa Penempa Pedang bersama Muichiro Tokito & Mitsuri Kanroji.',
-  },
-  {
-    id: 'wo-kny-5',
-    franchiseId: 'fr-demonslayer',
-    franchiseName: 'Kimetsu no Yaiba (Demon Slayer)',
-    orderNumber: 5,
-    animeId: 'anime-hashira',
-    title: 'Demon Slayer: Hashira Training Arc (Season 4)',
-    slug: 'kimetsu-no-yaiba-hashira-geiko-hen',
-    year: 2024,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 8,
-    note: 'Latihan intensif bersama seluruh Hashira sebelum perang Infinity Castle.',
-  },
-
-  // Jujutsu Kaisen Franchise
-  {
-    id: 'wo-jjk-1',
-    franchiseId: 'fr-jujutsu',
-    franchiseName: 'Jujutsu Kaisen',
-    orderNumber: 1,
-    title: 'Jujutsu Kaisen 0 (The Movie)',
-    year: 2021,
-    type: 'Movie',
-    canonStatus: 'Canon Movie',
-    episodesCount: 1,
-    note: 'Prekuel yang berpusat pada Yuta Okkotsu dan Rika Orimoto.',
-  },
-  {
-    id: 'wo-jjk-2',
-    franchiseId: 'fr-jujutsu',
-    franchiseName: 'Jujutsu Kaisen',
-    orderNumber: 2,
-    title: 'Jujutsu Kaisen (Season 1)',
-    year: 2020,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 24,
-    note: 'Awal Yuji Itadori memakan jari Sukuna dan masuk SMA Jujutsu Tokyo.',
-  },
-  {
-    id: 'wo-jjk-3',
-    franchiseId: 'fr-jujutsu',
-    franchiseName: 'Jujutsu Kaisen',
-    orderNumber: 3,
-    animeId: 'anime-jujutsu',
-    title: 'Jujutsu Kaisen Season 2 (Hidden Inventory & Shibuya Incident)',
-    slug: 'jujutsu-kaisen-season-2',
-    year: 2023,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 23,
-    note: 'Masa lalu Gojo Satoru & Geto Suguru dilanjutkan insiden Shibuya.',
-  },
-
-  // Bleach Franchise
-  {
-    id: 'wo-bleach-1',
-    franchiseId: 'fr-bleach',
-    franchiseName: 'Bleach',
-    orderNumber: 1,
-    title: 'Bleach (Original Series)',
-    year: 2004,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 366,
-    note: 'Seri original (episode 1-366). Memiliki arc filler opsional Bount & Zanpakuto.',
-  },
-  {
-    id: 'wo-bleach-2',
-    franchiseId: 'fr-bleach',
-    franchiseName: 'Bleach',
-    orderNumber: 2,
-    title: 'Bleach: Thousand-Year Blood War (Part 1)',
-    year: 2022,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 13,
-    note: 'Awal invasi Wandenreich dan Quincy ke Soul Society.',
-  },
-  {
-    id: 'wo-bleach-3',
-    franchiseId: 'fr-bleach',
-    franchiseName: 'Bleach',
-    orderNumber: 3,
-    title: 'Bleach: Thousand-Year Blood War - The Separation (Part 2)',
-    year: 2023,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 13,
-    note: 'Perang babak kedua Soul Society melawan Sternritter.',
-  },
-  {
-    id: 'wo-bleach-4',
-    franchiseId: 'fr-bleach',
-    franchiseName: 'Bleach',
-    orderNumber: 4,
-    animeId: 'anime-bleach',
-    title: 'Bleach: Thousand-Year Blood War - The Conflict (Part 3)',
-    slug: 'bleach-tybw-part-3',
-    year: 2024,
-    type: 'TV Series',
-    canonStatus: 'Canon',
-    episodesCount: 13,
-    note: 'Pertempuran di Istana Raja Roh (Soul King Palace).',
-  },
-
   // Frieren Franchise
   {
     id: 'wo-frieren-1',
@@ -8513,6 +8381,8 @@ export const INITIAL_WATCH_ORDERS: FranchiseWatchOrderItem[] = [
     episodesCount: 28,
     note: 'Petualangan Frieren mengulang rute perjalanan pahlawan Himmel menuju Ende.',
   },
+  ...CONAN_WATCH_ORDERS,
+  ...MAL_WATCH_ORDERS,
 ];
 
 export const INITIAL_CHARACTERS: AnimeCharacter[] = [
@@ -9036,6 +8906,8 @@ export const INITIAL_SEASONS: Season[] = [
     updatedAt: new Date().toISOString(),
   },
   ...ONGOING_SEASONS,
+  ...CONAN_SEASONS,
+  ...MAL_SEASONS,
 ];
 
 

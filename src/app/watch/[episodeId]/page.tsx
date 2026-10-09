@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { MultiProviderPlayer } from '@/components/player/MultiProviderPlayer';
+import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
 import { EpisodeDiscussion } from '@/components/player/EpisodeDiscussion';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { useState } from 'react';
@@ -24,6 +25,7 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
     notFound();
   }
 
+  const watchOrder = db.getWatchOrderForAnime(anime.id);
   const allEpisodes = db.getEpisodesByAnimeId(anime.id);
   const currentIndex = allEpisodes.findIndex(e => e.id === episode.id);
   const prevEpisode = currentIndex > 0 ? allEpisodes[currentIndex - 1] : null;
@@ -142,6 +144,11 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
           <div />
         )}
       </div>
+
+      {/* FRANCHISE SEASON & MOVIE SWITCHER */}
+      {watchOrder.length > 1 && (
+        <FranchiseSeasonSwitcher items={watchOrder} currentAnimeId={anime.id} />
+      )}
 
       {/* DISCRETE AD BANNER */}
       <SafeAdSlot slotKey="watch_below_controls" />

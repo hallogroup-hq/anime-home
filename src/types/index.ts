@@ -225,7 +225,7 @@ export interface FranchiseWatchOrderItem {
   title: string;
   slug?: string;
   year: number;
-  type: 'TV Series' | 'Movie' | 'OVA' | 'Special';
+  type: 'TV' | 'TV Series' | 'Movie' | 'OVA' | 'Special';
   canonStatus: 'Canon' | 'Canon Movie' | 'Filler / Optional';
   episodesCount: number;
   note?: string;

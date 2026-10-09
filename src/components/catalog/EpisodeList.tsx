@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Episode } from '@/types';
 import { Play, Clock, ExternalLink } from 'lucide-react';
@@ -11,6 +12,26 @@ interface EpisodeListProps {
 }
 
 export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeListProps) {
+  const [selectedRange, setSelectedRange] = useState<string>('all');
+
+  const rangeChunks = useMemo(() => {
+    if (episodes.length <= 24) return [];
+    const chunks: Array<{ label: string; start: number; end: number }> = [];
+    for (let i = 0; i < episodes.length; i += 25) {
+      const start = i + 1;
+      const end = Math.min(i + 25, episodes.length);
+      chunks.push({ label: `${start}–${end}`, start: i, end });
+    }
+    return chunks;
+  }, [episodes.length]);
+
+  const displayedEpisodes = useMemo(() => {
+    if (selectedRange === 'all' || rangeChunks.length === 0) return episodes;
+    const chunk = rangeChunks.find(c => c.label === selectedRange);
+    if (!chunk) return episodes;
+    return episodes.slice(chunk.start, chunk.end);
+  }, [episodes, selectedRange, rangeChunks]);
+
   if (episodes.length === 0) {
     return (
       <div className="rounded-xl border border-white/[0.06] bg-zinc-900/40 p-6 text-center text-zinc-400 text-xs">
@@ -20,8 +41,37 @@ export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeLi
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-      {episodes.map((ep) => {
+    <div className="flex flex-col gap-3">
+      {rangeChunks.length > 0 && (
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+          <button
+            onClick={() => setSelectedRange('all')}
+            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              selectedRange === 'all'
+                ? 'bg-red-600 text-white'
+                : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/[0.06]'
+            }`}
+          >
+            Semua ({episodes.length})
+          </button>
+          {rangeChunks.map(chunk => (
+            <button
+              key={chunk.label}
+              onClick={() => setSelectedRange(chunk.label)}
+              className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                selectedRange === chunk.label
+                  ? 'bg-red-600 text-white font-bold'
+                  : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/[0.06]'
+              }`}
+            >
+              Ep {chunk.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {displayedEpisodes.map((ep) => {
         const isCurrent = ep.id === currentEpisodeId;
         const isPlayable = ep.watchabilityState === 'eligible_verified';
         const isUpcoming = ep.airingState === 'scheduled';
@@ -124,6 +174,7 @@ export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeLi
           </div>
         );
       })}
+      </div>
     </div>
   );
 }
