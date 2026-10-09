@@ -50,7 +50,7 @@ async function publish() {
   if (!Array.isArray(data.episodes) || data.episodes.length === 0) throw new Error('No episodes in manifest');
   for (const episode of data.episodes) {
     const playlist = path.resolve(directory, episode.playlist);
-    if (!playlist.startsWith(directory + path.sep) || !fs.existsSync(playlist)) {
+    if (!playlist.startsWith(directory + path.sep) || !fs.existsSync(playlist) || !episode.mp4 || !fs.existsSync(path.resolve(directory, episode.mp4))) {
       throw new Error('Missing or unsafe episode playlist: ' + episode.playlist);
     }
   }
@@ -78,6 +78,7 @@ async function publish() {
   await run('aws', [...aws, 'sync', directory, destination, '--no-progress', ...dryFlags], environment);
   for (const [pattern, mime] of [
     ['*.m3u8', 'application/vnd.apple.mpegurl'],
+    ['*.mp4', 'video/mp4'],
     ['*.ts', 'video/mp2t'],
     ['*.vtt', 'text/vtt'],
     ['*.json', 'application/json'],
@@ -93,6 +94,7 @@ async function publish() {
     episodes: data.episodes.map(ep => ({
       ...ep,
       playlistUrl: base + '/' + objectPrefix + '/' + ep.playlist,
+      mp4Url: base + '/' + objectPrefix + '/' + ep.mp4,
       subtitles: ep.subtitles.map(sub => ({
         ...sub,
         url: base + '/' + objectPrefix + '/' + sub.path,
@@ -100,9 +102,15 @@ async function publish() {
     })),
   };
   if (!dryRun) {
-    await writeFile(path.join(directory, 'published-manifest.json'),
+    const publishedManifestPath = path.join(directory, 'published-manifest.json');
+    await writeFile(publishedManifestPath,
       JSON.stringify(publishedManifest, null, 2) + '\n');
-    console.log('Published manifest:', path.join(directory, 'published-manifest.json'));
+    // Upload the public manifest last: a failed media upload will never advertise a ready season.
+    await run('aws', [...aws, 's3', 'cp', publishedManifestPath,
+      destination + 'published-manifest.json',
+      '--content-type', 'application/json', '--cache-control', 'public, max-age=60',
+      '--no-progress'], environment);
+    console.log('Published manifest:', base + '/' + objectPrefix + '/published-manifest.json');
   } else {
     console.log('Dry run completed: no files uploaded.');
   }
