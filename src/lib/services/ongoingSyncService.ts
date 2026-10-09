@@ -56,6 +56,7 @@ export class OngoingSyncService {
 
     const allAnime = db.getAnimeList();
     const matched = allAnime.find(a => {
+      if (a.id === 'anime-sbr') return false; // Preserve PRD chapter 19 scheduled benchmark
       const normA = a.canonicalTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ');
       if (normA === normTitle || normA.includes(normTitle) || normTitle.includes(normA)) return true;
       for (const al of a.aliases || []) {

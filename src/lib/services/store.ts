@@ -10,21 +10,38 @@ import {
   INITIAL_MERCH_ITEMS, INITIAL_WATCH_ORDERS, INITIAL_CHARACTERS,
   INITIAL_COMMENTS, INITIAL_SEASONS
 } from '@/lib/data/seed';
+import liveData from '@/lib/data/live_data.json';
 import { computeSeasonReadiness, SeasonVerificationResult } from './seasonVerification';
+
+const LIVE_ANIME: Anime[] = (liveData && Array.isArray((liveData as any).anime) && (liveData as any).anime.length > 0)
+  ? ((liveData as any).anime as Anime[])
+  : INITIAL_ANIME;
+
+const LIVE_EPISODES: Episode[] = (liveData && Array.isArray((liveData as any).episodes) && (liveData as any).episodes.length > 0)
+  ? ((liveData as any).episodes as Episode[])
+  : INITIAL_EPISODES;
+
+const LIVE_VARIANTS: StreamVariant[] = (liveData && Array.isArray((liveData as any).variants) && (liveData as any).variants.length > 0)
+  ? ((liveData as any).variants as StreamVariant[])
+  : INITIAL_STREAM_VARIANTS;
+
+const LIVE_SEASONS: Season[] = (liveData && Array.isArray((liveData as any).seasons) && (liveData as any).seasons.length > 0)
+  ? ((liveData as any).seasons as Season[])
+  : INITIAL_SEASONS;
 
 // Singleton In-Memory / Client State Controller
 class AnimeHomeDataStore {
-  private anime: Anime[] = [...INITIAL_ANIME];
-  private episodes: Episode[] = [...INITIAL_EPISODES];
+  private anime: Anime[] = [...LIVE_ANIME];
+  private episodes: Episode[] = [...LIVE_EPISODES];
   private providers: Provider[] = [...INITIAL_PROVIDERS];
-  private variants: StreamVariant[] = [...INITIAL_STREAM_VARIANTS];
+  private variants: StreamVariant[] = [...LIVE_VARIANTS];
   private campaigns: AdCampaign[] = [...INITIAL_CAMPAIGNS];
   private adPlacements: AdPlacement[] = [...INITIAL_AD_PLACEMENTS];
   private merch: MerchItem[] = [...INITIAL_MERCH_ITEMS];
   private watchOrders: FranchiseWatchOrderItem[] = [...INITIAL_WATCH_ORDERS];
   private characters: AnimeCharacter[] = [...INITIAL_CHARACTERS];
   private comments: EpisodeComment[] = [...INITIAL_COMMENTS];
-  private seasons: Season[] = [...INITIAL_SEASONS];
+  private seasons: Season[] = [...LIVE_SEASONS];
   private userProfile: UserProfile = {
     id: 'user-guest-01',
     username: 'Tamu Anime Home',

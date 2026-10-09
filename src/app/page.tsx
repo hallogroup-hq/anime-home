@@ -14,15 +14,16 @@ export default function HomePage() {
   const [continueWatching, setContinueWatching] = useState<{ anime: any; episodeId: string }[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>('Semua');
 
-  // Day order based on real Otakudesu update schedule (Jumat -> Kamis -> Rabu -> Selasa -> Senin -> Minggu)
+  // Day order priority based on current day and update cycle (Sabtu -> Jumat -> Kamis -> Rabu -> Selasa -> Senin -> Minggu)
   const DAY_ORDER: Record<string, number> = {
-    'Jumat': 1,
-    'Kamis': 2,
-    'Rabu': 3,
-    'Selasa': 4,
-    'Senin': 5,
-    'Minggu': 6,
-    'Sabtu': 7,
+    'Sabtu': 1,
+    'Jumat': 2,
+    'Kamis': 3,
+    'Rabu': 4,
+    'Selasa': 5,
+    'Senin': 6,
+    'Minggu': 7,
+    'Berkala': 8,
   };
 
   const ongoingAnime = allAnime
