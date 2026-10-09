@@ -54,3 +54,14 @@ Dokumen aturan ini otomatis dibaca oleh AI coding agent (Antigravity/Gemini) unt
 ## 4. Cara Cepat Mengubah atau Menambah Link Video (Panduan Admin / AI)
 - **Melalui Dashboard**: Buka `/admin/matrix` -> Pilih Anime -> Pilih Episode -> Klik "Edit Link" pada server terkait -> Masukkan URL Embed baru -> Simpan -> Klik "Sinkronkan DB".
 - **Melalui Kode**: Ubah entri di `src/lib/data/seed.ts` (`INITIAL_STREAM_VARIANTS`) -> Jalankan `npx tsx scripts/sync_to_postgres.ts` -> Jalankan `npm test`.
+
+---
+
+## 5. Invarian Otentikasi & Akun Pengguna (Real Users Only)
+1. **Dilarang Akun Demo (No Demo Accounts)**:
+   - Dilarang keras menyediakan tombol "1-Klik Akun Demo" atau akun simulasi.
+   - Seluruh otentikasi harus 100% menggunakan pengguna asli (Real Users).
+2. **Form Masuk & Daftar Akun Baru**:
+   - Modal otentikasi menyediakan 2 tab: **Masuk** (Email & Password) dan **Daftar Akun** (Username min. 3 karakter, Email valid, Password min. 6 karakter, Konfirmasi Password).
+   - Password di-hash menggunakan SHA-256 + salt sebelum disimpan.
+   - Sesi pengguna dikelola persisten melalui HTTP-only secure cookie `anime_home_session` dan tersinkronisasi ke database PostgreSQL & cloud watchlist.

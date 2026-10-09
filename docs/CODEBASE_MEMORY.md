@@ -92,6 +92,11 @@ Dengan alur ini:
 5. **Banner Iklan & Sponsor**:
    - Banner beranda dikontrol melalui `/admin/ads` (`home_leaderboard`).
    - Tidak menggunakan badge "Sponsor Resmi".
+6. **Otentikasi Pengguna Asli (No Demo Accounts)**:
+   - Dilarang keras menyediakan akun atau tombol demo (1-klik akun demo).
+   - Pengguna harus mendaftar secara riil dengan Nama Pengguna, Email valid, dan Kata Sandi aman (min. 6 karakter).
+   - Password di-hash menggunakan SHA-256 + salt sebelum disimpan.
+   - Sesi pengguna dikelola persisten melalui HTTP-only secure cookie `anime_home_session` dan tersinkronisasi ke PostgreSQL & cloud watchlist.
 
 ---
 
