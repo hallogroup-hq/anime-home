@@ -5,6 +5,8 @@ on:
     paths:
       - 'scripts/video/**'
       - 'tests/video-*.test.mjs'
+      - 'src/app/media/**'
+      - 'src/components/player/HostedVideoPlayer.tsx'
       - '.github/workflows/video-pipeline.yml'
   workflow_dispatch:
 
@@ -27,3 +29,7 @@ jobs:
         run: node --test tests/video-season.test.mjs
       - name: FFmpeg HLS smoke test
         run: node --test tests/video-pipeline-smoke.test.mjs
+      - name: Install app dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build Next.js application
+        run: npm run build
