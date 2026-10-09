@@ -31,7 +31,7 @@ class AnimeHomeDataStore {
     isLoggedIn: false,
   };
   private homepageConfig: HomepageConfig = {
-    heroAnimeId: 'anime-frieren',
+    heroAnimeId: 'anime-shokugeki',
     sections: [
       { id: 'hero', name: 'Sorotan Utama (Hero Spotlight)', enabled: true },
       { id: 'continue_watching', name: 'Lanjutkan Menonton', enabled: true },

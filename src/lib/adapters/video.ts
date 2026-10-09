@@ -34,9 +34,14 @@ export class YouTubeAdapter implements VideoProviderAdapter {
   }
 
   buildEmbedUrl(sourceRef: string, options?: { autoplay?: boolean; startTime?: number }): string {
-    const videoId = sourceRef.includes('http') 
-      ? (sourceRef.split('v=')[1]?.split('&')[0] || sourceRef.split('/').pop() || '')
-      : sourceRef;
+    let videoId = sourceRef.trim();
+    if (videoId.includes('v=')) {
+      videoId = videoId.split('v=')[1]?.split('&')[0] || '';
+    } else if (videoId.includes('embed/')) {
+      videoId = videoId.split('embed/')[1]?.split('?')[0] || '';
+    } else if (videoId.includes('http')) {
+      videoId = videoId.split('/').pop()?.split('?')[0] || '';
+    }
     const base = `https://www.youtube-nocookie.com/embed/${videoId}`;
     const params = new URLSearchParams({
       enablejsapi: '1',

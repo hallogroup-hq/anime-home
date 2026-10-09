@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { QualityLabel } from '@/types';
 import { getVideoAdapter } from '@/lib/adapters/video';
 import { db } from '@/lib/services/store';
@@ -25,18 +25,31 @@ export function MultiProviderPlayer({
   // Ambil matriks streaming dinamis dari database untuk episode ini
   const matrix = useMemo(() => db.getStreamMatrix(episodeId), [episodeId]);
 
-  // Resolusi terpilih (default: 720p atau resolusi pertama yang ada)
-  const defaultQuality = matrix.qualities.includes('720p') 
-    ? '720p' 
-    : (matrix.qualities[0] || '720p');
+  // Resolusi terpilih (default: 720p jika ada, atau Auto jika ada, atau resolusi pertama)
+  const defaultQuality = useMemo(() => {
+    if (matrix.qualities.includes('720p')) return '720p';
+    if (matrix.qualities.includes('Auto')) return 'Auto';
+    return (matrix.qualities[0] || '720p') as QualityLabel;
+  }, [matrix.qualities]);
   
   const [selectedQuality, setSelectedQuality] = useState<QualityLabel>(defaultQuality);
+
+  // Sync quality saat episode berganti
+  useEffect(() => {
+    setSelectedQuality(defaultQuality);
+  }, [defaultQuality]);
 
   // Varian server pada resolusi yang aktif
   const currentServers = matrix.variantsByQuality[selectedQuality] || [];
   const [selectedVariantId, setSelectedVariantId] = useState<string>(
     currentServers[0]?.id || ''
   );
+
+  useEffect(() => {
+    if (currentServers.length > 0 && !currentServers.some(s => s.id === selectedVariantId)) {
+      setSelectedVariantId(currentServers[0]?.id || '');
+    }
+  }, [currentServers, selectedVariantId]);
 
   const [hasError, setHasError] = useState(false);
   const [isWatched, setIsWatched] = useState(false);
@@ -45,6 +58,7 @@ export function MultiProviderPlayer({
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [reportReason, setReportReason] = useState('broken_embed');
   const [reportSuccess, setReportSuccess] = useState(false);
+  const playerViewportRef = useRef<HTMLDivElement>(null);
 
   // Varian aktif
   const activeVariant = useMemo(() => {
@@ -54,7 +68,11 @@ export function MultiProviderPlayer({
   // Adapter untuk embed URL
   const adapter = useMemo(() => {
     if (!activeVariant) return null;
-    return getVideoAdapter(activeVariant.providerId.includes('muse') ? 'youtube' : 'custom_embed');
+    const isYt = activeVariant.providerId.includes('muse') || 
+                 activeVariant.providerId.includes('anione') || 
+                 activeVariant.embedUrl.includes('youtube') ||
+                 activeVariant.embedUrl.includes('youtu.be');
+    return getVideoAdapter(isYt ? 'youtube' : 'custom_embed');
   }, [activeVariant]);
 
   // Ganti resolusi
@@ -86,6 +104,15 @@ export function MultiProviderPlayer({
   const handleToggleWatched = () => {
     markEpisodeWatched(animeId, episodeId, !isWatched, activeVariant?.id);
     setIsWatched(!isWatched);
+  };
+
+  const handleToggleFullscreen = () => {
+    if (!playerViewportRef.current) return;
+    if (!document.fullscreenElement) {
+      playerViewportRef.current.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
   };
 
   const handleSubmitReport = (e: React.FormEvent) => {
@@ -130,7 +157,7 @@ export function MultiProviderPlayer({
         isTheaterMode ? 'sm:-mx-8 lg:-mx-20 sm:w-[calc(100%+4rem)] lg:w-[calc(100%+10rem)]' : ''
       }`}>
         {/* 1. VIDEO PLAYER VIEWPORT (16:9) */}
-        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl">
+        <div ref={playerViewportRef} className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl">
         {!hasError ? (
           <iframe
             key={activeVariant.id}
@@ -246,6 +273,15 @@ export function MultiProviderPlayer({
             >
               {isTheaterMode ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
               <span className="hidden sm:inline">{isTheaterMode ? 'Mode Standar' : 'Mode Teater'}</span>
+            </button>
+
+            <button
+              onClick={handleToggleFullscreen}
+              className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-zinc-950 px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              title="Layar Penuh (Fullscreen)"
+            >
+              <Maximize2 className="h-3.5 w-3.5 text-zinc-300" />
+              <span className="hidden sm:inline">Layar Penuh</span>
             </button>
 
             <button

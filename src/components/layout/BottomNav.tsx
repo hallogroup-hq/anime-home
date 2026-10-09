@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Film, Calendar, Bookmark } from 'lucide-react';
+import { Home, Film, Calendar, Bookmark, Tv } from 'lucide-react';
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -15,6 +15,7 @@ export function BottomNav() {
   const items = [
     { label: 'Beranda', href: '/', icon: Home, exact: true },
     { label: 'Katalog', href: '/anime', icon: Film, exact: false },
+    { label: 'Stream MVP', href: '/prototype', icon: Tv, exact: false },
     { label: 'Jadwal', href: '/schedule', icon: Calendar, exact: false },
     { label: 'Koleksi', href: '/me', icon: Bookmark, exact: false },
   ];
