@@ -7,6 +7,10 @@ import { Footer } from '@/components/layout/Footer';
 export const metadata: Metadata = {
   title: 'ANIME HOME — Streaming Discovery & Tracking Anime Indonesia',
   description: 'Temukan, ikuti, dan tonton anime favoritmu dengan ketersediaan multi-provider per resolusi, info subtitle Indonesia terverifikasi, dan pelacakan tontonan bebas hambatan.',
+  icons: {
+    icon: '/brand/logo-square.png',
+    apple: '/brand/logo-square.png',
+  },
 };
 
 export const viewport: Viewport = {

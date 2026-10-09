@@ -145,7 +145,7 @@ export default function HomePage() {
 
             {/* Day Filter Pills */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {['Semua', 'Jumat', 'Kamis', 'Rabu', 'Selasa', 'Senin', 'Minggu'].map((day) => {
+              {['Semua', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'].map((day) => {
                 const count = day === 'Semua'
                   ? ongoingAnime.length
                   : ongoingAnime.filter(a => a.scheduleWIB?.includes(day)).length;

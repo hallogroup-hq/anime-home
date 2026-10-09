@@ -33,12 +33,16 @@ export function Navbar() {
         {/* Brand Logo */}
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2.5 group cursor-pointer">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#e50914] text-sm font-black text-white tracking-wider">
-              AH
-            </span>
-            <span className="text-base font-black tracking-tight text-white group-hover:text-red-500 transition-colors">
-              ANIME<span className="text-red-500">HOME</span>
-            </span>
+            <img
+              src="/brand/logo-square.png"
+              alt="Anime Home Logo"
+              className="h-9 w-9 rounded-lg object-contain shadow-md"
+            />
+            <img
+              src="/brand/logo-dark.png"
+              alt="Anime Home"
+              className="h-7 w-auto object-contain hidden sm:block"
+            />
           </Link>
 
           {/* Desktop Navigation */}
