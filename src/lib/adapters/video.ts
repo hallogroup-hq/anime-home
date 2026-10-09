@@ -88,7 +88,10 @@ export class CustomEmbedAdapter implements VideoProviderAdapter {
   }
 
   buildEmbedUrl(sourceRef: string): string {
-    // Return clean authorized URL with security sandbox
+    // If source is from kotakanimeid domain lock, route via our embed proxy to neutralize embed-guard
+    if (sourceRef.includes('kotakanimeid.link') && !sourceRef.startsWith('/api/embed/proxy')) {
+      return `/api/embed/proxy?url=${encodeURIComponent(sourceRef)}`;
+    }
     return sourceRef;
   }
 

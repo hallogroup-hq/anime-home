@@ -543,7 +543,7 @@ class AnimeHomeDataStore {
         host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be' ||
         host === 'youtube-nocookie.com' || host === 'www.youtube-nocookie.com' ||
         host === 'mega.nz' || host === 'www.mega.nz' ||
-        host === 'odvidhide.com' || host === 'vidhidepre.com' || host === 'vidhide.com' ||
+        host === 'odvidhide.com' || host === 'vidhidepre.com' || host === 'vidhide.com' || host === 'vidhideplus.com' || host.endsWith('.vidhideplus.com') ||
         host === 'desustream.net' || host === 'desustream.com' ||
         host === 'turbovidhls.com' || host === 'streamapi.info' || host === 'api.streamapi.info' ||
         host === 'kotaksb.fun' || host === 'embed2.kotaksb.fun' ||
@@ -551,6 +551,8 @@ class AnimeHomeDataStore {
         host === 'dailymotion.com' || host === 'www.dailymotion.com' ||
         host === 'blogger.com' || host === 'www.blogger.com' ||
         host === 'terabox.com' || host === 'www.terabox.com' ||
+        host === 'gdplayer.to' || host.endsWith('.gdplayer.to') ||
+        host === 'kotakanimeid.link' || host.endsWith('.kotakanimeid.link') ||
         host === 'localhost' || host === '127.0.0.1';
 
       if (!isWhitelisted) {

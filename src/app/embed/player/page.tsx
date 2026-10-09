@@ -32,6 +32,16 @@ function EmbedPlayerContent() {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  // Auto-failover: if this embed endpoint was requested without a direct stream, notify parent player
+  useEffect(() => {
+    if (!videoSrc) {
+      const timer = setTimeout(() => {
+        requestNextServer();
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [videoSrc]);
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (isPlaying) {

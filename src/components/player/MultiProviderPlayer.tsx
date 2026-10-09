@@ -43,8 +43,13 @@ export function MultiProviderPlayer({
     setSelectedQuality(defaultQuality);
   }, [defaultQuality]);
 
-  // Varian server pada resolusi yang aktif
-  const currentServers = matrix.variantsByQuality[selectedQuality] || [];
+  // Varian server pada resolusi yang aktif (prioritaskan stream nyata dan singkirkan placeholder)
+  const currentServers = useMemo(() => {
+    const allInQ = matrix.variantsByQuality[selectedQuality] || [];
+    const realInQ = allInQ.filter(s => !s.embedUrl.startsWith('/embed/player'));
+    return realInQ.length > 0 ? realInQ : allInQ;
+  }, [matrix.variantsByQuality, selectedQuality]);
+
   const [selectedVariantId, setSelectedVariantId] = useState<string>(
     currentServers[0]?.id || ''
   );
