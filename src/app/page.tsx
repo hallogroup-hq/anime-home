@@ -64,7 +64,9 @@ export default function HomePage() {
                   <div className="mt-6 flex items-center gap-3 relative z-20">
                     {(() => {
                       const heroEpisodes = db.getEpisodesByAnimeId(heroAnime.id);
-                      const firstEp = heroEpisodes.find(e => e.watchabilityState === 'eligible_verified') || heroEpisodes[0];
+                      const firstEp = heroEpisodes.find(
+                        e => e.watchabilityState === 'eligible_verified' && db.getStreamMatrix(e.id).qualities.length > 0
+                      );
                       const watchHref = firstEp ? `/watch/${firstEp.id}` : `/anime/${heroAnime.slug}`;
                       return (
                         <Link

@@ -52,7 +52,9 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
     }
   };
 
-  const firstPlayableEpisode = episodes.find(e => e.watchabilityState === 'eligible_verified') || episodes[0];
+  const firstPlayableEpisode = episodes.find(
+    e => e.watchabilityState === 'eligible_verified' && db.getStreamMatrix(e.id).qualities.length > 0
+  );
 
   return (
     <div className="flex flex-col gap-8 pb-16">
@@ -111,7 +113,7 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 mt-4">
-              {firstPlayableEpisode && (
+              {firstPlayableEpisode ? (
                 <Link
                   href={`/watch/${firstPlayableEpisode.id}`}
                   className="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-red-700 transition-colors shadow-lg shadow-red-600/20"
@@ -119,6 +121,11 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
                   <Play className="h-4 w-4 fill-current" />
                   <span>Mulai Nonton</span>
                 </Link>
+              ) : (
+                <div className="flex items-center gap-2 rounded-xl bg-zinc-900 border border-white/[0.08] px-4 py-2.5 text-xs font-semibold text-zinc-400">
+                  <Play className="h-3.5 w-3.5 text-zinc-600" />
+                  <span>Streaming Belum Tersedia (Eksklusif Platform Resmi)</span>
+                </div>
               )}
 
               <button

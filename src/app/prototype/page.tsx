@@ -51,22 +51,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-shokugeki-1-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/pSYeGNY4PGo?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-shokugeki-1-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/pSYeGNY4PGo?autoplay=1&rel=0',
-          },
-          {
-            id: 'src-shokugeki-1-fail',
-            name: 'Server 3: Simulasi Server Rusak (Uji Error Recovery)',
-            provider: 'Simulated Broken Source',
-            embedUrl: 'https://www.example.com/broken-stream-mock',
-            isSimulatedFailure: true,
           },
         ],
       },
@@ -78,15 +65,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-shokugeki-2-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/xFth1NmGT1g?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-shokugeki-2-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/xFth1NmGT1g?autoplay=1&rel=0',
           },
         ],
       },
@@ -98,15 +79,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-shokugeki-19-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/oRG34pN8eMQ?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-shokugeki-19-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/oRG34pN8eMQ?autoplay=1&rel=0',
           },
         ],
       },
@@ -128,15 +103,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-tsukimichi-5-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/IUwlpHSqwcc?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-tsukimichi-5-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/IUwlpHSqwcc?autoplay=1&rel=0',
           },
         ],
       },
@@ -148,15 +117,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-tsukimichi-7-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/SpVH-VyyCh0?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-tsukimichi-7-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/SpVH-VyyCh0?autoplay=1&rel=0',
           },
         ],
       },
@@ -168,15 +131,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-tsukimichi-9-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/Imyb6Q6gD-M?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-tsukimichi-9-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/Imyb6Q6gD-M?autoplay=1&rel=0',
           },
         ],
       },
@@ -198,15 +155,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-oregairu-1-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID Resmi (Sub Indo)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/vDQfxWqDxUw?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-oregairu-1-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/vDQfxWqDxUw?autoplay=1&rel=0',
           },
         ],
       },
@@ -228,15 +179,9 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
         sources: [
           {
             id: 'src-onepunch-25-p1',
-            name: 'Server 1: Muse ID (Resmi HD)',
+            name: 'Muse ID Resmi (Takarir Indo)',
             provider: 'Muse Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/YXMPqxqo7i8?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-onepunch-25-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/YXMPqxqo7i8?autoplay=1&rel=0',
           },
         ],
       },
@@ -244,29 +189,23 @@ const PROTOTYPE_CATALOG: PrototypeAnime[] = [
   },
   {
     id: 'anime-aoashi',
-    title: 'AOASHI Season 2',
+    title: 'AOASHI Season 2 (Fall 2026)',
     slug: 'aoashi-season-2',
-    distributor: 'Ani-One Indonesia (MediaLink Licensed)',
+    distributor: 'Ani-One Indonesia (Eksklusif Platform Resmi)',
     audioLocale: 'Jepang (ja-JP)',
     subtitleLocale: 'Indonesia Resmi (id-ID Sub Indo)',
     episodes: [
       {
         id: 'ep-aoashi-1',
         displayNumber: '01',
-        title: 'Awal dari Babak Baru',
+        title: 'Awal dari Babak Baru (Tayang Perdana 4 Okt 2026)',
         duration: '24 menit',
         sources: [
           {
             id: 'src-aoashi-1-p1',
-            name: 'Server 1: Ani-One ID (Resmi HD)',
+            name: 'Ani-One ID (Embed Dibatasi Licensor - Error 153)',
             provider: 'Ani-One Indonesia',
             embedUrl: 'https://www.youtube-nocookie.com/embed/VqnPk4apz2g?autoplay=1&enablejsapi=1&rel=0',
-          },
-          {
-            id: 'src-aoashi-1-p2',
-            name: 'Server 2: YouTube Mirror (Cadangan)',
-            provider: 'YouTube Direct Mirror',
-            embedUrl: 'https://www.youtube.com/embed/VqnPk4apz2g?autoplay=1&rel=0',
           },
         ],
       },

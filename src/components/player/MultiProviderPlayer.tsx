@@ -227,7 +227,7 @@ export function MultiProviderPlayer({
           <div className="flex flex-wrap gap-1.5">
             {currentServers.map((server, idx) => {
               const isSelected = server.id === activeVariant?.id;
-              // Bersihkan nama server agar ramah pengguna (Server 1, Server 2, Server 3 atau nama singkat)
+              // Bersihkan nama server agar ramah pengguna
               const cleanName = server.providerName.replace(/\(.*?\)/g, '').trim();
 
               return (
@@ -245,6 +245,11 @@ export function MultiProviderPlayer({
                 </button>
               );
             })}
+            {currentServers.length === 1 && (
+              <span className="text-[11px] text-zinc-500 italic ml-1 self-center">
+                (Sumber tunggal resmi terverifikasi)
+              </span>
+            )}
           </div>
         </div>
 
