@@ -43,3 +43,17 @@ export async function updateAnimeAction(id: string, updates: Partial<Anime>) {
   revalidatePath('/');
   return { success: true, anime: updated };
 }
+
+export async function deleteAnimeAction(id: string) {
+  await requireRole(['owner', 'admin']);
+
+  const ok = await AnimeRepository.deleteAnime(id);
+  if (!ok) {
+    return { success: false, error: 'Gagal menghapus anime' };
+  }
+
+  revalidatePath('/anime');
+  revalidatePath('/admin/content');
+  revalidatePath('/');
+  return { success: true };
+}

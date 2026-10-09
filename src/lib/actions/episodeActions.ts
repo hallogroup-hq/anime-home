@@ -34,3 +34,16 @@ export async function updateEpisodeAction(id: string, updates: Partial<Episode>)
   revalidatePath(`/watch/${id}`);
   return { success: true, episode };
 }
+
+export async function deleteEpisodeAction(id: string) {
+  await requireRole(['owner', 'admin', 'editor', 'operator']);
+
+  const ok = await EpisodeRepository.deleteEpisode(id);
+  if (!ok) {
+    return { success: false, error: 'Gagal menghapus episode' };
+  }
+
+  revalidatePath('/admin/content');
+  revalidatePath('/admin/matrix');
+  return { success: true };
+}

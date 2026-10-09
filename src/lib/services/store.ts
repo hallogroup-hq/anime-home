@@ -262,7 +262,10 @@ class AnimeHomeDataStore {
     return [...this.episodes];
   }
 
-  public getAllStreamVariants(): StreamVariant[] {
+  public getAllStreamVariants(episodeId?: string): StreamVariant[] {
+    if (episodeId) {
+      return this.variants.filter(v => v.episodeId === episodeId);
+    }
     return [...this.variants];
   }
 
@@ -371,6 +374,26 @@ class AnimeHomeDataStore {
     this.variants.push(newVariant);
     this.addAuditLog('admin-operator', 'Stream Manager', 'ADD_STREAM_VARIANT', `Episode: ${variant.episodeId}`, `Added provider ${variant.providerName} on ${variant.qualityLabel}`);
     return newVariant;
+  }
+
+  public updateStreamVariant(id: string, updates: Partial<StreamVariant>): StreamVariant | null {
+    const idx = this.variants.findIndex(v => v.id === id);
+    if (idx === -1) return null;
+    this.variants[idx] = {
+      ...this.variants[idx],
+      ...updates,
+      lastCheckedAt: new Date().toISOString(),
+    };
+    this.addAuditLog('admin-operator', 'Stream Manager', 'UPDATE_STREAM_VARIANT', `Variant: ${id}`, `Updated stream variant fields`);
+    return this.variants[idx];
+  }
+
+  public deleteStreamVariant(id: string): boolean {
+    const idx = this.variants.findIndex(v => v.id === id);
+    if (idx === -1) return false;
+    this.variants.splice(idx, 1);
+    this.addAuditLog('admin-operator', 'Stream Manager', 'DELETE_STREAM_VARIANT', `Variant: ${id}`, `Deleted stream variant`);
+    return true;
   }
 
   public emergencyPauseSource(variantId: string, reason: string): boolean {
@@ -633,6 +656,36 @@ class AnimeHomeDataStore {
     return camp;
   }
 
+  public updateCampaign(id: string, updates: Partial<AdCampaign>): AdCampaign | null {
+    const idx = this.campaigns.findIndex(c => c.id === id);
+    if (idx === -1) return null;
+    this.campaigns[idx] = {
+      ...this.campaigns[idx],
+      ...updates,
+    };
+    this.addAuditLog('adops-manager', 'AdOps Manager', 'UPDATE_AD_CAMPAIGN', `Campaign: ${id}`, `Updated campaign details`);
+    return this.campaigns[idx];
+  }
+
+  public addCampaign(campData: Omit<AdCampaign, 'id'>): AdCampaign {
+    const id = `camp-${Date.now()}`;
+    const newCamp: AdCampaign = {
+      ...campData,
+      id,
+    };
+    this.campaigns.push(newCamp);
+    this.addAuditLog('adops-manager', 'AdOps Manager', 'ADD_AD_CAMPAIGN', `Campaign: ${id}`, `Added campaign ${campData.name}`);
+    return newCamp;
+  }
+
+  public deleteCampaign(id: string): boolean {
+    const idx = this.campaigns.findIndex(c => c.id === id);
+    if (idx === -1) return false;
+    this.campaigns.splice(idx, 1);
+    this.addAuditLog('adops-manager', 'AdOps Manager', 'DELETE_AD_CAMPAIGN', `Campaign: ${id}`, `Deleted campaign`);
+    return true;
+  }
+
   // --- MERCHANDISE DISCOVERY ---
   public getMerchByAnimeId(animeId: string): MerchItem[] {
     return this.merch.filter(m => m.animeId === animeId);
@@ -715,6 +768,60 @@ class AnimeHomeDataStore {
     return createdEpisodes;
   }
 
+  public updateAnime(id: string, updates: Partial<Anime>): Anime | null {
+    const idx = this.anime.findIndex(a => a.id === id);
+    if (idx === -1) return null;
+    this.anime[idx] = {
+      ...this.anime[idx],
+      ...updates,
+      updatedAt: new Date().toISOString(),
+    };
+    this.addAuditLog('admin-content', 'Content Editor', 'UPDATE_ANIME', `Anime: ${id}`, `Updated anime metadata`);
+    return this.anime[idx];
+  }
+
+  public deleteAnime(id: string): boolean {
+    const idx = this.anime.findIndex(a => a.id === id);
+    if (idx === -1) return false;
+    this.anime.splice(idx, 1);
+    const epsToDelete = this.episodes.filter(e => e.animeId === id).map(e => e.id);
+    this.episodes = this.episodes.filter(e => e.animeId !== id);
+    this.variants = this.variants.filter(v => !epsToDelete.includes(v.episodeId));
+    this.addAuditLog('admin-content', 'Content Editor', 'DELETE_ANIME', `Anime: ${id}`, `Deleted anime and cascaded episodes`);
+    return true;
+  }
+
+  public updateEpisode(id: string, updates: Partial<Episode>): Episode | null {
+    const idx = this.episodes.findIndex(e => e.id === id);
+    if (idx === -1) return null;
+    this.episodes[idx] = {
+      ...this.episodes[idx],
+      ...updates,
+    };
+    this.addAuditLog('admin-content', 'Content Editor', 'UPDATE_EPISODE', `Episode: ${id}`, `Updated episode fields`);
+    return this.episodes[idx];
+  }
+
+  public addEpisode(epData: Omit<Episode, 'id'> & { id?: string }): Episode {
+    const id = epData.id || `ep-${epData.animeId.replace('anime-', '')}-${epData.ordinal || Date.now()}`;
+    const newEp: Episode = {
+      ...epData,
+      id,
+    };
+    this.episodes.push(newEp);
+    this.addAuditLog('admin-content', 'Content Editor', 'ADD_EPISODE', `Episode: ${id}`, `Added episode ${newEp.displayNumber}`);
+    return newEp;
+  }
+
+  public deleteEpisode(id: string): boolean {
+    const idx = this.episodes.findIndex(e => e.id === id);
+    if (idx === -1) return false;
+    this.episodes.splice(idx, 1);
+    this.variants = this.variants.filter(v => v.episodeId !== id);
+    this.addAuditLog('admin-content', 'Content Editor', 'DELETE_EPISODE', `Episode: ${id}`, `Deleted episode and its streams`);
+    return true;
+  }
+
   // --- PROVIDER REGISTRY ---
   public addProvider(data: Omit<Provider, 'id'>): Provider {
     const newProv: Provider = {
@@ -724,6 +831,17 @@ class AnimeHomeDataStore {
     this.providers.push(newProv);
     this.addAuditLog('admin-ops', 'Operations Admin', 'ADD_PROVIDER', `Provider: ${newProv.id}`, `Registered ${data.name}`);
     return newProv;
+  }
+
+  public exportDataSnapshot() {
+    return {
+      anime: this.anime,
+      episodes: this.episodes,
+      variants: this.variants,
+      providers: this.providers,
+      campaigns: this.campaigns,
+      merch: this.merch,
+    };
   }
 
   // --- ADMIN METRICS SNAPSHOT ---

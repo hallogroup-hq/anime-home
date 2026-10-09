@@ -219,4 +219,21 @@ export class StreamRepository {
 
     return true;
   }
+
+  public static async deleteVariant(variantId: string): Promise<boolean> {
+    if (!dbOrm) return false;
+
+    await dbOrm.delete(schema.streamVariants)
+      .where(eq(schema.streamVariants.id, variantId));
+
+    await AuditRepository.logAction({
+      actorId: 'admin',
+      role: 'Streaming Operator',
+      action: 'DELETE_STREAM_VARIANT',
+      resource: `StreamVariant:${variantId}`,
+      reason: 'Stream variant deleted from database',
+    });
+
+    return true;
+  }
 }

@@ -267,4 +267,22 @@ export class AnimeRepository {
 
     return rows.map(r => mapRowToAnime(r, r.titles));
   }
+
+  public static async deleteAnime(id: string): Promise<boolean> {
+    if (!dbOrm) return false;
+
+    // Delete all episodes and their stream variants
+    const eps = await dbOrm.select({ id: schema.episodes.id })
+      .from(schema.episodes)
+      .where(eq(schema.episodes.animeId, id));
+
+    for (const ep of eps) {
+      await dbOrm.delete(schema.streamVariants).where(eq(schema.streamVariants.episodeId, ep.id));
+    }
+    await dbOrm.delete(schema.episodes).where(eq(schema.episodes.animeId, id));
+    await dbOrm.delete(schema.animeTitles).where(eq(schema.animeTitles.animeId, id));
+    await dbOrm.delete(schema.anime).where(eq(schema.anime.id, id));
+
+    return true;
+  }
 }

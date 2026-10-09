@@ -86,3 +86,18 @@ export async function registerProviderAction(data: Partial<Provider>) {
   revalidatePath('/admin/providers');
   return { success: true, provider: prov };
 }
+
+export async function deleteVariantAction(variantId: string) {
+  await requireRole(['owner', 'admin', 'operator']);
+
+  const variant = await StreamRepository.getVariantById(variantId);
+  const ok = await StreamRepository.deleteVariant(variantId);
+  if (!ok) return { success: false, error: 'Gagal menghapus varian stream' };
+
+  if (variant) {
+    revalidatePath(`/watch/${variant.episodeId}`);
+  }
+  revalidatePath('/admin/matrix');
+  revalidatePath('/admin/monitoring');
+  return { success: true };
+}

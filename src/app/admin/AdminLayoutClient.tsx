@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowLeft, Shield, LogOut, FlaskConical } from 'lucide-react';
+import { ArrowLeft, Shield, LogOut, Database, Check } from 'lucide-react';
 import { logoutAction } from '@/lib/actions/authActions';
+import { syncAllToDatabaseAction } from '@/lib/actions';
 
 interface AdminLayoutClientProps {
   user: {
@@ -19,6 +20,21 @@ interface AdminLayoutClientProps {
 
 export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
   const pathname = usePathname();
+  const [syncing, setSyncing] = useState(false);
+  const [syncNotice, setSyncNotice] = useState<string | null>(null);
+
+  const handleGlobalSync = async () => {
+    setSyncing(true);
+    try {
+      const res = await syncAllToDatabaseAction();
+      setSyncNotice(res.message || 'Sinkronisasi berhasil!');
+      setTimeout(() => setSyncNotice(null), 4000);
+    } catch (err: any) {
+      alert(err.message || 'Gagal sinkronisasi');
+    } finally {
+      setSyncing(false);
+    }
+  };
 
   const navItems = [
     { label: 'Ringkasan', href: '/admin' },
@@ -79,6 +95,16 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
               <span className="hidden sm:inline">Keluar</span>
             </button>
 
+            <button
+              onClick={handleGlobalSync}
+              disabled={syncing}
+              className="flex items-center gap-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-600 disabled:opacity-50 px-3 py-1.5 text-xs font-bold text-white transition-colors cursor-pointer shadow-xs"
+              title="Sinkronkan seluruh perubahan ke PostgreSQL & Penyimpanan"
+            >
+              <Database className={`h-3.5 w-3.5 ${syncing ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">{syncing ? 'Menyinkronkan...' : 'Sinkronkan DB'}</span>
+            </button>
+
             <Link
               href="/"
               className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-zinc-900 px-3 py-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
@@ -113,6 +139,12 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-6 flex-1">
+        {syncNotice && (
+          <div className="mb-4 rounded-xl bg-emerald-950/70 border border-emerald-500/40 p-3.5 text-xs text-emerald-300 flex items-center gap-2 shadow-lg">
+            <Check className="h-4 w-4 shrink-0 text-emerald-400" />
+            <span>{syncNotice}</span>
+          </div>
+        )}
         {children}
       </div>
     </div>

@@ -6,3 +6,4 @@ export * from './cmsActions';
 export * from './reportActions';
 export * from './commentActions';
 export * from './metadataActions';
+export * from './syncActions';

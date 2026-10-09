@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Anime Home System Architecture",
+    "output": "docs/architecture.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "content-admin-path",
+        "label": "Admin and Database Sync Path",
+        "focus": ["admin", "server_actions", "store", "postgres", "disk_cache"],
+        "note": "Admin updates streams, episodes, and banners, persisting immediately to PostgreSQL and disk cache."
+      },
+      {
+        "id": "playback-path",
+        "label": "Viewer Playback Path",
+        "focus": ["users", "nextjs", "player", "streams", "whitelist"],
+        "note": "Viewers stream anime directly in the browser across multiple verified resolutions without external redirects."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "admin",
+      "type": "external",
+      "label": "Admin Console",
+      "sublabel": "Matrix & Content Editor",
+      "pos": [60, 160],
+      "size": [140, 60]
+    },
+    {
+      "id": "server_actions",
+      "type": "backend",
+      "label": "Next.js Actions",
+      "sublabel": "CRUD & Sync Engine",
+      "pos": [290, 160],
+      "size": [150, 60]
+    },
+    {
+      "id": "disk_cache",
+      "type": "database",
+      "label": "Disk Backup",
+      "sublabel": "live_data.json Cache",
+      "pos": [530, 30],
+      "size": [140, 60]
+    },
+    {
+      "id": "store",
+      "type": "backend",
+      "label": "Runtime Store",
+      "sublabel": "In-Memory Singleton",
+      "pos": [530, 160],
+      "size": [140, 60]
+    },
+    {
+      "id": "postgres",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "Neon Cloud DB",
+      "pos": [780, 160],
+      "size": [150, 60]
+    },
+    {
+      "id": "users",
+      "type": "external",
+      "label": "Anime Viewers",
+      "sublabel": "Web & Mobile Clients",
+      "pos": [60, 340],
+      "size": [140, 60]
+    },
+    {
+      "id": "nextjs",
+      "type": "frontend",
+      "label": "Anime Home Web",
+      "sublabel": "App Router :3000",
+      "pos": [290, 340],
+      "size": [150, 60]
+    },
+    {
+      "id": "player",
+      "type": "frontend",
+      "label": "Video Player",
+      "sublabel": "Multi-Provider Player",
+      "pos": [530, 340],
+      "size": [140, 60]
+    },
+    {
+      "id": "streams",
+      "type": "cloud",
+      "label": "Stream Network",
+      "sublabel": "Blogger HD & Mega",
+      "pos": [800, 340],
+      "size": [150, 60]
+    },
+    {
+      "id": "whitelist",
+      "type": "security",
+      "label": "Domain Whitelist",
+      "sublabel": "Anti-Redirect Security",
+      "pos": [530, 470],
+      "size": [140, 60]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Anime Home Application Core",
+      "wraps": ["server_actions", "store", "nextjs", "player", "disk_cache", "whitelist"]
+    }
+  ],
+  "connections": [
+    {
+      "id": "admin-to-actions",
+      "from": "admin",
+      "to": "server_actions",
+      "label": "Manage & Sync",
+      "variant": "emphasis"
+    },
+    {
+      "id": "actions-to-store",
+      "from": "server_actions",
+      "to": "store",
+      "label": "Mutate State"
+    },
+    {
+      "id": "store-to-postgres",
+      "from": "store",
+      "to": "postgres",
+      "label": "Drizzle ORM Sync"
+    },
+    {
+      "id": "store-to-disk",
+      "from": "store",
+      "to": "disk_cache",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "label": "Disk Cache",
+      "variant": "dashed"
+    },
+    {
+      "id": "users-to-web",
+      "from": "users",
+      "to": "nextjs",
+      "label": "HTTPS Browse",
+      "variant": "emphasis"
+    },
+    {
+      "id": "web-to-player",
+      "from": "nextjs",
+      "to": "player",
+      "label": "Embed Stream"
+    },
+    {
+      "id": "player-to-streams",
+      "from": "player",
+      "to": "streams",
+      "label": "HD Streams",
+      "variant": "emphasis"
+    },
+    {
+      "id": "player-to-whitelist",
+      "from": "player",
+      "to": "whitelist",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "Verify Domain",
+      "labelDy": 24,
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Admin Zero-Friction Management",
+      "items": [
+        "Inline editor for episodes, video streams, and promo banners",
+        "1-Click database sync directly persists to PostgreSQL",
+        "Disk snapshot ensures zero data loss across deployments"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Verified Streaming Engine",
+      "items": [
+        "In-app playback on Anime Home without third-party redirects",
+        "Multi-resolution (1080p, 720p, 480p) per episode",
+        "Branded top mask hides fansub file names and player watermarks"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Security & Architecture",
+      "items": [
+        "Strict domain whitelist allows only verified stream hosts",
+        "Role-based access control gates admin modifications",
+        "Auto-quarantine engine deactivates broken streams on user reports"
+      ]
+    }
+  ]
+}

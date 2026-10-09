@@ -164,4 +164,17 @@ export class EpisodeRepository {
 
     return this.getEpisodeById(id);
   }
+
+  public static async deleteEpisode(id: string): Promise<boolean> {
+    if (!dbOrm) return false;
+
+    // Delete associated stream variants first
+    await dbOrm.delete(schema.streamVariants)
+      .where(eq(schema.streamVariants.episodeId, id));
+
+    await dbOrm.delete(schema.episodes)
+      .where(eq(schema.episodes.id, id));
+
+    return true;
+  }
 }
