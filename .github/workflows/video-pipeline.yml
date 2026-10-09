@@ -1,0 +1,35 @@
+name: Video Pipeline
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/video/**'
+      - 'tests/video-*.test.mjs'
+      - 'src/app/media/**'
+      - 'src/components/player/HostedVideoPlayer.tsx'
+      - '.github/workflows/video-pipeline.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-video-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
+      - name: Season validator tests
+        run: node --test tests/video-season.test.mjs
+      - name: FFmpeg HLS smoke test
+        run: node --test tests/video-pipeline-smoke.test.mjs
+      - name: Install app dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build Next.js application
+        run: npm run build
