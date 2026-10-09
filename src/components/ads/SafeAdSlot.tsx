@@ -19,16 +19,11 @@ export function SafeAdSlot({ slotKey, className = '' }: SafeAdSlotProps) {
   const isInternal = campaign.destinationUrl.startsWith('/');
 
   const content = (
-    <>
-      <img
-        src={campaign.imageUrl}
-        alt={campaign.name}
-        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-      />
-      <div className="absolute top-2 right-2 flex items-center gap-1 rounded bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[9px] font-semibold text-zinc-300 border border-white/[0.1]">
-        <span>Sponsor Resmi</span>
-      </div>
-    </>
+    <img
+      src={campaign.imageUrl}
+      alt={campaign.name}
+      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+    />
   );
 
   return (
