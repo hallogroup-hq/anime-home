@@ -149,6 +149,7 @@ export interface AdCampaign {
   status: 'active' | 'paused' | 'completed';
   impressions: number;
   clicks: number;
+  animeId?: string;
 }
 
 export interface MerchItem {
