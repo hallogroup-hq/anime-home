@@ -1,0 +1,27 @@
+name: Video Pipeline
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/video/**'
+      - 'tests/video-*.test.mjs'
+      - '.github/workflows/video-pipeline.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-video-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify FFmpeg
+        run: |
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
+      - name: Season validator tests
+        run: node --test tests/video-season.test.mjs
+      - name: FFmpeg HLS smoke test
+        run: node --test tests/video-pipeline-smoke.test.mjs
