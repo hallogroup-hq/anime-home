@@ -1,6 +1,41 @@
 {
   "anime": [
     {
+      "id": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+      "canonicalTitle": "Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu",
+      "slug": "tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+      "mediaType": "TV",
+      "synopsis": "Serial anime Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
+      "firstAirDate": "2026-10-10",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "maturityRating": "PG-13",
+      "airingStatus": "airing",
+      "publishState": "published",
+      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Tensei-shita-Daiseijo-wa-Seijo-de-Aru-Koto-wo-Hitakakusu.jpg?h=210",
+      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Tensei-shita-Daiseijo-wa-Seijo-de-Aru-Koto-wo-Hitakakusu.jpg?h=210",
+      "genres": [
+        "Action",
+        "Fantasy",
+        "Shounen"
+      ],
+      "aliases": [
+        {
+          "id": "title-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-primary",
+          "animeId": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+          "locale": "id-ID",
+          "title": "Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu",
+          "titleType": "canonical",
+          "normalizedTitle": "tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu"
+        }
+      ],
+      "totalCanonicalEpisodes": 3,
+      "scheduleWIB": "Berkala, 19:00 WIB",
+      "seasonReadinessState": "READY_ONGOING",
+      "createdAt": "2026-10-10T13:36:38.287Z",
+      "updatedAt": "2026-10-10T13:36:38.287Z"
+    },
+    {
       "id": "anime-shuiro-no-kamen",
       "canonicalTitle": "Shuiro no Kamen",
       "slug": "shuiro-no-kamen",
@@ -10916,6 +10951,21 @@
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "updatedAt": "2026-10-10T11:02:06.064Z"
+    },
+    {
+      "id": "season-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-s1",
+      "animeId": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+      "seasonNumber": 1,
+      "title": "Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "canonicalEpisodesCount": 3,
+      "airedEpisodesCount": 3,
+      "verifiedEpisodesCount": 3,
+      "missingEpisodes": [],
+      "readinessState": "READY_ONGOING",
+      "licenseType": "free_embed",
+      "updatedAt": "2026-10-10T13:36:38.287Z"
     }
   ],
   "episodes": [
@@ -47888,6 +47938,20 @@
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-10T13:00:54.619Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
+    },
+    {
+      "id": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3",
+      "animeId": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+      "ordinal": 3,
+      "displayNumber": "03",
+      "episodeType": "standard",
+      "title": "Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu Episode 03",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-10T13:36:26.380Z",
       "airingState": "aired",
       "subtitleState": "available",
       "watchabilityState": "eligible_verified"
@@ -221533,7 +221597,67 @@
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-10T13:00:54.619Z"
+    },
+    {
+      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3-na-0",
+      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3",
+      "providerId": "prov-kotakanime",
+      "providerName": "Server Lokal (Lokal-c 720p)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-3-na-0",
+      "embedUrl": "https://s1.kotakanimeid.link/video-embed/?vid=v3_vPHraQpyGrkGqTRS3vSlHPg3nsgiTWTp4rmxcWDdNegv71FY999XIGhn5eYx2W2HOiW00FzHyhDkvphoJtmTcUH8T1d4SuArjowpwFJ4i9ICxtVJa-_aWewM6XeD2mxyBlO5sweoSrPy-g4Z8SxanlslGGIT82kCH6GxWi-i41J3ZKUZo74SrXOp6sStLbZQBbWMB1ugVudZjjfILVBfUmbDjHB9gWvjp2KS5kuw0ONBFyp146BnqNinvMmBq7IvpXSxMDL2myy0R2XJPFuhRaRBZFR6-XdlJN-nybPwEXHXd86Bj8Pm30Rfu0M9nvOLXGGRCg9BNMUrKBqvFqhKepPJnuxrP2o5uvUVZkfaTpOFhU5ucgN5YLO95EnRFt6JsCdv3lfYB12CibIcoJVBgUIbubRX4B5NynxVt5XbTNly5MaJSqcPei_06ANd1zySRuIuXfiKQB1h3-A--31ev3ILUCGskKxXqDiCoxyIiAz2CNj66nddzA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 22,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T13:36:26.380Z"
+    },
+    {
+      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3-na-1",
+      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3",
+      "providerId": "prov-kotakanime",
+      "providerName": "Server Kotakvideo (KotakAnime 720p)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-3-na-1",
+      "embedUrl": "https://s2.kotakanimeid.link/video-embed/?vid=v3_D5XyL6rVhZUmbPhTo0hqQpwOqNFDOyghURVWHfpGN06ifCOSoSUA8thi1jNP70WBzYUsSsdCdcV1P_Stnk429vBBRPRnzX0ehi7YZzXNL4jT5mwdVel8pglpyhNmhjWKS3QYV9hFUmgpOGGrSfc1nuq-OpNpbC4QdUzr4BJ_l06tYkNQPGt8usQe5Ybe0P8KzuJ_umkVhktQ59KU1SiZt-0nnj_PVzBiFV76H1sTQihvsr45zjUE9GgV8hCmOWkYbAFEFY9Xucj4-l1SOexMWxZfiq3RcCemdQ2sUfPbOHizWRmoX5KMBQAei29GCv0ACvaRisMQInJNkQLCiCfYjRC8-AiYjUxSUp9ctMjCc17pJZ2b6IOgseP4QLsjOfxgjAtM3vVAO5GopCXDoIc7gVvTALjZ3dttcWq4V6b4vLRADMzoHz6bq69IjnQdpPmz73Gjfatfvf3BTchLUYbWAcXAevJtHDe_MB2GdIth9KNCPcPwG8DatxsTi_ch6KSUWd5SS9Cnc32EGkUHWpryLKoTKLDF_S3zjYoj8Z-anTD_JBtll58mdXWVjZI4ZNw79mFx_zNz415lvA0mmzHlGKI_49lwZ8HA7W2Mq5Pk920grLyDDWwT9Q",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T13:36:26.380Z"
+    },
+    {
+      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3-na-2",
+      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3",
+      "providerId": "prov-streamku-rpm",
+      "providerName": "Server Streamku (RPM FastStream 720p)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-3-na-2",
+      "embedUrl": "https://s1.rpmvip.com/#fcivsm",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 25,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T13:36:26.380Z"
+    },
+    {
+      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3-na-3",
+      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-3",
+      "providerId": "prov-gdriveplayer",
+      "providerName": "Server GDrivePlayer (Direct 720p)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-3-na-3",
+      "embedUrl": "https://gdplayer.to/x/?S1NvT3pXbWtiaEI3b3B3YnBYSXBpWldaVytLZU5tR2M4NUF1Q2lWd1ZMUkdjS0R6cHZhVnJraDRmSjA4OHQ0c3ZvaWlhNFczaGhxY1dMU2trYUVDQVIyRnM3cElnN2t3UDhYWDNHR3VON0RPNlBZU2ZzWmZ4M1RMcmkwNWJMRTI,",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 23,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T13:36:26.380Z"
     }
   ],
-  "lastSyncAt": "2026-10-10T13:00:54.619Z"
+  "lastSyncAt": "2026-10-10T13:36:26.380Z"
 }
