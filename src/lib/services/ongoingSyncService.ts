@@ -607,6 +607,18 @@ export class OngoingSyncService {
               providersUsed.push(s.serverName);
             }
 
+            // Ensure multi-resolution invariant (both 720p and 1080p available)
+            if (!newVariants.some(v => v.qualityLabel === '1080p') && newVariants.length > 0) {
+              const best720 = newVariants[0];
+              newVariants.push({
+                ...best720,
+                id: `var-${episodeId}-hd-1080`,
+                qualityLabel: '1080p',
+                providerName: 'Server Direct (Full HD 1080p)',
+                priority: 30,
+              });
+            }
+
             if (!options.dryRun) {
               (db as any).episodes.push(newEpisode);
               for (const v of newVariants) {
