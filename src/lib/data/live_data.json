@@ -1,6 +1,40 @@
 {
   "anime": [
     {
+      "id": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
+      "canonicalTitle": "Shiotaiou no Satou-san ga Ore ni dake Amai",
+      "slug": "shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
+      "mediaType": "TV",
+      "synopsis": "Serial anime Shiotaiou no Satou-san ga Ore ni dake Amai subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
+      "firstAirDate": "2026-10-10",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "maturityRating": "PG-13",
+      "airingStatus": "airing",
+      "publishState": "published",
+      "posterUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160129.jpg",
+      "bannerUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160129.jpg",
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "aliases": [
+        {
+          "id": "title-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-primary",
+          "animeId": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
+          "locale": "id-ID",
+          "title": "Shiotaiou no Satou-san ga Ore ni dake Amai",
+          "titleType": "canonical",
+          "normalizedTitle": "shiotaiou-no-satou-san-ga-ore-ni-dake-amai"
+        }
+      ],
+      "totalCanonicalEpisodes": 1,
+      "scheduleWIB": "Sabtu, 19:00 WIB",
+      "seasonReadinessState": "READY_ONGOING",
+      "createdAt": "2026-10-10T17:24:42.503Z",
+      "updatedAt": "2026-10-10T17:24:42.503Z"
+    },
+    {
       "id": "anime-yasei-no-last-boss-ga-arawareta-2nd-season",
       "canonicalTitle": "Yasei no Last Boss ga Arawareta! 2nd Season",
       "slug": "yasei-no-last-boss-ga-arawareta-2nd-season",
@@ -11400,6 +11434,21 @@
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "updatedAt": "2026-10-10T16:10:41.077Z"
+    },
+    {
+      "id": "season-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-s1",
+      "animeId": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
+      "seasonNumber": 1,
+      "title": "Shiotaiou no Satou-san ga Ore ni dake Amai",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "canonicalEpisodesCount": 1,
+      "airedEpisodesCount": 1,
+      "verifiedEpisodesCount": 1,
+      "missingEpisodes": [],
+      "readinessState": "READY_ONGOING",
+      "licenseType": "free_embed",
+      "updatedAt": "2026-10-10T17:24:42.503Z"
     }
   ],
   "episodes": [
@@ -51634,6 +51683,20 @@
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-10T16:09:47.412Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
+    },
+    {
+      "id": "ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1",
+      "animeId": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
+      "ordinal": 1,
+      "displayNumber": "01",
+      "episodeType": "standard",
+      "title": "Shiotaiou no Satou-san ga Ore ni dake Amai Episode 1 Subtitle Indonesia",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-10T17:24:40.340Z",
       "airingState": "aired",
       "subtitleState": "available",
       "watchabilityState": "eligible_verified"
@@ -232340,7 +232403,82 @@
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
+    },
+    {
+      "id": "var-ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1-otaku-mega",
+      "episodeId": "ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-ep-1-otaku-mega",
+      "embedUrl": "https://mega.nz/embed/XugCTYBB#C4-YQXZMjZcL8wWif2_VA3BTK97C50LHtmgqtz29hMA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T17:24:40.340Z"
+    },
+    {
+      "id": "var-ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1-otaku-vidhide",
+      "episodeId": "ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-ep-1-otaku-vidhide",
+      "embedUrl": "https://odvidhide.com/embed/n3ef27q1lk2z",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 13,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T17:24:40.340Z"
+    },
+    {
+      "id": "var-ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1-otaku-desu",
+      "episodeId": "ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-ep-1-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0Z3hpU3RBUStqSlpjUHpQaHl2R0dpSWFPSXNLZnB6ZHUxYjVEc1hFMWp5UA==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 12,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T17:24:40.340Z"
+    },
+    {
+      "id": "var-ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1-alpha-720",
+      "episodeId": "ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-ep-1-alpha-720p",
+      "embedUrl": "/embed/player?title=Shiotaiou%20no%20Satou-san%20ga%20Ore%20ni%20dake%20Amai&ep=1&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T17:24:40.340Z"
+    },
+    {
+      "id": "var-ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1-beta-1080",
+      "episodeId": "ep-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-1",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-ep-1-beta-1080p",
+      "embedUrl": "/embed/player?title=Shiotaiou%20no%20Satou-san%20ga%20Ore%20ni%20dake%20Amai&ep=1&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-10T17:24:40.340Z"
     }
   ],
-  "lastSyncAt": "2026-10-10T16:09:47.412Z"
+  "lastSyncAt": "2026-10-10T17:24:40.340Z"
 }
