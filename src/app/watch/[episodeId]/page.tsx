@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const pageTitle = `Nonton ${anime.canonicalTitle} Episode ${episode.displayNumber} Sub Indo`;
-  const pageDescription = `Nonton streaming ${anime.canonicalTitle} Episode ${episode.displayNumber} (${episode.title}) subtitle Indonesia full HD di Anime Home. Multi-server Mega & Vidhide lancar, takarir terverifikasi.`;
+  const pageDescription = `Nonton streaming ${anime.canonicalTitle} Episode ${episode.displayNumber} (${episode.title}) subtitle Indonesia full HD di Anime Home. Multi-server berkecepatan tinggi lancar, takarir terverifikasi.`;
   const canonicalUrl = `${siteUrl}/watch/${episode.id}`;
   const bannerUrl = anime.bannerUrl.startsWith('http') ? anime.bannerUrl : `${siteUrl}${anime.bannerUrl}`;
   const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;

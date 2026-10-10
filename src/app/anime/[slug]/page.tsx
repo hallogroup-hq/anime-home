@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const totalEpLabel = isMovie ? 'Full Movie' : `${episodes.length} Episode`;
 
   const pageTitle = `Nonton ${anime.canonicalTitle} Sub Indo (${totalEpLabel})`;
-  const pageDescription = `Streaming dan download ${anime.canonicalTitle} (${anime.year || ''}) subtitle Indonesia lengkap di Anime Home. ${anime.synopsis.slice(0, 160)}... Genre: ${anime.genres.join(', ')}. Status: ${statusLabel}. Multi-server Mega & Vidhide lancar.`;
+  const pageDescription = `Streaming dan download ${anime.canonicalTitle} (${anime.year || ''}) subtitle Indonesia lengkap di Anime Home. ${anime.synopsis.slice(0, 160)}... Genre: ${anime.genres.join(', ')}. Status: ${statusLabel}. Multi-server stabil dan lancar tanpa kendala.`;
 
   const canonicalUrl = `${siteUrl}/anime/${anime.slug}`;
   const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;

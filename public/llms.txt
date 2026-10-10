@@ -1,6 +1,6 @@
 # Anime Home
 
-> Platform streaming anime subtitle Indonesia terlengkap dan terupdate, dilengkapi video player multi-server (Mega, Vidhide, YouTube POPS/Muse), takarir bahasa Indonesia terverifikasi, jadwal rilis WIB tepat waktu, urutan nonton franchise resmi, dan Anime Home Store.
+> Platform streaming anime subtitle Indonesia terlengkap dan terupdate, dilengkapi video player multi-server cadangan berkecepatan tinggi, takarir bahasa Indonesia terverifikasi, jadwal rilis WIB tepat waktu, urutan nonton franchise resmi, dan Anime Home Store.
 
 ## Ringkasan Layanan (Overview)
 Anime Home (https://anime-home-psi.vercel.app) adalah destinasi utama bagi penggemar anime di Indonesia untuk:
