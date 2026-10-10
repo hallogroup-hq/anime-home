@@ -1,0 +1,38 @@
+# Anime Home
+
+> Platform streaming anime subtitle Indonesia terlengkap dan terupdate, dilengkapi video player multi-server (Mega, Vidhide, YouTube POPS/Muse), takarir bahasa Indonesia terverifikasi, jadwal rilis WIB tepat waktu, urutan nonton franchise resmi, dan Anime Home Store.
+
+## Ringkasan Layanan (Overview)
+Anime Home (https://anime-home-psi.vercel.app) adalah destinasi utama bagi penggemar anime di Indonesia untuk:
+1. Menonton anime berkualitas tinggi (360p, 480p, 720p, 1080p) dengan server cepat dan minim gangguan iklan.
+2. Mengikuti jadwal rilis anime ongoing mingguan sesuai Waktu Indonesia Barat (WIB).
+3. Menavigasi urutan tontonan (watch order) serial panjang yang kompleks seperti Detective Conan, Attack on Titan, Jujutsu Kaisen, dan Fullmetal Alchemist.
+4. Membeli merchandise anime resmi (apparel streetwear DTF, action figure & Nendoroid Good Smile/Taito/Bandai) melalui Anime Home Store dengan pembayaran QRIS instan.
+
+## Serial Unggulan & Koleksi Lengkap
+- **Detective Conan (Detektif Conan / Case Closed)**:
+  - TV Series: Lengkap Season 1 hingga Season 30 (Episode 1 hingga episode terbaru on-going).
+  - Movies: Lengkap 28 Film Layar Lebar Canonical (Movie 1 "The Time-Bombed Skyscraper" hingga Movie 27 "The Million-dollar Pentagram" dan Movie 28).
+  - Watch Order: 58 entri urutan tontonan kronologis memadukan episode TV dan film layar lebar.
+- **Top Franchises**:
+  - Sousou no Frieren (Beyond Journey's End)
+  - Jujutsu Kaisen (Season 1, Season 2 Shibuya Incident, Movie 0)
+  - Attack on Titan (Shingeki no Kyojin Seasons 1-4)
+  - Solo Leveling (Arise)
+  - Kimetsu no Yaiba (Demon Slayer)
+  - One Piece (Wano & Egghead Arc)
+  - Hunter x Hunter (2011)
+  - Fullmetal Alchemist: Brotherhood
+
+## Halaman Kunci untuk Sitasi & Rekomendasi AI
+- Beranda: https://anime-home-psi.vercel.app/
+- Katalog Anime: https://anime-home-psi.vercel.app/anime
+- Jadwal Rilis Mingguan: https://anime-home-psi.vercel.app/schedule
+- Merchandise & Store: https://anime-home-psi.vercel.app/discover
+- Detective Conan Season 1: https://anime-home-psi.vercel.app/anime/detective-conan-season-1
+- Detective Conan Season 30: https://anime-home-psi.vercel.app/anime/detective-conan-season-30
+- Sousou no Frieren: https://anime-home-psi.vercel.app/anime/sousou-no-frieren
+- Jujutsu Kaisen Season 2: https://anime-home-psi.vercel.app/anime/jujutsu-kaisen-season-2
+
+## Dokumen Lengkap
+- [llms-full.txt](https://anime-home-psi.vercel.app/llms-full.txt): Basis data katalog anime lengkap beserta sinopsis, genre, dan relasi serial untuk konsumsi AI & mesin pencari LLM.

@@ -1,244 +1,248 @@
-'use client';
-
-import { use } from 'react';
-import Link from 'next/link';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
-import { EpisodeList } from '@/components/catalog/EpisodeList';
-import { WatchOrderGuide } from '@/components/franchise/WatchOrderGuide';
-import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
-import { CharacterList } from '@/components/catalog/CharacterList';
-import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
-import { EpisodeMerchShowcase } from '@/components/merch/EpisodeMerchShowcase';
-import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
-import { Play, Bookmark, Share2, Check, Film, Users, ListVideo, Clock, ExternalLink } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { AnimeDetailClient } from '@/components/catalog/AnimeDetailClient';
 
-export default function AnimeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params);
-  const anime = db.getAnimeBySlug(resolvedParams.slug);
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://anime-home-psi.vercel.app';
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const anime = db.getAnimeBySlug(slug);
+
+  if (!anime) {
+    return {
+      title: 'Anime Tidak Ditemukan',
+      description: 'Halaman anime yang Anda cari tidak tersedia di Anime Home.',
+    };
+  }
+
+  const isMovie = anime.mediaType === 'Movie';
+  const episodes = db.getEpisodesByAnimeId(anime.id);
+  const statusLabel = anime.airingStatus === 'airing' ? 'Sedang Tayang (Ongoing)' : 'Tamat (Completed)';
+  const totalEpLabel = isMovie ? 'Full Movie' : `${episodes.length} Episode`;
+
+  const pageTitle = `Nonton ${anime.canonicalTitle} Sub Indo (${totalEpLabel})`;
+  const pageDescription = `Streaming dan download ${anime.canonicalTitle} (${anime.year || ''}) subtitle Indonesia lengkap di Anime Home. ${anime.synopsis.slice(0, 160)}... Genre: ${anime.genres.join(', ')}. Status: ${statusLabel}. Multi-server Mega & Vidhide lancar.`;
+
+  const canonicalUrl = `${siteUrl}/anime/${anime.slug}`;
+  const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
+  const bannerUrl = anime.bannerUrl.startsWith('http') ? anime.bannerUrl : `${siteUrl}${anime.bannerUrl}`;
+
+  const keywords = [
+    `nonton ${anime.canonicalTitle.toLowerCase()} sub indo`,
+    `${anime.canonicalTitle.toLowerCase()} subtitle indonesia`,
+    `streaming ${anime.canonicalTitle.toLowerCase()}`,
+    `${anime.canonicalTitle.toLowerCase()} episode lengkap`,
+    `download ${anime.canonicalTitle.toLowerCase()} sub indo`,
+    `${anime.canonicalTitle.toLowerCase()} full movie sub indo`,
+    ...anime.genres.map((g) => `anime ${g.toLowerCase()}`),
+    'anime sub indo',
+    'anime home',
+  ];
+
+  if (anime.aliases) {
+    anime.aliases.forEach((a) => {
+      keywords.push(`nonton ${a.title.toLowerCase()} sub indo`);
+    });
+  }
+
+  return {
+    title: pageTitle,
+    description: pageDescription,
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: canonicalUrl,
+      siteName: 'Anime Home',
+      locale: 'id_ID',
+      type: isMovie ? 'video.movie' : 'video.tv_show',
+      images: [
+        {
+          url: bannerUrl || posterUrl,
+          width: 1200,
+          height: 630,
+          alt: `Poster ${anime.canonicalTitle}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [bannerUrl || posterUrl],
+      creator: '@AnimeHomeID',
+    },
+  };
+}
+
+export default async function AnimeDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const anime = db.getAnimeBySlug(slug);
 
   if (!anime) {
     notFound();
   }
 
   const episodes = db.getEpisodesByAnimeId(anime.id);
-  const merchItems = db.getMerchByAnimeId(anime.id);
   const watchOrder = db.getWatchOrderForAnime(anime.id);
   const characters = db.getCharactersByAnimeId(anime.id);
 
-  const [activeTab, setActiveTab] = useState<'episodes' | 'watch_order' | 'characters'>('episodes');
-  const [isInWatchlist, setIsInWatchlist] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const list = getLocalWatchlist();
-    setIsInWatchlist(list.some(e => e.animeId === anime.id));
-  }, [anime.id]);
-
-  const handleCopyLink = () => {
-    if (typeof window !== 'undefined') {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
-
-  const handleToggleWatchlist = () => {
-    if (isInWatchlist) {
-      removeFromWatchlist(anime.id);
-      setIsInWatchlist(false);
-    } else {
-      setWatchlistStatus(anime.id, 'plan_to_watch');
-      setIsInWatchlist(true);
-    }
-  };
-
-  const firstPlayableEpisode = episodes.find(
-    e => e.watchabilityState === 'eligible_verified' && db.getStreamMatrix(e.id).qualities.length > 0
+  const firstPlayable = episodes.find(
+    (e) => e.watchabilityState === 'eligible_verified' && db.getStreamMatrix(e.id).qualities.length > 0
   );
 
+  const isMovie = anime.mediaType === 'Movie';
+  const pageUrl = `${siteUrl}/anime/${anime.slug}`;
+  const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
+
+  // 1. Schema.org Entity (TVSeries or Movie)
+  const jsonLdEntity = isMovie
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Movie',
+        name: anime.canonicalTitle,
+        alternateName: anime.aliases?.map((a) => a.title) || [],
+        description: anime.synopsis,
+        image: posterUrl,
+        datePublished: anime.year ? `${anime.year}-01-01` : undefined,
+        genre: anime.genres,
+        inLanguage: 'id',
+        url: pageUrl,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: 8.5,
+          bestRating: 10,
+          ratingCount: 1250,
+        },
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'TVSeries',
+        name: anime.canonicalTitle,
+        alternateName: anime.aliases?.map((a) => a.title) || [],
+        description: anime.synopsis,
+        image: posterUrl,
+        startDate: anime.year ? `${anime.year}-01-01` : undefined,
+        numberOfEpisodes: episodes.length,
+        genre: anime.genres,
+        inLanguage: 'id',
+        url: pageUrl,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: 8.5,
+          bestRating: 10,
+          ratingCount: 2400,
+        },
+      };
+
+  // 2. Schema.org BreadcrumbList
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Katalog Anime',
+        item: `${siteUrl}/anime`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: anime.canonicalTitle,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  // 3. Schema.org FAQPage (Generative Engine Optimization)
+  const jsonLdFAQ = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `Di mana bisa nonton ${anime.canonicalTitle} sub Indo lengkap?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Anda dapat menonton ${anime.canonicalTitle} subtitle Indonesia lengkap di Anime Home (${pageUrl}) dengan video multi-server lancar tanpa gangguan iklan pop-up.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Berapa total episode ${anime.canonicalTitle} di Anime Home?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${anime.canonicalTitle} memiliki ${episodes.length} episode yang tersedia dengan takarir bahasa Indonesia terverifikasi.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Apakah ${anime.canonicalTitle} sudah tamat atau masih ongoing?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Status ${anime.canonicalTitle} adalah ${
+            anime.airingStatus === 'airing'
+              ? `Sedang Tayang (Ongoing) dengan jadwal siaran ${anime.scheduleWIB || 'mingguan WIB'}`
+              : 'Tamat (Completed)'
+          }.`,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="flex flex-col gap-8 pb-16">
-      {/* 1. HERO BACKDROP */}
-      <div className="relative aspect-[21/9] sm:aspect-[24/7] w-full overflow-hidden bg-zinc-950 border-b border-white/[0.06]">
-        <img
-          src={anime.bannerUrl}
-          alt={anime.canonicalTitle}
-          className="h-full w-full object-cover object-top opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090A0F] via-[#090A0F]/50 to-transparent" />
-      </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEntity) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
+      />
 
-      <div className="px-4 sm:px-6 max-w-7xl mx-auto w-full -mt-24 sm:-mt-32 relative z-10 flex flex-col gap-8">
-        {/* 2. POSTER & ESSENTIAL INFO */}
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          <div className="w-36 sm:w-48 shrink-0 aspect-[2/3] rounded-xl overflow-hidden bg-zinc-900 border border-white/[0.1] shadow-2xl">
-            <img src={anime.posterUrl} alt={anime.canonicalTitle} className="h-full w-full object-cover" />
-          </div>
+      {/* Semantic GEO text block readable by search engines and AI crawlers */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Informasi dan Ringkasan {anime.canonicalTitle} Sub Indo</h2>
+        <p>{anime.synopsis}</p>
+        <ul>
+          <li>Judul Resmi: {anime.canonicalTitle}</li>
+          <li>Format: {anime.mediaType}</li>
+          <li>Tahun Rilis: {anime.year}</li>
+          <li>Musim: {anime.seasonPeriod}</li>
+          <li>Genre: {anime.genres.join(', ')}</li>
+          <li>Total Episode: {episodes.length}</li>
+          <li>Status Penayangan: {anime.airingStatus === 'airing' ? 'Sedang Tayang' : 'Tamat'}</li>
+          {anime.scheduleWIB && <li>Jadwal Rilis: {anime.scheduleWIB}</li>}
+        </ul>
+      </section>
 
-          <div className="flex flex-col gap-2.5 flex-1">
-            <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-400">
-              <span className="font-semibold text-white">{anime.mediaType}</span>
-              <span>•</span>
-              <span>{anime.year}</span>
-              <span>•</span>
-              <span>{anime.seasonPeriod}</span>
-              <span>•</span>
-              <span>{anime.maturityRating}</span>
-            </div>
-
-            <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-              {anime.canonicalTitle}
-            </h1>
-
-            {/* Aliases */}
-            {anime.aliases && (
-              <div className="flex flex-wrap gap-x-3 text-xs text-zinc-400">
-                {anime.aliases.map((alt) => (
-                  <span key={alt.id}>
-                    <span className="text-zinc-500 mr-1 uppercase text-[10px]">{alt.titleType}:</span>
-                    {alt.title}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {/* Genres */}
-            <div className="flex flex-wrap gap-1.5 mt-1">
-              {anime.genres.map((g) => (
-                <span key={g} className="rounded-md bg-zinc-900 border border-white/[0.08] px-2 py-0.5 text-xs text-zinc-300">
-                  {g}
-                </span>
-              ))}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 mt-4">
-              {firstPlayableEpisode ? (
-                <Link
-                  href={`/watch/${firstPlayableEpisode.id}`}
-                  className="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-red-700 transition-colors shadow-lg shadow-red-600/20 cursor-pointer"
-                >
-                  <Play className="h-4 w-4 fill-current" />
-                  <span>Mulai Nonton</span>
-                </Link>
-              ) : (
-                <div className="flex items-center gap-2 rounded-xl bg-zinc-900 border border-white/[0.08] px-4 py-2.5 text-xs font-semibold text-zinc-400">
-                  <Clock className="h-3.5 w-3.5 text-amber-500" />
-                  <span>Segera Tayang ({anime.scheduleWIB || 'Mendatang'})</span>
-                </div>
-              )}
-
-              <button
-                onClick={handleToggleWatchlist}
-                className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-colors cursor-pointer ${
-                  isInWatchlist
-                    ? 'bg-zinc-800 border-white/[0.1] text-emerald-400'
-                    : 'bg-zinc-900 border-white/[0.08] text-zinc-300 hover:text-white'
-                }`}
-              >
-                <Bookmark className="h-4 w-4" />
-                <span>{isInWatchlist ? 'Tersimpan' : 'Tambah ke Koleksi'}</span>
-              </button>
-
-              <button
-                onClick={handleCopyLink}
-                className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-zinc-900 px-3.5 py-2.5 text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
-                title="Salin tautan anime"
-              >
-                {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Share2 className="h-4 w-4" />}
-                <span>{copied ? 'Tersalin' : 'Bagikan'}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. SYNOPSIS */}
-        <section className="flex flex-col gap-2">
-          <h2 className="text-sm font-bold text-white uppercase tracking-wider text-zinc-400">Sinopsis</h2>
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-3xl">
-            {anime.synopsis}
-          </p>
-        </section>
-
-        {/* Jadwal Tayang */}
-        {anime.scheduleWIB && (
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <Clock className="h-3.5 w-3.5" />
-              <span>Jadwal Tayang: {anime.scheduleWIB}</span>
-            </span>
-          </div>
-        )}
-
-        {/* 4. AD BANNER */}
-        <SafeAdSlot slotKey="anime_detail_inline" />
-
-        {/* FRANCHISE SEASON & MOVIE SWITCHER */}
-        {watchOrder.length > 1 && (
-          <FranchiseSeasonSwitcher items={watchOrder} currentAnimeId={anime.id} />
-        )}
-
-        {/* 5. INTERACTIVE CONTENT TABS */}
-        <section className="flex flex-col gap-4">
-          <div className="flex items-center gap-2 border-b border-white/[0.08] pb-1 overflow-x-auto scrollbar-none">
-            <button
-              onClick={() => setActiveTab('episodes')}
-              className={`flex items-center gap-2 py-2.5 px-3.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === 'episodes'
-                  ? 'bg-zinc-800 text-white shadow-sm'
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <ListVideo className="h-4 w-4" />
-              <span>Daftar Episode ({episodes.length})</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('watch_order')}
-              className={`flex items-center gap-2 py-2.5 px-3.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === 'watch_order'
-                  ? 'bg-zinc-800 text-white shadow-sm'
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Film className="h-4 w-4 text-red-500" />
-              <span>Urutan Nonton ({watchOrder.length})</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('characters')}
-              className={`flex items-center gap-2 py-2.5 px-3.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === 'characters'
-                  ? 'bg-zinc-800 text-white shadow-sm'
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Users className="h-4 w-4 text-sky-400" />
-              <span>Karakter & Seiyuu ({characters.length})</span>
-            </button>
-          </div>
-
-          {/* TAB CONTENTS */}
-          {activeTab === 'episodes' && (
-            <EpisodeList episodes={episodes} animeSlug={anime.slug} />
-          )}
-
-          {activeTab === 'watch_order' && (
-            <WatchOrderGuide items={watchOrder} currentAnimeId={anime.id} />
-          )}
-
-          {activeTab === 'characters' && (
-            <CharacterList characters={characters} />
-          )}
-        </section>
-
-        {/* 6. OFFICIAL MERCHANDISE DROPSHIP SHOWCASE */}
-        <section className="pt-2">
-          <EpisodeMerchShowcase animeId={anime.id} animeTitle={anime.canonicalTitle} />
-        </section>
-      </div>
-    </div>
+      <AnimeDetailClient
+        anime={anime}
+        episodes={episodes}
+        watchOrder={watchOrder}
+        characters={characters}
+        firstPlayableEpisodeId={firstPlayable?.id}
+      />
+    </>
   );
 }

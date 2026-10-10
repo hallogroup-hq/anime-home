@@ -1,167 +1,197 @@
-'use client';
-
-import { use } from 'react';
-import Link from 'next/link';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
-import { MultiProviderPlayer } from '@/components/player/MultiProviderPlayer';
-import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
-import { EpisodeDiscussion } from '@/components/player/EpisodeDiscussion';
-import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
-import { EpisodeMerchShowcase } from '@/components/merch/EpisodeMerchShowcase';
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight, ArrowLeft, Share2, Check } from 'lucide-react';
+import { WatchClient } from '@/components/player/WatchClient';
 
-export default function WatchPage({ params }: { params: Promise<{ episodeId: string }> }) {
-  const resolvedParams = use(params);
-  const episode = db.getEpisodeById(resolvedParams.episodeId);
-  const [copied, setCopied] = useState(false);
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://anime-home-psi.vercel.app';
+
+interface PageProps {
+  params: Promise<{ episodeId: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { episodeId } = await params;
+  const episode = db.getEpisodeById(episodeId);
+
+  if (!episode) {
+    return {
+      title: 'Episode Tidak Ditemukan',
+      description: 'Episode anime yang Anda cari tidak tersedia di Anime Home.',
+    };
+  }
+
+  const anime = db.getAnimeList().find((a) => a.id === episode.animeId);
+  if (!anime) {
+    return {
+      title: 'Anime Tidak Ditemukan',
+      description: 'Anime tidak ditemukan di Anime Home.',
+    };
+  }
+
+  const pageTitle = `Nonton ${anime.canonicalTitle} Episode ${episode.displayNumber} Sub Indo`;
+  const pageDescription = `Nonton streaming ${anime.canonicalTitle} Episode ${episode.displayNumber} (${episode.title}) subtitle Indonesia full HD di Anime Home. Multi-server Mega & Vidhide lancar, takarir terverifikasi.`;
+  const canonicalUrl = `${siteUrl}/watch/${episode.id}`;
+  const bannerUrl = anime.bannerUrl.startsWith('http') ? anime.bannerUrl : `${siteUrl}${anime.bannerUrl}`;
+  const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
+
+  const keywords = [
+    `nonton ${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber} sub indo`,
+    `${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber} subtitle indonesia`,
+    `${anime.canonicalTitle.toLowerCase()} ep ${episode.displayNumber} sub indo`,
+    `streaming ${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber}`,
+    `download ${anime.canonicalTitle.toLowerCase()} ep ${episode.displayNumber}`,
+    'anime sub indo',
+    'anime home',
+  ];
+
+  return {
+    title: pageTitle,
+    description: pageDescription,
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: canonicalUrl,
+      siteName: 'Anime Home',
+      locale: 'id_ID',
+      type: 'video.episode',
+      images: [
+        {
+          url: bannerUrl || posterUrl,
+          width: 1200,
+          height: 630,
+          alt: `${anime.canonicalTitle} Episode ${episode.displayNumber}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDescription,
+      images: [bannerUrl || posterUrl],
+      creator: '@AnimeHomeID',
+    },
+  };
+}
+
+export default async function WatchPage({ params }: PageProps) {
+  const { episodeId } = await params;
+  const episode = db.getEpisodeById(episodeId);
 
   if (!episode) {
     notFound();
   }
 
-  const anime = db.getAnimeList().find(a => a.id === episode.animeId);
+  const anime = db.getAnimeList().find((a) => a.id === episode.animeId);
   if (!anime) {
     notFound();
   }
 
   const watchOrder = db.getWatchOrderForAnime(anime.id);
   const allEpisodes = db.getEpisodesByAnimeId(anime.id);
-  const currentIndex = allEpisodes.findIndex(e => e.id === episode.id);
+  const currentIndex = allEpisodes.findIndex((e) => e.id === episode.id);
   const prevEpisode = currentIndex > 0 ? allEpisodes[currentIndex - 1] : null;
   const nextEpisode = currentIndex < allEpisodes.length - 1 ? allEpisodes[currentIndex + 1] : null;
 
-  const handleCopyLink = () => {
-    if (typeof window !== 'undefined') {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
+  const pageUrl = `${siteUrl}/watch/${episode.id}`;
+  const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
+
+  // 1. Schema.org TVEpisode & VideoObject
+  const jsonLdEpisode = {
+    '@context': 'https://schema.org',
+    '@type': 'TVEpisode',
+    name: `${anime.canonicalTitle} Episode ${episode.displayNumber} - ${episode.title}`,
+    episodeNumber: episode.displayNumber,
+    description: `Nonton streaming ${anime.canonicalTitle} Episode ${episode.displayNumber} sub Indo di Anime Home.`,
+    image: posterUrl,
+    inLanguage: 'id',
+    url: pageUrl,
+    partOfSeries: {
+      '@type': 'TVSeries',
+      name: anime.canonicalTitle,
+      url: `${siteUrl}/anime/${anime.slug}`,
+    },
+  };
+
+  const jsonLdVideo = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: `${anime.canonicalTitle} Episode ${episode.displayNumber} Sub Indo`,
+    description: `${episode.title}. Nonton anime ${anime.canonicalTitle} Episode ${episode.displayNumber} dengan takarir bahasa Indonesia terverifikasi.`,
+    thumbnailUrl: posterUrl,
+    uploadDate: '2024-01-01T00:00:00Z',
+    inLanguage: 'id',
+    url: pageUrl,
+    embedUrl: pageUrl,
+  };
+
+  // 2. Schema.org BreadcrumbList
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Katalog Anime',
+        item: `${siteUrl}/anime`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: anime.canonicalTitle,
+        item: `${siteUrl}/anime/${anime.slug}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: `Episode ${episode.displayNumber}`,
+        item: pageUrl,
+      },
+    ],
   };
 
   return (
-    <div className="flex flex-col gap-5 px-4 sm:px-6 max-w-5xl mx-auto pt-3 pb-16">
-      {/* Top Breadcrumb & Episode Badge */}
-      <div className="flex items-center justify-between">
-        <Link
-          href={`/anime/${anime.slug}`}
-          className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors cursor-pointer"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          <span>Kembali ke {anime.canonicalTitle}</span>
-        </Link>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleCopyLink}
-            className="flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-white bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
-            title="Salin tautan video"
-          >
-            {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Share2 className="h-3 w-3" />}
-            <span>{copied ? 'Tersalin' : 'Bagikan'}</span>
-          </button>
-          <span className="text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg">
-            Episode {episode.displayNumber}
-          </span>
-        </div>
-      </div>
-
-      {/* Title */}
-      <div>
-        <h1 className="text-lg sm:text-2xl font-black text-white">
-          {anime.canonicalTitle}: Episode {episode.displayNumber}
-        </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-          {episode.title}
-        </p>
-      </div>
-
-      {/* CORE PLAYER WITH INTEGRATED RESOLUTION & SERVER SELECTOR */}
-      <MultiProviderPlayer
-        episodeId={episode.id}
-        animeId={anime.id}
-        animeTitle={anime.canonicalTitle}
-        episodeNumber={episode.displayNumber}
-        episodeTitle={episode.title}
-        nextEpisodeId={nextEpisode && nextEpisode.watchabilityState === 'eligible_verified' ? nextEpisode.id : undefined}
-        nextEpisodeNumber={nextEpisode?.displayNumber}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEpisode) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdVideo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
       />
 
-      {/* QUICK EPISODE SELECTOR */}
-      <div className="flex flex-col gap-2 pt-1">
-        <div className="flex items-center justify-between text-xs text-zinc-400">
-          <span className="font-semibold text-zinc-300">Daftar Episode:</span>
-          <Link href={`/anime/${anime.slug}`} className="hover:text-white transition-colors">
-            Semua ({allEpisodes.length})
-          </Link>
-        </div>
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {[...allEpisodes].sort((a, b) => b.ordinal - a.ordinal).map((ep) => {
-            const isCurrent = ep.id === episode.id;
-            const isPlayable = ep.watchabilityState === 'eligible_verified';
-            return (
-              <Link
-                key={ep.id}
-                href={isPlayable ? `/watch/${ep.id}` : '#'}
-                className={`flex items-center justify-center min-w-[42px] h-9 px-3 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                  isCurrent
-                    ? 'bg-red-600 text-white shadow-sm'
-                    : isPlayable
-                    ? 'bg-zinc-900 border border-white/[0.08] text-zinc-300 hover:bg-zinc-800 hover:text-white'
-                    : 'bg-zinc-950 border border-white/[0.04] text-zinc-600 cursor-not-allowed'
-                }`}
-                title={ep.title}
-              >
-                {ep.displayNumber}
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+      {/* Semantic GEO text block for AI search crawlers */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>{anime.canonicalTitle} Episode {episode.displayNumber} Subtitle Indonesia</h2>
+        <p>Judul Episode: {episode.title}</p>
+        <p>Serial: {anime.canonicalTitle}</p>
+        <p>Takarir: Bahasa Indonesia (Sub Indo) Terverifikasi</p>
+        <p>Tersedia di Anime Home dengan pemutar multi-server resolusi 360p hingga 1080p.</p>
+      </section>
 
-      {/* NEXT / PREV EPISODE BUTTONS */}
-      <div className="flex items-center justify-between py-2 border-y border-white/[0.06]">
-        {prevEpisode ? (
-          <Link
-            href={`/watch/${prevEpisode.id}`}
-            className="flex items-center gap-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] px-3.5 py-2 text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            <span>Episode {prevEpisode.displayNumber}</span>
-          </Link>
-        ) : (
-          <div />
-        )}
-
-        {nextEpisode && nextEpisode.watchabilityState === 'eligible_verified' ? (
-          <Link
-            href={`/watch/${nextEpisode.id}`}
-            className="flex items-center gap-1.5 rounded-lg bg-red-600 px-4 py-2 text-xs font-bold text-white hover:bg-red-700 transition-colors ml-auto shadow-sm"
-          >
-            <span>Episode Selanjutnya ({nextEpisode.displayNumber})</span>
-            <ChevronRight className="h-4 w-4" />
-          </Link>
-        ) : (
-          <div />
-        )}
-      </div>
-
-      {/* FRANCHISE SEASON & MOVIE SWITCHER */}
-      {watchOrder.length > 1 && (
-        <FranchiseSeasonSwitcher items={watchOrder} currentAnimeId={anime.id} />
-      )}
-
-      {/* DISCRETE AD BANNER */}
-      <SafeAdSlot slotKey="watch_below_controls" />
-
-      {/* EPISODE DROPSHIP MERCH SHOWCASE */}
-      <EpisodeMerchShowcase animeId={anime.id} animeTitle={anime.canonicalTitle} />
-
-      {/* SPOILER-MASKED EPISODE DISCUSSION FEED */}
-      <EpisodeDiscussion
-        episodeId={episode.id}
-        episodeNumber={episode.displayNumber}
+      <WatchClient
+        episode={episode}
+        anime={anime}
+        watchOrder={watchOrder}
+        allEpisodes={allEpisodes}
+        prevEpisode={prevEpisode}
+        nextEpisode={nextEpisode}
       />
-    </div>
+    </>
   );
 }

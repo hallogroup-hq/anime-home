@@ -1,250 +1,120 @@
-'use client';
-
-import { useState, useMemo, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { Metadata } from 'next';
 import { db } from '@/lib/services/store';
-import { AnimeCard } from '@/components/catalog/AnimeCard';
-import { Search, X, SlidersHorizontal, RotateCcw } from 'lucide-react';
-import { MediaType } from '@/types';
+import { CatalogClient } from '@/components/catalog/CatalogClient';
 
-function CatalogContent() {
-  const searchParams = useSearchParams();
-  const initialQuery = searchParams.get('q') || '';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://anime-home-psi.vercel.app';
 
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [selectedGenre, setSelectedGenre] = useState<string>('Semua');
-  const [selectedStatus, setSelectedStatus] = useState<string>('Semua');
-  const [selectedYear, setSelectedYear] = useState<string>('Semua');
-  const [selectedSeason, setSelectedSeason] = useState<string>('Semua');
-  const [selectedFormat, setSelectedFormat] = useState<string>('Semua');
-  const [sortBy, setSortBy] = useState<'popular' | 'latest' | 'title_asc'>('popular');
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+export const metadata: Metadata = {
+  title: 'Katalog Anime Sub Indo Terlengkap — Genre, Musim, Status & Watch Order',
+  description: 'Jelajahi seluruh koleksi anime subtitle Indonesia di Anime Home. Filter berdasarkan genre (Action, Adventure, Fantasy, Drama), format TV dan Movie, tahun rilis, dan status tayang.',
+  keywords: [
+    'katalog anime sub indo',
+    'daftar anime lengkap',
+    'nonton anime sub indo terlengkap',
+    'anime action sub indo',
+    'anime movie sub indo',
+    'urutan nonton anime indonesia',
+    'anime ongoing dan tamat',
+    'anime home',
+  ],
+  alternates: {
+    canonical: `${siteUrl}/anime`,
+  },
+  openGraph: {
+    title: 'Katalog Anime Sub Indo Terlengkap — Anime Home',
+    description: 'Koleksi ribuan episode anime subtitle Indonesia dengan multi-server video player dan filter lengkap.',
+    url: `${siteUrl}/anime`,
+    siteName: 'Anime Home',
+    locale: 'id_ID',
+    type: 'website',
+    images: [
+      {
+        url: '/banners/anime-home-promo-banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'Katalog Anime Sub Indo Lengkap Anime Home',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Katalog Anime Sub Indo Terlengkap — Anime Home',
+    description: 'Cari dan tonton anime favoritmu dengan kualitas hingga 1080p dan multi-server cadangan.',
+    images: ['/banners/anime-home-promo-banner.png'],
+    creator: '@AnimeHomeID',
+  },
+};
 
-  useEffect(() => {
-    if (initialQuery) {
-      setSearchQuery(initialQuery);
-    }
-  }, [initialQuery]);
+export default function AnimeCatalogPage() {
+  const animeList = db.getAnimeList();
 
-  const genres = ['Semua', 'Action', 'Adventure', 'Fantasy', 'Drama', 'Comedy', 'Sci-Fi', 'Supernatural'];
-  const statuses = [
-    { label: 'Semua Status', value: 'Semua' },
-    { label: 'Sedang Tayang', value: 'airing' },
-    { label: 'Tamat', value: 'completed' },
-  ];
-  const years = ['Semua', '2024', '2023', '2022', '2021', '2020'];
-  const seasons = ['Semua', 'Winter', 'Spring', 'Summer', 'Fall'];
-  const formats = ['Semua', 'TV', 'Movie', 'OVA', 'ONA'];
-  const sortOptions = [
-    { label: 'Paling Populer', value: 'popular' },
-    { label: 'Rilis Terbaru', value: 'latest' },
-    { label: 'Judul (A - Z)', value: 'title_asc' },
-  ];
-
-  const handleResetFilters = () => {
-    setSearchQuery('');
-    setSelectedGenre('Semua');
-    setSelectedStatus('Semua');
-    setSelectedYear('Semua');
-    setSelectedSeason('Semua');
-    setSelectedFormat('Semua');
-    setSortBy('popular');
+  // 1. Schema.org CollectionPage & ItemList
+  const jsonLdCatalog = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Katalog Anime Subtitle Indonesia',
+    description: 'Daftar serial dan film anime subtitle Indonesia terlengkap di Anime Home.',
+    url: `${siteUrl}/anime`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: animeList.length,
+      itemListElement: animeList.slice(0, 50).map((anime, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${siteUrl}/anime/${anime.slug}`,
+        name: anime.canonicalTitle,
+      })),
+    },
   };
 
-  const hasActiveFilters = 
-    searchQuery !== '' || 
-    selectedGenre !== 'Semua' || 
-    selectedStatus !== 'Semua' || 
-    selectedYear !== 'Semua' || 
-    selectedSeason !== 'Semua' || 
-    selectedFormat !== 'Semua' || 
-    sortBy !== 'popular';
-
-  const filteredAnime = useMemo(() => {
-    return db.getAnimeList({
-      query: searchQuery || undefined,
-      genre: selectedGenre !== 'Semua' ? selectedGenre : undefined,
-      status: selectedStatus !== 'Semua' ? selectedStatus : undefined,
-      year: selectedYear !== 'Semua' ? Number(selectedYear) : undefined,
-      seasonPeriod: selectedSeason !== 'Semua' ? selectedSeason : undefined,
-      mediaType: selectedFormat !== 'Semua' ? (selectedFormat as MediaType) : undefined,
-      sortBy,
-    });
-  }, [searchQuery, selectedGenre, selectedStatus, selectedYear, selectedSeason, selectedFormat, sortBy]);
+  // 2. Schema.org BreadcrumbList
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Katalog Anime',
+        item: `${siteUrl}/anime`,
+      },
+    ],
+  };
 
   return (
-    <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
-      {/* Header & Search */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-xl sm:text-2xl font-black text-white">
-            Katalog Anime
-          </h1>
-          <p className="text-xs text-zinc-400 mt-0.5">
-            Jelajahi seluruh anime terlengkap dengan filter multi-kriteria dan urutan tontonan.
-          </p>
-        </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdCatalog) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
 
-        <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 pointer-events-none" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Cari judul (Romaji, Inggris, Indonesia)..."
-            className="w-full rounded-xl bg-zinc-900 border border-white/[0.08] py-2 pl-10 pr-9 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-white cursor-pointer"
-            >
-              <X className="h-3.5 w-3.5" />
-            </button>
-          )}
-        </div>
-      </div>
+      {/* Semantic GEO text block for AI and search bots */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Katalog Lengkap Serial dan Film Anime Sub Indo</h2>
+        <p>
+          Menampilkan total {animeList.length} judul anime terindeks dengan takarir bahasa Indonesia terverifikasi,
+          multi-server cadangan, dan urutan kronologis penayangan.
+        </p>
+        <ul>
+          {animeList.slice(0, 30).map((a) => (
+            <li key={a.id}>
+              {a.canonicalTitle} ({a.mediaType}, {a.year}) — {a.genres.join(', ')} — {a.airingStatus}
+            </li>
+          ))}
+        </ul>
+      </section>
 
-      {/* Primary Genre Chips */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-        {genres.map((g) => (
-          <button
-            key={g}
-            onClick={() => setSelectedGenre(g)}
-            className={`rounded-lg px-3 py-1.5 font-medium whitespace-nowrap transition-colors cursor-pointer ${
-              selectedGenre === g
-                ? 'bg-white text-black font-bold shadow-sm'
-                : 'bg-zinc-900 text-zinc-400 hover:text-white'
-            }`}
-          >
-            {g}
-          </button>
-        ))}
-      </div>
-
-      {/* Filter Control Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-y border-white/[0.06] py-3 text-xs bg-zinc-900/30 px-3.5 rounded-xl">
-        <div className="flex flex-wrap items-center gap-2.5">
-          {/* Status Filter */}
-          <select
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-            className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 focus:outline-none cursor-pointer"
-          >
-            {statuses.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-
-          {/* Year Filter */}
-          <select
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 focus:outline-none cursor-pointer"
-          >
-            <option value="Semua">Semua Tahun</option>
-            {years.filter(y => y !== 'Semua').map((y) => (
-              <option key={y} value={y}>{y}</option>
-            ))}
-          </select>
-
-          {/* Season Filter */}
-          <select
-            value={selectedSeason}
-            onChange={(e) => setSelectedSeason(e.target.value)}
-            className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 focus:outline-none cursor-pointer"
-          >
-            <option value="Semua">Semua Musim</option>
-            {seasons.filter(s => s !== 'Semua').map((s) => (
-              <option key={s} value={s}>Musim {s}</option>
-            ))}
-          </select>
-
-          {/* Format Filter */}
-          <select
-            value={selectedFormat}
-            onChange={(e) => setSelectedFormat(e.target.value)}
-            className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-300 focus:outline-none cursor-pointer"
-          >
-            <option value="Semua">Semua Format</option>
-            {formats.filter(f => f !== 'Semua').map((f) => (
-              <option key={f} value={f}>{f}</option>
-            ))}
-          </select>
-
-          {/* Reset Filters Button */}
-          {hasActiveFilters && (
-            <button
-              onClick={handleResetFilters}
-              className="flex items-center gap-1 text-[11px] font-semibold text-red-400 hover:text-red-300 px-2 py-1 rounded transition-colors cursor-pointer"
-            >
-              <RotateCcw className="h-3 w-3" />
-              <span>Reset Filter</span>
-            </button>
-          )}
-        </div>
-
-        {/* Sort Dropdown */}
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] text-zinc-500 font-medium hidden sm:inline">Urutkan:</span>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
-            className="rounded-lg bg-zinc-900 border border-white/[0.08] px-3 py-1.5 text-xs font-semibold text-zinc-200 focus:outline-none cursor-pointer"
-          >
-            {sortOptions.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Results Header Count */}
-      <div className="flex items-center justify-between text-xs text-zinc-400 px-1">
-        <span>Menampilkan <strong className="text-white">{filteredAnime.length}</strong> judul anime</span>
-      </div>
-
-      {/* Anime Grid */}
-      <div>
-        {filteredAnime.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            {filteredAnime.map((anime) => (
-              <AnimeCard key={anime.id} anime={anime} />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-zinc-900/40 border border-white/[0.04] mt-2">
-            <p className="text-sm font-semibold text-zinc-300">
-              Tidak ada anime yang cocok dengan filter yang dipilih.
-            </p>
-            <p className="text-xs text-zinc-500 mt-1 max-w-sm">
-              Coba gunakan kata kunci lain atau klik &quot;Reset Filter&quot; untuk menampilkan seluruh katalog.
-            </p>
-            <button
-              onClick={handleResetFilters}
-              className="mt-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 px-4 py-2 text-xs font-semibold text-white transition-colors cursor-pointer"
-            >
-              Reset Semua Filter
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default function CatalogPage() {
-  return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-[50vh] text-xs text-zinc-500">
-        Memuat katalog anime...
-      </div>
-    }>
-      <CatalogContent />
-    </Suspense>
+      <CatalogClient />
+    </>
   );
 }

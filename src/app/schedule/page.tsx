@@ -1,29 +1,52 @@
-'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
+import { Metadata } from 'next';
 import { db } from '@/lib/services/store';
-import { Clock, Play, Calendar } from 'lucide-react';
+import { ScheduleClient } from '@/components/schedule/ScheduleClient';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://anime-home-psi.vercel.app';
+
+export const metadata: Metadata = {
+  title: 'Jadwal Rilis Anime Ongoing Sub Indo Lengkap (WIB)',
+  description: 'Jadwal tayang anime on-going mingguan terlengkap dalam zona Waktu Indonesia Barat (WIB). Ketahui jam rilis Detective Conan S30, Blue Lock, Dandadan, Bleach, dan One Piece sub Indo.',
+  keywords: [
+    'jadwal rilis anime wib',
+    'jadwal tayang anime sub indo',
+    'jadwal anime ongoing',
+    'jam rilis anime samehadaku otakudesu',
+    'jadwal anime conan season 30',
+    'jadwal rilis one piece wib',
+    'anime home schedule',
+  ],
+  alternates: {
+    canonical: `${siteUrl}/schedule`,
+  },
+  openGraph: {
+    title: 'Jadwal Rilis Anime Ongoing Sub Indo (WIB) — Anime Home',
+    description: 'Pantau jam tayang anime ongoing mingguan zona Waktu Indonesia Barat (WIB). Terupdate otomatis.',
+    url: `${siteUrl}/schedule`,
+    siteName: 'Anime Home',
+    locale: 'id_ID',
+    type: 'website',
+    images: [
+      {
+        url: '/banners/anime-home-promo-banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'Jadwal Rilis Anime Sub Indo Anime Home',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jadwal Rilis Anime Sub Indo Lengkap (WIB)',
+    description: 'Update jadwal rilis anime ongoing setiap hari Senin sampai Minggu dalam waktu WIB.',
+    images: ['/banners/anime-home-promo-banner.png'],
+    creator: '@AnimeHomeID',
+  },
+};
 
 export default function SchedulePage() {
-  const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-  const todayName = DAY_NAMES[new Date().getDay()] || 'Jumat';
-  const [selectedDay, setSelectedDay] = useState<string>(todayName);
-
-  const days = [
-    { key: 'Semua', label: 'Semua Hari' },
-    { key: 'Senin', label: 'Senin', isToday: todayName === 'Senin' },
-    { key: 'Selasa', label: 'Selasa', isToday: todayName === 'Selasa' },
-    { key: 'Rabu', label: 'Rabu', isToday: todayName === 'Rabu' },
-    { key: 'Kamis', label: 'Kamis', isToday: todayName === 'Kamis' },
-    { key: 'Jumat', label: 'Jumat', isToday: todayName === 'Jumat' },
-    { key: 'Sabtu', label: 'Sabtu', isToday: todayName === 'Sabtu' },
-    { key: 'Minggu', label: 'Minggu', isToday: todayName === 'Minggu' },
-  ];
-
   const allAnime = db.getAnimeList();
 
-  // Day order based on real release cycle
   const DAY_ORDER: Record<string, number> = {
     'Senin': 1,
     'Selasa': 2,
@@ -35,132 +58,89 @@ export default function SchedulePage() {
   };
 
   const ongoingAnime = allAnime
-    .filter(a => a.airingStatus === 'airing' || Boolean(a.scheduleWIB))
+    .filter((a) => a.airingStatus === 'airing' || Boolean(a.scheduleWIB))
     .sort((a, b) => {
       const dayA = a.scheduleWIB?.split(',')[0]?.trim() || '';
       const dayB = b.scheduleWIB?.split(',')[0]?.trim() || '';
       const weightA = DAY_ORDER[dayA] || 99;
       const weightB = DAY_ORDER[dayB] || 99;
       return weightA - weightB;
+    })
+    .map((anime) => {
+      const eps = db.getEpisodesByAnimeId(anime.id);
+      const latestEpisode = eps.length > 0 ? eps[eps.length - 1] : null;
+      return { anime, latestEpisode };
     });
 
-  const displayedAnime = selectedDay === 'Semua'
-    ? ongoingAnime
-    : ongoingAnime.filter(a => a.scheduleWIB?.includes(selectedDay));
+  // 1. Schema.org BreadcrumbList
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Jadwal Rilis Anime',
+        item: `${siteUrl}/schedule`,
+      },
+    ],
+  };
+
+  // 2. Schema.org BroadcastEvent Schedule
+  const jsonLdSchedule = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Jadwal Rilis Anime Ongoing Sub Indo (WIB)',
+    description: 'Daftar serial anime on-going yang tayang mingguan di Anime Home zona Waktu Indonesia Barat.',
+    itemListElement: ongoingAnime.map(({ anime }, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: `${anime.canonicalTitle} (${anime.scheduleWIB || 'Mingguan WIB'})`,
+      url: `${siteUrl}/anime/${anime.slug}`,
+    })),
+  };
 
   return (
-    <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
-      {/* Header */}
-      <div>
-        <h1 className="text-xl sm:text-2xl font-black text-white">
-          Jadwal Rilis Anime
-        </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 mt-0.5">
-          Waktu penayangan otomatis dalam zona Waktu Indonesia Barat (WIB).
-        </p>
-      </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchedule) }}
+      />
 
-      {/* Day Navigation Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-white/[0.06]">
-        {days.map((d) => {
-          const isSelected = selectedDay === d.key;
-          const count = d.key === 'Semua'
-            ? ongoingAnime.length
-            : ongoingAnime.filter(a => a.scheduleWIB?.includes(d.key)).length;
+      {/* Semantic GEO text table for search crawlers */}
+      <section className="sr-only" aria-hidden="false">
+        <h2>Tabel Jadwal Rilis Anime Ongoing Sub Indo (WIB)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Judul Anime</th>
+              <th>Jadwal Siaran WIB</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ongoingAnime.map(({ anime }) => (
+              <tr key={anime.id}>
+                <td>{anime.canonicalTitle}</td>
+                <td>{anime.scheduleWIB || 'TBA'}</td>
+                <td>{anime.airingStatus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
 
-          return (
-            <button
-              key={d.key}
-              onClick={() => setSelectedDay(d.key)}
-              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                isSelected
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
-                  : 'bg-zinc-900 border border-white/[0.06] text-zinc-400 hover:text-white hover:bg-zinc-800'
-              }`}
-            >
-              <span>{d.label}</span>
-              <span className={`text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>
-                ({count})
-              </span>
-              {d.isToday && (
-                <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${
-                  isSelected ? 'bg-black/30 text-white' : 'bg-red-600/20 text-red-400'
-                }`}>
-                  Hari Ini
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Shows Grid */}
-      <div className="flex flex-col gap-3">
-        {displayedAnime.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {displayedAnime.map((anime) => {
-              const eps = db.getEpisodesByAnimeId(anime.id);
-              const latestEp = eps.length > 0 ? eps[eps.length - 1] : null;
-              const epNum = latestEp?.title?.match(/Episode\s+(\d+)/i)?.[1] || latestEp?.displayNumber || '1';
-              const watchHref = latestEp ? `/watch/${latestEp.id}` : `/anime/${anime.slug}`;
-              const dayPart = anime.scheduleWIB?.split(',')[0]?.trim() || '';
-              const timePart = anime.scheduleWIB?.split(',')[1]?.trim() || anime.scheduleWIB || '20:00 WIB';
-
-              return (
-                <div
-                  key={anime.id}
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 border border-white/[0.06] hover:border-zinc-700 hover:bg-zinc-900/90 transition-all group"
-                >
-                  <Link
-                    href={`/anime/${anime.slug}`}
-                    className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer"
-                  >
-                    <img
-                      src={anime.posterUrl}
-                      alt={anime.canonicalTitle}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%2318181b"/><text x="50%" y="50%" fill="%2371717a" font-size="14" font-family="sans-serif" text-anchor="middle">ANIME HOME</text></svg>';
-                      }}
-                      className="h-16 w-12 rounded-lg object-cover shrink-0 bg-zinc-800"
-                    />
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-xs font-bold text-white truncate group-hover:text-red-500 transition-colors">
-                        {anime.canonicalTitle}
-                      </span>
-                      <span className="text-[11px] text-zinc-400 mt-0.5">
-                        Episode {epNum} Subtitle Indonesia
-                      </span>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] text-zinc-400 flex items-center gap-1 font-medium">
-                          <Clock className="h-3 w-3 text-red-500" />
-                          {dayPart ? `${dayPart}, ${timePart}` : timePart}
-                        </span>
-                        <span className="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.2 rounded font-semibold">
-                          Ongoing
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-
-                  <Link
-                    href={watchHref}
-                    className="p-2.5 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-red-600 hover:text-white transition-all shrink-0 ml-2 cursor-pointer shadow-sm group-hover:bg-red-600 group-hover:text-white"
-                    title={`Tonton Episode ${epNum}`}
-                  >
-                    <Play className="h-4 w-4 fill-current" />
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/40 p-12 text-center text-xs text-zinc-500 flex flex-col items-center gap-2">
-            <Calendar className="h-8 w-8 text-zinc-600" />
-            <span>Tidak ada jadwal rilis episode untuk hari {selectedDay}.</span>
-          </div>
-        )}
-      </div>
-    </div>
+      <ScheduleClient ongoingAnime={ongoingAnime} />
+    </>
   );
 }

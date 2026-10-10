@@ -2,18 +2,23 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'ANIME HOME — Anime Streaming Discovery Indonesia',
-    short_name: 'AnimeHome',
-    description: 'Platform streaming discovery, tracking, dan katalog multi-provider anime subtitle Indonesia.',
+    name: 'Anime Home — Streaming Anime Sub Indo',
+    short_name: 'Anime Home',
+    description: 'Platform streaming anime subtitle Indonesia multi-server terlengkap dan jadwal rilis WIB.',
     start_url: '/',
     display: 'standalone',
     background_color: '#090A0F',
     theme_color: '#090A0F',
     icons: [
       {
-        src: '/favicon.ico',
-        sizes: 'any',
-        type: 'image/x-icon',
+        src: '/brand/logo-square.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        src: '/brand/logo-square.png',
+        sizes: '512x512',
+        type: 'image/png',
       },
     ],
   };
