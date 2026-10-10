@@ -556,6 +556,7 @@ class AnimeHomeDataStore {
         host === 'kotakanimeid.link' || host.endsWith('.kotakanimeid.link') ||
         host === 'rpmvip.com' || host.endsWith('.rpmvip.com') ||
         host === 'yourupload.com' || host === 'www.yourupload.com' ||
+        host === 'video.sibnet.ru' || host.endsWith('.sibnet.ru') ||
         host === 'localhost' || host === '127.0.0.1';
 
       if (!isWhitelisted) {
