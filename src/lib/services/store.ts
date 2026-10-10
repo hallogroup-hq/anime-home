@@ -2,7 +2,7 @@ import {
   Anime, Episode, Provider, StreamVariant, AdCampaign, AdPlacement, 
   MerchItem, BrokenStreamReport, AuditLog, QualityLabel, HomepageConfig,
   MetadataIngestCandidate, FranchiseWatchOrderItem, AnimeCharacter,
-  EpisodeComment, UserProfile, MediaType, Season
+  EpisodeComment, UserProfile, MediaType, Season, MerchOrder, ChatMessage
 } from '@/types';
 import { 
   INITIAL_ANIME, INITIAL_EPISODES, INITIAL_PROVIDERS, 
@@ -10,6 +10,9 @@ import {
   INITIAL_MERCH_ITEMS, INITIAL_WATCH_ORDERS, INITIAL_CHARACTERS,
   INITIAL_COMMENTS, INITIAL_SEASONS
 } from '@/lib/data/seed';
+import { 
+  DROPSHIP_MERCH_ITEMS, INITIAL_ORDERS, INITIAL_CHAT_MESSAGES 
+} from '@/lib/data/dropship_merch';
 import liveData from '@/lib/data/live_data.json';
 import { computeSeasonReadiness, SeasonVerificationResult } from './seasonVerification';
 
@@ -36,8 +39,9 @@ class AnimeHomeDataStore {
   private providers: Provider[] = [...INITIAL_PROVIDERS];
   private variants: StreamVariant[] = [...LIVE_VARIANTS];
   private campaigns: AdCampaign[] = [...INITIAL_CAMPAIGNS];
-  private adPlacements: AdPlacement[] = [...INITIAL_AD_PLACEMENTS];
-  private merch: MerchItem[] = [...INITIAL_MERCH_ITEMS];
+  private merch: MerchItem[] = [...DROPSHIP_MERCH_ITEMS, ...INITIAL_MERCH_ITEMS];
+  private orders: MerchOrder[] = [...INITIAL_ORDERS];
+  private chatMessages: ChatMessage[] = [...INITIAL_CHAT_MESSAGES];
   private watchOrders: FranchiseWatchOrderItem[] = [...INITIAL_WATCH_ORDERS];
   private characters: AnimeCharacter[] = [...INITIAL_CHARACTERS];
   private comments: EpisodeComment[] = [...INITIAL_COMMENTS];
@@ -748,13 +752,119 @@ class AnimeHomeDataStore {
     return true;
   }
 
-  // --- MERCHANDISE DISCOVERY ---
+  // --- MERCHANDISE DISCOVERY & DROPSHIP STORE ---
   public getMerchByAnimeId(animeId: string): MerchItem[] {
+    // If anime is detective conan season (e.g. anime-conan-s30), also match anime-conan-s1 or general conan
+    if (animeId.startsWith('anime-conan-')) {
+      return this.merch.filter(m => m.animeId.startsWith('anime-conan-'));
+    }
     return this.merch.filter(m => m.animeId === animeId);
   }
 
   public getAllMerch(): MerchItem[] {
     return [...this.merch];
+  }
+
+  public getMerchById(id: string): MerchItem | undefined {
+    return this.merch.find(m => m.id === id);
+  }
+
+  public addMerch(item: MerchItem) {
+    this.merch.unshift(item);
+  }
+
+  public updateMerch(item: MerchItem) {
+    const idx = this.merch.findIndex(m => m.id === item.id);
+    if (idx !== -1) {
+      this.merch[idx] = { ...this.merch[idx], ...item };
+    }
+  }
+
+  public deleteMerch(id: string): boolean {
+    const idx = this.merch.findIndex(m => m.id === id);
+    if (idx !== -1) {
+      this.merch.splice(idx, 1);
+      return true;
+    }
+    return false;
+  }
+
+  // --- ORDERS MANAGEMENT ---
+  public getOrders(): MerchOrder[] {
+    return [...this.orders];
+  }
+
+  public getOrderById(id: string): MerchOrder | undefined {
+    return this.orders.find(o => o.id === id);
+  }
+
+  public createOrder(data: Omit<MerchOrder, 'id' | 'createdAt'>): MerchOrder {
+    const newOrder: MerchOrder = {
+      ...data,
+      id: `order-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      createdAt: new Date().toISOString(),
+    };
+    this.orders.unshift(newOrder);
+    return newOrder;
+  }
+
+  public updateOrderStatus(orderId: string, updates: { paymentStatus?: 'paid' | 'unpaid'; shippingStatus?: any; trackingNumber?: string }): MerchOrder | undefined {
+    const order = this.orders.find(o => o.id === orderId);
+    if (order) {
+      if (updates.paymentStatus) order.paymentStatus = updates.paymentStatus;
+      if (updates.shippingStatus) order.shippingStatus = updates.shippingStatus;
+      if (updates.trackingNumber !== undefined) order.trackingNumber = updates.trackingNumber;
+    }
+    return order;
+  }
+
+  // --- IN-PLATFORM LIVE SUPPORT CHAT ---
+  public getChatMessages(sessionId: string): ChatMessage[] {
+    return this.chatMessages.filter(m => m.sessionId === sessionId);
+  }
+
+  public getAllChatSessions(): { sessionId: string; customerName: string; lastMessage: string; timestamp: string; unreadCount: number }[] {
+    const sessionsMap = new Map<string, { sessionId: string; customerName: string; lastMessage: string; timestamp: string; unreadCount: number }>();
+    for (const msg of this.chatMessages) {
+      const existing = sessionsMap.get(msg.sessionId);
+      const isUnread = !msg.read && msg.sender === 'customer';
+      if (!existing) {
+        sessionsMap.set(msg.sessionId, {
+          sessionId: msg.sessionId,
+          customerName: msg.sender === 'customer' ? msg.senderName : 'Pengunjung',
+          lastMessage: msg.message,
+          timestamp: msg.timestamp,
+          unreadCount: isUnread ? 1 : 0,
+        });
+      } else {
+        if (new Date(msg.timestamp) > new Date(existing.timestamp)) {
+          existing.lastMessage = msg.message;
+          existing.timestamp = msg.timestamp;
+          if (msg.sender === 'customer') existing.customerName = msg.senderName;
+        }
+        if (isUnread) existing.unreadCount++;
+      }
+    }
+    return Array.from(sessionsMap.values()).sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  }
+
+  public sendChatMessage(data: Omit<ChatMessage, 'id' | 'timestamp' | 'read'>): ChatMessage {
+    const newMsg: ChatMessage = {
+      ...data,
+      id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      timestamp: new Date().toISOString(),
+      read: data.sender === 'admin',
+    };
+    this.chatMessages.push(newMsg);
+    return newMsg;
+  }
+
+  public markChatSessionAsRead(sessionId: string) {
+    for (const m of this.chatMessages) {
+      if (m.sessionId === sessionId) {
+        m.read = true;
+      }
+    }
   }
 
   // --- AUDIT TRAIL ---

@@ -8,6 +8,7 @@ import { MultiProviderPlayer } from '@/components/player/MultiProviderPlayer';
 import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
 import { EpisodeDiscussion } from '@/components/player/EpisodeDiscussion';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
+import { EpisodeMerchShowcase } from '@/components/merch/EpisodeMerchShowcase';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, ArrowLeft, Share2, Check } from 'lucide-react';
 
@@ -152,6 +153,9 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
 
       {/* DISCRETE AD BANNER */}
       <SafeAdSlot slotKey="watch_below_controls" />
+
+      {/* EPISODE DROPSHIP MERCH SHOWCASE */}
+      <EpisodeMerchShowcase animeId={anime.id} animeTitle={anime.canonicalTitle} />
 
       {/* SPOILER-MASKED EPISODE DISCUSSION FEED */}
       <EpisodeDiscussion

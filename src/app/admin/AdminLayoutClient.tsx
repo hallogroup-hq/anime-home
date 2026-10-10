@@ -45,6 +45,8 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
     { label: 'Ingest Metadata', href: '/admin/ingest' },
     { label: 'Health Monitoring', href: '/admin/monitoring' },
     { label: 'Takedown Hak Cipta', href: '/admin/rights' },
+    { label: 'Dropship & Merch', href: '/admin/merchandise' },
+    { label: 'Live Chat CS', href: '/admin/inbox' },
     { label: 'Iklan Sponsor', href: '/admin/ads' },
     { label: 'Log Audit', href: '/admin/audit' },
   ];

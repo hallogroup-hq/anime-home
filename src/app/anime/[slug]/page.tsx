@@ -9,6 +9,7 @@ import { WatchOrderGuide } from '@/components/franchise/WatchOrderGuide';
 import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
 import { CharacterList } from '@/components/catalog/CharacterList';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
+import { EpisodeMerchShowcase } from '@/components/merch/EpisodeMerchShowcase';
 import { setWatchlistStatus, getLocalWatchlist, removeFromWatchlist } from '@/lib/services/watchlist';
 import { Play, Bookmark, Share2, Check, Film, Users, ListVideo, Clock, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -233,47 +234,10 @@ export default function AnimeDetailPage({ params }: { params: Promise<{ slug: st
           )}
         </section>
 
-        {/* 6. MERCHANDISE IF ANY */}
-        {merchItems.length > 0 && (
-          <section className="flex flex-col gap-3 pt-4 border-t border-white/[0.06]">
-            <h3 className="text-sm font-bold text-zinc-400 uppercase tracking-wider">
-              Merchandise Terkait
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {merchItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.destinationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/60 border border-white/[0.06] hover:border-zinc-700 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%2318181b"/><text x="50%" y="50%" fill="%2371717a" font-size="16" font-family="sans-serif" text-anchor="middle">OFFICIAL MERCH</text></svg>';
-                      }}
-                      className="h-12 w-12 rounded-lg object-cover bg-zinc-800"
-                    />
-                    <div>
-                      <h4 className="text-xs font-semibold text-white">{item.name}</h4>
-                      <p className="text-xs text-zinc-400 font-medium mt-0.5">
-                        Rp {item.price.toLocaleString('id-ID')}
-                      </p>
-                      <span className="inline-block mt-1 text-[9px] font-semibold text-zinc-500 bg-zinc-800/80 px-1.5 py-0.5 rounded">
-                        Toko Resmi: {item.storeName}
-                      </span>
-                    </div>
-                  </div>
-                  <ExternalLink className="h-3.5 w-3.5 text-zinc-500" />
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* 6. OFFICIAL MERCHANDISE DROPSHIP SHOWCASE */}
+        <section className="pt-2">
+          <EpisodeMerchShowcase animeId={anime.id} animeTitle={anime.canonicalTitle} />
+        </section>
       </div>
     </div>
   );

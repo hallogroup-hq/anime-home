@@ -158,12 +158,57 @@ export interface MerchItem {
   animeId: string;
   animeTitle: string;
   price: number;
+  costPrice?: number;
   currency: string;
+  category?: 'apparel' | 'figure' | 'accessory' | 'poster';
   imageUrl: string;
   storeName: string;
   destinationUrl: string;
   isAffiliate: boolean;
   verificationState: 'verified' | 'stale';
+  supplierName?: string;
+  supplierUrl?: string;
+  stockStatus?: 'in_stock' | 'pre_order' | 'out_of_stock';
+  variants?: string[];
+  description?: string;
+}
+
+export interface MerchOrder {
+  id: string;
+  merchId: string;
+  merchName: string;
+  merchImage: string;
+  animeTitle: string;
+  customerName: string;
+  customerContact: string;
+  shippingAddress: string;
+  city: string;
+  selectedVariant: string;
+  quantity: number;
+  totalAmount: number;
+  costAmount: number;
+  profitAmount: number;
+  paymentMethod: 'qris';
+  paymentStatus: 'paid' | 'unpaid';
+  shippingStatus: 'pending' | 'processing' | 'shipped' | 'delivered';
+  trackingNumber?: string;
+  createdAt: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  sessionId: string;
+  sender: 'customer' | 'admin';
+  senderName: string;
+  message: string;
+  merchRef?: {
+    id: string;
+    name: string;
+    imageUrl: string;
+    price: number;
+  };
+  timestamp: string;
+  read: boolean;
 }
 
 export interface BrokenStreamReport {

@@ -3,6 +3,7 @@ import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { Footer } from '@/components/layout/Footer';
+import { LiveSupportWidget } from '@/components/chat/LiveSupportWidget';
 
 export const metadata: Metadata = {
   title: 'ANIME HOME — Streaming Discovery & Tracking Anime Indonesia',
@@ -35,6 +36,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BottomNav />
+        <LiveSupportWidget />
       </body>
     </html>
   );
