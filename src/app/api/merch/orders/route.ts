@@ -40,16 +40,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Data pemesanan tidak lengkap' }, { status: 400 });
     }
 
+    const cleanCustomerName = String(customerName).replace(/<[^>]*>/g, '').trim().slice(0, 100);
+    const cleanCustomerContact = String(customerContact).replace(/<[^>]*>/g, '').trim().slice(0, 50);
+    const cleanShippingAddress = String(shippingAddress).replace(/<[^>]*>/g, '').trim().slice(0, 500);
+    const cleanCity = String(city || 'Indonesia').replace(/<[^>]*>/g, '').trim().slice(0, 100);
+
     const newOrder = db.createOrder({
-      merchId,
-      merchName,
-      merchImage,
-      animeTitle: animeTitle || 'Anime Home Merch',
-      customerName,
-      customerContact,
-      shippingAddress,
-      city: city || 'Indonesia',
-      selectedVariant: selectedVariant || 'Standar',
+      merchId: String(merchId).slice(0, 80),
+      merchName: String(merchName || 'Merch Item').slice(0, 150),
+      merchImage: String(merchImage || '').slice(0, 500),
+      animeTitle: String(animeTitle || 'Anime Home Merch').slice(0, 150),
+      customerName: cleanCustomerName,
+      customerContact: cleanCustomerContact,
+      shippingAddress: cleanShippingAddress,
+      city: cleanCity,
+      selectedVariant: String(selectedVariant || 'Standar').slice(0, 50),
       quantity,
       totalAmount: totalAmount || 0,
       costAmount,

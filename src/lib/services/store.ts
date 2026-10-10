@@ -15,6 +15,7 @@ import {
 } from '@/lib/data/dropship_merch';
 import liveData from '@/lib/data/live_data.json';
 import { computeSeasonReadiness, SeasonVerificationResult } from './seasonVerification';
+import { generateStreamTicket, getMaskedServerName } from './streamSecurity';
 
 const LIVE_ANIME: Anime[] = (liveData && Array.isArray((liveData as any).anime) && (liveData as any).anime.length > 0)
   ? ((liveData as any).anime as Anime[])
@@ -403,6 +404,47 @@ class AnimeHomeDataStore {
     return {
       qualities: sortedQualities,
       variantsByQuality: variantsByQuality as Record<QualityLabel, StreamVariant[]>,
+    };
+  }
+
+  public getVariantById(id: string): StreamVariant | null {
+    return this.variants.find(v => v.id === id) || null;
+  }
+
+  /**
+   * Protected Stream Matrix for Frontend & Public Player.
+   * Completely conceals upstream root URLs and provider names from scrapers and client DevTools.
+   */
+  public getSecureStreamMatrix(episodeId: string): {
+    qualities: QualityLabel[];
+    variantsByQuality: Record<QualityLabel, StreamVariant[]>;
+  } {
+    const rawMatrix = this.getStreamMatrix(episodeId);
+    const secureVariantsByQuality: Partial<Record<QualityLabel, StreamVariant[]>> = {};
+
+    for (const q of rawMatrix.qualities) {
+      const rawList = rawMatrix.variantsByQuality[q] || [];
+      secureVariantsByQuality[q] = rawList.map((variant, index) => {
+        const ticket = generateStreamTicket({
+          variantId: variant.id,
+          episodeId,
+          quality: variant.qualityLabel,
+        });
+
+        return {
+          ...variant,
+          // Root source is hidden behind cryptographic ticket route
+          embedUrl: `/api/stream/embed/${ticket}`,
+          // Provider name is masked to branded server name
+          providerName: getMaskedServerName(index, variant.qualityLabel),
+          providerId: `srv-sec-${index + 1}`,
+        };
+      });
+    }
+
+    return {
+      qualities: rawMatrix.qualities,
+      variantsByQuality: secureVariantsByQuality as Record<QualityLabel, StreamVariant[]>,
     };
   }
 

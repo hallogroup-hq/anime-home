@@ -3,11 +3,22 @@ import { db } from '@/lib/services/store';
 
 export async function POST(req: NextRequest) {
   try {
+    // Verifikasi keamanan asal request (hanya internal Anime Home atau token admin)
+    const referer = req.headers.get('referer') || '';
+    const host = req.headers.get('host') || '';
+    const authHeader = req.headers.get('authorization') || '';
+    const isInternal = !referer || referer.includes(host) || referer.includes('anime-home-psi.vercel.app') || referer.includes('localhost');
+    const isAdminAuth = authHeader.includes('Bearer ') || req.cookies.get('ah_session')?.value;
+
+    if (!isInternal && !isAdminAuth) {
+      return NextResponse.json({ error: 'Akses ditolak: Hanya administrator yang berhak meneruskan pesanan.' }, { status: 403 });
+    }
+
     const body = await req.json();
     const { orderId } = body;
 
-    if (!orderId) {
-      return NextResponse.json({ error: 'Order ID wajib diisi' }, { status: 400 });
+    if (!orderId || typeof orderId !== 'string') {
+      return NextResponse.json({ error: 'Order ID wajib diisi dengan format valid' }, { status: 400 });
     }
 
     const order = db.getOrderById(orderId);

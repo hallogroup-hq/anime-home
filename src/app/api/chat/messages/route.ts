@@ -22,11 +22,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'sessionId and message are required' }, { status: 400 });
     }
 
+    const sanitizedMsg = String(message)
+      .replace(/<[^>]*>/g, '')
+      .trim()
+      .slice(0, 1000);
+
+    if (!sanitizedMsg) {
+      return NextResponse.json({ error: 'Pesan tidak boleh kosong' }, { status: 400 });
+    }
+
     const created = db.sendChatMessage({
-      sessionId,
-      sender: sender || 'customer',
-      senderName: senderName || (sender === 'admin' ? 'Anime Home Support' : 'Pengunjung'),
-      message,
+      sessionId: String(sessionId).slice(0, 100),
+      sender: sender === 'admin' ? 'admin' : 'customer',
+      senderName: String(senderName || (sender === 'admin' ? 'Anime Home Support' : 'Pengunjung')).slice(0, 50),
+      message: sanitizedMsg,
       merchRef,
     });
 

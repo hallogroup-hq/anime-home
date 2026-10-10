@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx tsx tests/verify-invariants.ts && npx tsx tests/verify-persistence-and-security.ts && npx tsx tests/verify-real-users-auth.ts && npx tsx tests/verify-conan-mal-catalog.ts && npx tsx tests/verify-ongoing-sync-pipeline.ts && npx tsx tests/verify-seo-geo.ts",
+    "test": "npx tsx tests/verify-invariants.ts && npx tsx tests/verify-persistence-and-security.ts && npx tsx tests/verify-real-users-auth.ts && npx tsx tests/verify-conan-mal-catalog.ts && npx tsx tests/verify-ongoing-sync-pipeline.ts && npx tsx tests/verify-seo-geo.ts && npx tsx tests/verify-stream-source-security.ts",
     "cron:ongoing": "npx tsx scripts/run_ongoing_pipeline.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",

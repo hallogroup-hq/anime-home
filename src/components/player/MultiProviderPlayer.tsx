@@ -26,8 +26,8 @@ export function MultiProviderPlayer({
   nextEpisodeId,
   nextEpisodeNumber,
 }: MultiProviderPlayerProps) {
-  // Ambil matriks streaming dinamis dari database untuk episode ini
-  const matrix = useMemo(() => db.getStreamMatrix(episodeId), [episodeId]);
+  // Ambil matriks streaming terproteksi (root URL & server asli disembunyikan dari scraper & client)
+  const matrix = useMemo(() => db.getSecureStreamMatrix(episodeId), [episodeId]);
 
   // Resolusi terpilih (default: 720p jika ada, atau Auto jika ada, atau resolusi pertama)
   const defaultQuality = useMemo(() => {
@@ -164,7 +164,8 @@ export function MultiProviderPlayer({
     );
   }
 
-  const embedUrl = adapter ? adapter.buildEmbedUrl(activeVariant.embedUrl) : activeVariant.embedUrl;
+  // URL terproteksi mengarah ke internal gateway (tiket terenkripsi)
+  const embedUrl = activeVariant.embedUrl;
 
   return (
     <>
@@ -182,8 +183,12 @@ export function MultiProviderPlayer({
       } ${
         isTheaterMode ? 'sm:-mx-8 lg:-mx-20 sm:w-[calc(100%+4rem)] lg:w-[calc(100%+10rem)]' : ''
       }`}>
-        {/* 1. VIDEO PLAYER VIEWPORT (16:9) */}
-        <div ref={playerViewportRef} className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl">
+        {/* 1. VIDEO PLAYER VIEWPORT (16:9) WITH ANTI-SCRAPE SHIELD */}
+        <div
+          ref={playerViewportRef}
+          onContextMenu={(e) => e.preventDefault()}
+          className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black border border-white/[0.08] shadow-2xl select-none"
+        >
           {/* Branded Top Mask Overlay to hide embed filenames and watermarks */}
           <div className="pointer-events-none absolute top-0 left-0 right-0 z-20">
             <div className="h-10 bg-[#090A0F] flex items-center justify-between px-4">
@@ -205,9 +210,10 @@ export function MultiProviderPlayer({
               key={activeVariant.id}
               src={embedUrl}
               title={`${animeTitle} - Ep ${episodeNumber}`}
-              className="h-full w-full border-0"
+              className="h-full w-full border-0 select-none"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
             />
           ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950 p-6 text-center">
@@ -282,7 +288,7 @@ export function MultiProviderPlayer({
                       : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                   }`}
                 >
-                  <span>{cleanName || `Server ${idx + 1}`}</span>
+                  <span>{server.providerName || `Server ${idx + 1}`}</span>
                   {isSelected && <Check className="h-3.5 w-3.5 text-black" />}
                 </button>
               );
