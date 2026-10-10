@@ -165,6 +165,22 @@ export const INITIAL_PROVIDERS: Provider[] = [
     apiAdapterKey: 'custom_embed',
     status: 'active',
   },
+  {
+    id: 'prov-youtube',
+    name: 'YouTube Official Stream',
+    domain: 'youtube.com',
+    providerType: 'embed',
+    apiAdapterKey: 'youtube',
+    status: 'active',
+  },
+  {
+    id: 'prov-sibnet',
+    name: 'Sibnet Cloud Player',
+    domain: 'video.sibnet.ru',
+    providerType: 'embed',
+    apiAdapterKey: 'custom_embed',
+    status: 'active',
+  },
   ...ONGOING_PROVIDERS,
 ];
 

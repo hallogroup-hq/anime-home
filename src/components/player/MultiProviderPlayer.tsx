@@ -43,11 +43,17 @@ export function MultiProviderPlayer({
     setSelectedQuality(defaultQuality);
   }, [defaultQuality]);
 
-  // Varian server pada resolusi yang aktif (prioritaskan stream nyata dan singkirkan placeholder)
+  // Varian server pada resolusi yang aktif (prioritaskan stream nyata, tapi simpan opsi server cadangan)
   const currentServers = useMemo(() => {
     const allInQ = matrix.variantsByQuality[selectedQuality] || [];
-    const realInQ = allInQ.filter(s => !s.embedUrl.startsWith('/embed/player'));
-    return realInQ.length > 0 ? realInQ : allInQ;
+    return [...allInQ].sort((a, b) => {
+      const aIsPlaceholder = a.embedUrl.startsWith('/embed/player');
+      const bIsPlaceholder = b.embedUrl.startsWith('/embed/player');
+      if (aIsPlaceholder !== bIsPlaceholder) {
+        return aIsPlaceholder ? 1 : -1;
+      }
+      return (b.priority || 0) - (a.priority || 0);
+    });
   }, [matrix.variantsByQuality, selectedQuality]);
 
   const [selectedVariantId, setSelectedVariantId] = useState<string>(

@@ -95,7 +95,7 @@ export default function WatchPage({ params }: { params: Promise<{ episodeId: str
           </Link>
         </div>
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {allEpisodes.map((ep) => {
+          {[...allEpisodes].sort((a, b) => b.ordinal - a.ordinal).map((ep) => {
             const isCurrent = ep.id === episode.id;
             const isPlayable = ep.watchabilityState === 'eligible_verified';
             return (
