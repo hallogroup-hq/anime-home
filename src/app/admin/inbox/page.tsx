@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from '@/types';
 import { 
-  MessageSquare, Send, User, Bot, Clock, CheckCheck, 
-  Sparkles, RefreshCw, Loader2, ArrowRight
+  MessageSquare, Send, User, Bot, Clock, 
+  RefreshCw, Loader2
 } from 'lucide-react';
 
 interface ChatSession {
@@ -86,7 +86,7 @@ export function AdminInboxPage() {
         body: JSON.stringify({
           sessionId: selectedSessionId,
           sender: 'admin',
-          senderName: 'Anime Home Support',
+          senderName: 'Customer Service',
           message: text,
         }),
       });
@@ -101,16 +101,16 @@ export function AdminInboxPage() {
   const selectedSession = sessions.find(s => s.sessionId === selectedSessionId);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 font-sans">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
-            <MessageSquare className="w-6 h-6 text-red-500" />
-            <span>Customer Support & Live Chat Inbox</span>
+          <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+            <MessageSquare className="w-6 h-6 text-red-600" />
+            <span>Customer Service & Inbox</span>
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-            Balas pertanyaan pembeli seputar pesanan merchandise dan bantuan streaming langsung di web.
+            Balas pesan pembeli seputar pesanan merchandise dan konfirmasi pengiriman secara langsung.
           </p>
         </div>
         <button
@@ -118,7 +118,7 @@ export function AdminInboxPage() {
             fetchSessions();
             if (selectedSessionId) fetchMessagesForSession(selectedSessionId);
           }}
-          className="p-2 rounded-xl bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-colors"
           title="Refresh pesan"
         >
           <RefreshCw className="w-4 h-4" />
@@ -126,17 +126,17 @@ export function AdminInboxPage() {
       </div>
 
       {/* Main Chat Interface */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[600px] bg-zinc-900/40 border border-white/[0.08] rounded-2xl overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[600px] bg-zinc-900/40 border border-zinc-800 rounded-2xl overflow-hidden">
         {/* Left Column: Sessions List */}
-        <div className="border-r border-white/[0.08] flex flex-col bg-zinc-950/40">
-          <div className="p-3.5 border-b border-white/[0.08] bg-zinc-900/60 flex items-center justify-between">
-            <span className="text-xs font-bold text-white uppercase tracking-wider">
+        <div className="border-r border-zinc-800 flex flex-col bg-zinc-950/40">
+          <div className="p-3.5 border-b border-zinc-800 bg-zinc-900/60 flex items-center justify-between">
+            <span className="text-xs font-semibold text-white uppercase tracking-wider">
               Daftar Obrolan ({sessions.length})
             </span>
-            <span className="text-[10px] text-zinc-500">Realtime</span>
+            <span className="text-[10px] text-zinc-500">Live</span>
           </div>
 
-          <div className="flex-1 overflow-y-auto divide-y divide-white/[0.04]">
+          <div className="flex-1 overflow-y-auto divide-y divide-zinc-800/40">
             {sessions.length === 0 ? (
               <div className="p-8 text-center text-xs text-zinc-500">
                 Belum ada percakapan masuk dari pengunjung.
@@ -150,26 +150,26 @@ export function AdminInboxPage() {
                     onClick={() => setSelectedSessionId(s.sessionId)}
                     className={`w-full p-3.5 text-left flex items-start gap-3 transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-red-600/10 border-l-2 border-red-500'
+                        ? 'bg-zinc-800/80 border-l-2 border-red-500'
                         : 'hover:bg-zinc-900/50'
                     }`}
                   >
-                    <div className="w-9 h-9 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-zinc-300 font-bold shrink-0 text-xs">
+                    <div className="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 font-semibold shrink-0 text-xs">
                       {s.customerName.slice(0, 1).toUpperCase()}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className={`text-xs font-bold truncate ${isSelected ? 'text-red-400' : 'text-white'}`}>
+                        <span className={`text-xs font-semibold truncate ${isSelected ? 'text-white' : 'text-zinc-300'}`}>
                           {s.customerName}
                         </span>
                         {s.unreadCount > 0 && (
-                          <span className="w-4 h-4 rounded-full bg-red-600 text-white text-[10px] font-black flex items-center justify-center">
+                          <span className="w-4 h-4 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">
                             {s.unreadCount}
                           </span>
                         )}
                       </div>
                       <p className="text-[11px] text-zinc-400 truncate">{s.lastMessage}</p>
-                      <span className="text-[9px] text-zinc-600 block mt-1">
+                      <span className="text-[9px] text-zinc-500 block mt-1">
                         {new Date(s.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>
@@ -185,9 +185,9 @@ export function AdminInboxPage() {
           {selectedSession ? (
             <>
               {/* Chat Header */}
-              <div className="p-3.5 border-b border-white/[0.08] bg-zinc-900/60 flex items-center justify-between">
+              <div className="p-3.5 border-b border-zinc-800 bg-zinc-900/60 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-zinc-300 font-bold text-xs">
+                  <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 font-semibold text-xs">
                     {selectedSession.customerName.slice(0, 1).toUpperCase()}
                   </div>
                   <div>
@@ -195,8 +195,8 @@ export function AdminInboxPage() {
                     <span className="text-[10px] text-zinc-500 font-mono">ID: {selectedSession.sessionId}</span>
                   </div>
                 </div>
-                <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Sesi Terhubung
+                <span className="text-[10px] bg-zinc-800 text-zinc-300 border border-zinc-700 px-2 py-0.5 rounded font-medium flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> Sesi Terhubung
                 </span>
               </div>
 
@@ -207,17 +207,17 @@ export function AdminInboxPage() {
                   return (
                     <div key={m.id} className={`flex flex-col ${isCust ? 'items-start' : 'items-end'}`}>
                       <span className="text-[9px] text-zinc-500 px-1 mb-0.5">
-                        {isCust ? m.senderName : 'Kamu (Admin Support)'} •{' '}
+                        {isCust ? m.senderName : 'CS Anime Home'} •{' '}
                         {new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
 
                       {/* Product Preview if customer asked about a product */}
                       {m.merchRef && (
-                        <div className="mb-1 p-2 rounded-lg bg-zinc-900 border border-white/10 flex items-center gap-2 max-w-[75%]">
-                          <img src={m.merchRef.imageUrl} alt="" className="w-8 h-8 rounded object-cover border border-white/10" />
+                        <div className="mb-1 p-2 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center gap-2 max-w-[75%]">
+                          <img src={m.merchRef.imageUrl} alt="" className="w-8 h-8 rounded object-cover border border-zinc-800" />
                           <div className="truncate">
                             <div className="text-[10px] font-bold text-white truncate">{m.merchRef.name}</div>
-                            <div className="text-[9px] text-emerald-400 font-semibold">
+                            <div className="text-[9px] text-white font-semibold">
                               Rp {m.merchRef.price.toLocaleString('id-ID')}
                             </div>
                           </div>
@@ -227,7 +227,7 @@ export function AdminInboxPage() {
                       <div
                         className={`max-w-[75%] px-3.5 py-2 rounded-2xl ${
                           isCust
-                            ? 'bg-zinc-900 text-zinc-200 border border-white/[0.08] rounded-bl-none'
+                            ? 'bg-zinc-900 text-zinc-200 border border-zinc-800 rounded-bl-none'
                             : 'bg-red-600 text-white rounded-br-none shadow-sm'
                         }`}
                       >
@@ -240,18 +240,18 @@ export function AdminInboxPage() {
               </div>
 
               {/* Reply Input Bar */}
-              <form onSubmit={handleSendReply} className="p-3 bg-zinc-900/90 border-t border-white/[0.08] flex items-center gap-2">
+              <form onSubmit={handleSendReply} className="p-3 bg-zinc-900 border-t border-zinc-800 flex items-center gap-2">
                 <input
                   type="text"
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
                   placeholder={`Balas ke ${selectedSession.customerName}...`}
-                  className="flex-1 px-3.5 py-2 rounded-xl bg-zinc-950 border border-white/10 text-white text-xs placeholder:text-zinc-600 focus:outline-none focus:border-red-500"
+                  className="flex-1 px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-xs placeholder:text-zinc-600 focus:outline-none focus:border-zinc-700"
                 />
                 <button
                   type="submit"
                   disabled={sending || !replyText.trim()}
-                  className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 disabled:opacity-40 text-white text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow"
+                  className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-40 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow"
                 >
                   {sending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
                   <span>Kirim</span>

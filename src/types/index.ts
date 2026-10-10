@@ -162,15 +162,19 @@ export interface MerchItem {
   currency: string;
   category?: 'apparel' | 'figure' | 'accessory' | 'poster';
   imageUrl: string;
+  galleryImages?: string[];
   storeName: string;
   destinationUrl: string;
   isAffiliate: boolean;
   verificationState: 'verified' | 'stale';
   supplierName?: string;
   supplierUrl?: string;
+  supplierPhone?: string;
   stockStatus?: 'in_stock' | 'pre_order' | 'out_of_stock';
   variants?: string[];
   description?: string;
+  specifications?: { label: string; value: string }[];
+  sizeChart?: { size: string; chest: number; length: number }[];
 }
 
 export interface MerchOrder {
@@ -191,6 +195,9 @@ export interface MerchOrder {
   paymentMethod: 'qris';
   paymentStatus: 'paid' | 'unpaid';
   shippingStatus: 'pending' | 'processing' | 'shipped' | 'delivered';
+  dropshipStatus?: 'pending_dispatch' | 'dispatched_to_supplier' | 'supplier_processing' | 'shipped';
+  supplierOrderId?: string;
+  supplierNotes?: string;
   trackingNumber?: string;
   createdAt: string;
 }

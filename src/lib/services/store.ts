@@ -808,12 +808,22 @@ class AnimeHomeDataStore {
     return newOrder;
   }
 
-  public updateOrderStatus(orderId: string, updates: { paymentStatus?: 'paid' | 'unpaid'; shippingStatus?: any; trackingNumber?: string }): MerchOrder | undefined {
+  public updateOrderStatus(orderId: string, updates: { 
+    paymentStatus?: 'paid' | 'unpaid'; 
+    shippingStatus?: any; 
+    trackingNumber?: string;
+    dropshipStatus?: 'pending_dispatch' | 'dispatched_to_supplier' | 'supplier_processing' | 'shipped';
+    supplierOrderId?: string;
+    supplierNotes?: string;
+  }): MerchOrder | undefined {
     const order = this.orders.find(o => o.id === orderId);
     if (order) {
       if (updates.paymentStatus) order.paymentStatus = updates.paymentStatus;
       if (updates.shippingStatus) order.shippingStatus = updates.shippingStatus;
       if (updates.trackingNumber !== undefined) order.trackingNumber = updates.trackingNumber;
+      if (updates.dropshipStatus) order.dropshipStatus = updates.dropshipStatus;
+      if (updates.supplierOrderId !== undefined) order.supplierOrderId = updates.supplierOrderId;
+      if (updates.supplierNotes !== undefined) order.supplierNotes = updates.supplierNotes;
     }
     return order;
   }

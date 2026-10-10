@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { db } from '@/lib/services/store';
 import { MerchItem } from '@/types';
-import { Search, ShoppingBag, Sparkles, ArrowRight, ShieldCheck, MessageSquare } from 'lucide-react';
+import { Search, ShoppingBag, ArrowRight } from 'lucide-react';
+import { ProductDetailModal } from '@/components/merch/ProductDetailModal';
 import { QuickCheckoutModal } from '@/components/merch/QuickCheckoutModal';
 
 export default function DiscoverPage() {
@@ -11,7 +12,8 @@ export default function DiscoverPage() {
   const [selectedFilter, setSelectedFilter] = useState('Semua');
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'apparel' | 'figure' | 'accessory'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [checkoutItem, setCheckoutItem] = useState<MerchItem | null>(null);
+  const [detailItem, setDetailItem] = useState<MerchItem | null>(null);
+  const [checkoutItem, setCheckoutItem] = useState<{ item: MerchItem; variant: string } | null>(null);
 
   const animeTitles = ['Semua', ...Array.from(new Set(merchItems.map(m => m.animeTitle)))];
 
@@ -31,26 +33,31 @@ export default function DiscoverPage() {
     }
   };
 
+  const handleProceedToCheckout = (item: MerchItem, selectedVariant: string) => {
+    setDetailItem(null);
+    setCheckoutItem({ item, variant: selectedVariant });
+  };
+
   const formatRupiah = (val: number) => {
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
   };
 
   return (
-    <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-20">
+    <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-20 font-sans">
       {/* Header & Search */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-              <ShoppingBag className="h-6 w-6 text-red-500" />
+          <div className="flex items-center gap-2.5">
+            <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+              <ShoppingBag className="h-6 w-6 text-red-600" />
               <span>Anime Home Store</span>
             </h1>
-            <span className="text-[10px] font-bold bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
-              <Sparkles className="w-2.5 h-2.5" /> Dropship Resmi
+            <span className="text-[10px] font-semibold bg-zinc-800 text-zinc-300 border border-zinc-700 px-2 py-0.5 rounded">
+              Official Merchandise
             </span>
           </div>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-            Koleksi kaos oversized aesthetic, hoodie, action figure, dan pernak-pernik resmi atas nama Anime Home Store.
+            Koleksi kaos oversized, hoodie, action figure, dan pernak-pernik resmi atas nama Anime Home Store.
           </p>
         </div>
 
@@ -62,57 +69,57 @@ export default function DiscoverPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari kaos, figure, Conan, Frieren..."
-            className="w-full rounded-xl bg-zinc-900 border border-white/[0.08] py-2 pl-9 pr-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500 transition-colors"
+            className="w-full rounded-xl bg-zinc-900 border border-zinc-800 py-2 pl-9 pr-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-colors"
           />
         </div>
       </div>
 
-      {/* Category Tabs */}
+      {/* Category Tabs - Clean without AI slop emojis */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
         <button
           onClick={() => setSelectedCategory('all')}
-          className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+          className={`px-3.5 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
             selectedCategory === 'all'
-              ? 'bg-red-600 text-white shadow-md shadow-red-600/30'
-              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/[0.06]'
+              ? 'bg-white text-zinc-950 font-semibold'
+              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'
           }`}
         >
           Semua Kategori
         </button>
         <button
           onClick={() => setSelectedCategory('apparel')}
-          className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+          className={`px-3.5 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
             selectedCategory === 'apparel'
-              ? 'bg-red-600 text-white shadow-md shadow-red-600/30'
-              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/[0.06]'
+              ? 'bg-white text-zinc-950 font-semibold'
+              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'
           }`}
         >
-          👕 Kaos & Hoodie DTF
+          Kaos & Hoodie
         </button>
         <button
           onClick={() => setSelectedCategory('figure')}
-          className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+          className={`px-3.5 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
             selectedCategory === 'figure'
-              ? 'bg-red-600 text-white shadow-md shadow-red-600/30'
-              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/[0.06]'
+              ? 'bg-white text-zinc-950 font-semibold'
+              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'
           }`}
         >
-          🎎 Action Figure & Nendoroid
+          Action Figure
         </button>
         <button
           onClick={() => setSelectedCategory('accessory')}
-          className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+          className={`px-3.5 py-1.5 rounded-xl font-medium transition-all cursor-pointer ${
             selectedCategory === 'accessory'
-              ? 'bg-red-600 text-white shadow-md shadow-red-600/30'
-              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/[0.06]'
+              ? 'bg-white text-zinc-950 font-semibold'
+              : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'
           }`}
         >
-          ✨ Aksesoris & Ganci
+          Aksesoris
         </button>
       </div>
 
       {/* Anime Filter Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-white/[0.06] scrollbar-none text-xs">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-zinc-800/80 scrollbar-none text-xs">
         {animeTitles.map((title) => {
           const isSelected = selectedFilter === title;
           const count = title === 'Semua' 
@@ -125,8 +132,8 @@ export default function DiscoverPage() {
               onClick={() => setSelectedFilter(title)}
               className={`rounded-xl px-3 py-1.5 font-medium whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                 isSelected
-                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-md'
-                  : 'bg-zinc-900 border border-white/[0.06] text-zinc-400 hover:text-white hover:bg-zinc-800'
+                  ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
+                  : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800'
               }`}
             >
               <span>{title}</span>
@@ -144,7 +151,8 @@ export default function DiscoverPage() {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col rounded-xl bg-zinc-900/90 border border-white/[0.06] overflow-hidden group hover:border-red-500/40 hover:bg-zinc-900 transition-all shadow-sm justify-between"
+              onClick={() => setDetailItem(item)}
+              className="flex flex-col rounded-xl bg-zinc-900/90 border border-zinc-800 overflow-hidden group hover:border-zinc-700 hover:bg-zinc-900 transition-all shadow-sm justify-between cursor-pointer"
             >
               <div>
                 <div className="relative aspect-square w-full overflow-hidden bg-zinc-950">
@@ -154,23 +162,19 @@ export default function DiscoverPage() {
                     loading="lazy"
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <span className="absolute bottom-2 left-2 rounded-md bg-black/80 backdrop-blur-xs px-2 py-0.5 text-[10px] font-medium text-zinc-200 line-clamp-1 max-w-[85%]">
+                  <span className="absolute bottom-2 left-2 rounded bg-black/80 backdrop-blur-xs px-2 py-0.5 text-[10px] font-medium text-zinc-200 line-clamp-1 max-w-[85%] border border-zinc-800">
                     {item.animeTitle}
-                  </span>
-                  <span className="absolute top-2 right-2 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 px-1.5 py-0.5 text-[9px] font-bold flex items-center gap-1">
-                    <ShieldCheck className="h-2.5 w-2.5" />
-                    <span>Garansi Toko</span>
                   </span>
                 </div>
 
                 <div className="p-3">
-                  <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest block mb-0.5">
-                    {item.category === 'figure' ? 'Action Figure' : item.category === 'accessory' ? 'Aksesoris' : 'Apparel DTF'}
+                  <span className="text-[9px] font-semibold text-zinc-500 uppercase tracking-wider block mb-0.5">
+                    {item.category === 'figure' ? 'Action Figure' : item.category === 'accessory' ? 'Aksesoris' : 'Apparel'}
                   </span>
-                  <h3 className="text-xs sm:text-sm font-semibold text-white line-clamp-2 leading-snug group-hover:text-red-400 transition-colors">
+                  <h3 className="text-xs sm:text-sm font-medium text-white line-clamp-2 leading-snug group-hover:text-red-400 transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-sm sm:text-base font-black text-emerald-400 mt-1.5">
+                  <p className="text-sm sm:text-base font-bold text-white mt-1.5">
                     {formatRupiah(item.price)}
                   </p>
                   <span className="text-[10px] text-zinc-400 block mt-0.5 truncate">
@@ -181,26 +185,42 @@ export default function DiscoverPage() {
 
               <div className="p-3 pt-0 space-y-1.5">
                 <button
-                  onClick={() => setCheckoutItem(item)}
-                  className="w-full flex items-center justify-center gap-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white py-2 text-xs font-bold transition-all cursor-pointer shadow-md shadow-red-600/20"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDetailItem(item);
+                  }}
+                  className="w-full flex items-center justify-center gap-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white py-2 text-xs font-medium transition-all cursor-pointer"
                 >
-                  <span>Beli Cepat (QRIS)</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <span>Lihat Detail</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-zinc-400" />
                 </button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-white/[0.06] bg-zinc-900/40 p-12 text-center text-xs text-zinc-500">
-          Tidak ada produk merchandise ditemukan untuk filter atau kata kunci &quot;{searchQuery || selectedFilter}&quot;.
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-12 text-center text-xs text-zinc-500">
+          Tidak ada produk merchandise ditemukan untuk kata kunci &quot;{searchQuery || selectedFilter}&quot;.
         </div>
+      )}
+
+      {/* Product Detail Modal */}
+      {detailItem && (
+        <ProductDetailModal
+          item={detailItem}
+          isOpen={true}
+          onClose={() => setDetailItem(null)}
+          onProceedToCheckout={handleProceedToCheckout}
+          onAskCS={handleOpenChat}
+        />
       )}
 
       {/* Quick Checkout Modal */}
       {checkoutItem && (
         <QuickCheckoutModal
-          item={checkoutItem}
+          item={checkoutItem.item}
+          initialVariant={checkoutItem.variant}
           onClose={() => setCheckoutItem(null)}
           onOpenChatWithMerch={handleOpenChat}
         />
