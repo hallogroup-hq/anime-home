@@ -14,23 +14,28 @@ interface EpisodeListProps {
 export function EpisodeList({ episodes, animeSlug, currentEpisodeId }: EpisodeListProps) {
   const [selectedRange, setSelectedRange] = useState<string>('all');
 
+  const sortedEpisodes = useMemo(() => {
+    return [...episodes].sort((a, b) => b.ordinal - a.ordinal);
+  }, [episodes]);
+
   const rangeChunks = useMemo(() => {
-    if (episodes.length <= 24) return [];
+    if (sortedEpisodes.length <= 24) return [];
     const chunks: Array<{ label: string; start: number; end: number }> = [];
-    for (let i = 0; i < episodes.length; i += 25) {
-      const start = i + 1;
-      const end = Math.min(i + 25, episodes.length);
-      chunks.push({ label: `${start}–${end}`, start: i, end });
+    for (let i = 0; i < sortedEpisodes.length; i += 25) {
+      const startEp = sortedEpisodes[i].displayNumber;
+      const endIdx = Math.min(i + 25, sortedEpisodes.length) - 1;
+      const endEp = sortedEpisodes[endIdx].displayNumber;
+      chunks.push({ label: `${startEp}–${endEp}`, start: i, end: i + 25 });
     }
     return chunks;
-  }, [episodes.length]);
+  }, [sortedEpisodes]);
 
   const displayedEpisodes = useMemo(() => {
-    if (selectedRange === 'all' || rangeChunks.length === 0) return episodes;
+    if (selectedRange === 'all' || rangeChunks.length === 0) return sortedEpisodes;
     const chunk = rangeChunks.find(c => c.label === selectedRange);
-    if (!chunk) return episodes;
-    return episodes.slice(chunk.start, chunk.end);
-  }, [episodes, selectedRange, rangeChunks]);
+    if (!chunk) return sortedEpisodes;
+    return sortedEpisodes.slice(chunk.start, chunk.end);
+  }, [sortedEpisodes, selectedRange, rangeChunks]);
 
   if (episodes.length === 0) {
     return (

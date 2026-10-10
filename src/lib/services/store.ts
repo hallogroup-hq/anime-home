@@ -554,6 +554,8 @@ class AnimeHomeDataStore {
         host === 'gdplayer.to' || host.endsWith('.gdplayer.to') ||
         host === 'gdriveplayer.to' || host.endsWith('.gdriveplayer.to') ||
         host === 'kotakanimeid.link' || host.endsWith('.kotakanimeid.link') ||
+        host === 'rpmvip.com' || host.endsWith('.rpmvip.com') ||
+        host === 'yourupload.com' || host === 'www.yourupload.com' ||
         host === 'localhost' || host === '127.0.0.1';
 
       if (!isWhitelisted) {
