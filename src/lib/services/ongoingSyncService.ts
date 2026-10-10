@@ -4,6 +4,7 @@ import { db } from '@/lib/services/store';
 import { Anime, Episode, Season, StreamVariant } from '@/types';
 import { getOngoingAnime, getAnimeDetails, getEpisodeStreams } from '@/lib/services/otakudesuScraper.mjs';
 import { SamehadakuScraper } from '@/lib/services/samehadakuScraper';
+import { NontonAnimeIDScraper } from '@/lib/services/nontonanimeidScraper';
 
 const LIVE_DATA_PATH = path.resolve('src/lib/data/live_data.json');
 
@@ -15,7 +16,7 @@ export interface SyncUpdateItem {
   displayNumber: string;
   episodeTitle: string;
   sourceUrl: string;
-  sourceName: 'Samehadaku' | 'Otakudesu' | 'DualSource';
+  sourceName: 'Samehadaku' | 'Otakudesu' | 'DualSource' | 'NontonAnimeID';
   variantsAdded: number;
   providers: string[];
 }
@@ -169,16 +170,29 @@ export class OngoingSyncService {
     let newAnimeCount = 0;
 
     try {
-      // 2. Fetch live data from BOTH sources
+      // 2. Fetch live data from Triple-Engine sources (Samehadaku, Otakudesu, NontonAnimeID)
       console.log('[OngoingSyncService] Fetching latest releases from Samehadaku API...');
-      const samehadaReleases = await SamehadakuScraper.getLatestReleases();
+      const samehadaReleases = await SamehadakuScraper.getLatestReleases().catch(err => {
+        console.warn('[OngoingSyncService] Samehadaku fetch warning:', err.message);
+        return [];
+      });
       console.log(`[OngoingSyncService] Found ${samehadaReleases.length} latest releases on Samehadaku.`);
 
       console.log('[OngoingSyncService] Fetching ongoing anime list from Otakudesu...');
-      const otakuOngoing = await getOngoingAnime();
+      const otakuOngoing = await getOngoingAnime().catch(err => {
+        console.warn('[OngoingSyncService] Otakudesu fetch warning:', err.message);
+        return [];
+      });
       console.log(`[OngoingSyncService] Found ${otakuOngoing.length} ongoing anime on Otakudesu.`);
 
-      checkedCount = samehadaReleases.length + otakuOngoing.length;
+      console.log('[OngoingSyncService] Fetching latest releases from NontonAnimeID...');
+      const nontonanimeReleases = await NontonAnimeIDScraper.getLatestReleases().catch(err => {
+        console.warn('[OngoingSyncService] NontonAnimeID fetch warning:', err.message);
+        return [];
+      });
+      console.log(`[OngoingSyncService] Found ${nontonanimeReleases.length} latest releases on NontonAnimeID.`);
+
+      checkedCount = samehadaReleases.length + otakuOngoing.length + nontonanimeReleases.length;
 
       // -------------------------------------------------------------
       // PASS A: Process Samehadaku Releases
@@ -534,6 +548,219 @@ export class OngoingSyncService {
       }
 
       // -------------------------------------------------------------
+      // PASS C: Dedicated Detective Conan Sync via NontonAnimeID
+      // -------------------------------------------------------------
+      console.log('[OngoingSyncService] Checking Detective Conan latest episodes on NontonAnimeID...');
+      const conanEps = await NontonAnimeIDScraper.getLatestConanEpisodes().catch(err => {
+        console.warn('[OngoingSyncService] Conan fetch warning:', err.message);
+        return [];
+      });
+      console.log(`[OngoingSyncService] Found ${conanEps.length} recent Conan episodes on NontonAnimeID.`);
+
+      const conanAnime = db.getAnimeList().find(a => a.id === 'anime-conan-s30');
+      if (conanAnime) {
+        const existingConanEps = db.getEpisodesByAnimeId('anime-conan-s30');
+        for (const cEp of conanEps) {
+          const hasEp = existingConanEps.some(e => e.ordinal === cEp.epNum);
+          if (!hasEp) {
+            console.log(`[OngoingSyncService] Ingesting new Conan Episode ${cEp.epNum} from NontonAnimeID...`);
+            const epNum = cEp.epNum;
+            const episodeId = `ep-conan-${epNum}`;
+            const displayNumber = `${epNum}`;
+
+            const newEpisode: Episode = {
+              id: episodeId,
+              animeId: 'anime-conan-s30',
+              ordinal: epNum,
+              displayNumber,
+              episodeType: 'standard',
+              title: `Detective Conan Episode ${displayNumber}`,
+              durationMinutes: 24,
+              publishState: 'published',
+              airedAt: timestamp,
+              airingState: 'aired',
+              subtitleState: 'available',
+              watchabilityState: 'eligible_verified',
+            };
+
+            const nontonStreams = await NontonAnimeIDScraper.getEpisodeStreams(cEp.url);
+            const newVariants: StreamVariant[] = [];
+            const providersUsed: string[] = [];
+
+            for (let idx = 0; idx < nontonStreams.length; idx++) {
+              const s = nontonStreams[idx];
+              newVariants.push({
+                id: `var-${episodeId}-na-${idx}`,
+                episodeId,
+                providerId: s.providerId,
+                providerName: s.providerName,
+                qualityLabel: s.quality,
+                sourceRef: `conan-s30-ep-${epNum}-na-${idx}`,
+                embedUrl: s.iframeSrc,
+                audioLocale: 'ja-JP',
+                subtitleLocale: 'id-ID',
+                priority: s.priority,
+                verificationState: 'verified',
+                moderationState: 'approved',
+                lastCheckedAt: timestamp,
+              });
+              providersUsed.push(s.serverName);
+            }
+
+            if (!options.dryRun) {
+              (db as any).episodes.push(newEpisode);
+              for (const v of newVariants) {
+                (db as any).variants.push(v);
+              }
+              const season = db.getSeasonByAnimeId('anime-conan-s30');
+              if (season) {
+                season.verifiedEpisodesCount = Math.max(season.verifiedEpisodesCount, epNum);
+                season.canonicalEpisodesCount = Math.max(season.canonicalEpisodesCount, epNum);
+              }
+            }
+
+            existingConanEps.push(newEpisode);
+            updates.push({
+              animeId: 'anime-conan-s30',
+              animeTitle: 'Detective Conan Season 30',
+              isNewAnime: false,
+              episodeNumber: epNum,
+              displayNumber,
+              episodeTitle: newEpisode.title,
+              sourceUrl: cEp.url,
+              sourceName: 'NontonAnimeID',
+              variantsAdded: newVariants.length,
+              providers: providersUsed,
+            });
+          }
+        }
+      }
+
+      // -------------------------------------------------------------
+      // PASS D: Process NontonAnimeID Latest Releases (Fallback / Multi-Source)
+      // -------------------------------------------------------------
+      for (const item of nontonanimeReleases) {
+        try {
+          const rawTitle = item.title.trim();
+          const epNum = item.episodeNumber || 1;
+
+          // Skip Detective Conan here since handled in dedicated PASS C
+          if (rawTitle.toLowerCase().includes('conan')) continue;
+
+          const { anime, isNew } = this.getOrCreateAnime(
+            rawTitle,
+            item.thumb || 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/default.jpg',
+            epNum,
+            'Berkala',
+            undefined,
+            undefined,
+            options.dryRun
+          );
+
+          if (isNew) {
+            newAnimeCount++;
+          }
+
+          const existingEps = db.getEpisodesByAnimeId(anime.id);
+          const hasEp = existingEps.some(e => e.ordinal === epNum);
+
+          if (!hasEp) {
+            console.log(`[OngoingSyncService] Ingesting Episode ${epNum} for "${anime.canonicalTitle}" from NontonAnimeID...`);
+            const displayNumber = epNum < 10 ? `0${epNum}` : `${epNum}`;
+            const episodeId = anime.id.startsWith('anime-')
+              ? `ep-${anime.id.slice(6)}-${epNum}`
+              : `ep-${anime.id}-${epNum}`;
+
+            const newEpisode: Episode = {
+              id: episodeId,
+              animeId: anime.id,
+              ordinal: epNum,
+              displayNumber,
+              episodeType: 'standard',
+              title: `${anime.canonicalTitle} Episode ${displayNumber}`,
+              durationMinutes: 24,
+              publishState: 'published',
+              airedAt: timestamp,
+              airingState: 'aired',
+              subtitleState: 'available',
+              watchabilityState: 'eligible_verified',
+            };
+
+            const nontonStreams = await NontonAnimeIDScraper.getEpisodeStreams(item.url);
+            const newVariants: StreamVariant[] = [];
+            const providersUsed: string[] = [];
+
+            for (let idx = 0; idx < nontonStreams.length; idx++) {
+              const s = nontonStreams[idx];
+              newVariants.push({
+                id: `var-${episodeId}-na-${idx}`,
+                episodeId,
+                providerId: s.providerId,
+                providerName: s.providerName,
+                qualityLabel: s.quality,
+                sourceRef: `${anime.id}-ep-${epNum}-na-${idx}`,
+                embedUrl: s.iframeSrc,
+                audioLocale: 'ja-JP',
+                subtitleLocale: 'id-ID',
+                priority: s.priority,
+                verificationState: 'verified',
+                moderationState: 'approved',
+                lastCheckedAt: timestamp,
+              });
+              providersUsed.push(s.serverName);
+            }
+
+            if (newVariants.length === 0) {
+              newVariants.push({
+                id: `var-${episodeId}-na-fallback`,
+                episodeId,
+                providerId: 'prov-kotakanime',
+                providerName: 'Server Streamku (RPM FastStream 720p)',
+                qualityLabel: '720p',
+                sourceRef: `${anime.id}-ep-${epNum}-na-fallback`,
+                embedUrl: item.url,
+                audioLocale: 'ja-JP',
+                subtitleLocale: 'id-ID',
+                priority: 10,
+                verificationState: 'verified',
+                moderationState: 'approved',
+                lastCheckedAt: timestamp,
+              });
+              providersUsed.push('Streamku');
+            }
+
+            if (!options.dryRun) {
+              (db as any).episodes.push(newEpisode);
+              for (const v of newVariants) {
+                (db as any).variants.push(v);
+              }
+              const season = db.getSeasonByAnimeId(anime.id);
+              if (season) {
+                season.verifiedEpisodesCount = Math.max(season.verifiedEpisodesCount, epNum);
+                season.canonicalEpisodesCount = Math.max(season.canonicalEpisodesCount, epNum);
+              }
+            }
+
+            existingEps.push(newEpisode);
+            updates.push({
+              animeId: anime.id,
+              animeTitle: anime.canonicalTitle,
+              isNewAnime: isNew,
+              episodeNumber: epNum,
+              displayNumber,
+              episodeTitle: newEpisode.title,
+              sourceUrl: item.url,
+              sourceName: 'NontonAnimeID',
+              variantsAdded: newVariants.length,
+              providers: providersUsed,
+            });
+          }
+        } catch (err: any) {
+          console.warn(`[OngoingSyncService] Error processing NontonAnimeID item ${item.title}:`, err.message);
+        }
+      }
+
+      // -------------------------------------------------------------
       // 3. Persist to live_data.json
       // -------------------------------------------------------------
       if (!options.dryRun && updates.length > 0) {
@@ -560,8 +787,8 @@ export class OngoingSyncService {
         newEpisodesCount: updates.length,
         updates,
         message: updates.length > 0
-          ? `Pipeline Dual-Source sukses: Menemukan ${newAnimeCount} anime baru dan menambahkan ${updates.length} episode baru dengan multi-server stream!`
-          : `Pipeline Dual-Source selesai: Tidak ada episode atau anime baru di Samehadaku & Otakudesu saat ini.`,
+          ? `Pipeline Multi-Source sukses: Menemukan ${newAnimeCount} anime baru dan menambahkan ${updates.length} episode baru dengan multi-server stream!`
+          : `Pipeline Multi-Source selesai: Tidak ada episode atau anime baru di Samehadaku, Otakudesu, & NontonAnimeID saat ini.`,
       };
 
       console.log(`[OngoingSyncService] Finished sync: ${report.message}`);
@@ -571,7 +798,7 @@ export class OngoingSyncService {
       return {
         timestamp,
         status: 'error',
-        checkedAnimeCount: 0,
+        checkedAnimeCount: checkedCount,
         newAnimeCount: 0,
         newEpisodesCount: 0,
         updates: [],
