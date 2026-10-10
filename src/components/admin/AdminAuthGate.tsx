@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { loginAction } from '@/lib/actions/authActions';
 
 export function AdminAuthGate({ onLoginSuccess }: { onLoginSuccess?: () => void }) {
-  const [email, setEmail] = useState('owner@animehome.id');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,24 +34,6 @@ export function AdminAuthGate({ onLoginSuccess }: { onLoginSuccess?: () => void 
     }
   };
 
-  const handleQuickLogin = async (roleEmail: string) => {
-    setEmail(roleEmail);
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await loginAction({ email: roleEmail, password: 'password123' });
-      if (res.success) {
-        window.location.reload();
-      } else {
-        setError(res.error || 'Autentikasi gagal');
-      }
-    } catch (err: any) {
-      setError(err.message || 'Terjadi kesalahan sistem');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#090A0F] text-zinc-100 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md bg-zinc-950 border border-white/[0.08] rounded-xl p-6 sm:p-8 shadow-2xl">
@@ -64,7 +46,7 @@ export function AdminAuthGate({ onLoginSuccess }: { onLoginSuccess?: () => void 
             ANIME HOME ADMIN GATE
           </h1>
           <p className="text-xs text-zinc-400">
-            Akses operasional terbatas. Memerlukan autentikasi identitas dan server-side RBAC.
+            Akses operasional terbatas. Memerlukan autentikasi identitas staf dan server-side RBAC.
           </p>
         </div>
 
@@ -78,15 +60,16 @@ export function AdminAuthGate({ onLoginSuccess }: { onLoginSuccess?: () => void 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-zinc-300 mb-1">
-              Email Staf / Akun
+              Email Staf / Akun Terverifikasi
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              autoComplete="username"
               className="w-full rounded-lg border border-white/[0.08] bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-red-500 focus:outline-none"
-              placeholder="owner@animehome.id"
+              placeholder="admin@animehome.id"
             />
           </div>
 
@@ -98,55 +81,31 @@ export function AdminAuthGate({ onLoginSuccess }: { onLoginSuccess?: () => void 
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
               className="w-full rounded-lg border border-white/[0.08] bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-red-500 focus:outline-none"
-              placeholder="••••••••"
+              placeholder="••••••••••••"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-red-600 py-2.5 text-xs font-bold text-white hover:bg-red-700 disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
+            className="w-full rounded-lg bg-red-600 py-2.5 text-xs font-bold text-white hover:bg-red-700 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-red-600/20"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>{loading ? 'Memverifikasi Identitas...' : 'Masuk ke Admin Console'}</span>
           </button>
         </form>
 
-        <div className="mt-6 pt-5 border-t border-white/[0.06]">
-          <span className="text-[11px] font-semibold text-zinc-500 block mb-2 uppercase tracking-wider">
-            Akses Cepat Pengujian RBAC (PostgreSQL Verified):
-          </span>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <button
-              onClick={() => handleQuickLogin('owner@animehome.id')}
-              className="p-2 rounded bg-zinc-900/80 border border-white/[0.06] hover:border-red-500/40 text-left transition-colors"
-            >
-              <div className="font-semibold text-zinc-200">Owner</div>
-              <div className="text-[10px] text-zinc-500">owner@animehome.id</div>
-            </button>
-            <button
-              onClick={() => handleQuickLogin('operator@animehome.id')}
-              className="p-2 rounded bg-zinc-900/80 border border-white/[0.06] hover:border-red-500/40 text-left transition-colors"
-            >
-              <div className="font-semibold text-zinc-200">Operator</div>
-              <div className="text-[10px] text-zinc-500">operator@animehome.id</div>
-            </button>
-            <button
-              onClick={() => handleQuickLogin('editor@animehome.id')}
-              className="p-2 rounded bg-zinc-900/80 border border-white/[0.06] hover:border-red-500/40 text-left transition-colors"
-            >
-              <div className="font-semibold text-zinc-200">Editor</div>
-              <div className="text-[10px] text-zinc-500">editor@animehome.id</div>
-            </button>
-            <button
-              onClick={() => handleQuickLogin('moderator@animehome.id')}
-              className="p-2 rounded bg-zinc-900/80 border border-white/[0.06] hover:border-red-500/40 text-left transition-colors"
-            >
-              <div className="font-semibold text-zinc-200">Moderator</div>
-              <div className="text-[10px] text-zinc-500">moderator@animehome.id</div>
-            </button>
+        <div className="mt-6 pt-4 border-t border-white/[0.06] text-center">
+          <div className="flex items-center justify-center gap-1.5 text-[11px] text-zinc-400 font-medium">
+            <Lock className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Sistem Keamanan Aktif: RBAC & Audit Trail</span>
           </div>
+          <p className="text-[10px] text-zinc-500 mt-1">
+            Percobaan login ilegal atau brute-force diblokir otomatis oleh server.
+          </p>
         </div>
 
         <div className="mt-5 text-center">

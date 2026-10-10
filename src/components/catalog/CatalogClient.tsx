@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
-import { Search, X, RotateCcw } from 'lucide-react';
+import { Search, X, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { MediaType } from '@/types';
 
 function CatalogContent() {
@@ -18,12 +18,18 @@ function CatalogContent() {
   const [selectedSeason, setSelectedSeason] = useState<string>('Semua');
   const [selectedFormat, setSelectedFormat] = useState<string>('Semua');
   const [sortBy, setSortBy] = useState<'popular' | 'latest' | 'title_asc'>('popular');
+  const [page, setPage] = useState<number>(1);
+  const ITEMS_PER_PAGE = 25;
 
   useEffect(() => {
     if (initialQuery) {
       setSearchQuery(initialQuery);
     }
   }, [initialQuery]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery, selectedGenre, selectedStatus, selectedYear, selectedSeason, selectedFormat, sortBy]);
 
   const genres = ['Semua', 'Action', 'Adventure', 'Fantasy', 'Drama', 'Comedy', 'Sci-Fi', 'Supernatural'];
   const statuses = [
@@ -48,6 +54,7 @@ function CatalogContent() {
     setSelectedSeason('Semua');
     setSelectedFormat('Semua');
     setSortBy('popular');
+    setPage(1);
   };
 
   const hasActiveFilters =
@@ -217,18 +224,73 @@ function CatalogContent() {
       {/* Results Header Count */}
       <div className="flex items-center justify-between text-xs text-zinc-400 px-1">
         <span>
-          Menampilkan <strong className="text-white">{filteredAnime.length}</strong> judul anime
+          Menampilkan <strong className="text-white">{filteredAnime.length > 0 ? (page - 1) * ITEMS_PER_PAGE + 1 : 0}–{Math.min(page * ITEMS_PER_PAGE, filteredAnime.length)}</strong> dari <strong className="text-white">{filteredAnime.length}</strong> judul anime (5 baris per halaman)
         </span>
+        {Math.ceil(filteredAnime.length / ITEMS_PER_PAGE) > 1 && (
+          <span className="text-zinc-500 hidden sm:inline">
+            Halaman {page} dari {Math.ceil(filteredAnime.length / ITEMS_PER_PAGE)}
+          </span>
+        )}
       </div>
 
       {/* Anime Grid */}
       <div>
         {filteredAnime.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            {filteredAnime.map((anime) => (
-              <AnimeCard key={anime.id} anime={anime} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+              {filteredAnime
+                .slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE)
+                .map((anime) => (
+                  <AnimeCard key={anime.id} anime={anime} />
+                ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {Math.ceil(filteredAnime.length / ITEMS_PER_PAGE) > 1 && (
+              <div className="flex items-center justify-center gap-1.5 pt-8 border-t border-white/[0.06] mt-6 flex-wrap">
+                <button
+                  onClick={() => {
+                    setPage(prev => Math.max(prev - 1, 1));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  disabled={page === 1}
+                  className="px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-xs font-semibold text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <span>Sebelumnya</span>
+                </button>
+
+                {Array.from({ length: Math.ceil(filteredAnime.length / ITEMS_PER_PAGE) }, (_, i) => i + 1).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => {
+                      setPage(p);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      page === p
+                        ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                        : 'bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800'
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+
+                <button
+                  onClick={() => {
+                    setPage(prev => Math.min(prev + 1, Math.ceil(filteredAnime.length / ITEMS_PER_PAGE)));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  disabled={page === Math.ceil(filteredAnime.length / ITEMS_PER_PAGE)}
+                  className="px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-xs font-semibold text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <span>Selanjutnya</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-zinc-900/40 border border-white/[0.04] mt-2">
             <p className="text-sm font-semibold text-zinc-300">

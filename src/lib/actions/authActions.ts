@@ -42,6 +42,8 @@ export async function requireRole(allowedRoles: UserRole[]) {
   return user;
 }
 
+const failedLoginAttempts = new Map<string, { count: number; lockedUntil: number }>();
+
 export async function loginAction(params: { email: string; password?: string }) {
   const email = params.email.toLowerCase().trim();
   const password = params.password || '';
@@ -54,22 +56,54 @@ export async function loginAction(params: { email: string; password?: string }) 
     return { success: false, error: 'Kata sandi wajib diisi.' };
   }
 
+  // Brute-force protection: Lock out after 5 consecutive failures
+  const now = Date.now();
+  const lockInfo = failedLoginAttempts.get(email);
+  if (lockInfo && lockInfo.lockedUntil > now) {
+    const minutesLeft = Math.ceil((lockInfo.lockedUntil - now) / 60000);
+    return { 
+      success: false, 
+      error: `Terlalu banyak percobaan login yang gagal. Akun dikunci sementara selama ${minutesLeft} menit demi keamanan.` 
+    };
+  }
+
   const user = await UserRepository.getUserByEmail(email);
 
   if (!user) {
     return { 
       success: false, 
-      error: 'Akun dengan email ini belum terdaftar. Silakan pilih tab "Daftar Akun Baru" untuk mendaftar.' 
+      error: 'Akun dengan email ini belum terdaftar atau kredensial salah.' 
     };
   }
 
-  // Verifikasi kata sandi
-  if (user.passwordHash) {
-    const inputHash = hashPassword(password);
-    if (inputHash !== user.passwordHash) {
-      return { success: false, error: 'Kata sandi salah. Silakan periksa kembali.' };
-    }
+  // Verifikasi ketat kata sandi: tidak diizinkan login tanpa password hash
+  if (!user.passwordHash) {
+    return { 
+      success: false, 
+      error: 'Akun staf belum memiliki kredensial terverifikasi. Hubungi administrator sistem.' 
+    };
   }
+
+  const inputHash = hashPassword(password);
+  if (inputHash !== user.passwordHash) {
+    const currentAttempts = (lockInfo?.count || 0) + 1;
+    if (currentAttempts >= 5) {
+      failedLoginAttempts.set(email, { count: currentAttempts, lockedUntil: now + 5 * 60 * 1000 });
+      return { 
+        success: false, 
+        error: 'Terlalu banyak percobaan gagal (5x). Akun dibekukan sementara selama 5 menit demi keamanan.' 
+      };
+    } else {
+      failedLoginAttempts.set(email, { count: currentAttempts, lockedUntil: 0 });
+    }
+    return { 
+      success: false, 
+      error: `Kata sandi salah. Percobaan tersisa: ${5 - currentAttempts} kali.` 
+    };
+  }
+
+  // Login berhasil: reset percobaan gagal
+  failedLoginAttempts.delete(email);
 
   const session = await UserRepository.createSession(user.id);
   try {

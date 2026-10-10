@@ -1,18 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { db } from '@/lib/services/store';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
 import { SafeAdSlot } from '@/components/ads/SafeAdSlot';
 import { getContinueWatchingList } from '@/lib/services/watchlist';
-import { Play, ChevronRight, Calendar, Sparkles } from 'lucide-react';
+import { Play, ChevronRight, ChevronLeft, Calendar, Sparkles, Layers } from 'lucide-react';
 
 export default function HomePage() {
   const allAnime = db.getAnimeList();
   const cmsConfig = db.getHomepageConfig();
   const [continueWatching, setContinueWatching] = useState<{ anime: any; episodeId: string }[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>('Semua');
+
+  // Pagination & 5-Row View Limit States (5 rows x 5 cards on desktop = 25 cards)
+  const ITEMS_PER_PAGE = 25;
+  const [ongoingPage, setOngoingPage] = useState<number>(1);
+  const [ongoingViewMode, setOngoingViewMode] = useState<'paged' | 'loadMore'>('paged');
+  const [ongoingLoadMoreCount, setOngoingLoadMoreCount] = useState<number>(25);
+
+  const [completedPage, setCompletedPage] = useState<number>(1);
+  const [completedViewMode, setCompletedViewMode] = useState<'paged' | 'loadMore'>('paged');
+  const [completedLoadMoreCount, setCompletedLoadMoreCount] = useState<number>(25);
+
+  const ongoingSectionRef = useRef<HTMLDivElement>(null);
+  const completedSectionRef = useRef<HTMLDivElement>(null);
 
   // Day order priority based on current day and update cycle (Sabtu -> Jumat -> Kamis -> Rabu -> Selasa -> Senin -> Minggu)
   const DAY_ORDER: Record<string, number> = {
@@ -126,22 +139,61 @@ export default function HomePage() {
           </section>
         );
 
-      case 'latest_episodes':
+      case 'latest_episodes': {
+        const totalOngoing = filteredOngoing.length;
+        const totalOngoingPages = Math.ceil(totalOngoing / ITEMS_PER_PAGE) || 1;
+        const displayedOngoing = ongoingViewMode === 'paged'
+          ? filteredOngoing.slice((ongoingPage - 1) * ITEMS_PER_PAGE, ongoingPage * ITEMS_PER_PAGE)
+          : filteredOngoing.slice(0, ongoingLoadMoreCount);
+
+        const ongoingStartIndex = ongoingViewMode === 'paged' ? (ongoingPage - 1) * ITEMS_PER_PAGE : 0;
+        const ongoingEndIndex = ongoingViewMode === 'paged' 
+          ? Math.min(ongoingPage * ITEMS_PER_PAGE, totalOngoing)
+          : Math.min(ongoingLoadMoreCount, totalOngoing);
+
+        const handleDayChange = (day: string) => {
+          setSelectedDay(day);
+          setOngoingPage(1);
+          setOngoingLoadMoreCount(ITEMS_PER_PAGE);
+        };
+
+        const handleOngoingPageSelect = (p: number) => {
+          setOngoingPage(p);
+          ongoingSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        const handleOngoingLoadMore = () => {
+          setOngoingViewMode('loadMore');
+          setOngoingLoadMoreCount(prev => Math.min(prev + ITEMS_PER_PAGE, totalOngoing));
+        };
+
+        const handleOngoingResetToPages = () => {
+          setOngoingViewMode('paged');
+          setOngoingPage(1);
+          setOngoingLoadMoreCount(ITEMS_PER_PAGE);
+          ongoingSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
         return (
-          <section key="latest_episodes" className="flex flex-col gap-4">
+          <section key="latest_episodes" ref={ongoingSectionRef} className="flex flex-col gap-4 scroll-mt-24">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                   Ongoing
                 </h2>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 border border-white/[0.06] font-medium hidden sm:inline">
+                  5 Baris per Halaman
+                </span>
               </div>
-              <Link
-                href="/schedule"
-                className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
-              >
-                Jadwal Lengkap <ChevronRight className="h-3.5 w-3.5" />
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/schedule"
+                  className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                >
+                  Jadwal Lengkap <ChevronRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
 
             {/* Day Filter Pills */}
@@ -154,7 +206,7 @@ export default function HomePage() {
                 return (
                   <button
                     key={day}
-                    onClick={() => setSelectedDay(day)}
+                    onClick={() => handleDayChange(day)}
                     className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
@@ -167,8 +219,9 @@ export default function HomePage() {
               })}
             </div>
 
+            {/* Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {filteredOngoing.map((anime) => {
+              {displayedOngoing.map((anime) => {
                 const eps = db.getEpisodesByAnimeId(anime.id);
                 const latestEp = eps.length > 0 ? eps[eps.length - 1] : null;
                 const epNum = latestEp?.title?.match(/Episode\s+(\d+)/i)?.[1] || latestEp?.displayNumber || '1';
@@ -185,8 +238,81 @@ export default function HomePage() {
                 );
               })}
             </div>
+
+            {/* Pagination & Load More Controls */}
+            {totalOngoing > ITEMS_PER_PAGE && (
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/[0.06] text-xs">
+                <div className="text-zinc-400 font-medium">
+                  Menampilkan <strong className="text-white">{ongoingStartIndex + 1}–{ongoingEndIndex}</strong> dari <strong className="text-white">{totalOngoing}</strong> anime ongoing
+                  {ongoingViewMode === 'paged' && ` (Halaman ${ongoingPage} dari ${totalOngoingPages})`}
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                  {ongoingViewMode === 'paged' ? (
+                    <>
+                      <button
+                        onClick={() => handleOngoingPageSelect(ongoingPage - 1)}
+                        disabled={ongoingPage === 1}
+                        className="px-2.5 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">Sebelumnya</span>
+                      </button>
+
+                      {Array.from({ length: totalOngoingPages }, (_, i) => i + 1).map((p) => (
+                        <button
+                          key={p}
+                          onClick={() => handleOngoingPageSelect(p)}
+                          className={`w-8 h-8 rounded-lg font-bold transition-all cursor-pointer ${
+                            ongoingPage === p
+                              ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                              : 'bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800'
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      ))}
+
+                      <button
+                        onClick={() => handleOngoingPageSelect(ongoingPage + 1)}
+                        disabled={ongoingPage === totalOngoingPages}
+                        className="px-2.5 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                      >
+                        <span className="hidden sm:inline">Selanjutnya</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+
+                      <button
+                        onClick={handleOngoingLoadMore}
+                        className="ml-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/[0.08] hover:border-red-500/40 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                      >
+                        Muat Lebih Banyak (+25)
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {ongoingEndIndex < totalOngoing && (
+                        <button
+                          onClick={handleOngoingLoadMore}
+                          className="px-4 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 shadow-lg shadow-red-600/30 transition-all cursor-pointer flex items-center gap-1.5"
+                        >
+                          <span>Muat Lebih Banyak ({totalOngoing - ongoingEndIndex} tersisa)</span>
+                        </button>
+                      )}
+                      <button
+                        onClick={handleOngoingResetToPages}
+                        className="px-3 py-2 rounded-xl bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+                      >
+                        Ringkas ke 5 Baris (Mode Halaman)
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
           </section>
         );
+      }
 
       case 'continue_watching':
         if (continueWatching.length === 0) return null;
@@ -220,14 +346,47 @@ export default function HomePage() {
       case 'ad_banner':
         return <SafeAdSlot key="ad_banner" slotKey="home_leaderboard" />;
 
-      case 'popular':
+      case 'popular': {
+        const totalCompleted = completedAnime.length;
+        const totalCompletedPages = Math.ceil(totalCompleted / ITEMS_PER_PAGE) || 1;
+        const displayedCompleted = completedViewMode === 'paged'
+          ? completedAnime.slice((completedPage - 1) * ITEMS_PER_PAGE, completedPage * ITEMS_PER_PAGE)
+          : completedAnime.slice(0, completedLoadMoreCount);
+
+        const completedStartIndex = completedViewMode === 'paged' ? (completedPage - 1) * ITEMS_PER_PAGE : 0;
+        const completedEndIndex = completedViewMode === 'paged'
+          ? Math.min(completedPage * ITEMS_PER_PAGE, totalCompleted)
+          : Math.min(completedLoadMoreCount, totalCompleted);
+
+        const handleCompletedPageSelect = (p: number) => {
+          setCompletedPage(p);
+          completedSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        const handleCompletedLoadMore = () => {
+          setCompletedViewMode('loadMore');
+          setCompletedLoadMoreCount(prev => Math.min(prev + ITEMS_PER_PAGE, totalCompleted));
+        };
+
+        const handleCompletedResetToPages = () => {
+          setCompletedViewMode('paged');
+          setCompletedPage(1);
+          setCompletedLoadMoreCount(ITEMS_PER_PAGE);
+          completedSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
         return (
-          <section key="popular" className="flex flex-col gap-4">
+          <section key="popular" ref={completedSectionRef} className="flex flex-col gap-4 scroll-mt-24">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-base sm:text-lg font-bold text-white">
-                  Koleksi Populer & Selesai (Completed)
-                </h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-base sm:text-lg font-bold text-white">
+                    Koleksi Populer & Selesai (Completed)
+                  </h2>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 border border-white/[0.06] font-medium hidden sm:inline">
+                    5 Baris per Halaman
+                  </span>
+                </div>
                 <p className="text-xs text-zinc-400 mt-0.5">
                   Serial tamat dengan musim lengkap, verified player, dan takarir Indonesia
                 </p>
@@ -236,17 +395,90 @@ export default function HomePage() {
                 href="/anime?status=completed"
                 className="flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
               >
-                Lihat Semua <ChevronRight className="h-3.5 w-3.5" />
+                Lihat Semua ({totalCompleted}) <ChevronRight className="h-3.5 w-3.5" />
               </Link>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {completedAnime.map((anime) => (
+              {displayedCompleted.map((anime) => (
                 <AnimeCard key={anime.id} anime={anime} />
               ))}
             </div>
+
+            {/* Pagination & Load More Controls */}
+            {totalCompleted > ITEMS_PER_PAGE && (
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/[0.06] text-xs">
+                <div className="text-zinc-400 font-medium">
+                  Menampilkan <strong className="text-white">{completedStartIndex + 1}–{completedEndIndex}</strong> dari <strong className="text-white">{totalCompleted}</strong> anime completed
+                  {completedViewMode === 'paged' && ` (Halaman ${completedPage} dari ${totalCompletedPages})`}
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                  {completedViewMode === 'paged' ? (
+                    <>
+                      <button
+                        onClick={() => handleCompletedPageSelect(completedPage - 1)}
+                        disabled={completedPage === 1}
+                        className="px-2.5 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">Sebelumnya</span>
+                      </button>
+
+                      {Array.from({ length: totalCompletedPages }, (_, i) => i + 1).map((p) => (
+                        <button
+                          key={p}
+                          onClick={() => handleCompletedPageSelect(p)}
+                          className={`w-8 h-8 rounded-lg font-bold transition-all cursor-pointer ${
+                            completedPage === p
+                              ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                              : 'bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800'
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      ))}
+
+                      <button
+                        onClick={() => handleCompletedPageSelect(completedPage + 1)}
+                        disabled={completedPage === totalCompletedPages}
+                        className="px-2.5 py-1.5 rounded-lg bg-zinc-900 border border-white/[0.08] text-zinc-300 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
+                      >
+                        <span className="hidden sm:inline">Selanjutnya</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+
+                      <button
+                        onClick={handleCompletedLoadMore}
+                        className="ml-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/[0.08] hover:border-red-500/40 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                      >
+                        Muat Lebih Banyak (+25)
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {completedEndIndex < totalCompleted && (
+                        <button
+                          onClick={handleCompletedLoadMore}
+                          className="px-4 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 shadow-lg shadow-red-600/30 transition-all cursor-pointer flex items-center gap-1.5"
+                        >
+                          <span>Muat Lebih Banyak ({totalCompleted - completedEndIndex} tersisa)</span>
+                        </button>
+                      )}
+                      <button
+                        onClick={handleCompletedResetToPages}
+                        className="px-3 py-2 rounded-xl bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+                      >
+                        Ringkas ke 5 Baris (Mode Halaman)
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
           </section>
         );
+      }
 
       default:
         return null;

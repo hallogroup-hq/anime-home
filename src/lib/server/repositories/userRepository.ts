@@ -28,12 +28,26 @@ interface FallbackUserRecord {
 }
 
 // In-memory fallback stores (used when dbOrm is offline / serverless without external DB)
+// Default credentials: AdminHome@2026#Secure!
+const ADMIN_PASSWORD_HASH = 'b6f28027ac01ced9bd986cdde6bd77ffe4bfe1f89620ed3434af87f914bab2a3';
+
 const fallbackUsers = new Map<string, FallbackUserRecord>([
+  ['admin-root-01', {
+    id: 'admin-root-01',
+    email: 'admin@animehome.id',
+    username: 'Super Administrator',
+    passwordHash: ADMIN_PASSWORD_HASH,
+    role: 'owner',
+    avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=admin',
+    isLoggedIn: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }],
   ['admin-owner-01', {
     id: 'admin-owner-01',
     email: 'owner@animehome.id',
     username: 'AnimeHome Owner',
-    passwordHash: null,
+    passwordHash: ADMIN_PASSWORD_HASH,
     role: 'owner',
     avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=owner',
     isLoggedIn: true,
@@ -44,7 +58,7 @@ const fallbackUsers = new Map<string, FallbackUserRecord>([
     id: 'user-member-01',
     email: 'member@animehome.id',
     username: 'Akmal Otaku',
-    passwordHash: null,
+    passwordHash: 'f144f145d1865bd14e649e5984126e7e29db98eafbab0afa783e2cbc3668b0e3', // Akmal@2026Member!
     role: 'user',
     avatarUrl: 'https://api.dicebear.com/7.x/identicon/svg?seed=akmal',
     isLoggedIn: true,
