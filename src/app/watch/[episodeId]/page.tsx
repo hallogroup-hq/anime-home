@@ -160,6 +160,8 @@ export default async function WatchPage({ params }: PageProps) {
     ],
   };
 
+  const secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
+
   return (
     <>
       <script
@@ -191,6 +193,7 @@ export default async function WatchPage({ params }: PageProps) {
         allEpisodes={allEpisodes}
         prevEpisode={prevEpisode}
         nextEpisode={nextEpisode}
+        secureStreamMatrix={secureStreamMatrix}
       />
     </>
   );

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Episode, Anime, FranchiseWatchOrderItem } from '@/types';
+import { Episode, Anime, FranchiseWatchOrderItem, QualityLabel, StreamVariant } from '@/types';
 import { MultiProviderPlayer } from '@/components/player/MultiProviderPlayer';
 import { FranchiseSeasonSwitcher } from '@/components/franchise/FranchiseSeasonSwitcher';
 import { EpisodeDiscussion } from '@/components/player/EpisodeDiscussion';
@@ -17,6 +17,10 @@ interface WatchClientProps {
   allEpisodes: Episode[];
   prevEpisode: Episode | null;
   nextEpisode: Episode | null;
+  secureStreamMatrix?: {
+    qualities: QualityLabel[];
+    variantsByQuality: Record<QualityLabel, StreamVariant[]>;
+  };
 }
 
 export function WatchClient({
@@ -26,6 +30,7 @@ export function WatchClient({
   allEpisodes,
   prevEpisode,
   nextEpisode,
+  secureStreamMatrix,
 }: WatchClientProps) {
   const [copied, setCopied] = useState(false);
 
@@ -82,6 +87,7 @@ export function WatchClient({
         episodeTitle={episode.title}
         nextEpisodeId={nextEpisode && nextEpisode.watchabilityState === 'eligible_verified' ? nextEpisode.id : undefined}
         nextEpisodeNumber={nextEpisode?.displayNumber}
+        streamMatrix={secureStreamMatrix}
       />
 
       {/* QUICK EPISODE SELECTOR */}

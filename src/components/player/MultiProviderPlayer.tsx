@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { QualityLabel } from '@/types';
+import { QualityLabel, StreamVariant } from '@/types';
 import { getVideoAdapter } from '@/lib/adapters/video';
 import { db } from '@/lib/services/store';
 import { markEpisodeWatched } from '@/lib/services/watchlist';
@@ -15,6 +15,10 @@ interface MultiProviderPlayerProps {
   episodeTitle: string;
   nextEpisodeId?: string;
   nextEpisodeNumber?: string;
+  streamMatrix?: {
+    qualities: QualityLabel[];
+    variantsByQuality: Record<QualityLabel, StreamVariant[]>;
+  };
 }
 
 export function MultiProviderPlayer({
@@ -25,9 +29,15 @@ export function MultiProviderPlayer({
   episodeTitle,
   nextEpisodeId,
   nextEpisodeNumber,
+  streamMatrix,
 }: MultiProviderPlayerProps) {
-  // Ambil matriks streaming terproteksi (root URL & server asli disembunyikan dari scraper & client)
-  const matrix = useMemo(() => db.getSecureStreamMatrix(episodeId), [episodeId]);
+  // Ambil matriks streaming terproteksi (prioritaskan server-rendered matrix untuk keamanan & stabilitas maksimal)
+  const matrix = useMemo(() => {
+    if (streamMatrix && streamMatrix.qualities && streamMatrix.qualities.length > 0) {
+      return streamMatrix;
+    }
+    return db.getSecureStreamMatrix(episodeId);
+  }, [episodeId, streamMatrix]);
 
   // Resolusi terpilih (default: 720p jika ada, atau Auto jika ada, atau resolusi pertama)
   const defaultQuality = useMemo(() => {
