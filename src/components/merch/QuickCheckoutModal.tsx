@@ -257,13 +257,8 @@ export function QuickCheckoutModal({
               <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-white tracking-wide uppercase">Anime Home Store</span>
-                <span className="text-[10px] bg-red-950/60 text-red-300 border border-red-800/60 px-1.5 py-0.2 rounded font-medium">
-                  GoPay Merchant Resmi
-                </span>
-              </div>
-              <p className="text-[11px] text-zinc-400">Pengiriman eksklusif atas nama Anime Home Store</p>
+              <span className="text-xs font-bold text-white tracking-wide uppercase">Anime Home Store</span>
+              <p className="text-[11px] text-zinc-400">Pengiriman atas nama Anime Home Store</p>
             </div>
           </div>
           <button 
@@ -437,12 +432,10 @@ export function QuickCheckoutModal({
               <div className="p-4 rounded-2xl bg-white text-zinc-900 max-w-[280px] mx-auto shadow-2xl space-y-2 border border-zinc-200">
                 <div className="flex items-center justify-between border-b border-zinc-200 pb-2">
                   <div className="text-left">
-                    <span className="text-[11px] font-black tracking-wider text-red-600 block">QRIS NASIONAL</span>
-                    <span className="text-[9px] font-semibold text-zinc-600 block">{merchantName}</span>
+                    <span className="text-[11px] font-bold tracking-wider text-zinc-900 block">QRIS</span>
+                    <span className="text-[10px] text-zinc-600 block">{merchantName}</span>
                   </div>
-                  <span className="text-[9px] bg-red-50 text-red-700 font-bold px-1.5 py-0.5 rounded border border-red-200">
-                    GoPay
-                  </span>
+                  <span className="text-[10px] text-zinc-500 font-medium">GoPay</span>
                 </div>
 
                 {/* Real Dynamic QR Image */}
@@ -554,13 +547,13 @@ export function QuickCheckoutModal({
           {/* STEP 3: SUCCESS CONFIRMATION */}
           {step === 'success' && orderResult && (
             <div className="text-center space-y-4 py-3 animate-in zoom-in-95 duration-200">
-              <div className="w-12 h-12 bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-emerald-950/30">
-                <Check className="w-6 h-6 stroke-[3]" />
+              <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 text-white rounded-full flex items-center justify-center mx-auto">
+                <Check className="w-5 h-5 stroke-[2.5]" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white">Pembayaran Berhasil Diverifikasi!</h3>
+                <h3 className="text-base font-bold text-white">Pembayaran Berhasil</h3>
                 <p className="text-xs text-zinc-400 mt-1">
-                  Pesanan <span className="font-mono text-zinc-200 font-semibold">#{orderResult.id.slice(-6)}</span> telah terkonfirmasi lunas melalui GoPay Merchant.
+                  Pesanan <span className="font-mono text-zinc-200 font-semibold">#{orderResult.id.slice(-6)}</span> telah terkonfirmasi lunas.
                 </p>
               </div>
 
@@ -575,7 +568,7 @@ export function QuickCheckoutModal({
                 </div>
                 <div className="flex justify-between border-b border-zinc-800 pb-1.5">
                   <span className="text-zinc-400">Merchant Penerima:</span>
-                  <span className="text-emerald-400 font-semibold">{merchantName}</span>
+                  <span className="text-zinc-200 font-medium">{merchantName}</span>
                 </div>
                 <div className="flex justify-between border-b border-zinc-800 pb-1.5">
                   <span className="text-zinc-400">Pengirim (Resi):</span>
