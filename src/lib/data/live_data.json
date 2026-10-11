@@ -1580,7 +1580,8 @@
         }
       ],
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-09T21:40:40.008Z"
+      "updatedAt": "2026-10-09T21:40:40.008Z",
+      "totalCanonicalEpisodes": 2
     },
     {
       "id": "anime-tokyorev-s3",
@@ -9091,7 +9092,7 @@
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 24,
       "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 0,
+      "verifiedEpisodesCount": 2,
       "missingEpisodes": [
         1
       ],
@@ -52159,6 +52160,20 @@
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-11T11:01:36.734Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
+    },
+    {
+      "id": "ep-aoashi-2",
+      "animeId": "anime-aoashi",
+      "ordinal": 2,
+      "displayNumber": "02",
+      "episodeType": "standard",
+      "title": "Ao Ashi Season 2 Episode 2 Subtitle Indonesi",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-11T13:01:06.769Z",
       "airingState": "aired",
       "subtitleState": "available",
       "watchabilityState": "eligible_verified"
@@ -233975,7 +233990,82 @@
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-11T11:01:36.734Z"
+    },
+    {
+      "id": "var-ep-aoashi-2-otaku-mega",
+      "episodeId": "ep-aoashi-2",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-aoashi-ep-2-otaku-mega",
+      "embedUrl": "https://mega.nz/embed/r7pjDQyD#LfQBs2Cp1KlBgFdpoEBeHHEY9YlExeVgayhsdY9KKa4",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-11T13:01:06.769Z"
+    },
+    {
+      "id": "var-ep-aoashi-2-otaku-vidhide",
+      "episodeId": "ep-aoashi-2",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-aoashi-ep-2-otaku-vidhide",
+      "embedUrl": "https://odvidhide.com/embed/e2q4lkx7dhfg",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 13,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-11T13:01:06.769Z"
+    },
+    {
+      "id": "var-ep-aoashi-2-otaku-desu",
+      "episodeId": "ep-aoashi-2",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-aoashi-ep-2-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0akRQaFBXSERTTmNzRjFiaDVZb2RxVGwrdlAvdHprUWgraWtreGVnMUJvbQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 12,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-11T13:01:06.769Z"
+    },
+    {
+      "id": "var-ep-aoashi-2-alpha-720",
+      "episodeId": "ep-aoashi-2",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-aoashi-ep-2-alpha-720p",
+      "embedUrl": "/embed/player?title=AOASHI%20Season%202&ep=2&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-11T13:01:06.769Z"
+    },
+    {
+      "id": "var-ep-aoashi-2-beta-1080",
+      "episodeId": "ep-aoashi-2",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-aoashi-ep-2-beta-1080p",
+      "embedUrl": "/embed/player?title=AOASHI%20Season%202&ep=2&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-11T13:01:06.769Z"
     }
   ],
-  "lastSyncAt": "2026-10-11T11:01:36.734Z"
+  "lastSyncAt": "2026-10-11T13:01:06.769Z"
 }
