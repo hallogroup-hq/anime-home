@@ -68,7 +68,9 @@ export function computeSeasonReadiness(
   // Tentukan SeasonReadinessState secara deterministik
   let readinessState: SeasonReadinessState;
 
-  if (season.licenseType === 'svod_exclusive' && verifiedCount === 0) {
+  if (season.readinessState === 'UNAVAILABLE') {
+    readinessState = 'UNAVAILABLE';
+  } else if (season.licenseType === 'svod_exclusive' && verifiedCount === 0) {
     readinessState = airedCount > 0 ? 'UNAVAILABLE' : 'AWAITING_EPISODE';
   } else if (airedCount >= canonicalCount && canonicalCount > 0) {
     // Musim Selesai (Completed Season)

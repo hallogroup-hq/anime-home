@@ -577,56 +577,8 @@ export const DROPSHIP_MERCH_ITEMS: MerchItem[] = [
   }
 ];
 
-export const INITIAL_ORDERS: MerchOrder[] = [
-  {
-    id: 'order-179162901-a1b2',
-    merchId: 'merch-conan-apparel-1',
-    merchName: 'Kaos Oversize Detective Conan - Shadow Silhouette',
-    merchImage: '/merch/conan-tshirt.jpg',
-    animeTitle: 'Detective Conan',
-    customerName: 'Dimas Aditya',
-    customerContact: '081289123456',
-    shippingAddress: 'Jl. Melati No. 14, RT 02 / RW 05, Menteng',
-    city: 'Jakarta Pusat',
-    selectedVariant: 'XL',
-    quantity: 1,
-    totalAmount: 139000,
-    costAmount: 65000,
-    profitAmount: 74000,
-    paymentMethod: 'qris',
-    paymentStatus: 'paid',
-    shippingStatus: 'processing',
-    dropshipStatus: 'dispatched_to_supplier',
-    supplierOrderId: 'SUPP-POD-89104',
-    supplierNotes: 'Sudah di-push otomatis ke Bandung DTF POD, menunggu input resi.',
-    trackingNumber: 'AH-POD-891204',
-    createdAt: new Date(Date.now() - 3600000 * 4).toISOString(),
-  },
-  {
-    id: 'order-179162802-c3d4',
-    merchId: 'merch-conan-figure-1',
-    merchName: 'Nendoroid 803 Conan Edogawa (Good Smile Company Authentic)',
-    merchImage: '/merch/conan-nendoroid.jpg',
-    animeTitle: 'Detective Conan',
-    customerName: 'Siti Rahmawati',
-    customerContact: '085712348765',
-    shippingAddress: 'Komplek Griya Asri Blok B3 No. 7, Sukajadi',
-    city: 'Bandung',
-    selectedVariant: 'Box Segel (MISB Original)',
-    quantity: 1,
-    totalAmount: 680000,
-    costAmount: 490000,
-    profitAmount: 190000,
-    paymentMethod: 'qris',
-    paymentStatus: 'paid',
-    shippingStatus: 'shipped',
-    dropshipStatus: 'shipped',
-    supplierOrderId: 'SUPP-JAKMALL-77192',
-    supplierNotes: 'Paket dikirim kurir JNE atas nama Anime Home Store.',
-    trackingNumber: 'JN-REG-771920381',
-    createdAt: new Date(Date.now() - 3600000 * 18).toISOString(),
-  },
-];
+// Order data starts clean (real transactions only, no fictitious demo orders)
+export const INITIAL_ORDERS: MerchOrder[] = [];
 
 export const INITIAL_CHAT_MESSAGES: ChatMessage[] = [
   {

@@ -492,41 +492,6 @@
       "updatedAt": "2026-10-10T08:38:02.457Z"
     },
     {
-      "id": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
-      "canonicalTitle": "Shin Tennis no Oujisama: U-17 World Cup Kesshou Member Ketteisen",
-      "slug": "shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Shin Tennis no Oujisama: U-17 World Cup Kesshou Member Ketteisen subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/09/Shin-Tennis-no-Oujisama-U-17-World-Cup-Kesshou-Member-Ketteisen.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/09/Shin-Tennis-no-Oujisama-U-17-World-Cup-Kesshou-Member-Ketteisen.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-primary",
-          "animeId": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
-          "locale": "id-ID",
-          "title": "Shin Tennis no Oujisama: U-17 World Cup Kesshou Member Ketteisen",
-          "titleType": "canonical",
-          "normalizedTitle": "shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen"
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Kamis, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T08:38:02.057Z",
-      "updatedAt": "2026-10-10T08:38:02.057Z"
-    },
-    {
       "id": "anime-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
       "canonicalTitle": "Kikansha no Mahou wa Tokubetsu desu 2nd Season",
       "slug": "kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
@@ -11475,21 +11440,6 @@
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "updatedAt": "2026-10-10T08:38:01.685Z"
-    },
-    {
-      "id": "season-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-s1",
-      "animeId": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
-      "seasonNumber": 1,
-      "title": "Shin Tennis no Oujisama: U-17 World Cup Kesshou Member Ketteisen",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:38:02.057Z"
     },
     {
       "id": "season-tensei-shitara-ken-deshita-ii-s1",
@@ -48623,20 +48573,6 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
-      "animeId": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Shin Tennis no Oujisama: U-17 World Cup Kesshou Member Ketteisen Episode 02",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T08:36:13.576Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
       "id": "ep-tensei-shitara-ken-deshita-ii-2",
       "animeId": "anime-tensei-shitara-ken-deshita-ii",
       "ordinal": 2,
@@ -52115,20 +52051,6 @@
       "displayNumber": "02",
       "episodeType": "standard",
       "title": "Black Clover Season 2 Episode 2",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-11T04:18:14.019Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
-      "animeId": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Shin Tennis no Oujisama: U-17 World Cup &#8211; Kesshou Member Ketteisen Episode 1 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-11T04:18:14.019Z",
@@ -233780,81 +233702,6 @@
       "lastCheckedAt": "2026-10-11T04:18:14.019Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1-otaku-mega",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
-      "providerId": "prov-mega",
-      "providerName": "Mega Cloud Player",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-1-otaku-mega",
-      "embedUrl": "https://mega.nz/embed/r2gGARJZ#sP8Lpt5hrRe2tCELBxq77GfpS-5sD-L6k5AOq_aPKLQ",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-11T04:18:14.019Z"
-    },
-    {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1-otaku-vidhide",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
-      "providerId": "prov-vidhide",
-      "providerName": "Vidhide High-Speed",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-1-otaku-vidhide",
-      "embedUrl": "https://odvidhide.com/embed/i7eirdgk7cup",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 13,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-11T04:18:14.019Z"
-    },
-    {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1-otaku-desu",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-1-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dXRRc3c0MXNBNWMySDNXTSswem55RFZVU3lLNTJZdGZHSVVHdURKUTdpaw==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 12,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-11T04:18:14.019Z"
-    },
-    {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1-alpha-720",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-1-alpha-720p",
-      "embedUrl": "/embed/player?title=Shin%20Tennis%20no%20Oujisama%3A%20U-17%20World%20Cup%20Kesshou%20Member%20Ketteisen&ep=1&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-11T04:18:14.019Z"
-    },
-    {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1-beta-1080",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-1-beta-1080p",
-      "embedUrl": "/embed/player?title=Shin%20Tennis%20no%20Oujisama%3A%20U-17%20World%20Cup%20Kesshou%20Member%20Ketteisen&ep=1&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 14,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-11T04:18:14.019Z"
-    },
-    {
       "id": "var-ep-ao-no-hako-s2-2-sh-0",
       "episodeId": "ep-ao-no-hako-s2-2",
       "providerId": "prov-blogger",
@@ -234245,5 +234092,6 @@
       "lastCheckedAt": "2026-10-11T17:01:38.290Z"
     }
   ],
-  "lastSyncAt": "2026-10-11T17:01:38.290Z"
+  "lastSyncAt": "2026-10-11T17:01:38.290Z",
+  "titles": []
 }

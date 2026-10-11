@@ -60,29 +60,44 @@ export async function POST(request: Request) {
       costAmount,
       profitAmount: profitAmount || (totalAmount - costAmount),
       paymentMethod: 'qris',
-      paymentStatus: 'paid', // Instant auto-confirmation for simulation / QRIS scan
-      shippingStatus: 'processing',
+      paymentStatus: body.paymentStatus === 'paid' ? 'paid' : 'unpaid',
+      shippingStatus: body.paymentStatus === 'paid' ? 'processing' : 'pending',
       trackingNumber: `AH-DROPSHIP-${Math.floor(100000 + Math.random() * 900000)}`,
     });
 
-    // Also auto-create a chat message receipt in live chat for the customer
     const sessionKey = `session-${customerContact.replace(/[^0-9]/g, '') || Date.now()}`;
-    db.sendChatMessage({
-      sessionId: sessionKey,
-      sender: 'admin',
-      senderName: 'Anime Home Store',
-      message: `Terima kasih kak ${customerName}! Pesanan #${newOrder.id.slice(-6)} untuk "${merchName}" (Varian: ${selectedVariant}) telah kami terima dan diverifikasi LUNAS (QRIS). Pesanan akan segera diproses pengiriman ke ${shippingAddress}, ${city} atas nama "Anime Home Store". No Resi: ${newOrder.trackingNumber}.`,
-      merchRef: {
-        id: merchId,
-        name: merchName,
-        imageUrl: merchImage,
-        price: totalAmount,
-      },
-    });
+    
+    if (newOrder.paymentStatus === 'paid') {
+      db.sendChatMessage({
+        sessionId: sessionKey,
+        sender: 'admin',
+        senderName: 'Anime Home Store',
+        message: `Terima kasih kak ${customerName}! Pesanan #${newOrder.id.slice(-6)} untuk "${merchName}" (Varian: ${selectedVariant}) telah kami terima dan diverifikasi LUNAS (QRIS GoPay). Pesanan akan segera diproses pengiriman ke ${shippingAddress}, ${city} atas nama "Anime Home Store". No Resi: ${newOrder.trackingNumber}.`,
+        merchRef: {
+          id: merchId,
+          name: merchName,
+          imageUrl: merchImage,
+          price: totalAmount,
+        },
+      });
+    } else {
+      db.sendChatMessage({
+        sessionId: sessionKey,
+        sender: 'admin',
+        senderName: 'Anime Home Store (Billing)',
+        message: `Halo kak ${customerName}! Tagihan QRIS GoPay untuk pesanan #${newOrder.id.slice(-6)} ("${merchName}", Varian: ${selectedVariant}) sebesar Rp ${(totalAmount || 0).toLocaleString('id-ID')} telah diterbitkan. Silakan selesaikan pembayaran scan QRIS untuk konfirmasi otomatis.`,
+        merchRef: {
+          id: merchId,
+          name: merchName,
+          imageUrl: merchImage,
+          price: totalAmount,
+        },
+      });
+    }
 
     return NextResponse.json({
       success: true,
-      message: 'Pesanan berhasil dibuat & diverifikasi lunas!',
+      message: newOrder.paymentStatus === 'paid' ? 'Pesanan berhasil dibuat & lunas!' : 'Pesanan berhasil dibuat, menunggu pembayaran QRIS.',
       order: newOrder,
       sessionKey,
     });

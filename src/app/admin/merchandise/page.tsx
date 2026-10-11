@@ -27,8 +27,20 @@ export default function AdminMerchandisePage() {
   const [newImageUrl, setNewImageUrl] = useState('');
   const [newVariants, setNewVariants] = useState('S, M, L, XL, XXL');
 
-  const reloadData = () => {
+  const reloadData = async () => {
     setMerchList(db.getAllMerch());
+    try {
+      const res = await fetch('/api/merch/orders');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.orders) {
+          setOrders(data.orders);
+          return;
+        }
+      }
+    } catch (e) {
+      // Fallback to client db
+    }
     setOrders(db.getOrders());
   };
 
