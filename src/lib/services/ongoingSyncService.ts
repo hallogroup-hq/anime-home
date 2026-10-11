@@ -39,6 +39,29 @@ function slugify(text: string): string {
     .replace(/\s+/g, '-');
 }
 
+function extractSeason(title: string): number | null {
+  const norm = title.toLowerCase();
+  const m1 = norm.match(/(?:season|s)\s*(\d+)/i);
+  if (m1) return parseInt(m1[1]);
+  const m2 = norm.match(/(\d+)(?:st|nd|rd|th)\s*season/i);
+  if (m2) return parseInt(m2[1]);
+  if (/\biv\b/.test(norm)) return 4;
+  if (/\biii\b/.test(norm)) return 3;
+  if (/\bii\b/.test(norm)) return 2;
+  return null;
+}
+
+function cleanBaseTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/(?:season|s)\s*\d+/gi, ' ')
+    .replace(/\d+(?:st|nd|rd|th)\s*season/gi, ' ')
+    .replace(/\b(?:ii|iii|iv)\b/gi, ' ')
+    .replace(/[^a-z0-9]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export class OngoingSyncService {
   /**
    * Helper to find or auto-ingest anime and season in store
@@ -53,21 +76,63 @@ export class OngoingSyncService {
     dryRun?: boolean
   ): { anime: Anime; isNew: boolean } {
     const timestamp = new Date().toISOString();
-    const normTitle = rawTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ');
+    const normTitle = rawTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
 
     const allAnime = db.getAnimeList();
-    const matched = allAnime.find(a => {
+
+    // 1. Exact match on canonical title, slug, or primary alias
+    let matched = allAnime.find(a => {
       if (a.id === 'anime-sbr') return false; // Preserve PRD chapter 19 scheduled benchmark
-      const normA = a.canonicalTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ');
-      if (normA === normTitle || normA.includes(normTitle) || normTitle.includes(normA)) return true;
+      const normA = a.canonicalTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+      if (normA === normTitle) return true;
+      if (a.slug === slugify(rawTitle)) return true;
       for (const al of a.aliases || []) {
-        const normAl = al.title.toLowerCase().replace(/[^a-z0-9]/g, ' ');
-        if (normAl.length > 4 && (normTitle.includes(normAl) || normAl.includes(normTitle))) return true;
+        const normAl = al.title.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+        if (normAl === normTitle) return true;
       }
       return false;
     });
 
+    // 2. Fuzzy match respecting season separation
+    if (!matched) {
+      const rawSeason = extractSeason(rawTitle);
+      const rawBase = cleanBaseTitle(rawTitle);
+
+      matched = allAnime.find(a => {
+        if (a.id === 'anime-sbr') return false;
+        const normA = a.canonicalTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+        const aSeason = extractSeason(a.canonicalTitle);
+
+        // Disallow cross-season matching (e.g. Season 2 must not match Season 1 / unnumbered)
+        if (rawSeason !== null && aSeason !== null && rawSeason !== aSeason) return false;
+        if (rawSeason !== null && aSeason === null && rawSeason > 1) return false;
+        if (rawSeason === null && aSeason !== null && aSeason > 1) return false;
+
+        if (normA.includes(normTitle) || normTitle.includes(normA)) return true;
+
+        const aBase = cleanBaseTitle(a.canonicalTitle);
+        if (rawBase.length > 5 && aBase.length > 5 && (rawBase.includes(aBase) || aBase.includes(rawBase))) {
+          return true;
+        }
+
+        for (const al of a.aliases || []) {
+          const normAl = al.title.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+          const alSeason = extractSeason(al.title);
+          if (rawSeason !== null && alSeason !== null && rawSeason !== alSeason) continue;
+          if (normAl.length > 4 && (normTitle.includes(normAl) || normAl.includes(normTitle))) return true;
+        }
+
+        return false;
+      });
+    }
+
     if (matched) {
+      if (scheduleDay && scheduleDay !== 'Berkala' && matched.airingStatus === 'airing') {
+        const currentDay = matched.scheduleWIB?.split(',')[0]?.trim();
+        if (currentDay !== scheduleDay) {
+          matched.scheduleWIB = `${scheduleDay}, 19:00 WIB`;
+        }
+      }
       return { anime: matched, isNew: false };
     }
 
@@ -316,10 +381,29 @@ export class OngoingSyncService {
                 anime.totalCanonicalEpisodes = epNum;
               }
 
-              const season = db.getSeasonByAnimeId(anime.id);
+              let season = db.getSeasonByAnimeId(anime.id);
               if (season) {
                 season.verifiedEpisodesCount = Math.max(season.verifiedEpisodesCount, epNum);
                 season.canonicalEpisodesCount = Math.max(season.canonicalEpisodesCount, epNum);
+              } else {
+                const sNum = extractSeason(anime.canonicalTitle) || 1;
+                const newSeason: Season = {
+                  id: `season-${anime.slug}-s${sNum}`,
+                  animeId: anime.id,
+                  seasonNumber: sNum,
+                  title: anime.canonicalTitle,
+                  year: anime.year || 2026,
+                  seasonPeriod: anime.seasonPeriod || 'Fall',
+                  canonicalEpisodesCount: epNum,
+                  airedEpisodesCount: epNum,
+                  verifiedEpisodesCount: epNum,
+                  missingEpisodes: [],
+                  readinessState: 'READY_ONGOING',
+                  licenseType: 'free_embed',
+                  updatedAt: timestamp,
+                };
+                if (!Array.isArray((db as any).seasons)) (db as any).seasons = [];
+                (db as any).seasons.push(newSeason);
               }
             }
 
@@ -521,10 +605,29 @@ export class OngoingSyncService {
                 anime.totalCanonicalEpisodes = epNum;
               }
 
-              const season = db.getSeasonByAnimeId(anime.id);
+              let season = db.getSeasonByAnimeId(anime.id);
               if (season) {
                 season.verifiedEpisodesCount = Math.max(season.verifiedEpisodesCount, epNum);
                 season.canonicalEpisodesCount = Math.max(season.canonicalEpisodesCount, epNum);
+              } else {
+                const sNum = extractSeason(anime.canonicalTitle) || 1;
+                const newSeason: Season = {
+                  id: `season-${anime.slug}-s${sNum}`,
+                  animeId: anime.id,
+                  seasonNumber: sNum,
+                  title: anime.canonicalTitle,
+                  year: anime.year || 2026,
+                  seasonPeriod: anime.seasonPeriod || 'Fall',
+                  canonicalEpisodesCount: epNum,
+                  airedEpisodesCount: epNum,
+                  verifiedEpisodesCount: epNum,
+                  missingEpisodes: [],
+                  readinessState: 'READY_ONGOING',
+                  licenseType: 'free_embed',
+                  updatedAt: timestamp,
+                };
+                if (!Array.isArray((db as any).seasons)) (db as any).seasons = [];
+                (db as any).seasons.push(newSeason);
               }
             }
 
