@@ -27,17 +27,18 @@ export default function HomePage() {
   const ongoingSectionRef = useRef<HTMLDivElement>(null);
   const completedSectionRef = useRef<HTMLDivElement>(null);
 
-  // Day order priority based on current day and update cycle (Sabtu -> Jumat -> Kamis -> Rabu -> Selasa -> Senin -> Minggu)
-  const DAY_ORDER: Record<string, number> = {
-    'Sabtu': 1,
-    'Jumat': 2,
-    'Kamis': 3,
-    'Rabu': 4,
-    'Selasa': 5,
-    'Senin': 6,
-    'Minggu': 7,
-    'Berkala': 8,
-  };
+  // Dynamic day order priority based on current day in WIB (Asia/Jakarta)
+  // Rotating backwards from today: Today (1) -> Yesterday (2) -> -2 days (3) ...
+  const INDONESIAN_DAYS = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+  const todayIdx = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).getDay();
+  const todayName = INDONESIAN_DAYS[todayIdx];
+
+  const DAY_ORDER: Record<string, number> = {};
+  for (let i = 0; i < 7; i++) {
+    const dayIdx = (todayIdx - i + 7) % 7;
+    DAY_ORDER[INDONESIAN_DAYS[dayIdx]] = i + 1;
+  }
+  DAY_ORDER['Berkala'] = 8;
 
   const ongoingAnime = allAnime
     .filter(a => a.airingStatus === 'airing')
@@ -46,7 +47,18 @@ export default function HomePage() {
       const dayB = b.scheduleWIB?.split(',')[0]?.trim() || '';
       const weightA = DAY_ORDER[dayA] || 99;
       const weightB = DAY_ORDER[dayB] || 99;
-      return weightA - weightB;
+      if (weightA !== weightB) {
+        return weightA - weightB;
+      }
+
+      // Secondary sort: Latest episode airedAt timestamp descending (terbaru tayang paling atas)
+      const epsA = db.getEpisodesByAnimeId(a.id);
+      const epsB = db.getEpisodesByAnimeId(b.id);
+      const latestA = epsA[epsA.length - 1];
+      const latestB = epsB[epsB.length - 1];
+      const timeA = latestA?.airedAt ? new Date(latestA.airedAt).getTime() : 0;
+      const timeB = latestB?.airedAt ? new Date(latestB.airedAt).getTime() : 0;
+      return timeB - timeA;
     });
 
   // Hero anime dynamically follows the latest updated ongoing anime
@@ -203,17 +215,26 @@ export default function HomePage() {
                   ? ongoingAnime.length
                   : ongoingAnime.filter(a => a.scheduleWIB?.includes(day)).length;
                 const isSelected = selectedDay === day;
+                const isToday = day === todayName;
                 return (
                   <button
                     key={day}
                     onClick={() => handleDayChange(day)}
-                    className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                    className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                       isSelected
                         ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
                         : 'bg-zinc-900/90 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/[0.08]'
                     }`}
                   >
-                    {day} <span className={`ml-1 text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>({count})</span>
+                    <span>{day}</span>
+                    {isToday && (
+                      <span className={`text-[9px] px-1.5 py-0.2 rounded-full uppercase tracking-wider font-bold ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-emerald-500/20 text-emerald-400'
+                      }`}>
+                        Hari Ini
+                      </span>
+                    )}
+                    <span className={`text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>({count})</span>
                   </button>
                 );
               })}
