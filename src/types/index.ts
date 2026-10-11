@@ -199,6 +199,7 @@ export interface MerchOrder {
   supplierOrderId?: string;
   supplierNotes?: string;
   trackingNumber?: string;
+  paymentProofUrl?: string;
   createdAt: string;
 }
 

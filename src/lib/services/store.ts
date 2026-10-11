@@ -857,6 +857,7 @@ class AnimeHomeDataStore {
     dropshipStatus?: 'pending_dispatch' | 'dispatched_to_supplier' | 'supplier_processing' | 'shipped';
     supplierOrderId?: string;
     supplierNotes?: string;
+    paymentProofUrl?: string;
   }): MerchOrder | undefined {
     const order = this.orders.find(o => o.id === orderId);
     if (order) {
@@ -866,6 +867,7 @@ class AnimeHomeDataStore {
       if (updates.dropshipStatus) order.dropshipStatus = updates.dropshipStatus;
       if (updates.supplierOrderId !== undefined) order.supplierOrderId = updates.supplierOrderId;
       if (updates.supplierNotes !== undefined) order.supplierNotes = updates.supplierNotes;
+      if (updates.paymentProofUrl !== undefined) order.paymentProofUrl = updates.paymentProofUrl;
     }
     return order;
   }

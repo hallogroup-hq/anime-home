@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { MerchItem } from '@/types';
 import { 
   X, Check, QrCode, ShoppingBag, ShieldCheck, Truck, MessageSquare, 
-  ArrowRight, Loader2, Copy, Download, RefreshCw, AlertCircle, ExternalLink 
+  ArrowRight, Loader2, Copy, Download, RefreshCw, AlertCircle, ExternalLink,
+  Upload, Image as ImageIcon, Trash2
 } from 'lucide-react';
 
 interface QuickCheckoutModalProps {
@@ -50,6 +51,9 @@ export function QuickCheckoutModal({
   const [qrisData, setQrisData] = useState<QRISData | null>(null);
   const [copiedCode, setCopiedCode] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60); // 15 mins countdown
+  const [showManualProof, setShowManualProof] = useState(false);
+  const [proofBase64, setProofBase64] = useState<string | null>(null);
+  const [proofFileName, setProofFileName] = useState<string>('');
 
   const pollingRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -196,8 +200,42 @@ export function QuickCheckoutModal({
     }
   };
 
-  // Manual confirmation trigger (if customer already transferred via static or m-banking)
-  const handleForceConfirmPayment = async () => {
+  const handleProofFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setErrorMsg('Mohon pilih file format gambar (JPG, PNG, atau WebP).');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setErrorMsg('Ukuran file maksimal 5 MB.');
+      return;
+    }
+
+    setErrorMsg('');
+    setProofFileName(file.name);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setProofBase64(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleClearProof = () => {
+    setProofBase64(null);
+    setProofFileName('');
+  };
+
+  // Manual confirmation with screenshot proof
+  const handleConfirmWithProof = async () => {
+    if (!proofBase64) {
+      setErrorMsg('Silakan unggah screenshot bukti transfer terlebih dahulu.');
+      return;
+    }
+
     if (!qrisData || !orderResult) return;
     setVerifying(true);
     setErrorMsg('');
@@ -211,6 +249,7 @@ export function QuickCheckoutModal({
           trxId: qrisData.trx_id,
           amount: qrisData.amount,
           manualConfirmed: true,
+          paymentProofUrl: proofBase64,
         }),
       });
 
@@ -219,7 +258,7 @@ export function QuickCheckoutModal({
         setOrderResult(data.order);
         setStep('success');
       } else {
-        throw new Error(data.message || 'Gagal mengonfirmasi pembayaran.');
+        throw new Error(data.message || data.error || 'Gagal mengonfirmasi pembayaran.');
       }
     } catch (err: any) {
       setErrorMsg(err.message || 'Gagal mengonfirmasi pembayaran.');
@@ -531,16 +570,93 @@ export function QuickCheckoutModal({
                 </button>
               </div>
 
-              {/* Fallback button for instant confirmation */}
-              <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={handleForceConfirmPayment}
-                  className="text-[11px] text-zinc-500 hover:text-zinc-300 underline underline-offset-2 transition-colors cursor-pointer"
-                >
-                  Sudah transfer tapi belum terdeteksi? Klik untuk Konfirmasi Mandiri
-                </button>
-              </div>
+              {/* Manual Confirmation with Screenshot Upload */}
+              {!showManualProof ? (
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowManualProof(true);
+                      setErrorMsg('');
+                    }}
+                    className="text-[11px] text-zinc-500 hover:text-zinc-300 underline underline-offset-2 transition-colors cursor-pointer"
+                  >
+                    Sudah transfer tapi belum terdeteksi? Unggah Bukti Pembayaran
+                  </button>
+                </div>
+              ) : (
+                <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 text-left space-y-3 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-white">Unggah Screenshot Bukti Transfer</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowManualProof(false);
+                        handleClearProof();
+                      }}
+                      className="text-[11px] text-zinc-500 hover:text-zinc-300 cursor-pointer"
+                    >
+                      Batal
+                    </button>
+                  </div>
+                  <p className="text-[11px] text-zinc-400">
+                    Sertakan tangkapan layar (screenshot) bukti pembayaran lunas dari m-banking atau e-wallet Anda.
+                  </p>
+
+                  {proofBase64 ? (
+                    <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-2.5 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <img 
+                          src={proofBase64} 
+                          alt="Screenshot Bukti Transfer" 
+                          className="w-12 h-12 rounded object-cover border border-zinc-800 shrink-0" 
+                        />
+                        <div className="min-w-0">
+                          <p className="text-xs text-white truncate max-w-[200px]">{proofFileName || 'bukti-transfer.jpg'}</p>
+                          <span className="text-[10px] text-zinc-500">Siap dikonfirmasi</span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleClearProof}
+                        className="p-1.5 text-zinc-400 hover:text-white rounded hover:bg-zinc-800 cursor-pointer shrink-0"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="border border-dashed border-zinc-800 hover:border-zinc-700 rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer transition-colors bg-zinc-950/60">
+                      <Upload className="w-5 h-5 text-zinc-500 mb-1.5" />
+                      <span className="text-xs font-medium text-zinc-300">Pilih Screenshot Bukti Transfer</span>
+                      <span className="text-[10px] text-zinc-500 mt-0.5">PNG, JPG, atau WebP (Maks. 5 MB)</span>
+                      <input
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp"
+                        onChange={handleProofFileChange}
+                        className="hidden"
+                      />
+                    </label>
+                  )}
+
+                  <div className="flex items-center justify-end gap-2 pt-1">
+                    <button
+                      type="button"
+                      disabled={!proofBase64 || verifying}
+                      onClick={handleConfirmWithProof}
+                      className="w-full py-2 px-3 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      {verifying ? (
+                        <>
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                          <span>Mengirim Bukti & Memverifikasi...</span>
+                        </>
+                      ) : (
+                        <span>Kirim Bukti Screenshot & Konfirmasi</span>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -574,10 +690,23 @@ export function QuickCheckoutModal({
                   <span className="text-zinc-400">Pengirim (Resi):</span>
                   <span className="text-white font-semibold">Anime Home Store</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between border-b border-zinc-800 pb-1.5">
                   <span className="text-zinc-400">No. Resi Pelacakan:</span>
                   <span className="font-mono font-bold text-zinc-200">{orderResult.trackingNumber}</span>
                 </div>
+                {orderResult.paymentProofUrl && (
+                  <div className="flex items-center justify-between pt-0.5">
+                    <span className="text-zinc-400">Bukti Screenshot:</span>
+                    <a 
+                      href={orderResult.paymentProofUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[11px] text-zinc-300 hover:text-white underline underline-offset-2"
+                    >
+                      Lihat Bukti Transfer
+                    </a>
+                  </div>
+                )}
               </div>
 
               <p className="text-[11px] text-zinc-400">

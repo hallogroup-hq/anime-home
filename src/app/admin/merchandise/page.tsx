@@ -363,13 +363,23 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
                             <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-white border border-zinc-700 uppercase">
                               {order.paymentStatus} (QRIS)
                             </span>
+                            {order.paymentProofUrl && (
+                              <a
+                                href={order.paymentProofUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-[10px] text-zinc-400 hover:text-white underline mt-1"
+                              >
+                                Bukti Transfer
+                              </a>
+                            )}
                           </td>
                           <td className="py-3 px-4">
                             <div className="space-y-0.5">
                               <span className={`px-2 py-0.5 rounded text-[10px] font-medium uppercase inline-block ${
                                 isDispatched 
                                   ? 'bg-zinc-800 text-zinc-200 border border-zinc-700' 
-                                  : 'bg-red-950/40 text-red-300 border border-red-800/40'
+                                  : 'bg-zinc-900 text-zinc-400 border border-zinc-800'
                               }`}>
                                 {order.dropshipStatus || 'pending_dispatch'}
                               </span>

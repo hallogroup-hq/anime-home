@@ -93,13 +93,16 @@ async function main() {
   assert(qrisRes.merchant_name === 'CV Kreativitas Anak Bangsa', 'QRIS merchant matches GoPay merchant');
   assert(qrisRes.qris_image_url.includes('api.qrserver.com'), 'QR Code image URL generated');
 
-  // C. Update order to paid upon mutation verification
+  // C. Update order to paid with screenshot proof
+  const dummyProofBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
   const updatedOrder = db.updateOrderStatus(newOrder.id, {
     paymentStatus: 'paid',
     dropshipStatus: 'pending_dispatch',
+    paymentProofUrl: dummyProofBase64,
   });
   assert(updatedOrder?.paymentStatus === 'paid', 'Order status updated to PAID');
   assert(updatedOrder?.dropshipStatus === 'pending_dispatch', 'Order queued for dropship dispatch');
+  assert(updatedOrder?.paymentProofUrl === dummyProofBase64, 'Order stores screenshot payment proof URL');
 
   const ordersAfterPay = db.getOrders();
   const paidRevenue = ordersAfterPay.filter(o => o.paymentStatus === 'paid').reduce((a, b) => a + b.totalAmount, 0);

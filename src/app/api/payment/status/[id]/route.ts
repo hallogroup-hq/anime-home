@@ -113,7 +113,7 @@ export async function POST(
 
     const { id: qrisId } = await context.params;
     const body = await req.json().catch(() => ({}));
-    const { orderId, trxId, amount, manualConfirmed } = body;
+    const { orderId, trxId, amount, manualConfirmed, paymentProofUrl } = body;
 
     if (!orderId) {
       return NextResponse.json(
@@ -122,25 +122,34 @@ export async function POST(
       );
     }
 
+    if (manualConfirmed && !paymentProofUrl) {
+      return NextResponse.json(
+        { success: false, error: 'Silakan unggah screenshot bukti transfer terlebih dahulu.' },
+        { status: 400 }
+      );
+    }
+
     // Attempt gateway verification first
     const checkRes = await verifyQRISStatus(qrisId, trxId, amount);
 
-    // If either gateway confirmed or manual confirmation requested
-    const isPaid = checkRes.paid || Boolean(manualConfirmed);
+    // If either gateway confirmed or manual confirmation with proof requested
+    const isPaid = checkRes.paid || (Boolean(manualConfirmed) && Boolean(paymentProofUrl));
 
     if (isPaid) {
       const updatedOrder = db.updateOrderStatus(orderId, {
         paymentStatus: 'paid',
         dropshipStatus: 'pending_dispatch',
+        paymentProofUrl: paymentProofUrl || undefined,
       });
 
       if (updatedOrder) {
         const sessionKey = `session-${updatedOrder.customerContact.replace(/[^0-9]/g, '') || Date.now()}`;
+        const proofNotice = paymentProofUrl ? ' Bukti screenshot transfer telah berhasil diterima dan diverifikasi oleh admin.' : '';
         db.sendChatMessage({
           sessionId: sessionKey,
           sender: 'admin',
           senderName: 'Anime Home Store',
-          message: `Terima kasih! Pembayaran pesanan #${orderId.slice(-6)} untuk "${updatedOrder.merchName}" (${updatedOrder.selectedVariant}) telah DIVERIFIKASI LUNAS via QRIS GoPay Merchant. Pesanan Anda kini masuk antrean pengiriman.`,
+          message: `Terima kasih! Pembayaran pesanan #${orderId.slice(-6)} untuk "${updatedOrder.merchName}" (${updatedOrder.selectedVariant}) telah DIVERIFIKASI LUNAS via QRIS GoPay Merchant.${proofNotice} Pesanan Anda kini masuk antrean pengiriman.`,
           merchRef: {
             id: updatedOrder.merchId,
             name: updatedOrder.merchName,
