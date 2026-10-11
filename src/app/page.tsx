@@ -27,37 +27,29 @@ export default function HomePage() {
   const ongoingSectionRef = useRef<HTMLDivElement>(null);
   const completedSectionRef = useRef<HTMLDivElement>(null);
 
-  // Dynamic day order priority based on current day in WIB (Asia/Jakarta)
-  // Rotating backwards from today: Today (1) -> Yesterday (2) -> -2 days (3) ...
+  // Tentukan hari ini dalam WIB untuk badge "Hari Ini" pada filter pill
   const INDONESIAN_DAYS = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
   const todayIdx = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).getDay();
   const todayName = INDONESIAN_DAYS[todayIdx];
 
-  const DAY_ORDER: Record<string, number> = {};
-  for (let i = 0; i < 7; i++) {
-    const dayIdx = (todayIdx - i + 7) % 7;
-    DAY_ORDER[INDONESIAN_DAYS[dayIdx]] = i + 1;
-  }
-  DAY_ORDER['Berkala'] = 8;
+  // Helper: ambil tanggal lokal WIB "YYYY-MM-DD" dari sebuah timestamp ISO
+  const toWIBDate = (iso: string): string => {
+    return new Date(new Date(iso).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }))
+      .toISOString().slice(0, 10);
+  };
+  const todayWIB = toWIBDate(new Date().toISOString());
 
   const ongoingAnime = allAnime
     .filter(a => a.airingStatus === 'airing')
     .sort((a, b) => {
-      const dayA = a.scheduleWIB?.split(',')[0]?.trim() || '';
-      const dayB = b.scheduleWIB?.split(',')[0]?.trim() || '';
-      const weightA = DAY_ORDER[dayA] || 99;
-      const weightB = DAY_ORDER[dayB] || 99;
-      if (weightA !== weightB) {
-        return weightA - weightB;
-      }
-
-      // Secondary sort: Latest episode airedAt timestamp descending (terbaru tayang paling atas)
       const epsA = db.getEpisodesByAnimeId(a.id);
       const epsB = db.getEpisodesByAnimeId(b.id);
       const latestA = epsA[epsA.length - 1];
       const latestB = epsB[epsB.length - 1];
       const timeA = latestA?.airedAt ? new Date(latestA.airedAt).getTime() : 0;
       const timeB = latestB?.airedAt ? new Date(latestB.airedAt).getTime() : 0;
+      // Urutkan murni berdasarkan timestamp episode terbaru secara descending.
+      // Anime hanya naik ke depan jika benar-benar sudah ada episode baru yang di-ingest.
       return timeB - timeA;
     });
 
