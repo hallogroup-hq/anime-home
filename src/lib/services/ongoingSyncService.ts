@@ -264,12 +264,15 @@ export class OngoingSyncService {
       // -------------------------------------------------------------
       for (const item of samehadaReleases) {
         try {
-          const rawTitle = item.series_title.trim();
-          const epNum = parseInt(item.episode) || 1;
+          const rawTitle = (item.series_title || item.title || '').trim();
+          if (!rawTitle) continue;
+          const epNum = parseInt(item.data?.episode || item.episode || '1') || 1;
+          const thumb = item.thumb || item.img || '';
+          const epUrl = item.data?.url || item.url || '';
 
           const { anime, isNew } = this.getOrCreateAnime(
             rawTitle,
-            item.thumb,
+            thumb,
             epNum,
             'Berkala',
             undefined,
@@ -311,7 +314,7 @@ export class OngoingSyncService {
             };
 
             // Resolve streams from Samehadaku
-            const samehadaStreams = await SamehadakuScraper.getEpisodeStreams(item.url);
+            const samehadaStreams = epUrl ? await SamehadakuScraper.getEpisodeStreams(epUrl) : [];
             const newVariants: StreamVariant[] = [];
             const providersUsed: string[] = [];
 
@@ -414,14 +417,14 @@ export class OngoingSyncService {
               episodeNumber: epNum,
               displayNumber,
               episodeTitle: newEpisode.title,
-              sourceUrl: item.url,
+              sourceUrl: epUrl || item.url || '',
               sourceName: 'Samehadaku',
               variantsAdded: newVariants.length,
               providers: providersUsed,
             });
           }
         } catch (err: any) {
-          console.warn(`[OngoingSyncService] Error processing Samehadaku item ${item.series_title}:`, err.message);
+          console.warn(`[OngoingSyncService] Error processing Samehadaku item ${item.series_title || item.title}:`, err.message);
         }
       }
 
