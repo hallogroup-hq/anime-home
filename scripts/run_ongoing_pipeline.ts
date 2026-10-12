@@ -24,14 +24,19 @@ async function main() {
       console.log(`  ✨ [${u.animeTitle}] Episode ${u.displayNumber} - ${u.variantsAdded} servers (${u.providers.join(', ')})`);
     }
 
+    if (process.env.TURSO_DATABASE_URL) {
+      console.log('\n⚡ Data episode baru sudah langsung tersimpan di Database Turso Cloud!');
+      console.log('🌐 Pengunjung website langsung melihat update secara live tanpa perlu nunggu build Vercel.');
+    }
+
     if (process.argv.includes('--push')) {
       const { execSync } = await import('child_process');
-      console.log('\n🚀 Auto-push enabled: Committing to git & triggering Vercel deployment...');
+      console.log('\n🚀 Optional git push enabled: Syncing local JSON backup to repository...');
       try {
         execSync('git add src/lib/data/live_data.json scripts/deduplicate_anime.ts src/lib/services/ongoingSyncService.ts scripts/run_ongoing_pipeline.ts', { stdio: 'inherit' });
-        execSync('git commit -m "fix(sync): deduplicate anime entries and enhance cross-source matching" --allow-empty', { stdio: 'inherit' });
+        execSync('git commit -m "chore(sync): automated ongoing anime releases update" --allow-empty', { stdio: 'inherit' });
         execSync('git push origin main', { stdio: 'inherit' });
-        console.log('✅ Berhasil push ke repository! Vercel production build terpicu.');
+        console.log('✅ Berhasil push backup ke repository!');
       } catch (pushErr: any) {
         console.error('⚠️ Gagal auto-push ke git:', pushErr.message);
       }

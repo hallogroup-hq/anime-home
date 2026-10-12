@@ -64,6 +64,51 @@ class AnimeHomeDataStore {
       { id: 'popular', name: 'Populer & Koleksi Lengkap', enabled: true },
     ],
   };
+  private lastTursoSyncTime: number = 0;
+  private isSyncingTurso: boolean = false;
+
+  /**
+   * Sync in-memory store with Turso Database (Server-side SWR cache)
+   */
+  public async syncWithTurso(force: boolean = false): Promise<void> {
+    if (typeof window !== 'undefined') return;
+    const now = Date.now();
+    if (!force && (now - this.lastTursoSyncTime < 60000 || this.isSyncingTurso)) {
+      return;
+    }
+
+    this.isSyncingTurso = true;
+    try {
+      const { TursoService } = await import('./tursoService');
+      const snapshot = await TursoService.fetchFullSnapshot();
+      if (snapshot.anime.length > 0) {
+        this.anime = snapshot.anime;
+      }
+      if (snapshot.episodes.length > 0) {
+        this.episodes = snapshot.episodes;
+      }
+      if (snapshot.variants.length > 0) {
+        this.variants = snapshot.variants;
+      }
+      if (snapshot.seasons.length > 0) {
+        this.seasons = snapshot.seasons;
+      }
+      this.lastTursoSyncTime = Date.now();
+    } catch (err: any) {
+      console.warn('[DataStore] Turso sync error:', err.message);
+    } finally {
+      this.isSyncingTurso = false;
+    }
+  }
+
+  private triggerBackgroundTursoSync(): void {
+    if (typeof window === 'undefined' && process.env.TURSO_DATABASE_URL) {
+      const now = Date.now();
+      if (now - this.lastTursoSyncTime > 60000 && !this.isSyncingTurso) {
+        this.syncWithTurso().catch(() => {});
+      }
+    }
+  }
   private reports: BrokenStreamReport[] = [
     {
       id: 'rep-01',
@@ -97,6 +142,7 @@ class AnimeHomeDataStore {
     mediaType?: MediaType;
     sortBy?: 'popular' | 'latest' | 'score' | 'title_asc';
   }): Anime[] {
+    this.triggerBackgroundTursoSync();
     let result = this.anime.filter(a => a.publishState === 'published');
 
     if (params?.query) {
@@ -268,16 +314,19 @@ class AnimeHomeDataStore {
   }
 
   public getAnimeBySlug(slug: string): Anime | undefined {
+    this.triggerBackgroundTursoSync();
     return this.anime.find(a => a.slug === slug);
   }
 
   public getEpisodesByAnimeId(animeId: string): Episode[] {
+    this.triggerBackgroundTursoSync();
     return this.episodes
       .filter(e => e.animeId === animeId && e.publishState === 'published')
       .sort((a, b) => a.ordinal - b.ordinal);
   }
 
   public getEpisodeById(episodeId: string): Episode | undefined {
+    this.triggerBackgroundTursoSync();
     const direct = this.episodes.find(e => e.id === episodeId);
     if (direct) return direct;
     if (episodeId.startsWith('ep-anime-')) {
@@ -293,10 +342,12 @@ class AnimeHomeDataStore {
   }
 
   public getAllEpisodes(): Episode[] {
+    this.triggerBackgroundTursoSync();
     return [...this.episodes];
   }
 
   public getAllStreamVariants(episodeId?: string): StreamVariant[] {
+    this.triggerBackgroundTursoSync();
     if (episodeId) {
       let vars = this.variants.filter(v => v.episodeId === episodeId);
       if (vars.length === 0) {

@@ -954,9 +954,25 @@ export class OngoingSyncService {
       }
 
       // -------------------------------------------------------------
-      // 3. Persist to live_data.json
+      // 3. Persist to Turso Database & live_data.json
       // -------------------------------------------------------------
       if (!options.dryRun && updates.length > 0) {
+        // 3a. Persist to Turso Cloud Database
+        try {
+          const { TursoService } = await import('./tursoService');
+          for (const u of updates) {
+            const ep = (db as any).episodes.find((e: any) => e.animeId === u.animeId && e.ordinal === u.episodeNumber);
+            const vars = (db as any).variants.filter((v: any) => v.episodeId === ep?.id);
+            if (ep && vars.length > 0) {
+              await TursoService.insertNewEpisodeWithVariants(ep, vars, { id: u.animeId, totalCanonicalEpisodes: u.episodeNumber });
+            }
+          }
+          console.log(`[OngoingSyncService] ⚡ Sukses menyimpan ${updates.length} update episode langsung ke Database Turso Cloud!`);
+        } catch (tursoErr: any) {
+          console.warn(`[OngoingSyncService] Warning: Gagal simpan ke Turso (${tursoErr.message})`);
+        }
+
+        // 3b. Local JSON fallback
         try {
           const payloadToSave = {
             anime: (db as any).anime,
