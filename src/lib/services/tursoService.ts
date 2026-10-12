@@ -466,10 +466,10 @@ export class TursoService {
     }
 
     // 3. Update total canonical episodes on anime if provided
-    if (animeUpdate && animeUpdate.totalCanonicalEpisodes) {
+    if (anime && anime.totalCanonicalEpisodes) {
       statements.push({
         sql: `UPDATE anime SET total_canonical_episodes = MAX(COALESCE(total_canonical_episodes, 0), ?), updated_at = ? WHERE id = ?;`,
-        args: [animeUpdate.totalCanonicalEpisodes, new Date().toISOString(), animeUpdate.id],
+        args: [anime.totalCanonicalEpisodes, new Date().toISOString(), anime.id],
       });
       statements.push({
         sql: `UPDATE seasons SET 
@@ -478,7 +478,7 @@ export class TursoService {
           aired_episodes_count = MAX(COALESCE(aired_episodes_count, 0), ?),
           updated_at = ?
           WHERE anime_id = ?;`,
-        args: [animeUpdate.totalCanonicalEpisodes, animeUpdate.totalCanonicalEpisodes, animeUpdate.totalCanonicalEpisodes, new Date().toISOString(), animeUpdate.id],
+        args: [anime.totalCanonicalEpisodes, anime.totalCanonicalEpisodes, anime.totalCanonicalEpisodes, new Date().toISOString(), anime.id],
       });
     }
 
