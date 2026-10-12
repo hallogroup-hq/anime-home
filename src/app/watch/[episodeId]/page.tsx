@@ -225,20 +225,17 @@ export default async function WatchPage({ params }: PageProps) {
     ],
   };
 
-  let secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
-  const hasVariants = Object.values(secureStreamMatrix.variantsByQuality).some(list => list.length > 0);
-  if (!hasVariants) {
-    try {
-      const { TursoService } = await import('@/lib/services/tursoService');
-      const tursoVariants = await TursoService.getVariantsByEpisodeId(episode.id);
-      if (tursoVariants.length > 0) {
-        db.registerVariants(tursoVariants);
-        secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
-      }
-    } catch (err) {
-      console.warn('[WatchPage] Turso variants fallback failed:', err);
+  try {
+    const { TursoService } = await import('@/lib/services/tursoService');
+    const tursoVariants = await TursoService.getVariantsByEpisodeId(episode.id);
+    if (tursoVariants.length > 0) {
+      db.registerVariants(tursoVariants);
     }
+  } catch (err) {
+    console.warn('[WatchPage] Turso variants sync failed:', err);
   }
+
+  const secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
 
   return (
     <>

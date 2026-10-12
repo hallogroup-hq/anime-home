@@ -135,9 +135,13 @@ class AnimeHomeDataStore {
   }
 
   public registerVariants(variants: StreamVariant[]): void {
-    const existingIds = new Set(this.variants.map(v => v.id));
+    const map = new Map<string, number>();
+    this.variants.forEach((v, i) => map.set(v.id, i));
     for (const v of variants) {
-      if (!existingIds.has(v.id)) {
+      if (map.has(v.id)) {
+        this.variants[map.get(v.id)!] = v;
+      } else {
+        map.set(v.id, this.variants.length);
         this.variants.push(v);
       }
     }

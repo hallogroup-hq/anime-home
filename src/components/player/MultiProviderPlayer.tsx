@@ -53,10 +53,15 @@ export function MultiProviderPlayer({
     setSelectedQuality(defaultQuality);
   }, [defaultQuality]);
 
-  // Varian server pada resolusi yang aktif (prioritaskan stream nyata, tapi simpan opsi server cadangan)
+  // Varian server pada resolusi yang aktif (prioritaskan stream nyata dan terverifikasi)
   const currentServers = useMemo(() => {
     const allInQ = matrix.variantsByQuality[selectedQuality] || [];
     return [...allInQ].sort((a, b) => {
+      const aOffline = a.verificationState === 'offline';
+      const bOffline = b.verificationState === 'offline';
+      if (aOffline !== bOffline) {
+        return aOffline ? 1 : -1;
+      }
       const aIsPlaceholder = a.embedUrl.startsWith('/embed/player');
       const bIsPlaceholder = b.embedUrl.startsWith('/embed/player');
       if (aIsPlaceholder !== bIsPlaceholder) {

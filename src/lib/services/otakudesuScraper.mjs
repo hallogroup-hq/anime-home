@@ -214,12 +214,24 @@ export async function getEpisodeStreams(episodeUrl, options = { resolveAllMirror
 
             if (streamRes && streamRes.data) {
               const decodedHtml = Buffer.from(streamRes.data, 'base64').toString('utf8');
-              const iframeSrc = decodedHtml.match(/src=['"]([^'"]+)['"]/i)?.[1] || null;
+              let iframeSrc = decodedHtml.match(/src=['"]([^'"]+)['"]/i)?.[1] || null;
+              if (iframeSrc && iframeSrc.includes('desudrive.com/stream/yuplod.php?id=')) {
+                const yuId = iframeSrc.split('id=')[1]?.split('&')[0];
+                if (yuId) iframeSrc = `https://www.yourupload.com/embed/${yuId}`;
+              }
+              const canEmbed = iframeSrc ? (
+                iframeSrc.includes('yourupload.com') ||
+                iframeSrc.includes('desudrive.com') ||
+                iframeSrc.includes('blogger.com') ||
+                iframeSrc.includes('mega.nz') ||
+                iframeSrc.includes('odvidhide.com') ||
+                iframeSrc.includes('vidhide')
+              ) : false;
               result.resolvedStreams.push({
                 server: mirror.server,
                 quality: mirror.payload.q,
                 iframeSrc,
-                canEmbedDirectly: iframeSrc ? (iframeSrc.includes('mega.nz') || iframeSrc.includes('odvidhide.com') || iframeSrc.includes('vidhide')) : false
+                canEmbedDirectly: canEmbed
               });
             }
           } catch (err) {

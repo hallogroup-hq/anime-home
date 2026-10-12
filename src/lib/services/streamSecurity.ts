@@ -169,12 +169,16 @@ const ALLOWED_STREAM_HOSTS = [
   'desustream.net',
   'desustream.com',
   'desustream.me',
+  'desudrive.com',
+  'yourupload.com',
+  'www.yourupload.com',
   'youtube.com',
   'www.youtube.com',
   'youtube-nocookie.com',
   'www.youtube-nocookie.com',
   'youtu.be',
   'blogger.com',
+  'www.blogger.com',
   's1.kotakanimeid.link',
   's2.kotakanimeid.link',
   'kotakanimeid.link',
@@ -182,6 +186,8 @@ const ALLOWED_STREAM_HOSTS = [
   's13.nontonanimeid.boats',
   'gdplayer.to',
   's1.rpmvip.com',
+  'googlevideo.com',
+  'googleapis.com',
 ];
 
 export function isAllowedStreamHost(urlStr: string): boolean {
