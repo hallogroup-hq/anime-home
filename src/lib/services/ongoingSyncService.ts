@@ -39,12 +39,25 @@ function slugify(text: string): string {
     .replace(/\s+/g, '-');
 }
 
+function unescapeHtml(s: string): string {
+  return s
+    .replace(/&#8211;/g, '-')
+    .replace(/&#8212;/g, '-')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
 function extractSeason(title: string): number | null {
-  const norm = title.toLowerCase();
+  const norm = unescapeHtml(title).toLowerCase();
   const m1 = norm.match(/(?:season|s)\s*(\d+)/i);
   if (m1) return parseInt(m1[1]);
   const m2 = norm.match(/(\d+)(?:st|nd|rd|th)\s*season/i);
   if (m2) return parseInt(m2[1]);
+  if (/\bvi\b/.test(norm)) return 6;
+  if (/\bv\b/.test(norm)) return 5;
   if (/\biv\b/.test(norm)) return 4;
   if (/\biii\b/.test(norm)) return 3;
   if (/\bii\b/.test(norm)) return 2;
@@ -52,15 +65,27 @@ function extractSeason(title: string): number | null {
 }
 
 function cleanBaseTitle(title: string): string {
-  return title
+  return unescapeHtml(title)
     .toLowerCase()
     .replace(/(?:season|s)\s*\d+/gi, ' ')
     .replace(/\d+(?:st|nd|rd|th)\s*season/gi, ' ')
-    .replace(/\b(?:ii|iii|iv)\b/gi, ' ')
+    .replace(/\b(?:ii|iii|iv|v|vi)\b/gi, ' ')
+    .replace(/\b(?:sub\s*indo|subtitle\s*indonesia)\b/gi, ' ')
     .replace(/[^a-z0-9]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
+
+function getSpacelessBase(title: string): string {
+  return cleanBaseTitle(title).replace(/[^a-z0-9]/g, '');
+}
+
+const CROSS_SOURCE_SYNONYMS: Record<string, string> = {
+  'tempal': 'overgeared',
+  'tempal item no chikara': 'overgeared',
+  'item no chikara': 'overgeared',
+  'chii fuyo': 'tsuihou sareta cheat fuyo majutsushi',
+};
 
 export class OngoingSyncService {
   /**
@@ -76,50 +101,81 @@ export class OngoingSyncService {
     dryRun?: boolean
   ): { anime: Anime; isNew: boolean } {
     const timestamp = new Date().toISOString();
-    const normTitle = rawTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+    const cleanRaw = unescapeHtml(rawTitle).trim();
+    const normTitle = cleanRaw.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+    const rawSpaceless = normTitle.replace(/\s+/g, '');
+    const rawSeason = extractSeason(cleanRaw);
+    let rawBaseSpaceless = getSpacelessBase(cleanRaw);
+
+    // Check if known cross-source synonym applies
+    if (CROSS_SOURCE_SYNONYMS[normTitle]) {
+      rawBaseSpaceless = getSpacelessBase(CROSS_SOURCE_SYNONYMS[normTitle]);
+    } else {
+      for (const [k, v] of Object.entries(CROSS_SOURCE_SYNONYMS)) {
+        if (normTitle.includes(k)) {
+          rawBaseSpaceless = getSpacelessBase(v);
+          break;
+        }
+      }
+    }
 
     const allAnime = db.getAnimeList();
 
-    // 1. Exact match on canonical title, slug, or primary alias
+    // 1. Exact match on canonical title, slug, or alias (both spaced and spaceless)
     let matched = allAnime.find(a => {
       if (a.id === 'anime-sbr') return false; // Preserve PRD chapter 19 scheduled benchmark
-      const normA = a.canonicalTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
-      if (normA === normTitle) return true;
-      if (a.slug === slugify(rawTitle)) return true;
+      const cleanA = unescapeHtml(a.canonicalTitle);
+      const normA = cleanA.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+      const aSpaceless = normA.replace(/\s+/g, '');
+
+      if (normA === normTitle || aSpaceless === rawSpaceless) return true;
+      if (a.slug === slugify(cleanRaw)) return true;
+
       for (const al of a.aliases || []) {
-        const normAl = al.title.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
-        if (normAl === normTitle) return true;
+        const cleanAl = unescapeHtml(al.title);
+        const normAl = cleanAl.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+        if (normAl === normTitle || normAl.replace(/\s+/g, '') === rawSpaceless) return true;
       }
       return false;
     });
 
-    // 2. Fuzzy match respecting season separation
+    // 2. Base title and season match (ignoring spacing, symbol variations, and season phrasing)
     if (!matched) {
-      const rawSeason = extractSeason(rawTitle);
-      const rawBase = cleanBaseTitle(rawTitle);
-
       matched = allAnime.find(a => {
         if (a.id === 'anime-sbr') return false;
-        const normA = a.canonicalTitle.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
-        const aSeason = extractSeason(a.canonicalTitle);
+        const cleanA = unescapeHtml(a.canonicalTitle);
+        const aSeason = extractSeason(cleanA);
 
         // Disallow cross-season matching (e.g. Season 2 must not match Season 1 / unnumbered)
         if (rawSeason !== null && aSeason !== null && rawSeason !== aSeason) return false;
         if (rawSeason !== null && aSeason === null && rawSeason > 1) return false;
         if (rawSeason === null && aSeason !== null && aSeason > 1) return false;
 
-        if (normA.includes(normTitle) || normTitle.includes(normA)) return true;
-
-        const aBase = cleanBaseTitle(a.canonicalTitle);
-        if (rawBase.length > 5 && aBase.length > 5 && (rawBase.includes(aBase) || aBase.includes(rawBase))) {
-          return true;
+        const aBaseSpaceless = getSpacelessBase(cleanA);
+        if (rawBaseSpaceless && aBaseSpaceless) {
+          if (rawBaseSpaceless === aBaseSpaceless) return true;
+          if (rawBaseSpaceless.length > 6 && aBaseSpaceless.length > 6) {
+            if (rawBaseSpaceless.includes(aBaseSpaceless) || aBaseSpaceless.includes(rawBaseSpaceless)) {
+              return true;
+            }
+          }
         }
 
+        // Also check aliases with season compatibility
         for (const al of a.aliases || []) {
-          const normAl = al.title.toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
-          const alSeason = extractSeason(al.title);
+          const cleanAl = unescapeHtml(al.title);
+          const alSeason = extractSeason(cleanAl);
           if (rawSeason !== null && alSeason !== null && rawSeason !== alSeason) continue;
-          if (normAl.length > 4 && (normTitle.includes(normAl) || normAl.includes(normTitle))) return true;
+
+          const alBaseSpaceless = getSpacelessBase(cleanAl);
+          if (rawBaseSpaceless && alBaseSpaceless) {
+            if (rawBaseSpaceless === alBaseSpaceless) return true;
+            if (rawBaseSpaceless.length > 6 && alBaseSpaceless.length > 6) {
+              if (rawBaseSpaceless.includes(alBaseSpaceless) || alBaseSpaceless.includes(rawBaseSpaceless)) {
+                return true;
+              }
+            }
+          }
         }
 
         return false;
@@ -127,12 +183,31 @@ export class OngoingSyncService {
     }
 
     if (matched) {
+      // Update schedule to specific day if currently 'Berkala'
       if (scheduleDay && scheduleDay !== 'Berkala' && matched.airingStatus === 'airing') {
         const currentDay = matched.scheduleWIB?.split(',')[0]?.trim();
-        if (currentDay !== scheduleDay) {
+        if (!currentDay || currentDay === 'Berkala' || currentDay !== scheduleDay) {
           matched.scheduleWIB = `${scheduleDay}, 19:00 WIB`;
         }
       }
+
+      // Record alternate title as alias if not already present
+      if (!matched.aliases) matched.aliases = [];
+      const hasAlias = matched.aliases.some(al =>
+        al.title.toLowerCase() === cleanRaw.toLowerCase() ||
+        (al.normalizedTitle && al.normalizedTitle === normTitle)
+      );
+      if (!hasAlias && cleanRaw.toLowerCase() !== matched.canonicalTitle.toLowerCase()) {
+        matched.aliases.push({
+          id: `alias-${slugify(cleanRaw)}`,
+          animeId: matched.id,
+          locale: 'id-ID',
+          title: cleanRaw,
+          titleType: 'alias',
+          normalizedTitle: normTitle,
+        });
+      }
+
       return { anime: matched, isNew: false };
     }
 

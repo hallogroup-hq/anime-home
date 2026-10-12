@@ -1,6 +1,76 @@
 {
   "anime": [
     {
+      "id": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2",
+      "canonicalTitle": "Yozakura-san Chi no Daisakusen Season 2 Part 2",
+      "slug": "yozakura-san-chi-no-daisakusen-season-2-part-2",
+      "mediaType": "TV",
+      "synopsis": "Serial anime Yozakura-san Chi no Daisakusen Season 2 Part 2 subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
+      "firstAirDate": "2026-10-12",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "maturityRating": "PG-13",
+      "airingStatus": "airing",
+      "publishState": "published",
+      "posterUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160135.jpg",
+      "bannerUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160135.jpg",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Shounen"
+      ],
+      "aliases": [
+        {
+          "id": "title-yozakura-san-chi-no-daisakusen-season-2-part-2-primary",
+          "animeId": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2",
+          "locale": "id-ID",
+          "title": "Yozakura-san Chi no Daisakusen Season 2 Part 2",
+          "titleType": "canonical",
+          "normalizedTitle": "yozakura-san-chi-no-daisakusen-season-2-part-2"
+        }
+      ],
+      "totalCanonicalEpisodes": 1,
+      "scheduleWIB": "Minggu, 19:00 WIB",
+      "seasonReadinessState": "READY_ONGOING",
+      "createdAt": "2026-10-12T03:42:21.289Z",
+      "updatedAt": "2026-10-12T03:42:21.289Z"
+    },
+    {
+      "id": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku",
+      "canonicalTitle": "Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku",
+      "slug": "shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku",
+      "mediaType": "TV",
+      "synopsis": "Serial anime Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
+      "firstAirDate": "2026-10-12",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "maturityRating": "PG-13",
+      "airingStatus": "airing",
+      "publishState": "published",
+      "posterUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/159863.jpg",
+      "bannerUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/159863.jpg",
+      "genres": [
+        "Fantasy",
+        "Isekai",
+        "Romance"
+      ],
+      "aliases": [
+        {
+          "id": "title-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-primary",
+          "animeId": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku",
+          "locale": "id-ID",
+          "title": "Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku",
+          "titleType": "canonical",
+          "normalizedTitle": "shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku"
+        }
+      ],
+      "totalCanonicalEpisodes": 1,
+      "scheduleWIB": "Senin, 19:00 WIB",
+      "seasonReadinessState": "READY_ONGOING",
+      "createdAt": "2026-10-12T03:42:14.001Z",
+      "updatedAt": "2026-10-12T03:42:14.001Z"
+    },
+    {
       "id": "anime-mao",
       "canonicalTitle": "Mao",
       "slug": "mao",
@@ -141,41 +211,6 @@
       "updatedAt": "2026-10-11T19:08:30.709Z"
     },
     {
-      "id": "anime-ao-ashi-s2",
-      "canonicalTitle": "Ao Ashi S2",
-      "slug": "ao-ashi-s2",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Ao Ashi S2 subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-11",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/image-9-300x169.jpg",
-      "bannerUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/image-9-300x169.jpg",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-ao-ashi-s2-primary",
-          "animeId": "anime-ao-ashi-s2",
-          "locale": "id-ID",
-          "title": "Ao Ashi S2",
-          "titleType": "canonical",
-          "normalizedTitle": "ao-ashi-s2"
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-11T11:01:49.526Z",
-      "updatedAt": "2026-10-11T11:01:49.526Z"
-    },
-    {
       "id": "anime-vertex-force",
       "canonicalTitle": "Vertex Force",
       "slug": "vertex-force",
@@ -236,6 +271,14 @@
           "title": "Kashita Maryoku",
           "titleType": "canonical",
           "normalizedTitle": "kashita-maryoku"
+        },
+        {
+          "id": "alias-kashita-maryoku-wa-revo-barai-de-kyousei-choushuu",
+          "animeId": "anime-kashita-maryoku",
+          "locale": "id-ID",
+          "title": "Kashita Maryoku wa \"Revo Barai\" de Kyousei Choushuu",
+          "titleType": "alias",
+          "normalizedTitle": "kashita maryoku wa revo barai de kyousei choushuu"
         }
       ],
       "totalCanonicalEpisodes": 2,
@@ -350,41 +393,6 @@
       "updatedAt": "2026-10-10T17:24:42.503Z"
     },
     {
-      "id": "anime-yasei-no-last-boss-ga-arawareta-2nd-season",
-      "canonicalTitle": "Yasei no Last Boss ga Arawareta! 2nd Season",
-      "slug": "yasei-no-last-boss-ga-arawareta-2nd-season",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Yasei no Last Boss ga Arawareta! 2nd Season subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/09/Yasei-no-Last-Boss-ga-Arawareta-2nd-Season.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/09/Yasei-no-Last-Boss-ga-Arawareta-2nd-Season.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-yasei-no-last-boss-ga-arawareta-2nd-season-primary",
-          "animeId": "anime-yasei-no-last-boss-ga-arawareta-2nd-season",
-          "locale": "id-ID",
-          "title": "Yasei no Last Boss ga Arawareta! 2nd Season",
-          "titleType": "canonical",
-          "normalizedTitle": "yasei-no-last-boss-ga-arawareta-2nd-season"
-        }
-      ],
-      "totalCanonicalEpisodes": 3,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T16:10:41.077Z",
-      "updatedAt": "2026-10-10T16:10:41.077Z"
-    },
-    {
       "id": "anime-romelia-senki",
       "canonicalTitle": "Romelia Senki",
       "slug": "romelia-senki",
@@ -447,6 +455,22 @@
           "title": "Yasei no Last Boss ga Arawareta! Season 2",
           "titleType": "canonical",
           "normalizedTitle": "yasei-no-last-boss-ga-arawareta-season-2"
+        },
+        {
+          "id": "alias-yasei-no-last-boss-ga-arawareta-2nd-season",
+          "animeId": "anime-yasei-no-last-boss-ga-arawareta-season-2",
+          "locale": "id-ID",
+          "title": "Yasei no Last Boss ga Arawareta! 2nd Season",
+          "titleType": "synonym",
+          "normalizedTitle": "yasei no last boss ga arawareta 2nd season"
+        },
+        {
+          "id": "alias-yasei-no-last-boss-ga-arawareta-s2",
+          "animeId": "anime-yasei-no-last-boss-ga-arawareta-season-2",
+          "locale": "id-ID",
+          "title": "Yasei no Last Boss ga Arawareta! S2",
+          "titleType": "synonym",
+          "normalizedTitle": "yasei no last boss ga arawareta s2"
         }
       ],
       "totalCanonicalEpisodes": 3,
@@ -454,41 +478,6 @@
       "seasonReadinessState": "READY_ONGOING",
       "createdAt": "2026-10-10T16:09:57.977Z",
       "updatedAt": "2026-10-10T16:09:57.977Z"
-    },
-    {
-      "id": "anime-yasei-no-last-boss-ga-arawareta-s2",
-      "canonicalTitle": "Yasei no Last Boss ga Arawareta! S2",
-      "slug": "yasei-no-last-boss-ga-arawareta-s2",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Yasei no Last Boss ga Arawareta! S2 subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/Screenshot-905-300x169.jpg",
-      "bannerUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/Screenshot-905-300x169.jpg",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-yasei-no-last-boss-ga-arawareta-s2-primary",
-          "animeId": "anime-yasei-no-last-boss-ga-arawareta-s2",
-          "locale": "id-ID",
-          "title": "Yasei no Last Boss ga Arawareta! S2",
-          "titleType": "canonical",
-          "normalizedTitle": "yasei-no-last-boss-ga-arawareta-s2"
-        }
-      ],
-      "totalCanonicalEpisodes": 3,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T16:09:48.667Z",
-      "updatedAt": "2026-10-10T16:09:48.667Z"
     },
     {
       "id": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
@@ -597,111 +586,6 @@
       "updatedAt": "2026-10-10T11:01:37.643Z"
     },
     {
-      "id": "anime-tensei-shitara-ken-deshita-ii",
-      "canonicalTitle": "Tensei shitara Ken deshita II",
-      "slug": "tensei-shitara-ken-deshita-ii",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Tensei shitara Ken deshita II subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/09/Tensei-shitara-Ken-deshita-II.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/09/Tensei-shitara-Ken-deshita-II.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-tensei-shitara-ken-deshita-ii-primary",
-          "animeId": "anime-tensei-shitara-ken-deshita-ii",
-          "locale": "id-ID",
-          "title": "Tensei shitara Ken deshita II",
-          "titleType": "canonical",
-          "normalizedTitle": "tensei-shitara-ken-deshita-ii"
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T08:38:02.457Z",
-      "updatedAt": "2026-10-10T08:38:02.457Z"
-    },
-    {
-      "id": "anime-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
-      "canonicalTitle": "Kikansha no Mahou wa Tokubetsu desu 2nd Season",
-      "slug": "kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Kikansha no Mahou wa Tokubetsu desu 2nd Season subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Kikansha-no-Mahou-wa-Tokubetsu-desu-2nd-Season.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Kikansha-no-Mahou-wa-Tokubetsu-desu-2nd-Season.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season-primary",
-          "animeId": "anime-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
-          "locale": "id-ID",
-          "title": "Kikansha no Mahou wa Tokubetsu desu 2nd Season",
-          "titleType": "canonical",
-          "normalizedTitle": "kikansha-no-mahou-wa-tokubetsu-desu-2nd-season"
-        }
-      ],
-      "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T08:38:01.685Z",
-      "updatedAt": "2026-10-10T08:38:01.685Z"
-    },
-    {
-      "id": "anime-koori-no-jouheki-2nd-season",
-      "canonicalTitle": "Koori no Jouheki 2nd Season",
-      "slug": "koori-no-jouheki-2nd-season",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Koori no Jouheki 2nd Season subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Koori-no-Jouheki-2nd-Season.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Koori-no-Jouheki-2nd-Season.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-koori-no-jouheki-2nd-season-primary",
-          "animeId": "anime-koori-no-jouheki-2nd-season",
-          "locale": "id-ID",
-          "title": "Koori no Jouheki 2nd Season",
-          "titleType": "canonical",
-          "normalizedTitle": "koori-no-jouheki-2nd-season"
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T08:38:01.318Z",
-      "updatedAt": "2026-10-10T08:38:01.318Z"
-    },
-    {
       "id": "anime-kizu-darake-seijo-yori-houfuku-wo-komete-season-2",
       "canonicalTitle": "Kizu darake Seijo yori Houfuku wo Komete Season 2",
       "slug": "kizu-darake-seijo-yori-houfuku-wo-komete-season-2",
@@ -735,76 +619,6 @@
       "seasonReadinessState": "READY_ONGOING",
       "createdAt": "2026-10-10T08:38:00.907Z",
       "updatedAt": "2026-10-10T08:38:00.907Z"
-    },
-    {
-      "id": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
-      "canonicalTitle": "Hyouken no Majutsushi ga Sekai wo Suberu II",
-      "slug": "hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Hyouken no Majutsushi ga Sekai wo Suberu II subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Hyouken-no-Majutsushi-ga-Sekai-wo-Suberu-II.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Hyouken-no-Majutsushi-ga-Sekai-wo-Suberu-II.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii-primary",
-          "animeId": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
-          "locale": "id-ID",
-          "title": "Hyouken no Majutsushi ga Sekai wo Suberu II",
-          "titleType": "canonical",
-          "normalizedTitle": "hyouken-no-majutsushi-ga-sekai-wo-suberu-ii"
-        }
-      ],
-      "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T08:38:00.303Z",
-      "updatedAt": "2026-10-10T08:38:00.303Z"
-    },
-    {
-      "id": "anime-kusuriya-no-hitorigoto-3rd-season",
-      "canonicalTitle": "Kusuriya no Hitorigoto 3rd Season",
-      "slug": "kusuriya-no-hitorigoto-3rd-season",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Kusuriya no Hitorigoto 3rd Season subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-10",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Kusuriya-no-Hitorigoto-3rd-Season.jpg?h=210",
-      "bannerUrl": "https://i0.wp.com/s13.nontonanimeid.boats/wp-content/uploads/2026/10/Kusuriya-no-Hitorigoto-3rd-Season.jpg?h=210",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "id": "title-kusuriya-no-hitorigoto-3rd-season-primary",
-          "animeId": "anime-kusuriya-no-hitorigoto-3rd-season",
-          "locale": "id-ID",
-          "title": "Kusuriya no Hitorigoto 3rd Season",
-          "titleType": "canonical",
-          "normalizedTitle": "kusuriya-no-hitorigoto-3rd-season"
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
-      "createdAt": "2026-10-10T08:37:59.901Z",
-      "updatedAt": "2026-10-10T08:37:59.901Z"
     },
     {
       "id": "anime-steel-ball-run-jojo-no-kimyou-na-bouken",
@@ -976,142 +790,26 @@
           "script": "romaji",
           "normalizedTitle": "tsuihou-sareta-cheat-fuyo-majutsushi",
           "isPrimary": true
+        },
+        {
+          "id": "alias-otk-chii-fuyo",
+          "animeId": "anime-tsuihou-sareta-cheat-fuyo-majutsushi",
+          "locale": "id-ID",
+          "title": "Chii Fuyo",
+          "titleType": "synonym",
+          "normalizedTitle": "chii fuyo"
+        },
+        {
+          "id": "alias-otk-chii-fuyo-38vi",
+          "animeId": "anime-tsuihou-sareta-cheat-fuyo-majutsushi",
+          "locale": "ja-JP",
+          "title": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。 ～俺は武器だけじゃなく、あらゆるものに『強化ポイント』を付与できるし、俺の意思でいつでも効果を解除できるけど、残った人たち大丈夫？～",
+          "titleType": "japanese",
+          "normalizedTitle": ""
         }
       ],
       "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "ready_partial",
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "anime-tantei-wa-mou-shindeiru-s2",
-      "canonicalTitle": "Tantei wa Mou, Shindeiru S2",
-      "slug": "tantei-wa-mou-shindeiru-s2",
-      "mediaType": "tv",
-      "synopsis": "Serial anime Tantei wa Mou, Shindeiru S2 subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-09",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/image-4-1-300x169.jpg",
-      "bannerUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/image-4-1-300x169.jpg",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "title": "Tantei wa Mou, Shindeiru S2",
-          "script": "romaji",
-          "normalizedTitle": "tantei-wa-mou-shindeiru-s2",
-          "isPrimary": true
-        }
-      ],
-      "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "ready_partial",
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "anime-tensei-shitara-ken-deshita-s2",
-      "canonicalTitle": "Tensei shitara Ken deshita S2",
-      "slug": "tensei-shitara-ken-deshita-s2",
-      "mediaType": "tv",
-      "synopsis": "Serial anime Tensei shitara Ken deshita S2 subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-09",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/Screenshot-901-300x169.jpg",
-      "bannerUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/Screenshot-901-300x169.jpg",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "title": "Tensei shitara Ken deshita S2",
-          "script": "romaji",
-          "normalizedTitle": "tensei-shitara-ken-deshita-s2",
-          "isPrimary": true
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "ready_partial",
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "anime-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen",
-      "canonicalTitle": "Shin Tennis no Oujisama: U-17 World Cup &#8211; Kesshou Member Ketteisen",
-      "slug": "shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen",
-      "mediaType": "tv",
-      "synopsis": "Serial anime Shin Tennis no Oujisama: U-17 World Cup &#8211; Kesshou Member Ketteisen subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-09",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/Shin-Tennis-no-Oujisama-Kesshou-Member-Ketteisen-Episode-2-300x163.jpg",
-      "bannerUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/Shin-Tennis-no-Oujisama-Kesshou-Member-Ketteisen-Episode-2-300x163.jpg",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "title": "Shin Tennis no Oujisama: U-17 World Cup &#8211; Kesshou Member Ketteisen",
-          "script": "romaji",
-          "normalizedTitle": "shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen",
-          "isPrimary": true
-        }
-      ],
-      "totalCanonicalEpisodes": 2,
-      "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "ready_partial",
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2",
-      "canonicalTitle": "Hyouken no Majutsushi ga Sekai wo Suberu S2",
-      "slug": "hyouken-no-majutsushi-ga-sekai-wo-suberu-s2",
-      "mediaType": "tv",
-      "synopsis": "Serial anime Hyouken no Majutsushi ga Sekai wo Suberu S2 subtitle Indonesia. Tayang berkala dengan update episode terbaru di Anime Home.",
-      "firstAirDate": "2026-10-09",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/image-6-1-300x169.jpg",
-      "bannerUrl": "https://v2.samehadaku.how/wp-content/uploads/2026/10/image-6-1-300x169.jpg",
-      "genres": [
-        "Action",
-        "Fantasy",
-        "Shounen"
-      ],
-      "aliases": [
-        {
-          "title": "Hyouken no Majutsushi ga Sekai wo Suberu S2",
-          "script": "romaji",
-          "normalizedTitle": "hyouken-no-majutsushi-ga-sekai-wo-suberu-s2",
-          "isPrimary": true
-        }
-      ],
-      "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Berkala, 19:00 WIB",
+      "scheduleWIB": "Selasa, 20:00 WIB",
       "seasonReadinessState": "ready_partial",
       "createdAt": "2026-10-09T22:09:27.526Z",
       "updatedAt": "2026-10-09T22:09:27.526Z"
@@ -1141,6 +839,14 @@
           "script": "romaji",
           "normalizedTitle": "kusuriya-no-hitorigoto-season-3",
           "isPrimary": true
+        },
+        {
+          "id": "alias-kusuriya-no-hitorigoto-3rd-season",
+          "animeId": "anime-kusuriya-no-hitorigoto-season-3",
+          "locale": "id-ID",
+          "title": "Kusuriya no Hitorigoto 3rd Season",
+          "titleType": "synonym",
+          "normalizedTitle": "kusuriya no hitorigoto 3rd season"
         }
       ],
       "totalCanonicalEpisodes": 2,
@@ -1682,6 +1388,14 @@
           "title": "Aoashi Season 2 Sub Indo",
           "titleType": "indonesian",
           "normalizedTitle": "aoashi season 2 sub indo"
+        },
+        {
+          "id": "alias-ao-ashi-s2",
+          "animeId": "anime-aoashi",
+          "locale": "id-ID",
+          "title": "Ao Ashi S2",
+          "titleType": "synonym",
+          "normalizedTitle": "ao ashi s2"
         }
       ],
       "createdAt": "2026-10-09T21:40:40.008Z",
@@ -1820,10 +1534,34 @@
           "title": "Detektif Sudah Mati Season 2 Sub Indo",
           "titleType": "indonesian",
           "normalizedTitle": "detektif sudah mati season 2 sub indo"
+        },
+        {
+          "id": "alias-tantei-wa-mou-shindeiru-s2",
+          "animeId": "anime-tanmoshi-s2",
+          "locale": "id-ID",
+          "title": "Tantei wa Mou, Shindeiru S2",
+          "titleType": "synonym",
+          "normalizedTitle": "tantei wa mou shindeiru s2"
+        },
+        {
+          "id": "alias-otk-tantei-wa-mou-shindeiru-season-2",
+          "animeId": "anime-tanmoshi-s2",
+          "locale": "id-ID",
+          "title": "Tantei wa Mou, Shindeiru. Season 2",
+          "titleType": "synonym",
+          "normalizedTitle": "tantei wa mou shindeiru season 2"
+        },
+        {
+          "id": "alias-otk-tantei-wa-mou-shindeiru-season-2-9j18",
+          "animeId": "anime-tanmoshi-s2",
+          "locale": "ja-JP",
+          "title": "探偵はもう、死んでいる。Season2",
+          "titleType": "japanese",
+          "normalizedTitle": "season2"
         }
       ],
       "seasonReadinessState": "AWAITING_EPISODE",
-      "totalCanonicalEpisodes": 12,
+      "totalCanonicalEpisodes": 1,
       "scheduleWIB": "Senin, 20:30 WIB",
       "officialPlatformName": "Muse Indonesia (YouTube)",
       "externalFreeWatchUrl": "https://www.youtube.com/@MuseIndonesia",
@@ -1954,10 +1692,26 @@
           "title": "Overgeared Sub Indo",
           "titleType": "indonesian",
           "normalizedTitle": "overgeared sub indo"
+        },
+        {
+          "id": "alias-otk-tempal-item-no-chikara",
+          "animeId": "anime-overgeared",
+          "locale": "id-ID",
+          "title": "Tempal: Item no Chikara",
+          "titleType": "synonym",
+          "normalizedTitle": "tempal item no chikara"
+        },
+        {
+          "id": "alias-otk-tempal-item-no-chikara-5fx6",
+          "animeId": "anime-overgeared",
+          "locale": "ja-JP",
+          "title": "テムパル ～アイテムの力～",
+          "titleType": "japanese",
+          "normalizedTitle": ""
         }
       ],
       "seasonReadinessState": "AWAITING_EPISODE",
-      "totalCanonicalEpisodes": 12,
+      "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Kamis, 21:00 WIB",
       "officialPlatformName": "Crunchyroll / Bstation",
       "externalFreeWatchUrl": "https://www.bilibili.tv",
@@ -2045,6 +1799,14 @@
           "title": "Pernikahan Kunang-Kunang Sub Indo",
           "titleType": "indonesian",
           "normalizedTitle": "pernikahan kunang kunang sub indo"
+        },
+        {
+          "id": "alias-hotaru-no-yomeiri",
+          "animeId": "anime-firefly",
+          "locale": "id-ID",
+          "title": "Hotaru no Yomeiri",
+          "titleType": "alias",
+          "normalizedTitle": "hotaru no yomeiri"
         }
       ],
       "seasonReadinessState": "AWAITING_EPISODE",
@@ -2273,6 +2035,22 @@
           "title": "Hyouken no Majutsushi ga Sekai wo Suberu Season 2",
           "titleType": "english",
           "normalizedTitle": "hyouken no majutsushi ga sekai wo suberu season 2"
+        },
+        {
+          "id": "alias-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
+          "animeId": "anime-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2",
+          "locale": "id-ID",
+          "title": "Hyouken no Majutsushi ga Sekai wo Suberu II",
+          "titleType": "synonym",
+          "normalizedTitle": "hyouken no majutsushi ga sekai wo suberu ii"
+        },
+        {
+          "id": "alias-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2",
+          "animeId": "anime-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2",
+          "locale": "id-ID",
+          "title": "Hyouken no Majutsushi ga Sekai wo Suberu S2",
+          "titleType": "synonym",
+          "normalizedTitle": "hyouken no majutsushi ga sekai wo suberu s2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -2318,6 +2096,14 @@
           "title": "Koori no Jouheki Season 2",
           "titleType": "english",
           "normalizedTitle": "koori no jouheki season 2"
+        },
+        {
+          "id": "alias-koori-no-jouheki-2nd-season",
+          "animeId": "anime-otk-koori-no-jouheki-season-2",
+          "locale": "id-ID",
+          "title": "Koori no Jouheki 2nd Season",
+          "titleType": "synonym",
+          "normalizedTitle": "koori no jouheki 2nd season"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -2408,6 +2194,14 @@
           "title": "Kikansha no Mahou wa Tokubetsu desu Season 2",
           "titleType": "english",
           "normalizedTitle": "kikansha no mahou wa tokubetsu desu season 2"
+        },
+        {
+          "id": "alias-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
+          "animeId": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2",
+          "locale": "id-ID",
+          "title": "Kikansha no Mahou wa Tokubetsu desu 2nd Season",
+          "titleType": "synonym",
+          "normalizedTitle": "kikansha no mahou wa tokubetsu desu 2nd season"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -2453,6 +2247,14 @@
           "title": "Shin Tennis no Oujisama: U-17 World Cup - Kesshou Member Ketteisen",
           "titleType": "english",
           "normalizedTitle": "shin tennis no oujisama: u-17 world cup - kesshou member ketteisen"
+        },
+        {
+          "id": "alias-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen",
+          "animeId": "anime-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
+          "locale": "id-ID",
+          "title": "Shin Tennis no Oujisama: U-17 World Cup &#8211; Kesshou Member Ketteisen",
+          "titleType": "synonym",
+          "normalizedTitle": "shin tennis no oujisama u 17 world cup 8211 kesshou member ketteisen"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -2546,6 +2348,22 @@
           "title": "Tensei shitara Ken deshita Season 2",
           "titleType": "english",
           "normalizedTitle": "tensei shitara ken deshita season 2"
+        },
+        {
+          "id": "alias-tensei-shitara-ken-deshita-ii",
+          "animeId": "anime-otk-tensei-shitara-ken-deshita-season-2",
+          "locale": "id-ID",
+          "title": "Tensei shitara Ken deshita II",
+          "titleType": "synonym",
+          "normalizedTitle": "tensei shitara ken deshita ii"
+        },
+        {
+          "id": "alias-tensei-shitara-ken-deshita-s2",
+          "animeId": "anime-otk-tensei-shitara-ken-deshita-season-2",
+          "locale": "id-ID",
+          "title": "Tensei shitara Ken deshita S2",
+          "titleType": "synonym",
+          "normalizedTitle": "tensei shitara ken deshita s2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -2553,52 +2371,6 @@
       "scheduleWIB": "Kamis, 20:00 WIB",
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tensei-deshita-s2-sub-indo/",
-      "createdAt": "2026-10-09T11:33:04.084Z",
-      "updatedAt": "2026-10-09T11:33:04.084Z"
-    },
-    {
-      "id": "anime-otk-tantei-wa-mou-shindeiru-season-2",
-      "canonicalTitle": "Tantei wa Mou, Shindeiru. Season 2",
-      "slug": "otk-tantei-wa-mou-shindeiru-season-2",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Tantei wa Mou, Shindeiru. Season 2 subtitle Indonesia tayang setiap minggu di ANIME HOME.",
-      "firstAirDate": "Okt 07, 2026",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160406.jpg",
-      "bannerUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160406.jpg",
-      "genres": [
-        "Comedy",
-        "Detective",
-        "Mystery",
-        "Romance"
-      ],
-      "aliases": [
-        {
-          "id": "t-otk-tantei-wa-mou-shindeiru-season-2-ja",
-          "animeId": "anime-otk-tantei-wa-mou-shindeiru-season-2",
-          "locale": "ja-JP",
-          "title": "探偵はもう、死んでいる。Season2",
-          "titleType": "japanese",
-          "normalizedTitle": "探偵はもう、死んでいる。season2"
-        },
-        {
-          "id": "t-otk-tantei-wa-mou-shindeiru-season-2-en",
-          "animeId": "anime-otk-tantei-wa-mou-shindeiru-season-2",
-          "locale": "en-US",
-          "title": "Tantei wa Mou, Shindeiru. Season 2",
-          "titleType": "english",
-          "normalizedTitle": "tantei wa mou, shindeiru. season 2"
-        }
-      ],
-      "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Rabu, 20:00 WIB",
-      "officialPlatformName": "Otakudesu Network",
-      "externalFreeWatchUrl": "https://otakudesu.blog/anime/tante-mou-shindeiru-s2-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.084Z",
       "updatedAt": "2026-10-09T11:33:04.084Z"
     },
@@ -2696,51 +2468,6 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/sora-akai-kawa-hotori-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.085Z",
       "updatedAt": "2026-10-09T11:33:04.085Z"
-    },
-    {
-      "id": "anime-otk-chii-fuyo",
-      "canonicalTitle": "Chii Fuyo",
-      "slug": "otk-chii-fuyo",
-      "mediaType": "TV",
-      "synopsis": "Rain, seorang penyihir yang memiliki skill untuk menguatkan senjatanya serta perlengkapan petualang lainnya. Suatu hari, Rain yang sudah tidak dianggap lagi oleh guildnya justru diusir dan menganggap Rain sudah tidak dibutuhkan lagi. Mengetahui hal tersebut, Rain pun membalasnya dengan menarik semua atribut poin yang diberikan kepada seluruh anggota guild. Sekarang, Rain memiliki 13 ribu poin yang menganggur dan menggunakan semuanya ke baju serta sebuah pisau yang ia miliki. Kini, Rain memiliki zirah berupa baju dengan 3 ribu poin serta pisau dengan 10 ribu poin penguat.",
-      "firstAirDate": "Okt 07, 2026",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160339.jpg",
-      "bannerUrl": "https://otakudesu.blog/wp-content/uploads/2026/10/160339.jpg",
-      "genres": [
-        "Action",
-        "Adventure",
-        "Fantasy"
-      ],
-      "aliases": [
-        {
-          "id": "t-otk-chii-fuyo-ja",
-          "animeId": "anime-otk-chii-fuyo",
-          "locale": "ja-JP",
-          "title": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。 ～俺は武器だけじゃなく、あらゆるものに『強化ポイント』を付与できるし、俺の意思でいつでも効果を解除できるけど、残った人たち大丈夫？～",
-          "titleType": "japanese",
-          "normalizedTitle": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。 ～俺は武器だけじゃなく、あらゆるものに『強化ポイント』を付与できるし、俺の意思でいつでも効果を解除できるけど、残った人たち大丈夫？～"
-        },
-        {
-          "id": "t-otk-chii-fuyo-en",
-          "animeId": "anime-otk-chii-fuyo",
-          "locale": "en-US",
-          "title": "Chii Fuyo",
-          "titleType": "english",
-          "normalizedTitle": "chii fuyo"
-        }
-      ],
-      "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 1,
-      "scheduleWIB": "Selasa, 20:00 WIB",
-      "officialPlatformName": "Otakudesu Network",
-      "externalFreeWatchUrl": "https://otakudesu.blog/anime/chii-fuyo-sub-indo/",
-      "createdAt": "2026-10-09T11:33:04.107Z",
-      "updatedAt": "2026-10-09T11:33:04.107Z"
     },
     {
       "id": "anime-otk-kyouran-reijou-nia-liston",
@@ -3062,54 +2789,10 @@
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 1,
+      "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Senin, 20:00 WIB",
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kanata-kara-sub-indo/",
-      "createdAt": "2026-10-09T11:33:04.108Z",
-      "updatedAt": "2026-10-09T11:33:04.108Z"
-    },
-    {
-      "id": "anime-otk-tempal-item-no-chikara",
-      "canonicalTitle": "Tempal: Item no Chikara",
-      "slug": "otk-tempal-item-no-chikara",
-      "mediaType": "TV",
-      "synopsis": "Serial anime Tempal: Item no Chikara subtitle Indonesia tayang setiap minggu di ANIME HOME.",
-      "firstAirDate": "Sep 27, 2026",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "maturityRating": "PG-13",
-      "airingStatus": "airing",
-      "publishState": "published",
-      "posterUrl": "https://otakudesu.blog/wp-content/uploads/2026/09/160022.jpg",
-      "bannerUrl": "https://otakudesu.blog/wp-content/uploads/2026/09/160022.jpg",
-      "genres": [
-        "Action",
-        "Fantasy"
-      ],
-      "aliases": [
-        {
-          "id": "t-otk-tempal-item-no-chikara-ja",
-          "animeId": "anime-otk-tempal-item-no-chikara",
-          "locale": "ja-JP",
-          "title": "テムパル ～アイテムの力～",
-          "titleType": "japanese",
-          "normalizedTitle": "テムパル ～アイテムの力～"
-        },
-        {
-          "id": "t-otk-tempal-item-no-chikara-en",
-          "animeId": "anime-otk-tempal-item-no-chikara",
-          "locale": "en-US",
-          "title": "Tempal: Item no Chikara",
-          "titleType": "english",
-          "normalizedTitle": "tempal: item no chikara"
-        }
-      ],
-      "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 3,
-      "scheduleWIB": "Senin, 20:00 WIB",
-      "officialPlatformName": "Otakudesu Network",
-      "externalFreeWatchUrl": "https://otakudesu.blog/anime/tempal-chikara-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.108Z",
       "updatedAt": "2026-10-09T11:33:04.108Z"
     },
@@ -9196,7 +8879,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 24,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 2,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [
         1
@@ -9251,8 +8934,8 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 12,
-      "airedEpisodesCount": 0,
-      "verifiedEpisodesCount": 0,
+      "airedEpisodesCount": 1,
+      "verifiedEpisodesCount": 1,
       "missingEpisodes": [],
       "readinessState": "AWAITING_EPISODE",
       "licenseType": "official_partner",
@@ -9305,7 +8988,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 12,
-      "airedEpisodesCount": 0,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "AWAITING_EPISODE",
@@ -9550,24 +9233,6 @@
       "updatedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "season-otk-tantei-wa-mou-shindeiru-season-2-1",
-      "animeId": "anime-otk-tantei-wa-mou-shindeiru-season-2",
-      "seasonNumber": 1,
-      "title": "Tantei wa Mou, Shindeiru. Season 2 Musim Penayangan 2026",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
-      "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "officialPlatformName": "Otakudesu Network",
-      "externalFreeWatchUrl": "https://otakudesu.blog/anime/tante-mou-shindeiru-s2-sub-indo/",
-      "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-09T11:33:04.084Z"
-    },
-    {
       "id": "season-otk-sekai-saikyou-no-majo-hajimemashita-1",
       "animeId": "anime-otk-sekai-saikyou-no-majo-hajimemashita",
       "seasonNumber": 1,
@@ -9600,24 +9265,6 @@
       "licenseType": "free_embed",
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/sora-akai-kawa-hotori-sub-indo/",
-      "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-09T11:33:04.107Z"
-    },
-    {
-      "id": "season-otk-chii-fuyo-1",
-      "animeId": "anime-otk-chii-fuyo",
-      "seasonNumber": 1,
-      "title": "Chii Fuyo Musim Penayangan 2026",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
-      "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "officialPlatformName": "Otakudesu Network",
-      "externalFreeWatchUrl": "https://otakudesu.blog/anime/chii-fuyo-sub-indo/",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
       "updatedAt": "2026-10-09T11:33:04.107Z"
     },
@@ -9736,32 +9383,14 @@
       "title": "Kanata kara Musim Penayangan 2026",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
+      "canonicalEpisodesCount": 2,
       "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
+      "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kanata-kara-sub-indo/",
-      "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-09T11:33:04.108Z"
-    },
-    {
-      "id": "season-otk-tempal-item-no-chikara-1",
-      "animeId": "anime-otk-tempal-item-no-chikara",
-      "seasonNumber": 1,
-      "title": "Tempal: Item no Chikara Musim Penayangan 2026",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 3,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "officialPlatformName": "Otakudesu Network",
-      "externalFreeWatchUrl": "https://otakudesu.blog/anime/tempal-chikara-sub-indo/",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
       "updatedAt": "2026-10-09T11:33:04.108Z"
     },
@@ -11393,51 +11022,9 @@
       "verifiedEpisodesCount": 2,
       "totalEpisodes": 2,
       "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "season-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-s2",
-      "animeId": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2",
-      "seasonNumber": 2,
-      "title": "Hyouken no Majutsushi ga Sekai wo Suberu S2",
-      "airingStatus": "airing",
-      "verifiedEpisodesCount": 1,
-      "totalEpisodes": 1,
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "season-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-s1",
-      "animeId": "anime-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen",
-      "seasonNumber": 1,
-      "title": "Shin Tennis no Oujisama: U-17 World Cup &#8211; Kesshou Member Ketteisen",
-      "airingStatus": "airing",
-      "verifiedEpisodesCount": 2,
-      "totalEpisodes": 2,
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "season-tensei-shitara-ken-deshita-s2-s2",
-      "animeId": "anime-tensei-shitara-ken-deshita-s2",
-      "seasonNumber": 2,
-      "title": "Tensei shitara Ken deshita S2",
-      "airingStatus": "airing",
-      "verifiedEpisodesCount": 2,
-      "totalEpisodes": 2,
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
-    },
-    {
-      "id": "season-tantei-wa-mou-shindeiru-s2-s2",
-      "animeId": "anime-tantei-wa-mou-shindeiru-s2",
-      "seasonNumber": 2,
-      "title": "Tantei wa Mou, Shindeiru S2",
-      "airingStatus": "airing",
-      "verifiedEpisodesCount": 1,
-      "totalEpisodes": 1,
-      "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
+      "updatedAt": "2026-10-09T22:09:27.526Z",
+      "canonicalEpisodesCount": 2,
+      "airedEpisodesCount": 2
     },
     {
       "id": "season-tsuihou-sareta-cheat-fuyo-majutsushi-s1",
@@ -11448,7 +11035,9 @@
       "verifiedEpisodesCount": 1,
       "totalEpisodes": 1,
       "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
+      "updatedAt": "2026-10-09T22:09:27.526Z",
+      "canonicalEpisodesCount": 1,
+      "airedEpisodesCount": 1
     },
     {
       "id": "season-tougen-anki-nikko-kegon-no-taki-hen-s1",
@@ -11507,36 +11096,6 @@
       "updatedAt": "2026-10-10T08:37:34.052Z"
     },
     {
-      "id": "season-kusuriya-no-hitorigoto-3rd-season-s1",
-      "animeId": "anime-kusuriya-no-hitorigoto-3rd-season",
-      "seasonNumber": 1,
-      "title": "Kusuriya no Hitorigoto 3rd Season",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:37:59.901Z"
-    },
-    {
-      "id": "season-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii-s1",
-      "animeId": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
-      "seasonNumber": 1,
-      "title": "Hyouken no Majutsushi ga Sekai wo Suberu II",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
-      "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:38:00.303Z"
-    },
-    {
       "id": "season-kizu-darake-seijo-yori-houfuku-wo-komete-season-2-s2",
       "animeId": "anime-kizu-darake-seijo-yori-houfuku-wo-komete-season-2",
       "seasonNumber": 2,
@@ -11550,51 +11109,6 @@
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "updatedAt": "2026-10-10T08:38:00.907Z"
-    },
-    {
-      "id": "season-koori-no-jouheki-2nd-season-s1",
-      "animeId": "anime-koori-no-jouheki-2nd-season",
-      "seasonNumber": 1,
-      "title": "Koori no Jouheki 2nd Season",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:38:01.318Z"
-    },
-    {
-      "id": "season-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season-s1",
-      "animeId": "anime-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
-      "seasonNumber": 1,
-      "title": "Kikansha no Mahou wa Tokubetsu desu 2nd Season",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
-      "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:38:01.685Z"
-    },
-    {
-      "id": "season-tensei-shitara-ken-deshita-ii-s1",
-      "animeId": "anime-tensei-shitara-ken-deshita-ii",
-      "seasonNumber": 1,
-      "title": "Tensei shitara Ken deshita II",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:38:02.457Z"
     },
     {
       "id": "season-keroro-gunsou-2026-s1",
@@ -11642,21 +11156,6 @@
       "updatedAt": "2026-10-10T13:36:38.287Z"
     },
     {
-      "id": "season-yasei-no-last-boss-ga-arawareta-s2-s2",
-      "animeId": "anime-yasei-no-last-boss-ga-arawareta-s2",
-      "seasonNumber": 2,
-      "title": "Yasei no Last Boss ga Arawareta! S2",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 3,
-      "verifiedEpisodesCount": 3,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T16:09:48.667Z"
-    },
-    {
       "id": "season-yasei-no-last-boss-ga-arawareta-season-2-s2",
       "animeId": "anime-yasei-no-last-boss-ga-arawareta-season-2",
       "seasonNumber": 2,
@@ -11685,21 +11184,6 @@
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "updatedAt": "2026-10-10T16:10:11.403Z"
-    },
-    {
-      "id": "season-yasei-no-last-boss-ga-arawareta-2nd-season-s1",
-      "animeId": "anime-yasei-no-last-boss-ga-arawareta-2nd-season",
-      "seasonNumber": 1,
-      "title": "Yasei no Last Boss ga Arawareta! 2nd Season",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 3,
-      "verifiedEpisodesCount": 3,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T16:10:41.077Z"
     },
     {
       "id": "season-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-s1",
@@ -11807,21 +11291,6 @@
       "updatedAt": "2026-10-11T09:49:42.916Z"
     },
     {
-      "id": "season-ao-ashi-s2-s2",
-      "animeId": "anime-ao-ashi-s2",
-      "seasonNumber": 2,
-      "title": "Ao Ashi S2",
-      "year": 2026,
-      "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
-      "missingEpisodes": [],
-      "readinessState": "READY_ONGOING",
-      "licenseType": "free_embed",
-      "updatedAt": "2026-10-11T11:01:49.526Z"
-    },
-    {
       "id": "season-dragon-ball-super-beerus-s1",
       "animeId": "anime-dragon-ball-super-beerus",
       "seasonNumber": 1,
@@ -11880,6 +11349,36 @@
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "updatedAt": "2026-10-11T19:08:32.493Z"
+    },
+    {
+      "id": "season-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-s1",
+      "animeId": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku",
+      "seasonNumber": 1,
+      "title": "Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "canonicalEpisodesCount": 1,
+      "airedEpisodesCount": 1,
+      "verifiedEpisodesCount": 1,
+      "missingEpisodes": [],
+      "readinessState": "READY_ONGOING",
+      "licenseType": "free_embed",
+      "updatedAt": "2026-10-12T03:42:14.001Z"
+    },
+    {
+      "id": "season-yozakura-san-chi-no-daisakusen-season-2-part-2-s2",
+      "animeId": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2",
+      "seasonNumber": 2,
+      "title": "Yozakura-san Chi no Daisakusen Season 2 Part 2",
+      "year": 2026,
+      "seasonPeriod": "Fall",
+      "canonicalEpisodesCount": 1,
+      "airedEpisodesCount": 1,
+      "verifiedEpisodesCount": 1,
+      "missingEpisodes": [],
+      "readinessState": "READY_ONGOING",
+      "licenseType": "free_embed",
+      "updatedAt": "2026-10-12T03:42:21.289Z"
     }
   ],
   "episodes": [
@@ -14221,20 +13720,6 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
-      "animeId": "anime-otk-tantei-wa-mou-shindeiru-season-2",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Tantei wa Mou, Shindeiru. Season 2 Episode 1",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T11:33:04.084Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
       "id": "ep-otk-sekai-saikyou-no-majo-hajimemashita-1",
       "animeId": "anime-otk-sekai-saikyou-no-majo-hajimemashita",
       "ordinal": 1,
@@ -14437,20 +13922,6 @@
       "displayNumber": "01",
       "episodeType": "standard",
       "title": "Sora wa Akai Kawa no Hotori Episode 1",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T11:33:04.107Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-otk-chii-fuyo-1",
-      "animeId": "anime-otk-chii-fuyo",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Chii Fuyo Episode 1",
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-09T11:33:04.107Z",
@@ -14739,26 +14210,12 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-otk-tempal-item-no-chikara-2",
-      "animeId": "anime-otk-tempal-item-no-chikara",
+      "id": "ep-overgeared-2",
+      "animeId": "anime-overgeared",
       "ordinal": 2,
       "displayNumber": "02",
       "episodeType": "standard",
       "title": "Tempal: Item no Chikara Episode 2",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T11:33:04.108Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-otk-tempal-item-no-chikara-1",
-      "animeId": "anime-otk-tempal-item-no-chikara",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Tempal: Item no Chikara Episode 1",
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-09T11:33:04.108Z",
@@ -47303,62 +46760,6 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
-      "animeId": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Hyouken no Majutsushi ga Sekai wo Suberu S2 Episode 1",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T22:09:27.526Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
-      "animeId": "anime-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Shin Tennis no Oujisama Kesshou Member Ketteisen Episode 2",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T22:09:27.526Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-tensei-shitara-ken-deshita-s2-2",
-      "animeId": "anime-tensei-shitara-ken-deshita-s2",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Tensei shitara Ken deshita S2 Episode 2",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T22:09:27.526Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-tantei-wa-mou-shindeiru-s2-1",
-      "animeId": "anime-tantei-wa-mou-shindeiru-s2",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Tantei wa Mou, Shindeiru S2 Episode 1",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-09T22:09:27.526Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
       "id": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "animeId": "anime-tsuihou-sareta-cheat-fuyo-majutsushi",
       "ordinal": 1,
@@ -48703,82 +48104,12 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-kusuriya-no-hitorigoto-3rd-season-2",
-      "animeId": "anime-kusuriya-no-hitorigoto-3rd-season",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Kusuriya no Hitorigoto 3rd Season Episode 02",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T08:36:13.576Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii-1",
-      "animeId": "anime-hyouken-no-majutsushi-ga-sekai-wo-suberu-ii",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Hyouken no Majutsushi ga Sekai wo Suberu II Episode 01",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T08:36:13.576Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
       "id": "ep-kizu-darake-seijo-yori-houfuku-wo-komete-season-2-2",
       "animeId": "anime-kizu-darake-seijo-yori-houfuku-wo-komete-season-2",
       "ordinal": 2,
       "displayNumber": "02",
       "episodeType": "standard",
       "title": "Kizu darake Seijo yori Houfuku wo Komete Season 2 Episode 02",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T08:36:13.576Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-koori-no-jouheki-2nd-season-2",
-      "animeId": "anime-koori-no-jouheki-2nd-season",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Koori no Jouheki 2nd Season Episode 02",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T08:36:13.576Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season-1",
-      "animeId": "anime-kikansha-no-mahou-wa-tokubetsu-desu-2nd-season",
-      "ordinal": 1,
-      "displayNumber": "01",
-      "episodeType": "standard",
-      "title": "Kikansha no Mahou wa Tokubetsu desu 2nd Season Episode 01",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T08:36:13.576Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-tensei-shitara-ken-deshita-ii-2",
-      "animeId": "anime-tensei-shitara-ken-deshita-ii",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Tensei shitara Ken deshita II Episode 02",
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-10T08:36:13.576Z",
@@ -51979,20 +51310,6 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
-      "animeId": "anime-yasei-no-last-boss-ga-arawareta-s2",
-      "ordinal": 3,
-      "displayNumber": "03",
-      "episodeType": "standard",
-      "title": "Yasei no Last Boss ga Arawareta! S2 Episode 3",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T16:09:47.412Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
       "id": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-2",
       "animeId": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
       "ordinal": 2,
@@ -52083,20 +51400,6 @@
       "displayNumber": "01",
       "episodeType": "standard",
       "title": "Romelia Senki Episode 1 Subtitle Indonesia",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-10T16:09:47.412Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
-      "id": "ep-yasei-no-last-boss-ga-arawareta-2nd-season-3",
-      "animeId": "anime-yasei-no-last-boss-ga-arawareta-2nd-season",
-      "ordinal": 3,
-      "displayNumber": "03",
-      "episodeType": "standard",
-      "title": "Yasei no Last Boss ga Arawareta! 2nd Season Episode 03",
       "durationMinutes": 24,
       "publishState": "published",
       "airedAt": "2026-10-10T16:09:47.412Z",
@@ -52273,20 +51576,6 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-ao-ashi-s2-2",
-      "animeId": "anime-ao-ashi-s2",
-      "ordinal": 2,
-      "displayNumber": "02",
-      "episodeType": "standard",
-      "title": "Ao Ashi S2 Episode 2",
-      "durationMinutes": 24,
-      "publishState": "published",
-      "airedAt": "2026-10-11T11:01:36.734Z",
-      "airingState": "aired",
-      "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
-    },
-    {
       "id": "ep-aoashi-2",
       "animeId": "anime-aoashi",
       "ordinal": 2,
@@ -52399,15 +51688,43 @@
       "watchabilityState": "eligible_verified"
     },
     {
-      "id": "ep-otk-tempal-item-no-chikara-3",
-      "animeId": "anime-otk-tempal-item-no-chikara",
-      "ordinal": 3,
-      "displayNumber": "03",
+      "id": "ep-otk-kanata-kara-2",
+      "animeId": "anime-otk-kanata-kara",
+      "ordinal": 2,
+      "displayNumber": "02",
       "episodeType": "standard",
-      "title": "Tempal: Item no Chikara Episode 3 Subtitle Indonesia",
+      "title": "Kanata kara Episode 2 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-11T19:08:29.730Z",
+      "airedAt": "2026-10-12T03:41:55.582Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
+    },
+    {
+      "id": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1",
+      "animeId": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku",
+      "ordinal": 1,
+      "displayNumber": "01",
+      "episodeType": "standard",
+      "title": "Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku Episode 1 Subtitle Indonesia",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-12T03:41:55.582Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
+    },
+    {
+      "id": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1",
+      "animeId": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2",
+      "ordinal": 1,
+      "displayNumber": "01",
+      "episodeType": "standard",
+      "title": "Yozakura-san Chi no Daisakusen Season 2 Part 2 Episode 1 Subtitle Indonesia",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-12T03:41:55.582Z",
       "airingState": "aired",
       "subtitleState": "available",
       "watchabilityState": "eligible_verified"
@@ -63890,8 +63207,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "var-otk-tantei-wa-mou-shindeiru-season-2-1-0",
-      "episodeId": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
+      "id": "var-ep-tanmoshi-1-agapr",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "360p",
@@ -63905,8 +63222,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "var-otk-tantei-wa-mou-shindeiru-season-2-1-1",
-      "episodeId": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
+      "id": "var-ep-tanmoshi-1-xfrpo",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "360p",
@@ -63920,8 +63237,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "var-otk-tantei-wa-mou-shindeiru-season-2-1-2",
-      "episodeId": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
+      "id": "var-ep-tanmoshi-1-dna21",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "480p",
@@ -63935,8 +63252,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "var-otk-tantei-wa-mou-shindeiru-season-2-1-3",
-      "episodeId": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
+      "id": "var-ep-tanmoshi-1-2r6xx",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "480p",
@@ -63950,8 +63267,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "var-otk-tantei-wa-mou-shindeiru-season-2-1-4",
-      "episodeId": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
+      "id": "var-ep-tanmoshi-1-3c86q",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "720p",
@@ -63965,8 +63282,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.084Z"
     },
     {
-      "id": "var-otk-tantei-wa-mou-shindeiru-season-2-1-5",
-      "episodeId": "ep-otk-tantei-wa-mou-shindeiru-season-2-1",
+      "id": "var-ep-tanmoshi-1-r5hwi",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "720p",
@@ -65330,8 +64647,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.107Z"
     },
     {
-      "id": "var-otk-chii-fuyo-1-0",
-      "episodeId": "ep-otk-chii-fuyo-1",
+      "id": "var-ep-tsuihou-sareta-cheat-fuyo-majutsushi-1-g8cjz",
+      "episodeId": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "360p",
@@ -65345,8 +64662,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.107Z"
     },
     {
-      "id": "var-otk-chii-fuyo-1-1",
-      "episodeId": "ep-otk-chii-fuyo-1",
+      "id": "var-ep-tsuihou-sareta-cheat-fuyo-majutsushi-1-v83j1",
+      "episodeId": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "360p",
@@ -65360,8 +64677,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.107Z"
     },
     {
-      "id": "var-otk-chii-fuyo-1-2",
-      "episodeId": "ep-otk-chii-fuyo-1",
+      "id": "var-ep-tsuihou-sareta-cheat-fuyo-majutsushi-1-q98bn",
+      "episodeId": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "480p",
@@ -65375,8 +64692,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.107Z"
     },
     {
-      "id": "var-otk-chii-fuyo-1-3",
-      "episodeId": "ep-otk-chii-fuyo-1",
+      "id": "var-ep-tsuihou-sareta-cheat-fuyo-majutsushi-1-jgocc",
+      "episodeId": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "480p",
@@ -65390,8 +64707,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.107Z"
     },
     {
-      "id": "var-otk-chii-fuyo-1-4",
-      "episodeId": "ep-otk-chii-fuyo-1",
+      "id": "var-ep-tsuihou-sareta-cheat-fuyo-majutsushi-1-v4onl",
+      "episodeId": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "720p",
@@ -65405,8 +64722,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.107Z"
     },
     {
-      "id": "var-otk-chii-fuyo-1-5",
-      "episodeId": "ep-otk-chii-fuyo-1",
+      "id": "var-ep-tsuihou-sareta-cheat-fuyo-majutsushi-1-97gce",
+      "episodeId": "ep-tsuihou-sareta-cheat-fuyo-majutsushi-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "720p",
@@ -67176,7 +66493,7 @@
     },
     {
       "id": "var-otk-tempal-item-no-chikara-2-0",
-      "episodeId": "ep-otk-tempal-item-no-chikara-2",
+      "episodeId": "ep-overgeared-2",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "360p",
@@ -67191,7 +66508,7 @@
     },
     {
       "id": "var-otk-tempal-item-no-chikara-2-1",
-      "episodeId": "ep-otk-tempal-item-no-chikara-2",
+      "episodeId": "ep-overgeared-2",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "360p",
@@ -67206,7 +66523,7 @@
     },
     {
       "id": "var-otk-tempal-item-no-chikara-2-2",
-      "episodeId": "ep-otk-tempal-item-no-chikara-2",
+      "episodeId": "ep-overgeared-2",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "480p",
@@ -67221,7 +66538,7 @@
     },
     {
       "id": "var-otk-tempal-item-no-chikara-2-3",
-      "episodeId": "ep-otk-tempal-item-no-chikara-2",
+      "episodeId": "ep-overgeared-2",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "480p",
@@ -67236,7 +66553,7 @@
     },
     {
       "id": "var-otk-tempal-item-no-chikara-2-4",
-      "episodeId": "ep-otk-tempal-item-no-chikara-2",
+      "episodeId": "ep-overgeared-2",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "720p",
@@ -67251,7 +66568,7 @@
     },
     {
       "id": "var-otk-tempal-item-no-chikara-2-5",
-      "episodeId": "ep-otk-tempal-item-no-chikara-2",
+      "episodeId": "ep-overgeared-2",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "720p",
@@ -67265,8 +66582,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.108Z"
     },
     {
-      "id": "var-otk-tempal-item-no-chikara-1-0",
-      "episodeId": "ep-otk-tempal-item-no-chikara-1",
+      "id": "var-ep-overgeared-1-szyjn",
+      "episodeId": "ep-overgeared-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "360p",
@@ -67280,8 +66597,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.108Z"
     },
     {
-      "id": "var-otk-tempal-item-no-chikara-1-1",
-      "episodeId": "ep-otk-tempal-item-no-chikara-1",
+      "id": "var-ep-overgeared-1-zkttd",
+      "episodeId": "ep-overgeared-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "360p",
@@ -67295,8 +66612,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.108Z"
     },
     {
-      "id": "var-otk-tempal-item-no-chikara-1-2",
-      "episodeId": "ep-otk-tempal-item-no-chikara-1",
+      "id": "var-ep-overgeared-1-ncuhe",
+      "episodeId": "ep-overgeared-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "480p",
@@ -67310,8 +66627,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.108Z"
     },
     {
-      "id": "var-otk-tempal-item-no-chikara-1-3",
-      "episodeId": "ep-otk-tempal-item-no-chikara-1",
+      "id": "var-ep-overgeared-1-xutlv",
+      "episodeId": "ep-overgeared-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "480p",
@@ -67325,8 +66642,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.108Z"
     },
     {
-      "id": "var-otk-tempal-item-no-chikara-1-4",
-      "episodeId": "ep-otk-tempal-item-no-chikara-1",
+      "id": "var-ep-overgeared-1-agz5m",
+      "episodeId": "ep-overgeared-1",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide Stream",
       "qualityLabel": "720p",
@@ -67340,8 +66657,8 @@
       "lastCheckedAt": "2026-10-09T11:33:04.108Z"
     },
     {
-      "id": "var-otk-tempal-item-no-chikara-1-5",
-      "episodeId": "ep-otk-tempal-item-no-chikara-1",
+      "id": "var-ep-overgeared-1-phlu9",
+      "episodeId": "ep-overgeared-1",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "720p",
@@ -153755,8 +153072,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1-sh-0",
-      "episodeId": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
+      "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-u48xh",
+      "episodeId": "ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1",
       "providerId": "prov-blogger",
       "providerName": "Blogger Official",
       "qualityLabel": "720p",
@@ -153770,8 +153087,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1-sh-1",
-      "episodeId": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
+      "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-2kydb",
+      "episodeId": "ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 480p",
       "qualityLabel": "480p",
@@ -153785,8 +153102,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1-sh-2",
-      "episodeId": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
+      "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-o84yi",
+      "episodeId": "ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 720p",
       "qualityLabel": "720p",
@@ -153800,8 +153117,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1-sh-3",
-      "episodeId": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
+      "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-p7gae",
+      "episodeId": "ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 1080p",
       "qualityLabel": "1080p",
@@ -153815,8 +153132,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1-alpha-720",
-      "episodeId": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
+      "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-n3k2s",
+      "episodeId": "ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -153830,8 +153147,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1-beta-1080",
-      "episodeId": "ep-hyouken-no-majutsushi-ga-sekai-wo-suberu-s2-1",
+      "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-jj13g",
+      "episodeId": "ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -153845,8 +153162,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2-sh-0",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
+      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2-8lnsx",
+      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
       "providerId": "prov-blogger",
       "providerName": "Blogger Official",
       "qualityLabel": "720p",
@@ -153860,8 +153177,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2-sh-1",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
+      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2-6jhbh",
+      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 480p",
       "qualityLabel": "480p",
@@ -153875,8 +153192,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2-sh-2",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
+      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2-8a2qn",
+      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 720p",
       "qualityLabel": "720p",
@@ -153890,8 +153207,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2-sh-3",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
+      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2-o4lws",
+      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 1080p",
       "qualityLabel": "1080p",
@@ -153905,8 +153222,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2-alpha-720",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
+      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2-theig",
+      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -153920,8 +153237,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2-beta-1080",
-      "episodeId": "ep-shin-tennis-no-oujisama-u-17-world-cup-8211-kesshou-member-ketteisen-2",
+      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2-h6doy",
+      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-2",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -153935,8 +153252,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tensei-shitara-ken-deshita-s2-2-sh-0",
-      "episodeId": "ep-tensei-shitara-ken-deshita-s2-2",
+      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-2-3l15v",
+      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-2",
       "providerId": "prov-blogger",
       "providerName": "Blogger Official",
       "qualityLabel": "720p",
@@ -153950,8 +153267,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tensei-shitara-ken-deshita-s2-2-sh-1",
-      "episodeId": "ep-tensei-shitara-ken-deshita-s2-2",
+      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-2-pybaq",
+      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 480p",
       "qualityLabel": "480p",
@@ -153965,8 +153282,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tensei-shitara-ken-deshita-s2-2-sh-2",
-      "episodeId": "ep-tensei-shitara-ken-deshita-s2-2",
+      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-2-0izkv",
+      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 720p",
       "qualityLabel": "720p",
@@ -153980,8 +153297,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tensei-shitara-ken-deshita-s2-2-sh-3",
-      "episodeId": "ep-tensei-shitara-ken-deshita-s2-2",
+      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-2-of37w",
+      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 1080p",
       "qualityLabel": "1080p",
@@ -153995,8 +153312,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tensei-shitara-ken-deshita-s2-2-alpha-720",
-      "episodeId": "ep-tensei-shitara-ken-deshita-s2-2",
+      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-2-5s6ml",
+      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-2",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -154010,8 +153327,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tensei-shitara-ken-deshita-s2-2-beta-1080",
-      "episodeId": "ep-tensei-shitara-ken-deshita-s2-2",
+      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-2-0ga4w",
+      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-2",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -154025,8 +153342,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tantei-wa-mou-shindeiru-s2-1-sh-0",
-      "episodeId": "ep-tantei-wa-mou-shindeiru-s2-1",
+      "id": "var-ep-tanmoshi-1-51bxs",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-blogger",
       "providerName": "Blogger Official",
       "qualityLabel": "720p",
@@ -154040,8 +153357,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tantei-wa-mou-shindeiru-s2-1-sh-1",
-      "episodeId": "ep-tantei-wa-mou-shindeiru-s2-1",
+      "id": "var-ep-tanmoshi-1-wm76m",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 480p",
       "qualityLabel": "480p",
@@ -154055,8 +153372,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tantei-wa-mou-shindeiru-s2-1-sh-2",
-      "episodeId": "ep-tantei-wa-mou-shindeiru-s2-1",
+      "id": "var-ep-tanmoshi-1-7dyyn",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 720p",
       "qualityLabel": "720p",
@@ -154070,8 +153387,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tantei-wa-mou-shindeiru-s2-1-sh-3",
-      "episodeId": "ep-tantei-wa-mou-shindeiru-s2-1",
+      "id": "var-ep-tanmoshi-1-a6niq",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 1080p",
       "qualityLabel": "1080p",
@@ -154085,8 +153402,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tantei-wa-mou-shindeiru-s2-1-alpha-720",
-      "episodeId": "ep-tantei-wa-mou-shindeiru-s2-1",
+      "id": "var-ep-tanmoshi-1-d886q",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -154100,8 +153417,8 @@
       "lastCheckedAt": "2026-10-09T22:09:27.526Z"
     },
     {
-      "id": "var-ep-tantei-wa-mou-shindeiru-s2-1-beta-1080",
-      "episodeId": "ep-tantei-wa-mou-shindeiru-s2-1",
+      "id": "var-ep-tanmoshi-1-wsr3v",
+      "episodeId": "ep-tanmoshi-1",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -232441,8 +231758,8 @@
       "lastCheckedAt": "2026-10-10T13:58:43.536Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-s2-3-sh-0",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-8r957",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-blogger",
       "providerName": "Blogger Official",
       "qualityLabel": "720p",
@@ -232456,8 +231773,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-s2-3-sh-1",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-0iujp",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 480p",
       "qualityLabel": "480p",
@@ -232471,8 +231788,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-s2-3-sh-2",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-ny8xz",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 720p",
       "qualityLabel": "720p",
@@ -232486,8 +231803,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-s2-3-sh-3",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-9a9sx",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 1080p",
       "qualityLabel": "1080p",
@@ -232501,8 +231818,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-s2-3-alpha-720",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-3sjhv",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -232516,8 +231833,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-s2-3-beta-1080",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-s2-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-i6v7g",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -233056,8 +232373,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-2nd-season-3-na-0",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-2nd-season-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-jph79",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-kotakanime",
       "providerName": "Server Lokal (Lokal-c 720p)",
       "qualityLabel": "720p",
@@ -233071,8 +232388,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-2nd-season-3-na-1",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-2nd-season-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-gvc9k",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-kotakanime",
       "providerName": "Server Kotakvideo (KotakAnime 720p)",
       "qualityLabel": "720p",
@@ -233086,8 +232403,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-2nd-season-3-na-2",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-2nd-season-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-tp2zz",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-streamku-rpm",
       "providerName": "Server Streamku (RPM FastStream 720p)",
       "qualityLabel": "720p",
@@ -233101,8 +232418,8 @@
       "lastCheckedAt": "2026-10-10T16:09:47.412Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-2nd-season-3-na-3",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-2nd-season-3",
+      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-3-zghbn",
+      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-3",
       "providerId": "prov-gdriveplayer",
       "providerName": "Server GDrivePlayer (Direct 720p)",
       "qualityLabel": "720p",
@@ -234061,8 +233378,8 @@
       "lastCheckedAt": "2026-10-11T09:49:42.916Z"
     },
     {
-      "id": "var-ep-ao-ashi-s2-2-sh-0",
-      "episodeId": "ep-ao-ashi-s2-2",
+      "id": "var-ep-aoashi-2-9zj6f",
+      "episodeId": "ep-aoashi-2",
       "providerId": "prov-blogger",
       "providerName": "Blogger Official",
       "qualityLabel": "720p",
@@ -234076,8 +233393,8 @@
       "lastCheckedAt": "2026-10-11T11:01:36.734Z"
     },
     {
-      "id": "var-ep-ao-ashi-s2-2-sh-1",
-      "episodeId": "ep-ao-ashi-s2-2",
+      "id": "var-ep-aoashi-2-ko9g8",
+      "episodeId": "ep-aoashi-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 480p",
       "qualityLabel": "480p",
@@ -234091,8 +233408,8 @@
       "lastCheckedAt": "2026-10-11T11:01:36.734Z"
     },
     {
-      "id": "var-ep-ao-ashi-s2-2-sh-2",
-      "episodeId": "ep-ao-ashi-s2-2",
+      "id": "var-ep-aoashi-2-hi2nd",
+      "episodeId": "ep-aoashi-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 720p",
       "qualityLabel": "720p",
@@ -234106,8 +233423,8 @@
       "lastCheckedAt": "2026-10-11T11:01:36.734Z"
     },
     {
-      "id": "var-ep-ao-ashi-s2-2-sh-3",
-      "episodeId": "ep-ao-ashi-s2-2",
+      "id": "var-ep-aoashi-2-f6j9z",
+      "episodeId": "ep-aoashi-2",
       "providerId": "prov-mega",
       "providerName": "Samehadaku Mega 1080p",
       "qualityLabel": "1080p",
@@ -234121,8 +233438,8 @@
       "lastCheckedAt": "2026-10-11T11:01:36.734Z"
     },
     {
-      "id": "var-ep-ao-ashi-s2-2-alpha-720",
-      "episodeId": "ep-ao-ashi-s2-2",
+      "id": "var-ep-aoashi-2-lh87d",
+      "episodeId": "ep-aoashi-2",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -234136,8 +233453,8 @@
       "lastCheckedAt": "2026-10-11T11:01:36.734Z"
     },
     {
-      "id": "var-ep-ao-ashi-s2-2-beta-1080",
-      "episodeId": "ep-ao-ashi-s2-2",
+      "id": "var-ep-aoashi-2-32zop",
+      "episodeId": "ep-aoashi-2",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -234856,8 +234173,8 @@
       "lastCheckedAt": "2026-10-11T19:08:29.730Z"
     },
     {
-      "id": "var-ep-otk-tempal-item-no-chikara-3-otaku-mega",
-      "episodeId": "ep-otk-tempal-item-no-chikara-3",
+      "id": "var-ep-overgeared-3-sryym",
+      "episodeId": "ep-overgeared-3",
       "providerId": "prov-mega",
       "providerName": "Mega Cloud Player",
       "qualityLabel": "720p",
@@ -234871,8 +234188,8 @@
       "lastCheckedAt": "2026-10-11T19:08:29.730Z"
     },
     {
-      "id": "var-ep-otk-tempal-item-no-chikara-3-otaku-vidhide",
-      "episodeId": "ep-otk-tempal-item-no-chikara-3",
+      "id": "var-ep-overgeared-3-24umj",
+      "episodeId": "ep-overgeared-3",
       "providerId": "prov-vidhide",
       "providerName": "Vidhide High-Speed",
       "qualityLabel": "720p",
@@ -234886,8 +234203,8 @@
       "lastCheckedAt": "2026-10-11T19:08:29.730Z"
     },
     {
-      "id": "var-ep-otk-tempal-item-no-chikara-3-otaku-desu",
-      "episodeId": "ep-otk-tempal-item-no-chikara-3",
+      "id": "var-ep-overgeared-3-657pl",
+      "episodeId": "ep-overgeared-3",
       "providerId": "prov-desu",
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
@@ -234901,8 +234218,8 @@
       "lastCheckedAt": "2026-10-11T19:08:29.730Z"
     },
     {
-      "id": "var-ep-otk-tempal-item-no-chikara-3-alpha-720",
-      "episodeId": "ep-otk-tempal-item-no-chikara-3",
+      "id": "var-ep-overgeared-3-e8ygy",
+      "episodeId": "ep-overgeared-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
@@ -234916,8 +234233,8 @@
       "lastCheckedAt": "2026-10-11T19:08:29.730Z"
     },
     {
-      "id": "var-ep-otk-tempal-item-no-chikara-3-beta-1080",
-      "episodeId": "ep-otk-tempal-item-no-chikara-3",
+      "id": "var-ep-overgeared-3-mb50n",
+      "episodeId": "ep-overgeared-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
@@ -234929,7 +234246,232 @@
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-11T19:08:29.730Z"
+    },
+    {
+      "id": "var-ep-otk-kanata-kara-2-otaku-mega",
+      "episodeId": "ep-otk-kanata-kara-2",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kanata-kara-ep-2-otaku-mega",
+      "embedUrl": "https://mega.nz/embed/ZBpGQa4K#6CpsteXl8Km3dlt8_n8-f8Cr5bS2uEaxrruwIjy6r0g",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-otk-kanata-kara-2-otaku-vidhide",
+      "episodeId": "ep-otk-kanata-kara-2",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kanata-kara-ep-2-otaku-vidhide",
+      "embedUrl": "https://odvidhide.com/embed/25f2fst1ynj3",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 13,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-otk-kanata-kara-2-otaku-desu",
+      "episodeId": "ep-otk-kanata-kara-2",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kanata-kara-ep-2-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0bkplaWxmSVo2MWllOVRLVm04Z3dCQWdLaUFWQnJXYUhFd0VBeG9ieEZmaw==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 12,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-otk-kanata-kara-2-alpha-720",
+      "episodeId": "ep-otk-kanata-kara-2",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kanata-kara-ep-2-alpha-720p",
+      "embedUrl": "/embed/player?title=Kanata%20kara&ep=2&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-otk-kanata-kara-2-beta-1080",
+      "episodeId": "ep-otk-kanata-kara-2",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-kanata-kara-ep-2-beta-1080p",
+      "embedUrl": "/embed/player?title=Kanata%20kara&ep=2&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1-otaku-mega",
+      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-1-otaku-mega",
+      "embedUrl": "https://mega.nz/embed/7rg3lZib#-33qcSXIulnSPl8mLqny56OND0AXKfFvOY3RrV3V298",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1-otaku-vidhide",
+      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-1-otaku-vidhide",
+      "embedUrl": "https://odvidhide.com/embed/bewh6sp2i4pq",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 13,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1-otaku-desu",
+      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-1-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0a3hvT2xQQjZZRU91dUh1MDY2OHpkVGh1bVc4KzRsb0lOM0lPRUx0eXcxOA==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 12,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1-alpha-720",
+      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-1-alpha-720p",
+      "embedUrl": "/embed/player?title=Shinja%20Zero%20no%20Megami-sama%20to%20Hajimeru%20Isekai%20Kouryaku&ep=1&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1-beta-1080",
+      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-1",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-1-beta-1080p",
+      "embedUrl": "/embed/player?title=Shinja%20Zero%20no%20Megami-sama%20to%20Hajimeru%20Isekai%20Kouryaku&ep=1&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1-otaku-mega",
+      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-1-otaku-mega",
+      "embedUrl": "https://mega.nz/embed/CmQmxbaC#gCMa87fUIBZrBN2Z6yyiz4qdzPWLjcHWfHtIASTZbdU",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1-otaku-vidhide",
+      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-1-otaku-vidhide",
+      "embedUrl": "https://odvidhide.com/embed/bbwzcblogt9k",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 13,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1-otaku-desu",
+      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-1-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0ak9NMHpCTFBveTZuNVIwb2h1eVdtMEV2aVlYci9MSzZuY0h4TFB2RkwzbQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 12,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1-alpha-720",
+      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-1-alpha-720p",
+      "embedUrl": "/embed/player?title=Yozakura-san%20Chi%20no%20Daisakusen%20Season%202%20Part%202&ep=1&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
+    },
+    {
+      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1-beta-1080",
+      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-1",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-1-beta-1080p",
+      "embedUrl": "/embed/player?title=Yozakura-san%20Chi%20no%20Daisakusen%20Season%202%20Part%202&ep=1&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-12T03:41:55.582Z"
     }
   ],
-  "lastSyncAt": "2026-10-11T19:08:29.730Z"
+  "lastSyncAt": "2026-10-12T03:41:55.582Z"
 }

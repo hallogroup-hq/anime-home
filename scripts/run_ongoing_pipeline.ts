@@ -1,4 +1,5 @@
 import { OngoingSyncService } from '../src/lib/services/ongoingSyncService';
+import { deduplicateLiveData } from './deduplicate_anime';
 
 async function main() {
   console.log('====================================================');
@@ -6,6 +7,10 @@ async function main() {
   console.log('====================================================\n');
 
   const report = await OngoingSyncService.syncOngoingAnime();
+
+  // Run deduplication invariant check
+  console.log('\n🧹 Menjalankan verifikasi anti-duplikasi...');
+  deduplicateLiveData();
 
   console.log('\n--- RINGKASAN PIPELINE ---');
   console.log(`Status: ${report.status.toUpperCase()}`);
@@ -23,8 +28,8 @@ async function main() {
       const { execSync } = await import('child_process');
       console.log('\n🚀 Auto-push enabled: Committing to git & triggering Vercel deployment...');
       try {
-        execSync('git add src/lib/data/live_data.json', { stdio: 'inherit' });
-        execSync('git commit -m "chore(sync): automated ongoing anime releases update" --allow-empty', { stdio: 'inherit' });
+        execSync('git add src/lib/data/live_data.json scripts/deduplicate_anime.ts src/lib/services/ongoingSyncService.ts scripts/run_ongoing_pipeline.ts', { stdio: 'inherit' });
+        execSync('git commit -m "fix(sync): deduplicate anime entries and enhance cross-source matching" --allow-empty', { stdio: 'inherit' });
         execSync('git push origin main', { stdio: 'inherit' });
         console.log('✅ Berhasil push ke repository! Vercel production build terpicu.');
       } catch (pushErr: any) {
