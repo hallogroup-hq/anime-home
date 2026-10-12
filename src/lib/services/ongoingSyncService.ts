@@ -961,10 +961,11 @@ export class OngoingSyncService {
         try {
           const { TursoService } = await import('./tursoService');
           for (const u of updates) {
+            const anime = (db as any).anime.find((a: any) => a.id === u.animeId);
             const ep = (db as any).episodes.find((e: any) => e.animeId === u.animeId && e.ordinal === u.episodeNumber);
             const vars = (db as any).variants.filter((v: any) => v.episodeId === ep?.id);
             if (ep && vars.length > 0) {
-              await TursoService.insertNewEpisodeWithVariants(ep, vars, { id: u.animeId, totalCanonicalEpisodes: u.episodeNumber });
+              await TursoService.insertNewEpisodeWithVariants(ep, vars, anime ? { ...anime, totalCanonicalEpisodes: u.episodeNumber } : undefined);
             }
           }
           console.log(`[OngoingSyncService] ⚡ Sukses menyimpan ${updates.length} update episode langsung ke Database Turso Cloud!`);

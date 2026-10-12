@@ -325,12 +325,75 @@ export class TursoService {
   public static async insertNewEpisodeWithVariants(
     episode: Episode,
     variants: StreamVariant[],
-    animeUpdate?: { id: string; totalCanonicalEpisodes?: number }
+    anime?: Anime & { totalCanonicalEpisodes?: number }
   ): Promise<void> {
     const client = getTursoClient();
     if (!client) return;
 
     const statements: any[] = [];
+
+    // 0. Ensure Anime and Aliases exist first to satisfy Foreign Key constraints
+    if (anime) {
+      statements.push({
+        sql: `INSERT INTO anime (
+          id, canonical_title, slug, media_type, synopsis, first_air_date, year,
+          season_period, maturity_rating, airing_status, publish_state, poster_url,
+          banner_url, genres, season_readiness_state, total_canonical_episodes,
+          schedule_wib, official_platform_name, external_free_watch_url, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET
+          canonical_title=excluded.canonical_title,
+          slug=excluded.slug,
+          synopsis=excluded.synopsis,
+          airing_status=excluded.airing_status,
+          poster_url=excluded.poster_url,
+          banner_url=excluded.banner_url,
+          genres=excluded.genres,
+          total_canonical_episodes=excluded.total_canonical_episodes,
+          schedule_wib=excluded.schedule_wib,
+          updated_at=excluded.updated_at;`,
+        args: [
+          anime.id,
+          anime.canonicalTitle,
+          anime.slug,
+          anime.mediaType || 'TV',
+          anime.synopsis || null,
+          anime.firstAirDate || null,
+          anime.year || null,
+          anime.seasonPeriod || null,
+          anime.maturityRating || 'PG-13',
+          anime.airingStatus || 'airing',
+          anime.publishState || 'published',
+          anime.posterUrl || null,
+          anime.bannerUrl || null,
+          JSON.stringify(anime.genres || []),
+          anime.seasonReadinessState || null,
+          anime.totalCanonicalEpisodes || null,
+          anime.scheduleWIB || null,
+          anime.officialPlatformName || null,
+          anime.externalFreeWatchUrl || null,
+          anime.createdAt || new Date().toISOString(),
+          new Date().toISOString(),
+        ],
+      });
+
+      if (Array.isArray(anime.aliases)) {
+        for (const al of anime.aliases) {
+          statements.push({
+            sql: `INSERT OR REPLACE INTO anime_titles (id, anime_id, locale, title, title_type, normalized_title)
+                  VALUES (?, ?, ?, ?, ?, ?);`,
+            args: [
+              al.id || `alias-${anime.id}-${Math.random().toString(36).slice(2, 7)}`,
+              anime.id,
+              al.locale || 'id-ID',
+              al.title,
+              al.titleType || 'alias',
+              al.normalizedTitle || al.title.toLowerCase(),
+            ],
+          });
+        }
+      }
+    }
 
     // 1. Insert Episode
     statements.push({
