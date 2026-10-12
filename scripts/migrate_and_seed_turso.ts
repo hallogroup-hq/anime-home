@@ -119,12 +119,27 @@ async function main() {
     );
   `);
 
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS characters (
+      id TEXT PRIMARY KEY,
+      anime_id TEXT NOT NULL,
+      name TEXT NOT NULL,
+      role TEXT NOT NULL,
+      image_url TEXT NOT NULL,
+      voice_actor_name TEXT NOT NULL,
+      voice_actor_language TEXT DEFAULT 'Japanese' NOT NULL,
+      FOREIGN KEY (anime_id) REFERENCES anime(id) ON DELETE CASCADE
+    );
+  `);
+
   // Create useful indexes for fast queries
   await client.execute(`CREATE INDEX IF NOT EXISTS idx_anime_slug ON anime(slug);`);
   await client.execute(`CREATE INDEX IF NOT EXISTS idx_episodes_anime_id ON episodes(anime_id);`);
   await client.execute(`CREATE INDEX IF NOT EXISTS idx_episodes_ordinal ON episodes(anime_id, ordinal);`);
   await client.execute(`CREATE INDEX IF NOT EXISTS idx_stream_variants_ep_id ON stream_variants(episode_id);`);
   await client.execute(`CREATE INDEX IF NOT EXISTS idx_anime_titles_anime_id ON anime_titles(anime_id);`);
+  await client.execute(`CREATE INDEX IF NOT EXISTS idx_characters_anime_id ON characters(anime_id);`);
+  await client.execute(`CREATE UNIQUE INDEX IF NOT EXISTS idx_characters_anime_name ON characters(anime_id, name);`);
 
   console.log('✅ Tabel dan indeks berhasil dibuat di Turso.');
 

@@ -125,14 +125,8 @@ export class CharacterService {
     if (!client || characters.length === 0) return;
 
     const statements = characters.map(c => ({
-      sql: `INSERT INTO characters (id, anime_id, name, role, image_url, voice_actor_name, voice_actor_language)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(id) DO UPDATE SET
-              name=excluded.name,
-              role=excluded.role,
-              image_url=excluded.image_url,
-              voice_actor_name=excluded.voice_actor_name,
-              voice_actor_language=excluded.voice_actor_language;`,
+      sql: `INSERT OR REPLACE INTO characters (id, anime_id, name, role, image_url, voice_actor_name, voice_actor_language)
+            VALUES (?, ?, ?, ?, ?, ?, ?);`,
       args: [c.id, c.animeId, c.name, c.role, c.imageUrl, c.voiceActorName, c.voiceActorLanguage],
     }));
 
