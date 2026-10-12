@@ -85,6 +85,8 @@ const CROSS_SOURCE_SYNONYMS: Record<string, string> = {
   'tempal item no chikara': 'overgeared',
   'item no chikara': 'overgeared',
   'chii fuyo': 'tsuihou sareta cheat fuyo majutsushi',
+  'mission yozakura family': 'yozakura san chi no daisakusen',
+  'yozakura family': 'yozakura san chi no daisakusen',
 };
 
 export class OngoingSyncService {

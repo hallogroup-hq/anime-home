@@ -1,5 +1,5 @@
 import { OngoingSyncService } from '../src/lib/services/ongoingSyncService';
-import { deduplicateLiveData } from './deduplicate_anime';
+import { deduplicateWithTurso } from './deduplicate_anime';
 
 async function main() {
   console.log('====================================================');
@@ -10,7 +10,7 @@ async function main() {
 
   // Run deduplication invariant check
   console.log('\n🧹 Menjalankan verifikasi anti-duplikasi...');
-  deduplicateLiveData();
+  await deduplicateWithTurso();
 
   console.log('\n--- RINGKASAN PIPELINE ---');
   console.log(`Status: ${report.status.toUpperCase()}`);

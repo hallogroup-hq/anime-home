@@ -82,28 +82,16 @@ class AnimeHomeDataStore {
       const { TursoService } = await import('./tursoService');
       const snapshot = await TursoService.fetchFullSnapshot();
       if (snapshot.anime.length > 0) {
-        const map = new Map<string, Anime>();
-        this.anime.forEach(a => map.set(a.id, a));
-        snapshot.anime.forEach(a => map.set(a.id, a));
-        this.anime = Array.from(map.values());
+        this.anime = snapshot.anime;
       }
       if (snapshot.episodes.length > 0) {
-        const map = new Map<string, Episode>();
-        this.episodes.forEach(e => map.set(e.id, e));
-        snapshot.episodes.forEach(e => map.set(e.id, e));
-        this.episodes = Array.from(map.values());
+        this.episodes = snapshot.episodes;
       }
       if (snapshot.variants.length > 0) {
-        const map = new Map<string, StreamVariant>();
-        this.variants.forEach(v => map.set(v.id, v));
-        snapshot.variants.forEach(v => map.set(v.id, v));
-        this.variants = Array.from(map.values());
+        this.variants = snapshot.variants;
       }
       if (snapshot.seasons.length > 0) {
-        const map = new Map<string, Season>();
-        this.seasons.forEach(s => map.set(s.id, s));
-        snapshot.seasons.forEach(s => map.set(s.id, s));
-        this.seasons = Array.from(map.values());
+        this.seasons = snapshot.seasons;
       }
       this.lastTursoSyncTime = Date.now();
     } catch (err: any) {
@@ -115,28 +103,16 @@ class AnimeHomeDataStore {
 
   public hydrate(data: { anime?: Anime[]; episodes?: Episode[]; variants?: StreamVariant[]; seasons?: Season[] }): void {
     if (data.anime && data.anime.length > 0) {
-      const map = new Map<string, Anime>();
-      this.anime.forEach(a => map.set(a.id, a));
-      data.anime.forEach(a => map.set(a.id, a));
-      this.anime = Array.from(map.values());
+      this.anime = data.anime;
     }
     if (data.episodes && data.episodes.length > 0) {
-      const map = new Map<string, Episode>();
-      this.episodes.forEach(e => map.set(e.id, e));
-      data.episodes.forEach(e => map.set(e.id, e));
-      this.episodes = Array.from(map.values());
+      this.episodes = data.episodes;
     }
     if (data.variants && data.variants.length > 0) {
-      const map = new Map<string, StreamVariant>();
-      this.variants.forEach(v => map.set(v.id, v));
-      data.variants.forEach(v => map.set(v.id, v));
-      this.variants = Array.from(map.values());
+      this.variants = data.variants;
     }
     if (data.seasons && data.seasons.length > 0) {
-      const map = new Map<string, Season>();
-      this.seasons.forEach(s => map.set(s.id, s));
-      data.seasons.forEach(s => map.set(s.id, s));
-      this.seasons = Array.from(map.values());
+      this.seasons = data.seasons;
     }
   }
 

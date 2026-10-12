@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
+dotenv.config();
 
 const LIVE_DATA_PATH = path.resolve(__dirname, '../src/lib/data/live_data.json');
 
@@ -78,6 +82,11 @@ const MERGE_RULES: MergeRule[] = [
     targetId: 'anime-tsuihou-sareta-cheat-fuyo-majutsushi',
     sourceIds: ['anime-otk-chii-fuyo'],
     preferredSchedule: 'Selasa, 20:00 WIB',
+  },
+  {
+    targetId: 'anime-yozakura-san-chi-no-daisakusen-season-2-part-2',
+    sourceIds: ['anime-mission-yozakura-family-season-2-part-2'],
+    preferredSchedule: 'Minggu, 19:00 WIB',
   },
 ];
 
@@ -233,6 +242,62 @@ export function deduplicateLiveData(): {
   return { removedCount, mergedVariantsCount, movedEpisodesCount };
 }
 
+export async function deduplicateWithTurso(): Promise<{
+  removedCount: number;
+  mergedVariantsCount: number;
+  movedEpisodesCount: number;
+}> {
+  const result = deduplicateLiveData();
+
+  if (process.env.TURSO_DATABASE_URL) {
+    try {
+      const { getTursoClient } = await import('../src/lib/db/tursoClient');
+      const client = getTursoClient();
+      if (client) {
+        for (const rule of MERGE_RULES) {
+          for (const srcId of rule.sourceIds) {
+            const srcEps = await client.execute({
+              sql: 'SELECT id, ordinal FROM episodes WHERE anime_id = ?;',
+              args: [srcId],
+            });
+            const targetEps = await client.execute({
+              sql: 'SELECT id, ordinal FROM episodes WHERE anime_id = ?;',
+              args: [rule.targetId],
+            });
+
+            for (const sEp of srcEps.rows as any[]) {
+              const tEp = (targetEps.rows as any[]).find(t => t.ordinal === sEp.ordinal);
+              if (tEp) {
+                await client.execute({
+                  sql: 'UPDATE stream_variants SET episode_id = ? WHERE episode_id = ?;',
+                  args: [tEp.id, sEp.id],
+                });
+              }
+            }
+
+            await client.execute({ sql: 'DELETE FROM episodes WHERE anime_id = ?;', args: [srcId] });
+            await client.execute({ sql: 'DELETE FROM seasons WHERE anime_id = ?;', args: [srcId] });
+            await client.execute({ sql: 'DELETE FROM anime_titles WHERE anime_id = ?;', args: [srcId] });
+            await client.execute({ sql: 'DELETE FROM anime WHERE id = ?;', args: [srcId] });
+          }
+
+          if (rule.preferredSchedule) {
+            await client.execute({
+              sql: 'UPDATE anime SET schedule_wib = ? WHERE id = ?;',
+              args: [rule.preferredSchedule, rule.targetId],
+            });
+          }
+        }
+        console.log('[Deduplicate] Turso Cloud Database successfully deduplicated.');
+      }
+    } catch (err: any) {
+      console.warn('[Deduplicate] Turso sync error:', err.message);
+    }
+  }
+
+  return result;
+}
+
 if (require.main === module) {
-  deduplicateLiveData();
+  deduplicateWithTurso().catch(console.error);
 }
