@@ -270,6 +270,11 @@ export class OngoingSyncService {
       (db as any).anime.unshift(newAnime);
       if (!Array.isArray((db as any).seasons)) (db as any).seasons = [];
       (db as any).seasons.push(newSeason);
+
+      // Auto-fetch Karakter & Seiyuu dari AniList ke Turso
+      import('./characterService').then(({ CharacterService }) => {
+        CharacterService.getOrFetchCharacters(newAnime.id, newAnime.canonicalTitle).catch(() => {});
+      }).catch(() => {});
     }
 
     return { anime: newAnime, isNew: true };

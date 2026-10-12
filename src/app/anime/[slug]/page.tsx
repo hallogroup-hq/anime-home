@@ -93,7 +93,17 @@ export default async function AnimeDetailPage({ params }: PageProps) {
 
   const episodes = db.getEpisodesByAnimeId(anime.id);
   const watchOrder = db.getWatchOrderForAnime(anime.id);
-  const characters = db.getCharactersByAnimeId(anime.id);
+  
+  // Ambil Karakter & Seiyuu dari database atau fetch live dari AniList
+  let characters = db.getCharactersByAnimeId(anime.id);
+  if (characters.length === 0) {
+    try {
+      const { CharacterService } = await import('@/lib/services/characterService');
+      characters = await CharacterService.getOrFetchCharacters(anime.id, anime.canonicalTitle);
+    } catch {
+      // fallback
+    }
+  }
 
   const firstPlayable = episodes.find(
     (e) => e.watchabilityState === 'eligible_verified' && db.getStreamMatrix(e.id).qualities.length > 0

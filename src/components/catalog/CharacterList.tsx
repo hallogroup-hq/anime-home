@@ -36,10 +36,10 @@ export function CharacterList({ characters }: CharacterListProps) {
               <span className="text-xs font-bold text-white truncate">
                 {char.name}
               </span>
-              <span className={`text-[10px] font-semibold px-1.5 py-0.2 rounded ${
+              <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${
                 char.role === 'Main' 
-                  ? 'bg-red-500/10 text-red-400 border border-red-500/30' 
-                  : 'bg-zinc-800 text-zinc-400'
+                  ? 'bg-zinc-800 text-zinc-200 border border-zinc-700' 
+                  : 'bg-zinc-900 text-zinc-400 border border-white/[0.04]'
               }`}>
                 {char.role}
               </span>

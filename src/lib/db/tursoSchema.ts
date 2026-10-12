@@ -92,3 +92,14 @@ export const seasonsTable = sqliteTable('seasons', {
   notes: text('notes'),
   updatedAt: text('updated_at'),
 });
+
+// 6. CHARACTERS & SEIYUU
+export const charactersTable = sqliteTable('characters', {
+  id: text('id').primaryKey(),
+  animeId: text('anime_id').notNull().references(() => animeTable.id, { onDelete: 'cascade' }),
+  name: text('name').notNull(),
+  role: text('role').notNull(),
+  imageUrl: text('image_url').notNull(),
+  voiceActorName: text('voice_actor_name').notNull(),
+  voiceActorLanguage: text('voice_actor_language').default('Japanese').notNull(),
+});
