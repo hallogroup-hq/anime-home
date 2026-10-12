@@ -141,7 +141,7 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
       gap: 6px;
     }
     .top-shield .dot {
-      width: 6px; height: 6px; border-radius: 50%; background: #ef4444; display: inline-block;
+      width: 6px; height: 6px; border-radius: 50%; background: #71717a; display: inline-block;
     }
     .top-shield .info {
       color: #71717a;
@@ -154,7 +154,7 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
   <div id="player-wrap">
     <div class="top-shield">
       <span class="brand"><span class="dot"></span>ANIME HOME PLAYER</span>
-      <span class="info">${verification.data.quality || 'HD'} • Terverifikasi</span>
+      <span class="info">${verification.data.quality || 'HD'}</span>
     </div>
     <iframe
       id="stream-core"

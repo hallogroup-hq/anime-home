@@ -167,6 +167,7 @@ const ALLOWED_STREAM_HOSTS = [
   'vidhidepro.com',
   'odvidhide.com',
   'desustream.net',
+  'desustream.com',
   'desustream.me',
   'youtube.com',
   'www.youtube.com',
