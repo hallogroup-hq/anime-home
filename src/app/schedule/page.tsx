@@ -44,7 +44,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SchedulePage() {
+export const dynamic = 'force-dynamic';
+
+export default async function SchedulePage() {
+  try {
+    await db.syncWithTurso();
+  } catch (err: any) {
+    console.warn('[SchedulePage] Turso sync fallback:', err.message);
+  }
+
   const allAnime = db.getAnimeList();
 
   const DAY_ORDER: Record<string, number> = {

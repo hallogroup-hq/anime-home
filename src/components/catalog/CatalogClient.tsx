@@ -5,13 +5,30 @@ import { useSearchParams } from 'next/navigation';
 import { db } from '@/lib/services/store';
 import { AnimeCard } from '@/components/catalog/AnimeCard';
 import { Search, X, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
-import { MediaType } from '@/types';
+import { Anime, MediaType } from '@/types';
 
-function CatalogContent() {
+function CatalogContent({ initialAnime }: { initialAnime?: Anime[] }) {
+  if (typeof window !== 'undefined' && initialAnime && initialAnime.length > 0) {
+    db.hydrate({ anime: initialAnime });
+  }
+
+  const [refreshKey, setRefreshKey] = useState(0);
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
+
+  useEffect(() => {
+    fetch('/api/anime')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && Array.isArray(data.anime) && data.anime.length > 0) {
+          db.hydrate({ anime: data.anime });
+          setRefreshKey(k => k + 1);
+        }
+      })
+      .catch(() => {});
+  }, []);
   const [selectedGenre, setSelectedGenre] = useState<string>('Semua');
   const [selectedStatus, setSelectedStatus] = useState<string>('Semua');
   const [selectedYear, setSelectedYear] = useState<string>('Semua');
@@ -76,7 +93,7 @@ function CatalogContent() {
       mediaType: selectedFormat !== 'Semua' ? (selectedFormat as MediaType) : undefined,
       sortBy,
     });
-  }, [searchQuery, selectedGenre, selectedStatus, selectedYear, selectedSeason, selectedFormat, sortBy]);
+  }, [searchQuery, selectedGenre, selectedStatus, selectedYear, selectedSeason, selectedFormat, sortBy, refreshKey]);
 
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-6 max-w-7xl mx-auto pt-4 pb-16">
@@ -312,7 +329,7 @@ function CatalogContent() {
   );
 }
 
-export function CatalogClient() {
+export function CatalogClient({ initialAnime }: { initialAnime?: Anime[] }) {
   return (
     <Suspense
       fallback={
@@ -321,7 +338,7 @@ export function CatalogClient() {
         </div>
       }
     >
-      <CatalogContent />
+      <CatalogContent initialAnime={initialAnime} />
     </Suspense>
   );
 }

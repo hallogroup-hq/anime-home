@@ -113,6 +113,33 @@ class AnimeHomeDataStore {
     }
   }
 
+  public hydrate(data: { anime?: Anime[]; episodes?: Episode[]; variants?: StreamVariant[]; seasons?: Season[] }): void {
+    if (data.anime && data.anime.length > 0) {
+      const map = new Map<string, Anime>();
+      this.anime.forEach(a => map.set(a.id, a));
+      data.anime.forEach(a => map.set(a.id, a));
+      this.anime = Array.from(map.values());
+    }
+    if (data.episodes && data.episodes.length > 0) {
+      const map = new Map<string, Episode>();
+      this.episodes.forEach(e => map.set(e.id, e));
+      data.episodes.forEach(e => map.set(e.id, e));
+      this.episodes = Array.from(map.values());
+    }
+    if (data.variants && data.variants.length > 0) {
+      const map = new Map<string, StreamVariant>();
+      this.variants.forEach(v => map.set(v.id, v));
+      data.variants.forEach(v => map.set(v.id, v));
+      this.variants = Array.from(map.values());
+    }
+    if (data.seasons && data.seasons.length > 0) {
+      const map = new Map<string, Season>();
+      this.seasons.forEach(s => map.set(s.id, s));
+      data.seasons.forEach(s => map.set(s.id, s));
+      this.seasons = Array.from(map.values());
+    }
+  }
+
   public registerAnime(anime: Anime): void {
     const idx = this.anime.findIndex(a => a.id === anime.id);
     if (idx >= 0) {

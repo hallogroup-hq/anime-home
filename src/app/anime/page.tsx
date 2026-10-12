@@ -45,7 +45,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AnimeCatalogPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function AnimeCatalogPage() {
+  try {
+    await db.syncWithTurso();
+  } catch (err: any) {
+    console.warn('[AnimeCatalogPage] Turso sync fallback:', err.message);
+  }
+
   const animeList = db.getAnimeList();
 
   // 1. Schema.org CollectionPage & ItemList
@@ -114,7 +122,7 @@ export default function AnimeCatalogPage() {
         </ul>
       </section>
 
-      <CatalogClient />
+      <CatalogClient initialAnime={animeList} />
     </>
   );
 }
