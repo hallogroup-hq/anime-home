@@ -83,7 +83,41 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
   }
 
   // 3. Resolusi Varian Sumber Asli di Sisi Server (Hidden from Client)
-  const variant = db.getVariantById(verification.data.variantId);
+  let variant = db.getVariantById(verification.data.variantId);
+  if (!variant) {
+    try {
+      const { getTursoClient } = await import('@/lib/db/tursoClient');
+      const client = getTursoClient();
+      if (client) {
+        const rs = await client.execute({
+          sql: `SELECT * FROM stream_variants WHERE id = ? LIMIT 1;`,
+          args: [verification.data.variantId],
+        });
+        if (rs.rows.length > 0) {
+          const r: any = rs.rows[0];
+          variant = {
+            id: String(r.id),
+            episodeId: String(r.episode_id),
+            providerId: String(r.provider_id),
+            providerName: String(r.provider_name),
+            qualityLabel: r.quality_label as any,
+            sourceRef: String(r.source_ref),
+            embedUrl: String(r.embed_url),
+            audioLocale: String(r.audio_locale || 'ja-JP'),
+            subtitleLocale: String(r.subtitle_locale || 'id-ID'),
+            priority: Number(r.priority || 0),
+            verificationState: r.verification_state as any,
+            moderationState: r.moderation_state as any,
+            lastCheckedAt: String(r.last_checked_at || ''),
+          };
+          db.registerVariants([variant]);
+        }
+      }
+    } catch (err) {
+      console.warn('[StreamEmbed] Turso variant fallback error:', err);
+    }
+  }
+
   if (!variant) {
     return new NextResponse(
       `<!DOCTYPE html><html><body style="background:#090A0F;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">

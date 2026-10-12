@@ -73,6 +73,16 @@ export class TursoService {
     const client = getTursoClient();
     if (!client) return null;
 
+    const cleanSlug = slug.toLowerCase().trim();
+    const possibleSlugs = Array.from(new Set([
+      cleanSlug,
+      'otk-' + cleanSlug,
+      cleanSlug.replace(/^otk-/, ''),
+      'anime-' + cleanSlug,
+      cleanSlug.replace(/^anime-/, ''),
+    ]));
+
+    const placeholders = possibleSlugs.map(() => '?').join(', ');
     const rs = await client.execute({
       sql: `
         SELECT a.*,
@@ -85,10 +95,10 @@ export class TursoService {
             'normalizedTitle', t.normalized_title
           )) FROM anime_titles t WHERE t.anime_id = a.id) as aliases_json
         FROM anime a
-        WHERE a.slug = ?
+        WHERE a.slug IN (${placeholders}) OR a.id IN (${placeholders})
         LIMIT 1;
       `,
-      args: [slug],
+      args: [...possibleSlugs, ...possibleSlugs],
     });
 
     if (rs.rows.length === 0) return null;
@@ -172,9 +182,16 @@ export class TursoService {
     const client = getTursoClient();
     if (!client) return null;
 
+    const possibleEpIds = Array.from(new Set([
+      episodeId,
+      episodeId.startsWith('ep-anime-') ? 'ep-' + episodeId.slice(9) : 'ep-anime-' + episodeId.slice(3),
+      episodeId.startsWith('ep-otk-') ? 'ep-' + episodeId.slice(7) : 'ep-otk-' + episodeId.slice(3),
+    ]));
+
+    const placeholders = possibleEpIds.map(() => '?').join(', ');
     const rs = await client.execute({
-      sql: `SELECT * FROM episodes WHERE id = ? LIMIT 1;`,
-      args: [episodeId],
+      sql: `SELECT * FROM episodes WHERE id IN (${placeholders}) LIMIT 1;`,
+      args: possibleEpIds,
     });
 
     if (rs.rows.length === 0) return null;

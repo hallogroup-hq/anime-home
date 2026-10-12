@@ -11,7 +11,18 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { episodeId } = await params;
-  const episode = db.getEpisodeById(episodeId);
+  let episode = db.getEpisodeById(episodeId);
+
+  if (!episode) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const direct = await TursoService.getEpisodeById(episodeId);
+      if (direct) {
+        episode = direct;
+        db.registerEpisode(direct);
+      }
+    } catch {}
+  }
 
   if (!episode) {
     return {
@@ -20,7 +31,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const anime = db.getAnimeList().find((a) => a.id === episode.animeId);
+  let anime = db.getAnimeList().find((a) => a.id === episode.animeId);
+  if (!anime) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const allAnime = await TursoService.getAllAnime();
+      const match = allAnime.find((a) => a.id === episode.animeId);
+      if (match) {
+        anime = match;
+        db.registerAnime(match);
+      }
+    } catch {}
+  }
+
   if (!anime) {
     return {
       title: 'Anime Tidak Ditemukan',
@@ -79,19 +102,61 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function WatchPage({ params }: PageProps) {
   const { episodeId } = await params;
-  const episode = db.getEpisodeById(episodeId);
+  let episode = db.getEpisodeById(episodeId);
+
+  if (!episode) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const direct = await TursoService.getEpisodeById(episodeId);
+      if (direct) {
+        episode = direct;
+        db.registerEpisode(direct);
+      }
+    } catch (err) {
+      console.warn('[WatchPage] Turso episode fallback failed:', err);
+    }
+  }
 
   if (!episode) {
     notFound();
   }
 
-  const anime = db.getAnimeList().find((a) => a.id === episode.animeId);
+  let anime = db.getAnimeList().find((a) => a.id === episode.animeId);
+  if (!anime) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const allAnime = await TursoService.getAllAnime();
+      const match = allAnime.find((a) => a.id === episode.animeId);
+      if (match) {
+        anime = match;
+        db.registerAnime(match);
+      }
+    } catch (err) {
+      console.warn('[WatchPage] Turso anime fallback failed:', err);
+    }
+  }
+
   if (!anime) {
     notFound();
   }
 
   const watchOrder = db.getWatchOrderForAnime(anime.id);
-  const allEpisodes = db.getEpisodesByAnimeId(anime.id);
+  let allEpisodes = db.getEpisodesByAnimeId(anime.id);
+  if (allEpisodes.length === 0 || !allEpisodes.some((e) => e.id === episode.id)) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const tursoEps = await TursoService.getEpisodesByAnimeId(anime.id);
+      if (tursoEps.length > 0) {
+        allEpisodes = tursoEps;
+        for (const ep of tursoEps) {
+          db.registerEpisode(ep);
+        }
+      }
+    } catch (err) {
+      console.warn('[WatchPage] Turso allEpisodes fallback failed:', err);
+    }
+  }
+
   const currentIndex = allEpisodes.findIndex((e) => e.id === episode.id);
   const prevEpisode = currentIndex > 0 ? allEpisodes[currentIndex - 1] : null;
   const nextEpisode = currentIndex < allEpisodes.length - 1 ? allEpisodes[currentIndex + 1] : null;
@@ -160,7 +225,20 @@ export default async function WatchPage({ params }: PageProps) {
     ],
   };
 
-  const secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
+  let secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
+  const hasVariants = Object.values(secureStreamMatrix.variantsByQuality).some(list => list.length > 0);
+  if (!hasVariants) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const tursoVariants = await TursoService.getVariantsByEpisodeId(episode.id);
+      if (tursoVariants.length > 0) {
+        db.registerVariants(tursoVariants);
+        secureStreamMatrix = db.getSecureStreamMatrix(episode.id);
+      }
+    } catch (err) {
+      console.warn('[WatchPage] Turso variants fallback failed:', err);
+    }
+  }
 
   return (
     <>

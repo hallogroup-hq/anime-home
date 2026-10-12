@@ -82,22 +82,61 @@ class AnimeHomeDataStore {
       const { TursoService } = await import('./tursoService');
       const snapshot = await TursoService.fetchFullSnapshot();
       if (snapshot.anime.length > 0) {
-        this.anime = snapshot.anime;
+        const map = new Map<string, Anime>();
+        this.anime.forEach(a => map.set(a.id, a));
+        snapshot.anime.forEach(a => map.set(a.id, a));
+        this.anime = Array.from(map.values());
       }
       if (snapshot.episodes.length > 0) {
-        this.episodes = snapshot.episodes;
+        const map = new Map<string, Episode>();
+        this.episodes.forEach(e => map.set(e.id, e));
+        snapshot.episodes.forEach(e => map.set(e.id, e));
+        this.episodes = Array.from(map.values());
       }
       if (snapshot.variants.length > 0) {
-        this.variants = snapshot.variants;
+        const map = new Map<string, StreamVariant>();
+        this.variants.forEach(v => map.set(v.id, v));
+        snapshot.variants.forEach(v => map.set(v.id, v));
+        this.variants = Array.from(map.values());
       }
       if (snapshot.seasons.length > 0) {
-        this.seasons = snapshot.seasons;
+        const map = new Map<string, Season>();
+        this.seasons.forEach(s => map.set(s.id, s));
+        snapshot.seasons.forEach(s => map.set(s.id, s));
+        this.seasons = Array.from(map.values());
       }
       this.lastTursoSyncTime = Date.now();
     } catch (err: any) {
       console.warn('[DataStore] Turso sync error:', err.message);
     } finally {
       this.isSyncingTurso = false;
+    }
+  }
+
+  public registerAnime(anime: Anime): void {
+    const idx = this.anime.findIndex(a => a.id === anime.id);
+    if (idx >= 0) {
+      this.anime[idx] = anime;
+    } else {
+      this.anime.push(anime);
+    }
+  }
+
+  public registerEpisode(episode: Episode): void {
+    const idx = this.episodes.findIndex(e => e.id === episode.id);
+    if (idx >= 0) {
+      this.episodes[idx] = episode;
+    } else {
+      this.episodes.push(episode);
+    }
+  }
+
+  public registerVariants(variants: StreamVariant[]): void {
+    const existingIds = new Set(this.variants.map(v => v.id));
+    for (const v of variants) {
+      if (!existingIds.has(v.id)) {
+        this.variants.push(v);
+      }
     }
   }
 

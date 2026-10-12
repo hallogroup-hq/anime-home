@@ -57,7 +57,7 @@ export function FranchiseSeasonSwitcher({ items, currentAnimeId }: FranchiseSeas
       {/* HEADER ROW */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600/10 border border-red-500/20 text-red-400">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-800 border border-white/[0.08] text-zinc-300">
             <Layers className="h-4 w-4" />
           </div>
           <div>
@@ -164,7 +164,7 @@ export function FranchiseSeasonSwitcher({ items, currentAnimeId }: FranchiseSeas
               href={item.slug ? `/anime/${item.slug}` : '#'}
               className={`group flex shrink-0 flex-col justify-between rounded-xl border p-3 transition-all min-w-[200px] max-w-[240px] ${
                 isCurrent
-                  ? 'bg-red-950/30 border-red-500/50 ring-1 ring-red-500/30'
+                  ? 'bg-zinc-800/90 border-zinc-500 ring-1 ring-zinc-500/50'
                   : 'bg-zinc-900/50 border-white/[0.06] hover:border-zinc-700 hover:bg-zinc-900'
               }`}
             >

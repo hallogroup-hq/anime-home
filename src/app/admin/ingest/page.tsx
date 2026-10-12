@@ -287,7 +287,7 @@ export default function MetadataIngestPage() {
               <div className="flex items-center gap-2 shrink-0 w-full md:w-auto">
                 {isDuplicate ? (
                   <Link
-                    href={`/anime/${cand.duplicateMatchId?.replace('anime-', '')}`}
+                    href={`/anime/${db.getAnimeList().find(a => a.id === cand.duplicateMatchId)?.slug || cand.duplicateMatchId?.replace('anime-', '')}`}
                     className="flex-1 md:flex-initial flex items-center justify-center gap-1.5 rounded-lg border border-white/[0.08] bg-zinc-800 px-4 py-2 text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
                   >
                     <span>Lihat Anime yang Sudah Ada</span>
@@ -300,7 +300,7 @@ export default function MetadataIngestPage() {
                     className={`flex-1 md:flex-initial flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition-colors cursor-pointer ${
                       isAlreadyImported
                         ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
-                        : 'bg-red-600 text-white hover:bg-red-700'
+                        : 'bg-white text-zinc-950 hover:bg-zinc-200'
                     }`}
                   >
                     <Download className="h-3.5 w-3.5" />

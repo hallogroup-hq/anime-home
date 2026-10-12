@@ -11,7 +11,18 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const anime = db.getAnimeBySlug(slug);
+  let anime = db.getAnimeBySlug(slug);
+
+  if (!anime) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const direct = await TursoService.getAnimeBySlug(slug);
+      if (direct) {
+        anime = direct;
+        db.registerAnime(direct);
+      }
+    } catch {}
+  }
 
   if (!anime) {
     return {
@@ -21,13 +32,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const isMovie = anime.mediaType === 'Movie';
-  const episodes = db.getEpisodesByAnimeId(anime.id);
+  let episodes = db.getEpisodesByAnimeId(anime.id);
+  if (episodes.length === 0) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const tursoEps = await TursoService.getEpisodesByAnimeId(anime.id);
+      if (tursoEps.length > 0) episodes = tursoEps;
+    } catch {}
+  }
   const statusLabel = anime.airingStatus === 'airing' ? 'Sedang Tayang (Ongoing)' : 'Tamat (Completed)';
   const totalEpLabel = isMovie ? 'Full Movie' : `${episodes.length} Episode`;
 
   const pageTitle = `Nonton ${anime.canonicalTitle} Sub Indo (${totalEpLabel})`;
   const pageDescription = `Streaming dan download ${anime.canonicalTitle} (${anime.year || ''}) subtitle Indonesia lengkap di Anime Home. ${anime.synopsis.slice(0, 160)}... Genre: ${anime.genres.join(', ')}. Status: ${statusLabel}. Multi-server stabil dan lancar tanpa kendala.`;
-
   const canonicalUrl = `${siteUrl}/anime/${anime.slug}`;
   const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
   const bannerUrl = anime.bannerUrl.startsWith('http') ? anime.bannerUrl : `${siteUrl}${anime.bannerUrl}`;
@@ -85,13 +102,41 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AnimeDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const anime = db.getAnimeBySlug(slug);
+  let anime = db.getAnimeBySlug(slug);
+
+  if (!anime) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const direct = await TursoService.getAnimeBySlug(slug);
+      if (direct) {
+        anime = direct;
+        db.registerAnime(direct);
+      }
+    } catch (err) {
+      console.warn('[AnimeDetailPage] Turso anime fallback failed:', err);
+    }
+  }
 
   if (!anime) {
     notFound();
   }
 
-  const episodes = db.getEpisodesByAnimeId(anime.id);
+  let episodes = db.getEpisodesByAnimeId(anime.id);
+  if (episodes.length === 0) {
+    try {
+      const { TursoService } = await import('@/lib/services/tursoService');
+      const tursoEps = await TursoService.getEpisodesByAnimeId(anime.id);
+      if (tursoEps.length > 0) {
+        episodes = tursoEps;
+        for (const ep of tursoEps) {
+          db.registerEpisode(ep);
+        }
+      }
+    } catch (err) {
+      console.warn('[AnimeDetailPage] Turso episodes fallback failed:', err);
+    }
+  }
+
   const watchOrder = db.getWatchOrderForAnime(anime.id);
   
   // Ambil Karakter & Seiyuu dari database atau fetch live dari AniList
