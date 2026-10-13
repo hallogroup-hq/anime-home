@@ -62,8 +62,16 @@ export function MultiProviderPlayer({
       if (aOffline !== bOffline) {
         return aOffline ? 1 : -1;
       }
-      const aIsPlaceholder = a.embedUrl.startsWith('/embed/player');
-      const bIsPlaceholder = b.embedUrl.startsWith('/embed/player');
+      const aIsPlaceholder =
+        a.providerId === 'prov-alpha' ||
+        a.providerId === 'prov-beta' ||
+        Boolean(a.sourceRef && (a.sourceRef.includes('-alpha-') || a.sourceRef.includes('-beta-'))) ||
+        a.embedUrl.startsWith('/embed/player');
+      const bIsPlaceholder =
+        b.providerId === 'prov-alpha' ||
+        b.providerId === 'prov-beta' ||
+        Boolean(b.sourceRef && (b.sourceRef.includes('-alpha-') || b.sourceRef.includes('-beta-'))) ||
+        b.embedUrl.startsWith('/embed/player');
       if (aIsPlaceholder !== bIsPlaceholder) {
         return aIsPlaceholder ? 1 : -1;
       }
@@ -226,9 +234,8 @@ export function MultiProviderPlayer({
               src={embedUrl}
               title={`${animeTitle} - Ep ${episodeNumber}`}
               className="h-full w-full border-0 select-none"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
             />
           ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950 p-6 text-center">

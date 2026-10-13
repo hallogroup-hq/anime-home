@@ -545,8 +545,13 @@ export class OngoingSyncService {
             const epNumMatch = epInfo.title.match(/Episode\s*(\d+)/i);
             const epNum = epNumMatch ? parseInt(epNumMatch[1]) : 1;
 
-            if (existingEpNumbers.has(epNum)) {
-              continue; // Episode already exists
+            const existingEp = existingEps.find(e => e.ordinal === epNum);
+            if (existingEp) {
+              const existingVariants = db.getVariantsByEpisodeId(existingEp.id);
+              const hasOtakuVariants = existingVariants.some((v: StreamVariant) => v.id.includes('-otaku-') || v.providerId === 'prov-vidhide');
+              if (hasOtakuVariants) {
+                continue; // Episode already has Otakudesu variants
+              }
             }
 
             console.log(`[OngoingSyncService] Ingesting Episode ${epNum} for "${anime.canonicalTitle}" from Otakudesu...`);
@@ -558,13 +563,13 @@ export class OngoingSyncService {
 
             const displayNumber = epNum < 10 ? `0${epNum}` : `${epNum}`;
             const isAoT = anime.id.startsWith('anime-aot-');
-            const episodeId = isAoT
+            const episodeId = existingEp ? existingEp.id : (isAoT
               ? `ep-${anime.id.replace('anime-', '')}-${epNum}`
               : (anime.id.startsWith('anime-')
                   ? `ep-${anime.id.slice(6)}-${epNum}`
-                  : `ep-${anime.id}-${epNum}`);
+                  : `ep-${anime.id}-${epNum}`));
 
-            const newEpisode: Episode = {
+            const newEpisode: Episode = existingEp || {
               id: episodeId,
               animeId: anime.id,
               ordinal: epNum,
@@ -582,67 +587,80 @@ export class OngoingSyncService {
             const newVariants: StreamVariant[] = [];
             const providersUsed: string[] = [];
 
-            // A. Mega Cloud Player
-            const megaStream: any = resolvedList.find((s: any) => s.canEmbedDirectly && s.iframeSrc?.includes('mega.nz'));
-            if (megaStream) {
-              newVariants.push({
-                id: `var-${episodeId}-otaku-mega`,
-                episodeId,
-                providerId: 'prov-mega',
-                providerName: 'Mega Cloud Player',
-                qualityLabel: '720p',
-                sourceRef: `${anime.id}-ep-${epNum}-otaku-mega`,
-                embedUrl: megaStream.iframeSrc,
-                audioLocale: 'ja-JP',
-                subtitleLocale: 'id-ID',
-                priority: 15,
-                verificationState: 'verified',
-                moderationState: 'approved',
-                lastCheckedAt: timestamp,
-              });
-              providersUsed.push('Mega Cloud');
-            }
-
-            // B. Vidhide High-Speed
-            const vidhideStream: any = resolvedList.find((s: any) => s.canEmbedDirectly && (s.iframeSrc?.includes('vidhide') || s.iframeSrc?.includes('odvidhide')));
-            if (vidhideStream) {
-              newVariants.push({
-                id: `var-${episodeId}-otaku-vidhide`,
-                episodeId,
-                providerId: 'prov-vidhide',
-                providerName: 'Vidhide High-Speed',
-                qualityLabel: '720p',
-                sourceRef: `${anime.id}-ep-${epNum}-otaku-vidhide`,
-                embedUrl: vidhideStream.iframeSrc,
-                audioLocale: 'ja-JP',
-                subtitleLocale: 'id-ID',
-                priority: 13,
-                verificationState: 'verified',
-                moderationState: 'approved',
-                lastCheckedAt: timestamp,
-              });
-              providersUsed.push('Vidhide');
-            }
-
-            // C. DesuStream Fast CDN
-            const desuStream: any = resolvedList.find((s: any) => s.iframeSrc?.includes('desustream.net'));
-            if (desuStream) {
-              newVariants.push({
-                id: `var-${episodeId}-otaku-desu`,
-                episodeId,
-                providerId: 'prov-desu',
-                providerName: 'DesuStream Fast CDN',
-                qualityLabel: '480p',
-                sourceRef: `${anime.id}-ep-${epNum}-otaku-desu`,
-                embedUrl: desuStream.iframeSrc,
-                audioLocale: 'ja-JP',
-                subtitleLocale: 'id-ID',
-                priority: 12,
-                verificationState: 'verified',
-                moderationState: 'approved',
-                lastCheckedAt: timestamp,
-              });
-              providersUsed.push('DesuStream');
+            // Multi-resolution Otakudesu mirrors
+            for (const s of resolvedList) {
+              if (s.server === 'vidhide' || s.iframeSrc?.includes('vidhide') || s.iframeSrc?.includes('odvidhide')) {
+                const q = (s.quality || '720p') as any;
+                newVariants.push({
+                  id: `var-${episodeId}-otaku-vidhide-${q}`,
+                  episodeId,
+                  providerId: 'prov-vidhide',
+                  providerName: `Vidhide High-Speed ${q}`,
+                  qualityLabel: q,
+                  sourceRef: `${anime.id}-ep-${epNum}-otaku-vidhide-${q}`,
+                  embedUrl: s.iframeSrc,
+                  audioLocale: 'ja-JP',
+                  subtitleLocale: 'id-ID',
+                  priority: 20,
+                  verificationState: 'verified',
+                  moderationState: 'approved',
+                  lastCheckedAt: timestamp,
+                });
+                if (!providersUsed.includes('Vidhide')) providersUsed.push('Vidhide');
+              } else if (s.server === 'mega' || s.iframeSrc?.includes('mega.nz')) {
+                const q = (s.quality || '720p') as any;
+                newVariants.push({
+                  id: `var-${episodeId}-otaku-mega-${q}`,
+                  episodeId,
+                  providerId: 'prov-mega',
+                  providerName: `Mega Cloud Player ${q}`,
+                  qualityLabel: q,
+                  sourceRef: `${anime.id}-ep-${epNum}-otaku-mega-${q}`,
+                  embedUrl: s.iframeSrc,
+                  audioLocale: 'ja-JP',
+                  subtitleLocale: 'id-ID',
+                  priority: 18,
+                  verificationState: 'verified',
+                  moderationState: 'approved',
+                  lastCheckedAt: timestamp,
+                });
+                if (!providersUsed.includes('Mega Cloud')) providersUsed.push('Mega Cloud');
+              } else if (s.server === 'blogs' || s.iframeSrc?.includes('blogger.com')) {
+                const q = (s.quality || '480p') as any;
+                newVariants.push({
+                  id: `var-${episodeId}-otaku-blogs-${q}`,
+                  episodeId,
+                  providerId: 'prov-blogger',
+                  providerName: `Google Blogger CDN ${q}`,
+                  qualityLabel: q,
+                  sourceRef: `${anime.id}-ep-${epNum}-otaku-blogs-${q}`,
+                  embedUrl: s.iframeSrc,
+                  audioLocale: 'ja-JP',
+                  subtitleLocale: 'id-ID',
+                  priority: 19,
+                  verificationState: 'verified',
+                  moderationState: 'approved',
+                  lastCheckedAt: timestamp,
+                });
+                if (!providersUsed.includes('Blogger CDN')) providersUsed.push('Blogger CDN');
+              } else if (s.iframeSrc?.includes('desustream.net')) {
+                newVariants.push({
+                  id: `var-${episodeId}-otaku-desu`,
+                  episodeId,
+                  providerId: 'prov-desu',
+                  providerName: 'DesuStream Fast CDN',
+                  qualityLabel: '480p',
+                  sourceRef: `${anime.id}-ep-${epNum}-otaku-desu`,
+                  embedUrl: s.iframeSrc,
+                  audioLocale: 'ja-JP',
+                  subtitleLocale: 'id-ID',
+                  priority: 15,
+                  verificationState: 'verified',
+                  moderationState: 'approved',
+                  lastCheckedAt: timestamp,
+                });
+                if (!providersUsed.includes('DesuStream')) providersUsed.push('DesuStream');
+              }
             }
 
             // In-app Failover Players
@@ -673,7 +691,7 @@ export class OngoingSyncService {
               embedUrl: `/embed/player?title=${encodeURIComponent(anime.canonicalTitle)}&ep=${epNum}&server=Server%20Beta&quality=1080p`,
               audioLocale: 'ja-JP',
               subtitleLocale: 'id-ID',
-              priority: 14,
+              priority: 10,
               verificationState: 'verified',
               moderationState: 'approved',
               lastCheckedAt: timestamp,
@@ -681,7 +699,9 @@ export class OngoingSyncService {
             providersUsed.push('Server Beta');
 
             if (!options.dryRun) {
-              (db as any).episodes.push(newEpisode);
+              if (!existingEp) {
+                (db as any).episodes.push(newEpisode);
+              }
               for (const v of newVariants) {
                 (db as any).variants.push(v);
               }

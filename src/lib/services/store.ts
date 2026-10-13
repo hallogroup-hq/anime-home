@@ -82,16 +82,32 @@ class AnimeHomeDataStore {
       const { TursoService } = await import('./tursoService');
       const snapshot = await TursoService.fetchFullSnapshot();
       if (snapshot.anime.length > 0) {
-        this.anime = snapshot.anime;
+        const animeMap = new Map(this.anime.map((a) => [a.id, a]));
+        for (const a of snapshot.anime) {
+          animeMap.set(a.id, a);
+        }
+        this.anime = Array.from(animeMap.values());
       }
       if (snapshot.episodes.length > 0) {
-        this.episodes = snapshot.episodes;
+        const epMap = new Map(this.episodes.map((e) => [e.id, e]));
+        for (const e of snapshot.episodes) {
+          epMap.set(e.id, e);
+        }
+        this.episodes = Array.from(epMap.values());
       }
       if (snapshot.variants.length > 0) {
-        this.variants = snapshot.variants;
+        const varMap = new Map(this.variants.map((v) => [v.id, v]));
+        for (const v of snapshot.variants) {
+          varMap.set(v.id, v);
+        }
+        this.variants = Array.from(varMap.values());
       }
       if (snapshot.seasons.length > 0) {
-        this.seasons = snapshot.seasons;
+        const seasonMap = new Map(this.seasons.map((s) => [s.id, s]));
+        for (const s of snapshot.seasons) {
+          seasonMap.set(s.id, s);
+        }
+        this.seasons = Array.from(seasonMap.values());
       }
       this.lastTursoSyncTime = Date.now();
     } catch (err: any) {
@@ -408,6 +424,10 @@ class AnimeHomeDataStore {
       return vars;
     }
     return [...this.variants];
+  }
+
+  public getVariantsByEpisodeId(episodeId: string): StreamVariant[] {
+    return this.getAllStreamVariants(episodeId);
   }
 
   // --- SEASON VERIFICATION & READINESS ---
