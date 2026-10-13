@@ -5,7 +5,7 @@ import { db } from '@/lib/services/store';
 import { MerchItem, MerchOrder } from '@/types';
 import { 
   ShoppingBag, Plus, DollarSign, Package, Check, 
-  TrendingUp, RefreshCw, X, Send, MessageCircle, ExternalLink, Loader2
+  TrendingUp, RefreshCw, X, Send, MessageCircle, ExternalLink, Loader2, Copy
 } from 'lucide-react';
 
 export default function AdminMerchandisePage() {
@@ -15,6 +15,7 @@ export default function AdminMerchandisePage() {
   const [dispatchingId, setDispatchingId] = useState<string | null>(null);
   const [dispatchNotice, setDispatchNotice] = useState<string>('');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Form states for adding product
   const [newTitle, setNewTitle] = useState('');
@@ -23,6 +24,7 @@ export default function AdminMerchandisePage() {
   const [newPrice, setNewPrice] = useState(139000);
   const [newCostPrice, setNewCostPrice] = useState(65000);
   const [newSupplier, setNewSupplier] = useState('Bandung DTF Apparel POD');
+  const [newSupplierUrl, setNewSupplierUrl] = useState('');
   const [newSupplierPhone, setNewSupplierPhone] = useState('+6281299887766');
   const [newImageUrl, setNewImageUrl] = useState('');
   const [newVariants, setNewVariants] = useState('S, M, L, XL, XXL');
@@ -74,6 +76,7 @@ export default function AdminMerchandisePage() {
       isAffiliate: false,
       verificationState: 'verified',
       supplierName: newSupplier.trim(),
+      supplierUrl: newSupplierUrl.trim() || undefined,
       supplierPhone: newSupplierPhone.trim(),
       stockStatus: 'in_stock',
       variants: newVariants.split(',').map(s => s.trim()).filter(Boolean),
@@ -85,6 +88,31 @@ export default function AdminMerchandisePage() {
     setNewTitle('');
     setNewAnimeTitle('');
     setNewImageUrl('');
+    setNewSupplierUrl('');
+  };
+
+  const handleCopyAddress = (order: MerchOrder) => {
+    const text = `DROPSHIP ANIME HOME STORE
+No Ref: #${order.id.slice(-6)}
+Produk: ${order.merchName}
+Varian: ${order.selectedVariant}
+Qty: ${order.quantity || 1} pcs
+
+PENERIMA:
+Nama: ${order.customerName}
+No. HP: ${order.customerContact}
+Alamat: ${order.shippingAddress}
+Kota: ${order.city}
+
+PENGIRIM (DROPSHIPPER):
+Nama Pengirim: Anime Home Store
+No. Pengirim: 0812-9988-7766`;
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      setCopiedId(order.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
   };
 
   const handleDispatchToSupplier = async (orderId: string) => {
@@ -142,17 +170,17 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
-            <ShoppingBag className="w-6 h-6 text-red-600" />
+            <ShoppingBag className="w-6 h-6 text-zinc-200" />
             <span>Dropship & Merchandise Store</span>
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-            Katalog produk anime, kalkulasi profit bersih, dan otomasi pemesanan ke supplier atas nama Anime Home Store.
+            Katalog produk anime, link toko sumber supplier, dan otomasi pemesanan dropship atas nama Anime Home Store.
           </p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition-colors cursor-pointer shadow-lg shadow-red-950/20"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-bold transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Tambah Produk Dropship</span>
@@ -250,7 +278,7 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
                   <th className="py-3 px-4">Harga Jual</th>
                   <th className="py-3 px-4">Modal Supplier</th>
                   <th className="py-3 px-4">Profit Bersih</th>
-                  <th className="py-3 px-4">Supplier Mitra</th>
+                  <th className="py-3 px-4">Supplier & Link Sumber</th>
                   <th className="py-3 px-4">Status</th>
                 </tr>
               </thead>
@@ -293,8 +321,21 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
                         <div className="font-bold text-white">+{formatRupiah(profit)}</div>
                         <span className="text-[10px] text-zinc-400 font-medium">{marginPct}% Margin</span>
                       </td>
-                      <td className="py-3 px-4 text-zinc-400 max-w-[180px] truncate">
-                        {item.supplierName || 'Bandung DTF Apparel POD'}
+                      <td className="py-3 px-4 text-zinc-400 max-w-[200px]">
+                        <div className="font-medium text-white truncate">{item.supplierName || 'Supplier Direct'}</div>
+                        {item.supplierUrl ? (
+                          <a
+                            href={item.supplierUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[10px] text-zinc-300 hover:text-white underline mt-0.5"
+                          >
+                            <ExternalLink className="w-2.5 h-2.5 text-zinc-400" />
+                            <span>Buka Toko Sumber</span>
+                          </a>
+                        ) : (
+                          <span className="text-[10px] text-zinc-600 block">Link belum diisi</span>
+                        )}
                       </td>
                       <td className="py-3 px-4">
                         <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700">
@@ -396,45 +437,61 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
                             </div>
                           </td>
                           <td className="py-3 px-4">
-                            <div className="flex flex-col gap-1.5">
-                              {/* 1-Click Push to Supplier API */}
-                              {!isDispatched && (
-                                <button
-                                  type="button"
-                                  disabled={dispatchingId === order.id}
-                                  onClick={() => handleDispatchToSupplier(order.id)}
-                                  className="px-2.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-[10px] font-semibold flex items-center gap-1 transition-colors cursor-pointer"
-                                >
-                                  {dispatchingId === order.id ? (
-                                    <>
-                                      <Loader2 className="w-3 h-3 animate-spin" />
-                                      <span>Meneruskan...</span>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <Send className="w-3 h-3" />
-                                      <span>Push ke Supplier (1-Click)</span>
-                                    </>
-                                  )}
-                                </button>
-                              )}
+                            <div className="flex flex-col gap-1.5 min-w-[150px]">
+                              {/* 1. Direct Link Beli di Toko Sumber */}
+                              {(() => {
+                                const supplierLink = order.supplierUrl || merchList.find(m => m.id === order.merchId)?.supplierUrl;
+                                if (!supplierLink) return null;
+                                return (
+                                  <a
+                                    href={supplierLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-2.5 py-1.5 rounded-lg bg-white text-zinc-950 text-[10px] font-bold flex items-center gap-1.5 hover:bg-zinc-200 transition-colors shadow-xs"
+                                    title="Buka link toko/produk asal di Shopee / Tokopedia / Jakmall"
+                                  >
+                                    <ExternalLink className="w-3 h-3 text-zinc-950 shrink-0" />
+                                    <span>Beli di Toko Sumber</span>
+                                  </a>
+                                );
+                              })()}
 
-                              {/* WhatsApp Deep-link */}
+                              {/* 2. 1-Click Copy Alamat Dropship */}
+                              <button
+                                type="button"
+                                onClick={() => handleCopyAddress(order)}
+                                className="px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-200 text-[10px] font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
+                                title="Salin data penerima dan format dropship ke clipboard"
+                              >
+                                {copiedId === order.id ? (
+                                  <>
+                                    <Check className="w-3 h-3 text-zinc-300 shrink-0" />
+                                    <span className="text-zinc-200 font-semibold">Tersalin!</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy className="w-3 h-3 text-zinc-400 shrink-0" />
+                                    <span>Salin Alamat Dropship</span>
+                                  </>
+                                )}
+                              </button>
+
+                              {/* 3. WhatsApp Deep-link */}
                               <a
                                 href={generateWhatsAppLink(order)}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-200 text-[10px] font-medium flex items-center gap-1 transition-colors"
+                                className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-zinc-200 text-[10px] font-medium flex items-center gap-1.5 transition-colors"
                               >
-                                <MessageCircle className="w-3 h-3 text-zinc-400" />
+                                <MessageCircle className="w-3 h-3 text-zinc-400 shrink-0" />
                                 <span>Kirim WA Supplier</span>
                               </a>
 
-                              {/* Resi updater */}
+                              {/* 4. Tandai Resi Terbit */}
                               {order.shippingStatus !== 'shipped' && (
                                 <button
                                   onClick={() => handleUpdateShipping(order.id, 'shipped', order.trackingNumber || `AH-REG-${Date.now().toString().slice(-6)}`)}
-                                  className="text-[9px] text-zinc-400 hover:text-white underline text-left"
+                                  className="text-[9px] text-zinc-400 hover:text-white underline text-left pt-0.5"
                                 >
                                   Tandai Resi Terbit
                                 </button>
@@ -458,7 +515,7 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
           <div className="w-full max-w-md bg-zinc-950 border border-zinc-800 rounded-2xl p-5 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <Plus className="w-4 h-4 text-red-600" />
+                <Plus className="w-4 h-4 text-zinc-200" />
                 <span>Tambah Produk Dropship Baru</span>
               </h3>
               <button onClick={() => setShowAddModal(false)} className="text-zinc-400 hover:text-white">
@@ -553,6 +610,17 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
               </div>
 
               <div>
+                <label className="block text-zinc-400 mb-1">Link Toko / Produk Sumber (Shopee, Tokopedia, Jakmall)</label>
+                <input
+                  type="url"
+                  value={newSupplierUrl}
+                  onChange={(e) => setNewSupplierUrl(e.target.value)}
+                  placeholder="https://shopee.co.id/search?keyword=..."
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-white focus:outline-none focus:border-zinc-700"
+                />
+              </div>
+
+              <div>
                 <label className="block text-zinc-400 mb-1">URL Gambar Produk</label>
                 <input
                   type="text"
@@ -584,7 +652,7 @@ Mohon diproses dan kirimkan nomor resinya. Terima kasih!`;
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold"
+                  className="px-4 py-2 rounded-lg bg-white hover:bg-zinc-200 text-zinc-950 font-bold transition-colors cursor-pointer"
                 >
                   Simpan Produk
                 </button>

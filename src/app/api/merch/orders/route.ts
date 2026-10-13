@@ -63,6 +63,7 @@ export async function POST(request: Request) {
       paymentStatus: body.paymentStatus === 'paid' ? 'paid' : 'unpaid',
       shippingStatus: body.paymentStatus === 'paid' ? 'processing' : 'pending',
       trackingNumber: `AH-DROPSHIP-${Math.floor(100000 + Math.random() * 900000)}`,
+      supplierUrl: body.supplierUrl || undefined,
     });
 
     const sessionKey = `session-${customerContact.replace(/[^0-9]/g, '') || Date.now()}`;

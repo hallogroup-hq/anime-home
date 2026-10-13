@@ -198,6 +198,7 @@ export interface MerchOrder {
   dropshipStatus?: 'pending_dispatch' | 'dispatched_to_supplier' | 'supplier_processing' | 'shipped';
   supplierOrderId?: string;
   supplierNotes?: string;
+  supplierUrl?: string;
   trackingNumber?: string;
   paymentProofUrl?: string;
   createdAt: string;

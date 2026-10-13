@@ -958,8 +958,10 @@ class AnimeHomeDataStore {
   }
 
   public createOrder(data: Omit<MerchOrder, 'id' | 'createdAt'>): MerchOrder {
+    const merch = this.getMerchById(data.merchId);
     const newOrder: MerchOrder = {
       ...data,
+      supplierUrl: data.supplierUrl || merch?.supplierUrl || '',
       id: `order-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
       createdAt: new Date().toISOString(),
     };
