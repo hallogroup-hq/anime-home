@@ -320,7 +320,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T21:00:48.344Z",
-      "updatedAt": "2026-10-10T21:00:48.344Z"
+      "updatedAt": "2026-10-13T09:01:53.203Z"
     },
     {
       "id": "anime-magicalexplorer",
@@ -391,7 +391,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T19:01:02.486Z",
-      "updatedAt": "2026-10-10T19:01:02.486Z"
+      "updatedAt": "2026-10-13T09:01:53.370Z"
     },
     {
       "id": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
@@ -547,7 +547,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-10T13:36:38.287Z",
-      "updatedAt": "2026-10-10T13:36:38.287Z"
+      "updatedAt": "2026-10-13T09:01:53.937Z"
     },
     {
       "id": "anime-shuiro-no-kamen",
@@ -1503,7 +1503,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Minggu, 17:00 WIB",
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-09T21:40:40.008Z"
+      "updatedAt": "2026-10-13T09:01:52.723Z"
     },
     {
       "id": "anime-tokyorev-s3",
@@ -1858,12 +1858,12 @@
         }
       ],
       "seasonReadinessState": "AWAITING_EPISODE",
-      "totalCanonicalEpisodes": 12,
+      "totalCanonicalEpisodes": 1,
       "scheduleWIB": "Jumat, 22:30 WIB",
       "officialPlatformName": "Ani-One Asia / DMM TV",
       "externalFreeWatchUrl": "https://www.youtube.com/@AniOneAsia",
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-09T21:40:40.008Z"
+      "updatedAt": "2026-10-13T09:01:52.590Z"
     },
     {
       "id": "anime-firefly",
@@ -2714,7 +2714,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tensei-goblin-shitsumon-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.107Z",
-      "updatedAt": "2026-10-12T17:00:56.416Z"
+      "updatedAt": "2026-10-13T09:01:51.938Z"
     },
     {
       "id": "anime-otk-psyren",
@@ -2766,7 +2766,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/psyren-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.108Z",
-      "updatedAt": "2026-10-12T17:00:56.290Z"
+      "updatedAt": "2026-10-13T09:01:51.610Z"
     },
     {
       "id": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu",
@@ -2811,7 +2811,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/doumo-suki-majo-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.108Z",
-      "updatedAt": "2026-10-09T11:33:04.108Z"
+      "updatedAt": "2026-10-13T09:01:52.160Z"
     },
     {
       "id": "anime-otk-seihantai-na-kimi-to-boku-season-2",
@@ -2949,7 +2949,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tank-chair-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.108Z",
-      "updatedAt": "2026-10-09T11:33:04.108Z"
+      "updatedAt": "2026-10-13T09:01:52.313Z"
     },
     {
       "id": "anime-otk-yowaki-max",
@@ -2995,7 +2995,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/yowaki-max-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.109Z",
-      "updatedAt": "2026-10-09T11:33:04.109Z"
+      "updatedAt": "2026-10-13T09:01:52.439Z"
     },
     {
       "id": "anime-otk-saikyosoubi",
@@ -8497,10 +8497,10 @@
         }
       ],
       "seasonReadinessState": "ready_partial",
-      "totalCanonicalEpisodes": 12,
+      "totalCanonicalEpisodes": 1,
       "scheduleWIB": "Minggu, 18:30 WIB",
       "createdAt": "2026-10-10T13:56:58.617Z",
-      "updatedAt": "2026-10-10T13:56:58.617Z"
+      "updatedAt": "2026-10-13T09:01:53.652Z"
     },
     {
       "id": "anime-black-clover-movie",
@@ -8723,10 +8723,10 @@
         }
       ],
       "seasonReadinessState": "ready_partial",
-      "totalCanonicalEpisodes": 12,
+      "totalCanonicalEpisodes": 1,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T13:56:58.617Z",
-      "updatedAt": "2026-10-10T13:56:58.617Z"
+      "updatedAt": "2026-10-13T09:01:53.053Z"
     },
     {
       "id": "anime-haikyuu-s4",
@@ -9173,7 +9173,7 @@
       "externalFreeWatchUrl": "https://www.hotstar.com/id",
       "officialPlatformName": "Disney+ Hotstar / NHK",
       "notes": "Simulcast Fall 2026 eksklusif SVOD. Embed YouTube dibatasi pemegang lisensi (Error 153).",
-      "updatedAt": "2026-10-09T22:09:27.519Z"
+      "updatedAt": "2026-10-13T09:01:52.723Z"
     },
     {
       "id": "season-tokyorev-3",
@@ -9290,7 +9290,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 12,
-      "airedEpisodesCount": 0,
+      "airedEpisodesCount": 1,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "AWAITING_EPISODE",
@@ -9298,7 +9298,7 @@
       "externalFreeWatchUrl": "https://www.youtube.com/@AniOneAsia",
       "officialPlatformName": "Ani-One Asia / DMM",
       "notes": "Menunggu jadwal tayang Oktober 2026.",
-      "updatedAt": "2026-10-09T22:09:27.519Z"
+      "updatedAt": "2026-10-13T09:01:52.590Z"
     },
     {
       "id": "season-firefly-1",
@@ -9559,9 +9559,9 @@
       "title": "Kyouran Reijou Nia Liston Musim Penayangan 2026",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
+      "canonicalEpisodesCount": 2,
       "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
+      "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
@@ -9604,7 +9604,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tensei-goblin-shitsumon-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-12T17:00:56.416Z"
+      "updatedAt": "2026-10-13T09:01:51.938Z"
     },
     {
       "id": "season-otk-psyren-1",
@@ -9622,7 +9622,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/psyren-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-12T17:00:56.290Z"
+      "updatedAt": "2026-10-13T09:01:51.610Z"
     },
     {
       "id": "season-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-1",
@@ -9640,7 +9640,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/doumo-suki-majo-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-12T14:40:19.052Z"
+      "updatedAt": "2026-10-13T09:01:52.160Z"
     },
     {
       "id": "season-otk-seihantai-na-kimi-to-boku-season-2-1",
@@ -9686,7 +9686,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 2,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
@@ -9694,7 +9694,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tank-chair-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-09T11:33:04.109Z"
+      "updatedAt": "2026-10-13T09:01:52.313Z"
     },
     {
       "id": "season-otk-yowaki-max-1",
@@ -9703,16 +9703,16 @@
       "title": "Yowaki Max Musim Penayangan 2026",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 1,
-      "airedEpisodesCount": 1,
-      "verifiedEpisodesCount": 1,
+      "canonicalEpisodesCount": 2,
+      "airedEpisodesCount": 2,
+      "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/yowaki-max-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-09T11:33:04.109Z"
+      "updatedAt": "2026-10-13T09:01:52.439Z"
     },
     {
       "id": "season-otk-saikyosoubi-1",
@@ -11445,7 +11445,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T13:36:38.287Z"
+      "updatedAt": "2026-10-13T09:01:53.937Z"
     },
     {
       "id": "season-yasei-no-last-boss-ga-arawareta-season-2-s2",
@@ -11505,7 +11505,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T19:01:02.486Z"
+      "updatedAt": "2026-10-13T09:01:53.370Z"
     },
     {
       "id": "season-magicalexplorer-s1",
@@ -11535,7 +11535,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T21:00:48.344Z"
+      "updatedAt": "2026-10-13T09:01:53.203Z"
     },
     {
       "id": "season-vertex-force-s1",
@@ -11565,7 +11565,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-11T04:18:14.019Z"
+      "updatedAt": "2026-10-13T09:01:53.652Z"
     },
     {
       "id": "season-ao-no-hako-season-2-s2",
@@ -11580,7 +11580,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-11T09:49:42.916Z"
+      "updatedAt": "2026-10-13T09:01:53.053Z"
     },
     {
       "id": "season-dragon-ball-super-beerus-s1",
@@ -52133,6 +52133,20 @@
       "subtitleState": "available",
       "watchabilityState": "eligible_verified",
       "airedAt": "2026-10-12T15:28:21.573Z"
+    },
+    {
+      "id": "ep-otk-kyouran-reijou-nia-liston-2",
+      "animeId": "anime-otk-kyouran-reijou-nia-liston",
+      "ordinal": 2,
+      "displayNumber": "02",
+      "episodeType": "standard",
+      "title": "Kyouran Reijou Nia Liston Episode 2",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-13T15:00:22.659Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
     }
   ],
   "variants": [
@@ -235269,7 +235283,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-12T17:00:40.632Z"
+      "lastCheckedAt": "2026-10-13T09:00:45.977Z"
     },
     {
       "id": "var-ep-otk-psyren-2-beta-1080",
@@ -235284,7 +235298,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-12T17:00:40.632Z"
+      "lastCheckedAt": "2026-10-13T09:00:45.977Z"
     },
     {
       "id": "var-ep-otk-tensei-goblin-dakedo-shitsumon-aru-3-sh-0",
@@ -237625,7 +237639,262 @@
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-13T09:00:45.977Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-sh-0",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-blogger",
+      "providerName": "Blogger Official",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-sh-0",
+      "embedUrl": "https://www.blogger.com/video.g?token=AD6v5dzZV5cIJ-9y9vsqUHj6-N0l8-hVAyL2_Y_YXu8E09Wa82bW6YRZeUp0FSE5Fd6FJ_zbCVokwAqdOtRXroiQAFXZ67hEAdUi3ukWRGbg64o26mZ7X5pxJv1lgyxy7KdVtaey7MJp&#038;origin=sameguru2.blogspot.com",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-sh-1",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-mega",
+      "providerName": "Samehadaku Mega 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-sh-1",
+      "embedUrl": "https://mega.nz/embed/C9p0xByQ#YeY5_D1hQpM2iGLhhnShcpDfCmCOtMVVj_GpdrVE2SY",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-sh-2",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-mega",
+      "providerName": "Samehadaku Mega 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-sh-2",
+      "embedUrl": "https://mega.nz/embed/L9oFFCra#LRbfAuvFd8i1in3Z1JGh9uRtaxeRFA7_mznYw0_AGs4",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 13,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-sh-3",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-mega",
+      "providerName": "Samehadaku Mega 1080p",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-sh-3",
+      "embedUrl": "https://mega.nz/embed/T440jRBZ#eDR4mNqI8beM5XYFFQT98toNGsHoxYHfkb04keAQ5vY",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 12,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-alpha-720",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-alpha-720p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=2&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-beta-1080",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-beta-1080p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=2&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-vidhide-360p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/wu0d2j5mjub4",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-mega-360p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/zL5mhYDR#92c-SnWWyGRTZrxnVFSEgBi3M0fsr_RAF3SvyFtURNY",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-desu",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dmg1V1krZWs5emxaVlBBYW15NllyVHdvaTNxVjBTRW8raGlBVDRoSlREUg==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-vidhide-480p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/fshgkrxkkkur",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-mega-480p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/7W5C3KLQ#m9yDKG25o-O1cRJ8pds8lcRYNhyq1xXkopxbruSGTGA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-desu",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=N3JWNmlkZi9QUlNRWEhzUDlEWGZBQ3dXZUp3OTFjRDNHakdkOUxLM2k1eXpMRjhWRlZMMTlWYlJJZDJZdXljeW8zNXJNUk1BL2tZd2xIU25kQ3JPZlE9PQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-desu",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=OHdZdmpkUlRvaFRGampERys3QnpEQT09",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-vidhide-720p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/vmecoxgz8eta",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-otaku-mega-720p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/LXoGHDiK#mgE-EcrUStzVScBnvRhhZ0gjFWoVbAzdOxgej8XRgok",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-alpha-720",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-alpha-720p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=2&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-2-beta-1080",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-2",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-2-beta-1080p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=2&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 10,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-13T15:00:22.659Z"
     }
   ],
-  "lastSyncAt": "2026-10-13T09:00:45.977Z"
+  "lastSyncAt": "2026-10-13T15:00:22.659Z"
 }
