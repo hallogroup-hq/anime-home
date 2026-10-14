@@ -5,10 +5,10 @@ import { requestDynamicQRIS, verifyQRISStatus } from '../src/lib/services/paymen
 
 async function main() {
   const file = readFileSync(resolve(process.cwd(), 'src/lib/services/paymentGateway.ts'), 'utf8');
-  const occurrences = (file.match(/process\\.env\\.GOPAY_GATEWAY_API_KEY\\?\\.trim\\(\\)/g) || []).length;
+  const occurrences = (file.match(/process\.env\.GOPAY_GATEWAY_API_KEY\?\.trim\(\)/g) || []).length;
 
   assert.equal(occurrences, 2, 'Both gateway calls must read the API key from server env');
-  assert.doesNotMatch(file, /GOPAY_GATEWAY_API_KEY\\s*\\|\\|/, 'No default API key is allowed in source');
+  assert.doesNotMatch(file, /GOPAY_GATEWAY_API_KEY\s*\|\|/, 'No default API key is allowed in source');
 
   const previousKey = process.env.GOPAY_GATEWAY_API_KEY;
   const originalFetch = globalThis.fetch;
