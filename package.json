@@ -7,13 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx tsx tests/verify-invariants.ts && npx tsx tests/verify-persistence-and-security.ts && npx tsx tests/verify-real-users-auth.ts && npx tsx tests/verify-conan-mal-catalog.ts && npx tsx tests/verify-ongoing-sync-pipeline.ts && npx tsx tests/verify-seo-geo.ts && npx tsx tests/verify-stream-source-security.ts && npx tsx tests/verify-gopay-qris-payment.ts",
+    "test": "npx tsx tests/verify-invariants.ts && npx tsx tests/verify-persistence-and-security.ts && npx tsx tests/verify-real-users-auth.ts && npx tsx tests/verify-conan-mal-catalog.ts && npx tsx tests/verify-ongoing-sync-pipeline.ts && npx tsx tests/verify-seo-geo.ts && npx tsx tests/verify-stream-source-security.ts && npx tsx tests/verify-gopay-qris-payment.ts && npm run test:topup",
     "cron:ongoing": "npx tsx scripts/run_ongoing_pipeline.ts",
     "ingest": "npx tsx scripts/quick_ingest.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:seed": "npx tsx src/lib/db/seed.ts",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "test:topup": "npx tsx tests/verify-digital-store.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.18.0",
