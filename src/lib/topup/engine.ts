@@ -116,6 +116,11 @@ export async function fulfillConfirmedOrder(id: string) {
   const order = await getOrder(id);
   if (!order) return false;
   try {
+    const freshProduct = (await vipCatalog()).find(item => item.sku === order.sku && item.available);
+    const costReserve = Math.max(300, Math.ceil(Number(order.amount) * 0.015));
+    if (!freshProduct || freshProduct.cost + costReserve >= Number(order.amount)) {
+      throw new Error('SUPPLIER_PRICE_CHANGED');
+    }
     const response = await vipCreateOrder(order.sku, order.target_id, order.zone_id);
     const status = String(response.status || '').toLowerCase();
     const nextState = status === 'success' ? 'COMPLETED' : status === 'error' ? 'FULFILLMENT_FAILED' : 'PROCESSING';
@@ -145,7 +150,9 @@ export async function processTripayCallback(event: TripayCallback) {
   if (order.payment_reference && order.payment_reference !== event.reference) throw new Error('PAYMENT_REFERENCE_MISMATCH');
   if (Number(event.is_closed_payment) !== 1) throw new Error('PAYMENT_TYPE_INVALID');
   const receivedTotal = Number(event.total_amount);
-  if (!Number.isSafeInteger(receivedTotal) || receivedTotal !== Number(order.payable_amount)) {
+  const expectedTotal = order.state === 'PAYMENT_CREATING'
+    ? Number(order.amount) + Number(event.fee_customer || 0) : Number(order.payable_amount);
+  if (!Number.isSafeInteger(receivedTotal) || receivedTotal !== expectedTotal) {
     throw new Error('PAYMENT_AMOUNT_MISMATCH');
   }
   const db = await topupDb();
