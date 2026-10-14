@@ -1,0 +1,43 @@
+name: Digital Store QA
+
+on:
+  push:
+    branches:
+      - feat/digital-topup-store-foundation-20261014
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/lib/topup/**'
+      - 'src/app/topup/**'
+      - 'src/app/api/topup/**'
+      - 'src/components/topup/**'
+      - 'tests/verify-digital-store.ts'
+      - 'package.json'
+      - '.github/workflows/digital-store-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b163ceea73d27597364c # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: New digital store checks
+        run: npm run test:topup
+      - name: Existing regression suite
+        run: npm test
+      - name: TypeScript check
+        run: npx tsc --noEmit
+      - name: Next.js build
+        run: npm run build
