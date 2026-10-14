@@ -77,14 +77,14 @@ export async function topupDb(): Promise<Client> {
     migration = (async () => {
       // Only new, isolated tables; does not modify anime, merchandise or existing payments.
       await db.batch([
-        \`CREATE TABLE IF NOT EXISTS topup_products (
+        `CREATE TABLE IF NOT EXISTS topup_products (
           sku TEXT PRIMARY KEY, game_slug TEXT NOT NULL, game_name TEXT NOT NULL,
           name TEXT NOT NULL, description TEXT NOT NULL DEFAULT '', cost INTEGER NOT NULL,
           price INTEGER NOT NULL, available INTEGER NOT NULL DEFAULT 0,
           synced_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        )\`,
-        \`CREATE INDEX IF NOT EXISTS topup_products_game_idx ON topup_products(game_slug, available)\`,
-        \`CREATE TABLE IF NOT EXISTS topup_orders (
+        )`,
+        `CREATE INDEX IF NOT EXISTS topup_products_game_idx ON topup_products(game_slug, available)`,
+        `CREATE TABLE IF NOT EXISTS topup_orders (
           id TEXT PRIMARY KEY, sku TEXT NOT NULL, game_slug TEXT NOT NULL,
           product_name TEXT NOT NULL, email TEXT NOT NULL, customer_name TEXT NOT NULL,
           target_id TEXT NOT NULL, zone_id TEXT NOT NULL DEFAULT '',
@@ -93,9 +93,9 @@ export async function topupDb(): Promise<Client> {
           payment_reference TEXT UNIQUE, checkout_url TEXT, pay_code TEXT, qr_url TEXT,
           vendor_trx_id TEXT UNIQUE, delivery_note TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
           updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        )\`,
-        \`CREATE INDEX IF NOT EXISTS topup_orders_state_idx ON topup_orders(state, created_at)\`,
-        \`CREATE INDEX IF NOT EXISTS topup_orders_vendor_idx ON topup_orders(vendor_trx_id)\`
+        )`,
+        `CREATE INDEX IF NOT EXISTS topup_orders_state_idx ON topup_orders(state, created_at)`,
+        `CREATE INDEX IF NOT EXISTS topup_orders_vendor_idx ON topup_orders(vendor_trx_id)`
       ], 'write');
     })().catch((error) => { migration = undefined; throw error; });
   }
