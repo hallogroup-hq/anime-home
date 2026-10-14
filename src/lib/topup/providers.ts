@@ -1,5 +1,5 @@
 import 'server-only';
-import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
+import { createVipSignature, createTripayCreateSignature, createTripayCallbackSignature, constantTimeHexMatch } from './signatures';
 import { GAMES, pricingForCost, visibleGame, type DigitalProduct } from './data';
 
 type VIPAnswer<T> = { result: boolean; data?: T; message?: string };
@@ -15,14 +15,13 @@ const VIP_BASE = 'https://vip-reseller.co.id/api/game-feature';
 export function vipSignature() {
   const id = process.env.VIPAY_API_ID, key = process.env.VIPAY_API_KEY;
   if (!id || !key) throw new Error('VIPAY_NOT_CONFIGURED');
-  return { key, sign: createHash('md5').update(id + key).digest('hex') };
+  return { key, sign: createVipSignature(id, key) };
 }
 export function vipWebhookSignature() {
   return vipSignature().sign;
 }
 export function safeEqualHex(candidate: string, expected: string) {
-  if (!/^[0-9a-f]+$/i.test(candidate) || candidate.length !== expected.length) return false;
-  return timingSafeEqual(Buffer.from(candidate, 'hex'), Buffer.from(expected, 'hex'));
+  return constantTimeHexMatch(candidate, expected);
 }
 
 async function vipCall<T>(params: Record<string, string>): Promise<VIPAnswer<T>> {
@@ -174,8 +173,7 @@ export async function tripayCreatePayment(input: {
     callback_url: (process.env.TOPUP_PUBLIC_ORIGIN || 'https://anime-home-psi.vercel.app') + '/api/topup/callback/tripay',
     return_url: (process.env.TOPUP_PUBLIC_ORIGIN || 'https://anime-home-psi.vercel.app') + '/topup/order/' + input.id,
     expired_time: String(Math.floor(Date.now() / 1000) + 30 * 60),
-    signature: createHmac('sha256', c.privateKey)
-      .update(c.merchantCode + input.id + input.amount).digest('hex'),
+    signature: createTripayCreateSignature(c.merchantCode, input.id, input.amount, c.privateKey),
   });
   const res = await fetch(c.root + '/transaction/create', {
     method: 'POST', headers: {
@@ -194,7 +192,7 @@ export async function tripayCreatePayment(input: {
 export function validTripayCallback(rawBody: string, receivedSignature: string) {
   const key = process.env.TRIPAY_PRIVATE_KEY;
   if (!key) return false;
-  const signature = createHmac('sha256', key).update(rawBody).digest('hex');
+  const signature = createTripayCallbackSignature(rawBody, key);
   return safeEqualHex(receivedSignature, signature);
 }
 
