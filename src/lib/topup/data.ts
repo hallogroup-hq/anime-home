@@ -115,12 +115,14 @@ export function formatProduct(row: Row): DigitalProduct {
 }
 
 export async function productsForGame(slug: string) {
+  if (process.env.TOPUP_STORE_ENABLED !== 'true') return [];
   const db = await topupDb();
   const result = await db.execute({ sql: 'SELECT * FROM topup_products WHERE game_slug = ? AND available = 1 ORDER BY price ASC LIMIT 200', args: [slug] });
   return result.rows.map(formatProduct);
 }
 
 export async function listGamesWithCounts() {
+  if (process.env.TOPUP_STORE_ENABLED !== 'true') return [];
   const db = await topupDb();
   const rs = await db.execute('SELECT game_slug, COUNT(*) AS count, MIN(price) AS starting FROM topup_products WHERE available = 1 GROUP BY game_slug');
   return rs.rows.map(row => ({ slug: String(row.game_slug), count: number(row.count), starting: number(row.starting) }));
