@@ -149,3 +149,18 @@ export function validTripayCallback(rawBody: string, receivedSignature: string) 
   const signature = createHmac('sha256', key).update(rawBody).digest('hex');
   return safeEqualHex(receivedSignature, signature);
 }
+
+export async function tripayFetchPayment(reference: string): Promise<TripayTransaction & { status: string; is_closed_payment?: number }> {
+  const c = tripayCredentials();
+  if (!/^[A-Za-z0-9_-]{3,100}$/.test(reference)) throw new Error('TRIPAY_REFERENCE_INVALID');
+  const res = await fetch(c.root + '/transaction/detail?reference=' + encodeURIComponent(reference), {
+    headers: { Authorization: 'Bearer ' + c.apiKey, Accept: 'application/json' },
+    cache: 'no-store', signal: AbortSignal.timeout(12000),
+  });
+  if (!res.ok) throw new Error('TRIPAY_LOOKUP_FAILED');
+  const parsed = await res.json();
+  if (!parsed.success || !parsed.data || parsed.data.reference !== reference) {
+    throw new Error('TRIPAY_LOOKUP_INVALID');
+  }
+  return parsed.data;
+}
