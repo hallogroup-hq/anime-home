@@ -13,13 +13,13 @@ export async function syncVipProducts() {
   await db.batch([
     { sql: 'UPDATE topup_products SET available = 0', args: [] },
     ...products.map(product => ({
-      sql: \`INSERT INTO topup_products
+      sql: `INSERT INTO topup_products
         (sku, game_slug, game_name, name, description, cost, price, available, synced_at)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
         ON CONFLICT(sku) DO UPDATE SET game_slug=excluded.game_slug,
         game_name=excluded.game_name, name=excluded.name, description=excluded.description,
         cost=excluded.cost, price=excluded.price, available=excluded.available,
-        synced_at=CURRENT_TIMESTAMP\`,
+        synced_at=CURRENT_TIMESTAMP`,
       args: [product.sku, product.gameSlug, product.gameName, product.name,
         product.description, product.cost, product.price, product.available ? 1 : 0],
     })),
@@ -50,7 +50,7 @@ export async function createCheckout(input: CheckoutInput) {
   const db = await topupDb();
   const email = input.email.trim().toLowerCase();
   const tooMany = await db.execute({
-    sql: \`SELECT COUNT(*) AS count FROM topup_orders WHERE email = ? AND created_at > datetime('now', '-10 minutes')\`,
+    sql: `SELECT COUNT(*) AS count FROM topup_orders WHERE email = ? AND created_at > datetime('now', '-10 minutes')`,
     args: [email],
   });
   if (Number(tooMany.rows[0]?.count || 0) >= 4) throw new Error('RATE_LIMITED');
@@ -58,10 +58,10 @@ export async function createCheckout(input: CheckoutInput) {
   const id = 'AHG-' + randomUUID().replace(/-/g, '').slice(0, 20).toUpperCase();
   const receiptToken = randomBytes(32).toString('hex');
   await db.execute({
-    sql: \`INSERT INTO topup_orders
+    sql: `INSERT INTO topup_orders
       (id, sku, game_slug, product_name, email, customer_name, target_id, zone_id,
       amount, cost, payable_amount, token_hash, state)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PAYMENT_CREATING')\`,
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PAYMENT_CREATING')`,
     args: [id, product.sku, product.gameSlug, product.name, email,
       input.name.trim(), input.targetId.trim(), (input.zoneId || '').trim(),
       product.price, product.cost, product.price, hashToken(receiptToken)],
@@ -88,10 +88,10 @@ export async function createCheckout(input: CheckoutInput) {
       ? payment.qr_url : null;
 
     await db.execute({
-      sql: \`UPDATE topup_orders SET payment_reference = ?, checkout_url = ?,
+      sql: `UPDATE topup_orders SET payment_reference = ?, checkout_url = ?,
         qr_url = ?, pay_code = ?, payable_amount = ?,
         state = CASE WHEN state = 'PAYMENT_CREATING' THEN 'AWAITING_PAYMENT' ELSE state END,
-        updated_at = CURRENT_TIMESTAMP WHERE id = ?\`,
+        updated_at = CURRENT_TIMESTAMP WHERE id = ?`,
       args: [payment.reference, checkoutUrl, qrUrl, payment.pay_code || null, payable, id],
     });
     return { id, receiptToken, checkoutUrl };
@@ -159,10 +159,10 @@ export async function processTripayCallback(event: TripayCallback) {
       return;
     }
     await db.execute({
-      sql: \`UPDATE topup_orders SET state = 'PAYMENT_CONFIRMED',
+      sql: `UPDATE topup_orders SET state = 'PAYMENT_CONFIRMED',
         payment_reference = COALESCE(payment_reference, ?), updated_at=CURRENT_TIMESTAMP
         WHERE id = ? AND state IN ('PAYMENT_CREATING','AWAITING_PAYMENT')
-        AND (payment_reference IS NULL OR payment_reference = ?)\`,
+        AND (payment_reference IS NULL OR payment_reference = ?)`,
       args: [event.reference, order.id, event.reference],
     });
     if (process.env.TRIPAY_MODE !== 'production') {
@@ -196,8 +196,8 @@ export async function processVipCallback(event: {
   const next = event.status === 'success' ? 'COMPLETED' :
     event.status === 'error' ? 'FULFILLMENT_FAILED' : 'PROCESSING';
   await db.execute({
-    sql: \`UPDATE topup_orders SET state = ?, delivery_note = ?, updated_at = CURRENT_TIMESTAMP
-      WHERE vendor_trx_id = ? AND state = 'PROCESSING'\`,
+    sql: `UPDATE topup_orders SET state = ?, delivery_note = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE vendor_trx_id = ? AND state = 'PROCESSING'`,
     args: [next, String(event.note || '').slice(0, 1000), event.trxid],
   });
 }
