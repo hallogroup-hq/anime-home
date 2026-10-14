@@ -17,13 +17,16 @@ export async function GET() {
     catalog: 'pass' | 'fail';
     parsedProducts: number;
     enabledProducts: number;
+    profileFailure?: string;
   } = { profile: 'fail', catalog: 'fail', parsedProducts: 0, enabledProducts: 0 };
 
   try {
     const profile = await vipProfile();
     if (profile.active) response.profile = 'pass';
-  } catch {
-    // Do not expose upstream account details or error strings.
+  } catch (error) {
+    const message = error instanceof Error ? error.message : '';
+    response.profileFailure = /^(VIPAY_NOT_CONFIGURED|VIPAY_PROFILE_REJECTED|VIPAY_PROFILE_HTTP_[0-9]{3})$/.test(message)
+      ? message : (error instanceof Error && error.name === 'TimeoutError' ? 'VIPAY_TIMEOUT' : 'VIPAY_NETWORK_OR_UNEXPECTED');
   }
   if (response.profile === 'pass') {
     try {
