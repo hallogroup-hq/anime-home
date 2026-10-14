@@ -118,7 +118,7 @@ export async function requestDynamicQRIS(
   metadata?: { orderId?: string; customerName?: string }
 ): Promise<CreateQRISResult> {
   const gatewayUrl = process.env.GOPAY_GATEWAY_URL || 'https://singgah-gopay-gateway-production.up.railway.app';
-  const apiKey = process.env.GOPAY_GATEWAY_API_KEY || 'owqeqknb1231412ouh90dw08213g08wb';
+  const apiKey = process.env.GOPAY_GATEWAY_API_KEY?.trim();
 
   if (gatewayUrl && apiKey) {
     const cleanUrl = gatewayUrl.replace(/\/$/, '');
@@ -222,7 +222,7 @@ export async function verifyQRISStatus(
   startTime?: string
 ): Promise<{ success: boolean; paid: boolean; status: string; transaction?: any }> {
   const gatewayUrl = process.env.GOPAY_GATEWAY_URL || 'https://singgah-gopay-gateway-production.up.railway.app';
-  const apiKey = process.env.GOPAY_GATEWAY_API_KEY || 'owqeqknb1231412ouh90dw08213g08wb';
+  const apiKey = process.env.GOPAY_GATEWAY_API_KEY?.trim();
 
   if (gatewayUrl && apiKey) {
     const cleanUrl = gatewayUrl.replace(/\/$/, '');
