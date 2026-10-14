@@ -22,7 +22,7 @@ assert.match(engine, /state = 'PAYMENT_CONFIRMED'/);
 assert.match(engine, /WHERE id = \? AND state = 'PAYMENT_CONFIRMED'/);
 assert.match(engine, /SANDBOX_PAID/);
 assert.match(engine, /SUPPLIER_PRICE_CHANGED/);
-assert.match(engine, /!\/^\[0-9a-f\]\{64\}\$\/\.test\(token\)/);
+assert.ok(engine.includes('!/^[0-9a-f]{64}$/.test(token)'), 'receipt requires a 64-character hex secret');
 assert.match(providers, /createHmac\('sha256'/);
 assert.match(providers, /createHash\('md5'/);
 assert.match(providers, /api-sandbox/);
