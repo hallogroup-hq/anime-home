@@ -25,7 +25,7 @@ export async function GET() {
     if (profile.active) response.profile = 'pass';
   } catch (error) {
     const message = error instanceof Error ? error.message : '';
-    response.profileFailure = /^(VIPAY_NOT_CONFIGURED|VIPAY_PROFILE_REJECTED|VIPAY_PROFILE_HTTP_[0-9]{3})$/.test(message)
+    response.profileFailure = /^(VIPAY_NOT_CONFIGURED|VIPAY_PROFILE_REJECTED(_(IP_RESTRICTION|API_NOT_ACTIVE|AUTH_REJECTED|UNKNOWN))?|VIPAY_PROFILE_HTTP_[0-9]{3})$/.test(message)
       ? message : (error instanceof Error && error.name === 'TimeoutError' ? 'VIPAY_TIMEOUT' : 'VIPAY_NETWORK_OR_UNEXPECTED');
   }
   if (response.profile === 'pass') {
