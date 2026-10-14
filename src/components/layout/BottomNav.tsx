@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Film, Calendar, Bookmark, Tv } from 'lucide-react';
+import { Home, Film, Calendar, Bookmark, Gamepad2 } from 'lucide-react';
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -16,6 +16,7 @@ export function BottomNav() {
     { label: 'Beranda', href: '/', icon: Home, exact: true },
     { label: 'Katalog', href: '/anime', icon: Film, exact: false },
     { label: 'Jadwal', href: '/schedule', icon: Calendar, exact: false },
+    { label: 'Top Up', href: '/topup', icon: Gamepad2, exact: false },
     { label: 'Koleksi', href: '/me', icon: Bookmark, exact: false },
   ];
 
@@ -35,7 +36,7 @@ export function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 px-2 rounded-lg transition-colors ${
+              className={`flex flex-col items-center justify-center min-w-0 flex-1 min-h-[48px] py-1 px-2 rounded-lg transition-colors ${
                 isActive ? 'text-red-500 font-bold' : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
