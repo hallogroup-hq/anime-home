@@ -53,7 +53,15 @@ export async function vipProfile() {
   if (!response.ok) throw new Error('VIPAY_PROFILE_HTTP_' + response.status);
   const json = await response.json() as VIPAnswer<VIPProfile>;
   if (json.result !== true || !json.data || typeof json.data !== 'object') {
-    throw new Error('VIPAY_PROFILE_REJECTED');
+    const message = typeof json.message === 'string' ? json.message.toLowerCase() : '';
+    const category = /white.?list|\bip\b|ip address|alamat ip/.test(message)
+      ? 'IP_RESTRICTION'
+      : /development|not live|belum aktif|tidak aktif|nonaktif|disabled|inactive/.test(message)
+        ? 'API_NOT_ACTIVE'
+        : /api.?key|signature|\bsign\b|kunci api|authorization|authentication|autentikasi/.test(message)
+          ? 'AUTH_REJECTED'
+          : 'UNKNOWN';
+    throw new Error('VIPAY_PROFILE_REJECTED_' + category);
   }
   return {
     active: true,
