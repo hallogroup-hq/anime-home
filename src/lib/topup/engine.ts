@@ -39,7 +39,7 @@ export function validateCheckout(input: CheckoutInput) {
 }
 
 export async function createCheckout(input: CheckoutInput) {
-  if (process.env.TOPUP_STORE_ENABLED !== 'true') throw new Error('STORE_NOT_ACTIVE');
+  if (process.env.TOPUP_STORE_ENABLED !== 'true' || !process.env.VIPAY_API_ID || !process.env.VIPAY_API_KEY) throw new Error('STORE_NOT_ACTIVE');
   validateCheckout(input);
   const product = await productBySku(input.sku);
   if (!product || !product.available || !visibleGame(product.gameSlug)) throw new Error('PRODUCT_UNAVAILABLE');
