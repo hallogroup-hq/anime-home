@@ -57,6 +57,7 @@ export type TopupOrder = {
   qr_url: string | null;
   vendor_trx_id: string | null;
   delivery_note: string | null;
+  last_polled_at: string | null;
   created_at: string;
 };
 
@@ -91,7 +92,7 @@ export async function topupDb(): Promise<Client> {
           amount INTEGER NOT NULL, cost INTEGER NOT NULL, payable_amount INTEGER NOT NULL,
           token_hash TEXT NOT NULL, state TEXT NOT NULL,
           payment_reference TEXT UNIQUE, checkout_url TEXT, pay_code TEXT, qr_url TEXT,
-          vendor_trx_id TEXT UNIQUE, delivery_note TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+          vendor_trx_id TEXT UNIQUE, delivery_note TEXT, last_polled_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
           updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
         )`,
         `CREATE INDEX IF NOT EXISTS topup_orders_state_idx ON topup_orders(state, created_at)`,
