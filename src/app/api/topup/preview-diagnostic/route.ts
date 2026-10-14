@@ -18,8 +18,21 @@ export async function GET() {
     parsedProducts: number;
     enabledProducts: number;
     profileFailure?: string;
+    testEgressIp?: string;
   } = { profile: 'fail', catalog: 'fail', parsedProducts: 0, enabledProducts: 0 };
 
+  try {
+    const publicIP = await fetch('https://api4.ipify.org', {
+      cache: 'no-store', signal: AbortSignal.timeout(5000),
+    });
+    const ip = (await publicIP.text()).trim();
+    if (publicIP.ok && /^(?:\d{1,3}\.){3}\d{1,3}$/.test(ip) &&
+        ip.split('.').every(value => Number(value) >= 0 && Number(value) < 256)) {
+      response.testEgressIp = ip;
+    }
+  } catch {
+    // Network check is independent of supplier credentials.
+  }
   try {
     const profile = await vipProfile();
     if (profile.active) response.profile = 'pass';
