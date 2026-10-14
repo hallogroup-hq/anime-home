@@ -40,6 +40,54 @@ async function vipCall<T>(params: Record<string, string>): Promise<VIPAnswer<T>>
   return data;
 }
 
+type VIPProfile = { full_name?: string; username?: string; balance?: number; level?: string };
+
+export async function vipProfile() {
+  const auth = vipSignature();
+  const response = await fetch('https://vip-reseller.co.id/api/profile', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+    body: new URLSearchParams(auth).toString(),
+    cache: 'no-store',
+    signal: AbortSignal.timeout(12000),
+  });
+  if (!response.ok) throw new Error('VIPAY_PROFILE_HTTP_' + response.status);
+  const json = await response.json() as VIPAnswer<VIPProfile>;
+  if (json.result !== true || !json.data || typeof json.data !== 'object') {
+    throw new Error('VIPAY_PROFILE_REJECTED');
+  }
+  return {
+    active: true,
+    level: typeof json.data.level === 'string' ? json.data.level.slice(0, 30) : null,
+    balanceConfigured: Number.isFinite(Number(json.data.balance)),
+  };
+}
+
+const VIP_NICKNAME_CODES: Record<string, string> = {
+  'mobile-legends': 'mobile-legends',
+  'free-fire': 'free-fire',
+  'pubg-mobile': 'pubgm',
+  'valorant': 'valorant',
+  'genshin-impact': 'genshin-impact',
+  'honkai-star-rail': 'honkai-star-rail',
+};
+
+export async function vipGetNickname(gameSlug: string, target: string, zone: string) {
+  const code = VIP_NICKNAME_CODES[gameSlug];
+  if (!code) return { supported: false as const };
+  if (!/^[a-zA-Z0-9._#-]{3,80}$/.test(target) || zone.length > 80 ||
+      (['mobile-legends', 'genshin-impact', 'honkai-star-rail'].includes(gameSlug) && !zone)) {
+    throw new Error('NICKNAME_TARGET_INVALID');
+  }
+  const response = await vipCall<string>({
+    type: 'get-nickname', code, target, additional_target: zone,
+  });
+  if (typeof response.data !== 'string' || !response.data.trim()) {
+    throw new Error('NICKNAME_NOT_FOUND');
+  }
+  return { supported: true as const, nickname: response.data.trim().slice(0, 80) };
+}
+
 export async function vipCatalog() {
   const result = await vipCall<VIPItem[]>({ type: 'services' });
   if (!Array.isArray(result.data)) throw new Error('VIPAY_CATALOG_INVALID');
