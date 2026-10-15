@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, ChevronRight, Gamepad2, Package, Search, ShieldCheck, Zap } from 'lucide-react';
 import { GAMES, listGamesWithCounts, catalogPreviewEnabled, catalogCapturedAt } from '@/lib/topup/data';
 import { TopupDirectory } from '@/components/topup/TopupDirectory';
+import { fullCategories, fullCatalogMeta, fullCatalogPreviewEnabled } from '@/lib/topup/full-directory';
 
 export const metadata: Metadata = {
   title: 'Top Up Game & Voucher Digital',
@@ -15,13 +16,16 @@ export const maxDuration = 60;
 
 export default async function TopupPage() {
   const previewOnly = catalogPreviewEnabled();
-  const counts = await listGamesWithCounts().catch(() => []);
-  const capturedAt = previewOnly ? await catalogCapturedAt().catch(()=>null) : null;
+  const fullEnabled = fullCatalogPreviewEnabled();
+  const fullGames = fullEnabled ? await fullCategories().catch(() => []) : [];
+  const counts = fullGames.length ? [] : await listGamesWithCounts().catch(() => []);
   const active = new Map(counts.map(x => [x.slug, x]));
-  const games = GAMES.map(game => ({
+  const games = fullGames.length ? fullGames : GAMES.map(game => ({
     slug: game.slug, name: game.name, short: game.short, accent: game.accent,
     count: active.get(game.slug)?.count || 0, fromPrice: active.get(game.slug)?.starting || null,
   }));
+  const fullMeta = fullGames.length ? await fullCatalogMeta().catch(() => null) : null;
+  const capturedAt = fullMeta?.capturedAt || (previewOnly ? await catalogCapturedAt().catch(() => null) : null);
 
   return (
     <div className="min-h-screen bg-[#090A0F] text-white">
@@ -66,9 +70,9 @@ export default async function TopupPage() {
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-red-400">Pilih kategori</p>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Top up game</h2>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{fullGames.length ? 'Game, voucher & layanan digital' : 'Top up game'}</h2>
             </div>
-            <p className="text-sm text-zinc-500">Pilih judul untuk melihat nominal yang tersedia</p>
+            <p className="text-sm text-zinc-500">{fullMeta ? fullMeta.categories + ' kategori · ' + fullMeta.total.toLocaleString('id-ID') + ' produk terarsip dari VIPayment' : 'Pilih judul untuk melihat nominal yang tersedia'}</p>
           </div>
           <TopupDirectory games={games} />
         </section>
@@ -77,8 +81,7 @@ export default async function TopupPage() {
           <div>
             <h2 className="text-xl font-bold">Voucher & produk digital lainnya</h2>
             <p className="mt-2 max-w-xl text-sm leading-6 text-zinc-400">
-              Kategori tambahan akan muncul setelah layanan dan cara pengirimannya diverifikasi.
-              Produk yang belum tersedia tidak dapat dipesan.
+              {fullGames.length ? 'Kategori mengikuti data supplier. Item yang belum tersedia, duplikat, atau memerlukan verifikasi tetap bisa ditinjau tetapi tidak bisa dibeli.' : 'Kategori tambahan akan muncul setelah layanan dan cara pengirimannya diverifikasi. Produk yang belum tersedia tidak dapat dipesan.'}
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-2 text-sm text-zinc-400">
