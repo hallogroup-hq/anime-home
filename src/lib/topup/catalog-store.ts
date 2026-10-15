@@ -20,6 +20,15 @@ async function catalogDb() {
         available INTEGER NOT NULL, PRIMARY KEY (snapshot_id, sku)
       )`,
       'CREATE INDEX IF NOT EXISTS topup_catalog_items_game ON topup_catalog_items(snapshot_id,game_slug,available,retail_price)',
+      `CREATE TABLE IF NOT EXISTS topup_catalog_duplicate_rows (
+        snapshot_id TEXT NOT NULL, source_index INTEGER NOT NULL,
+        sku TEXT NOT NULL, game_slug TEXT NOT NULL, game_name TEXT NOT NULL,
+        name TEXT NOT NULL, description TEXT NOT NULL,
+        supplier_cost INTEGER NOT NULL, retail_price INTEGER NOT NULL,
+        source_available INTEGER NOT NULL,
+        PRIMARY KEY(snapshot_id,source_index)
+      )`,
+      'CREATE INDEX IF NOT EXISTS topup_catalog_duplicates_snapshot ON topup_catalog_duplicate_rows(snapshot_id,sku)',
       `CREATE TABLE IF NOT EXISTS topup_catalog_active (
         id TEXT PRIMARY KEY, snapshot_id TEXT NOT NULL
       )`,
@@ -47,55 +56,77 @@ export async function getLatestCatalogMeta() {
 async function importCatalogVersion() {
   const db = await catalogDb();
   const products = await vipCatalog();
-  if (products.length < 10 || !products.some(p=>p.available)) throw new Error('SUPPLIER_CATALOG_INVALID');
-  const ids = new Set<string>();
+  if (products.length < 10 || !products.some(p => p.available)) throw new Error('SUPPLIER_CATALOG_INVALID');
+
+  // The supplier currently returns repeated service codes. A conflicting SKU must
+  // NEVER be silently assigned to an arbitrary game/price. Keep every such row
+  // in a private quarantine and hide ALL its occurrences from the storefront.
+  const frequencies = new Map<string,number>();
   for (const p of products) {
-    if (!p.sku || ids.has(p.sku) || !Number.isSafeInteger(p.cost) ||
-        !Number.isSafeInteger(p.price) || p.price <= p.cost ||
-        !p.name || !p.gameSlug || p.description.length > 600) {
-      throw new Error('SUPPLIER_CATALOG_DUPLICATE_OR_INVALID');
+    if (!p.sku || !Number.isSafeInteger(p.cost) || !Number.isSafeInteger(p.price) ||
+        p.price <= p.cost || !p.name || !p.gameSlug || p.description.length > 600) {
+      throw new Error('SUPPLIER_CATALOG_INVALID_ROW');
     }
-    ids.add(p.sku);
+    frequencies.set(p.sku,(frequencies.get(p.sku)||0)+1);
   }
+  const quarantined = products.map((product,index)=>({product,index}))
+    .filter(entry=>(frequencies.get(entry.product.sku)||0)>1);
+  const sellable = products.filter(p=>frequencies.get(p.sku)===1);
+  const available = sellable.filter(p=>p.available).length;
+  if (sellable.length < 10 || available < 1) throw new Error('SUPPLIER_CATALOG_NO_SAFE_PRODUCTS');
 
   const snapshotId = randomUUID();
   const capturedAt = new Date().toISOString();
-  const available = products.filter(p=>p.available).length;
   await db.execute({
     sql: "INSERT INTO topup_catalog_snapshots(id,source,captured_at,total,available,status) VALUES (?,?,?,?,?,'importing')",
     args:[snapshotId,'vipayment-game-feature',capturedAt,products.length,available],
   });
 
-  const rowSize = 25; // 225 SQLite placeholders per INSERT; safely below standard limits.
-  const sqlBatchSize = 8;
-  try {
-    const statements = [];
-    for (let i=0; i<products.length; i+=rowSize) {
-      const part = products.slice(i,i+rowSize);
-      statements.push({
-        sql: `INSERT INTO topup_catalog_items
-          (snapshot_id,sku,game_slug,game_name,name,description,supplier_cost,retail_price,available)
-          VALUES ${part.map(()=>'(?,?,?,?,?,?,?,?,?)').join(',')}`,
-        args: part.flatMap(p=>[snapshotId,p.sku,p.gameSlug,p.gameName,p.name,
-          p.description,p.cost,p.price,p.available?1:0]),
-      });
-    }
-    for (let i=0;i<statements.length;i+=sqlBatchSize) {
-      await db.batch(statements.slice(i,i+sqlBatchSize),'write');
-    }
-    const count = await db.execute({
-      sql: 'SELECT COUNT(*) AS total,SUM(available) AS available FROM topup_catalog_items WHERE snapshot_id=?',
-      args: [snapshotId],
+  // Keep SQL statements bounded for remote Turso and the SQLite bind limits.
+  const batchSize = 8;
+  const rowSize = 25;
+  const statements: Array<{sql:string;args: Array<string|number>}> = [];
+  for (let i=0; i<sellable.length; i+=rowSize) {
+    const part=sellable.slice(i,i+rowSize);
+    statements.push({
+      sql: `INSERT INTO topup_catalog_items
+        (snapshot_id,sku,game_slug,game_name,name,description,supplier_cost,retail_price,available)
+        VALUES ${part.map(()=>'(?,?,?,?,?,?,?,?,?)').join(',')}`,
+      args:part.flatMap(p=>[snapshotId,p.sku,p.gameSlug,p.gameName,p.name,
+        p.description,p.cost,p.price,p.available?1:0])
     });
-    if (Number(count.rows[0]?.total)!==products.length ||
-        Number(count.rows[0]?.available)!==available) throw new Error('SUPPLIER_SNAPSHOT_COUNT_MISMATCH');
+  }
+  for (let i=0; i<quarantined.length; i+=rowSize) {
+    const part=quarantined.slice(i,i+rowSize);
+    statements.push({
+      sql: `INSERT INTO topup_catalog_duplicate_rows
+        (snapshot_id,source_index,sku,game_slug,game_name,name,description,supplier_cost,retail_price,source_available)
+        VALUES ${part.map(()=>'(?,?,?,?,?,?,?,?,?,?)').join(',')}`,
+      args:part.flatMap(({product:p,index})=>[snapshotId,index,p.sku,p.gameSlug,
+        p.gameName,p.name,p.description,p.cost,p.price,p.available?1:0])
+    });
+  }
+  try {
+    for (let i=0; i<statements.length; i+=batchSize) {
+      await db.batch(statements.slice(i,i+batchSize),'write');
+    }
+    const [uniqueRows,duplicates]=await Promise.all([
+      db.execute({sql:'SELECT COUNT(*) AS total, COALESCE(SUM(available),0) AS available FROM topup_catalog_items WHERE snapshot_id=?',args:[snapshotId]}),
+      db.execute({sql:'SELECT COUNT(*) AS count FROM topup_catalog_duplicate_rows WHERE snapshot_id=?',args:[snapshotId]})
+    ]);
+    if (Number(uniqueRows.rows[0]?.total)!==sellable.length ||
+        Number(uniqueRows.rows[0]?.available)!==available ||
+        Number(duplicates.rows[0]?.count)!==quarantined.length ||
+        sellable.length+quarantined.length!==products.length) {
+      throw new Error('SUPPLIER_SNAPSHOT_COUNT_MISMATCH');
+    }
+    // Only now publish this snapshot; the prior good version survives any failure.
     await db.batch([
-      { sql: "UPDATE topup_catalog_snapshots SET status='ready' WHERE id=?",args:[snapshotId] },
-      { sql: "INSERT INTO topup_catalog_active(id,snapshot_id) VALUES ('active',?) ON CONFLICT(id) DO UPDATE SET snapshot_id=excluded.snapshot_id",args:[snapshotId] },
+      {sql:"UPDATE topup_catalog_snapshots SET status='ready' WHERE id=?",args:[snapshotId]},
+      {sql:"INSERT INTO topup_catalog_active(id,snapshot_id) VALUES ('active',?) ON CONFLICT(id) DO UPDATE SET snapshot_id=excluded.snapshot_id",args:[snapshotId]}
     ],'write');
-    return { total:products.length, available, capturedAt };
+    return {total:products.length,available,quarantined:quarantined.length,capturedAt};
   } catch {
-    // Incomplete rows never become active. Do not delete previous good snapshots.
     await db.execute({sql:"UPDATE topup_catalog_snapshots SET status='failed' WHERE id=? AND status='importing'",args:[snapshotId]}).catch(()=>{});
     throw new Error('SUPPLIER_BACKUP_WRITE_FAILED');
   }
