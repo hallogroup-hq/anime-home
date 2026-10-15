@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
-import { GAMES, gameConfig, productsForGame, visibleGame } from '@/lib/topup/data';
+import { GAMES, gameConfig, publicProductsForGame, catalogPreviewEnabled, catalogCapturedAt, visibleGame } from '@/lib/topup/data';
+import { CatalogPreview } from '@/components/topup/CatalogPreview';
 import { TopupCheckout } from '@/components/topup/TopupCheckout';
 
 export const dynamic = 'force-dynamic';
@@ -17,7 +18,8 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const game = gameConfig(slug);
   if (!game || !visibleGame(slug)) notFound();
-  const products = await productsForGame(slug).catch(() => []);
+  const products = await publicProductsForGame(slug).catch(() => []);
+  const previewOnly = catalogPreviewEnabled();
   return (
     <div className="min-h-screen bg-[#090A0F]">
       <div className="mx-auto max-w-7xl px-4 pb-28 pt-7 sm:px-6">
@@ -37,13 +39,13 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
             <p className="mt-2 text-sm text-zinc-400">Pilih nominal dan masukkan data akun dengan benar.</p>
           </div>
         </div>
-        <TopupCheckout game={{
+        {previewOnly ? <CatalogPreview products={products} capturedAt={catalogCapturedAt()}/> : <TopupCheckout game={{
           slug: game.slug, name: game.name, targetLabel: game.targetLabel,
           targetHint: game.targetHint, requiresZone: game.requiresZone,
           zoneLabel: game.zoneLabel || 'Zone ID',
         }} products={products.map(p => ({
           sku: p.sku, name: p.name, price: p.price, description: p.description,
-        }))} />
+        }))} />}
       </div>
     </div>
   );
