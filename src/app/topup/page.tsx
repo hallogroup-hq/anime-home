@@ -15,6 +15,7 @@ export const dynamic = 'force-dynamic';
 export default async function TopupPage() {
   const previewOnly = catalogPreviewEnabled();
   const counts = await listGamesWithCounts().catch(() => []);
+  const capturedAt = previewOnly ? await catalogCapturedAt().catch(()=>null) : null;
   const active = new Map(counts.map(x => [x.slug, x]));
   const games = GAMES.map(game => ({
     slug: game.slug, name: game.name, short: game.short, accent: game.accent,
@@ -41,7 +42,7 @@ export default async function TopupPage() {
             <p className="mt-5 max-w-lg text-sm leading-7 text-zinc-400 sm:text-base">
               {previewOnly ? 'Jelajahi nominal dan harga referensi game favoritmu dari katalog VIPayment. Pembelian belum dibuka.' : 'Diamond, UC, dan kebutuhan digital untuk game favoritmu. Pilih nominal, isi ID pemain, lalu bayar melalui sistem pembayaran khusus toko digital.'}
             </p>
-            {previewOnly && <p className="mt-3 text-xs font-semibold text-amber-300">Mode katalog · Harga referensi, bukan penawaran pembelian{catalogCapturedAt() ? " · Data diambil pada " + new Intl.DateTimeFormat("id-ID",{dateStyle:"medium",timeZone:"Asia/Jakarta"}).format(new Date(catalogCapturedAt()!)) : ""}</p>}
+            {previewOnly && <p className="mt-3 text-xs font-semibold text-amber-300">Mode katalog · Harga referensi, bukan penawaran pembelian{capturedAt ? " · Data diambil pada " + new Intl.DateTimeFormat("id-ID",{dateStyle:"medium",timeZone:"Asia/Jakarta"}).format(new Date(capturedAt)) : ""}</p>}
             <a href="#pilih-game" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-red-500">
               Pilih game <ArrowUpRight size={17} />
             </a>
