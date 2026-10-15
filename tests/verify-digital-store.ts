@@ -92,7 +92,7 @@ assert.match(full, /TOPUP_FULL_CATALOG_PREVIEW_ENABLED/);
 assert.match(full, /VERCEL_GIT_COMMIT_REF===scope/);
 assert.match(full, /TOPUP_STORE_ENABLED!=='true'/);
 assert.match(full, /CREATE TABLE IF NOT EXISTS topup_full_items/);
-assert.match(full, /PRIMARY KEY\\(version_id,row_index\\)/);
+assert.ok(full.includes('PRIMARY KEY(version_id,row_index)'));
 assert.match(full, /DUPLICATE_SKU/);
 assert.match(full, /MANUAL_REVIEW/);
 assert.match(full, /VIP_FULL_BACKUP_COUNT_MISMATCH/);
