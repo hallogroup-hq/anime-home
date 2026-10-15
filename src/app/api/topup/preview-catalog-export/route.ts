@@ -1,0 +1,26 @@
+import { NextResponse } from 'next/server';
+import { vipCatalog } from '@/lib/topup/providers';
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+export async function GET() {
+  if (process.env.VERCEL_ENV !== 'preview' ||
+      process.env.VERCEL_GIT_COMMIT_REF !== 'feat/digital-topup-store-foundation-20261014' ||
+      process.env.TOPUP_STORE_ENABLED === 'true') return new NextResponse(null,{status:404});
+
+  try {
+    const candidates = await vipCatalog();
+    // Read-only snapshot export of public sale fields. NEVER expose wholesale supplier cost.
+    const items = candidates.filter(p => p.available).map(p=>({
+      sku:p.sku, gameSlug:p.gameSlug, name:p.name,
+      description:p.description, price:p.price
+    }));
+    return NextResponse.json({
+      source:'vipayment-game-feature', capturedAt:new Date().toISOString(),
+      totalParsed:candidates.length, availableCount:items.length, items
+    },{headers:{'Cache-Control':'private,no-store','X-Robots-Tag':'noindex,nofollow'}});
+  } catch {
+    return NextResponse.json({error:'SUPPLIER_UNAVAILABLE'}, {status:503,headers:{'Cache-Control':'no-store'}});
+  }
+}
