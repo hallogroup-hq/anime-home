@@ -58,3 +58,26 @@ assert.equal(constantTimeHexMatch(expectedCallback, createTripayCallbackSignatur
 const expectedCreate = createHmac('sha256', testPrivateKey).update('M-TEST' + 'AHG-TEST' + 10000).digest('hex');
 assert.equal(createTripayCreateSignature('M-TEST', 'AHG-TEST', 10000, testPrivateKey), expectedCreate);
 console.log('PASS: Signature computation, uppercase hex matching, and callback tamper detection.');
+
+const catalogPreview = read('src/components/topup/CatalogPreview.tsx');
+const gamePage = read('src/app/topup/[slug]/page.tsx');
+const snapshot = JSON.parse(read('src/lib/topup/catalog.snapshot.json')) as {
+  source: string; capturedAt: string | null;
+  items: Array<{ sku:string; gameSlug:string; name:string; description:string; price:number }>;
+};
+assert.match(data, /TOPUP_CATALOG_PREVIEW_ENABLED/);
+assert.match(data, /TOPUP_STORE_ENABLED !== 'true'/);
+assert.match(data, /VERCEL_ENV === 'preview'/);
+assert.match(gamePage, /previewOnly \? <CatalogPreview/);
+assert.match(catalogPreview, /Belum menerima pembelian/);
+assert.doesNotMatch(catalogPreview, /api\/topup\/checkout/);
+assert.ok(snapshot.items.every(x =>
+  typeof x.sku === 'string' && x.sku.length > 1 &&
+  typeof x.name === 'string' && x.name.length > 0 &&
+  typeof x.gameSlug === 'string' &&
+  Number.isSafeInteger(x.price) && x.price > 0
+));
+assert.equal(new Set(snapshot.items.map(x => x.sku)).size, snapshot.items.length);
+assert.ok(snapshot.items.every(x => !('cost' in x) && !('key' in x) && !('sign' in x)));
+console.log('PASS: preview catalog has no checkout, no supplier costs, no duplicate SKUs, and is isolated from production.');
+
