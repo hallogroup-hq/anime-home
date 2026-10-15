@@ -126,7 +126,7 @@ export async function prepaidCategories():Promise<FullCatalogCategory[]>{
   return q.rows.map(x=>({slug:String(x.category_slug),name:String(x.category_name),
     short:String(x.category_name).split(/[ \u00b7]+/).slice(0,2).map(t=>t[0]||'').join('').toUpperCase(),
     accent:'#7E9FA2',count:Number(x.count),total:Number(x.total),
-    fromPrice:x.starting===null?null:Number(x.starting),source:'game-feature' as const}));
+    fromPrice:x.starting===null?null:Number(x.starting),source:'prepaid' as const}));
 }
 export async function prepaidCategory(slug:string){
   if(!fullCatalogPreviewEnabled())return null;
