@@ -8,10 +8,13 @@ const navbar = text('src/components/layout/Navbar.tsx');
 const mobile = text('src/components/layout/BottomNav.tsx');
 const footer = text('src/components/layout/Footer.tsx');
 
-assert.match(route, /Segera hadir\./);
-assert.match(route, /Belum menerima pembelian/);
+assert.match(route, /sebentar lagi\./);
+assert.match(route, /COMING SOON/);
+assert.match(route, /pembelian belum dibuka/);
 assert.match(route, /robots: \{ index: false/);
 assert.match(route, /href="\/anime"/);
+assert.doesNotMatch(route, /rounded-\[24px\]|bg-\[#11131B\]|Gamepad2|LockKeyhole/);
+assert.match(route, /lg:grid-cols-/);
 assert.doesNotMatch(route, /fetch\(|VIPAY|TRIPAY|checkout|topup\/admin|DATABASE_URL|process\.env|\b<form\b|\/api\/topup\//i);
 assert.equal(existsSync('src/app/api/topup'), false, 'Coming Soon release must not contain topup API endpoints');
 assert.match(navbar, /href="\/topup"/);
