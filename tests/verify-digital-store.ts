@@ -66,6 +66,11 @@ assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_snapshots/);
 assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_items/);
 assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_active/);
 assert.match(backup, /SUPPLIER_SNAPSHOT_COUNT_MISMATCH/);
+assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_duplicate_rows/);
+assert.match(backup, /frequencies.get\(p.sku\)===1/);
+assert.match(backup, /quarantined.length/);
+assert.match(backup, /sellable.length\+quarantined.length!==products.length/);
+
 assert.match(backup, /await db.batch\(statements.slice/);
 assert.match(backup, /supplier_cost INTEGER NOT NULL/);
 assert.match(backup, /TOPUP_CATALOG_PREVIEW_ENABLED !== 'true'/);
