@@ -25,15 +25,15 @@ export function fullCatalogPreviewEnabled() {
 }
 
 function categoryIdentity(group:string) {
-  const cleaned=group.trim().replace(/\\s+/g,' ');
+  const cleaned=group.trim().replace(/\s+/g,' ');
   const exact=GAMES.find(g=>g.match.test(cleaned) && !/gift|joki|akun|account|skin|boost/i.test(cleaned));
   if(exact) return {slug:exact.slug,name:exact.name,short:exact.short,accent:exact.accent};
   const url=cleaned.normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,55).replace(/-+$/,'') || 'kategori';
   const hash=createHash('sha256').update(cleaned.toLocaleLowerCase('en')).digest('hex').slice(0,9);
-  const short=cleaned.split(/\\s+/).slice(0,2).map(word=>word[0]||'').join('').toUpperCase().slice(0,4) || 'DG';
+  const short=cleaned.split(/\s+/).slice(0,2).map(word=>word[0]||'').join('').toUpperCase().slice(0,4) || 'DG';
   return {slug:'vip-'+url+'-'+hash,name:cleaned,short,accent:'#8F94A5'};
 }
-const unsafe=/\\b(joki|akun|account|login|password|boost(?:ing)?|sewa|rental|gift|skin|manual|social|followers|likes|view|subscription sharing)\\b/i;
+const unsafe=/\b(joki|akun|account|login|password|boost(?:ing)?|sewa|rental|gift|skin|manual|social|followers|likes|view|subscription sharing)\b/i;
 const dbReady: {promise?:Promise<void>}={};
 async function db() {
   const client=getClient();
@@ -88,7 +88,7 @@ function normalize(items: Awaited<ReturnType<typeof vipAllGameServices>>):Source
     const sale=cost===null?null:pricingForCost(cost);
     const description=(typeof item.description==='string'?item.description:'')
       .replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ')
-      .replace(/\\s+/g,' ').trim().slice(0,1200);
+      .replace(/\s+/g,' ').trim().slice(0,1200);
     safe.push({code,game:game.slice(0,160),name:name.slice(0,200),
       description,cost,price:sale,status:typeof item.status==='string'?item.status.toLowerCase():'unknown',
       sourceIndex});
