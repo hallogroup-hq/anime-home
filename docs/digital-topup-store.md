@@ -123,3 +123,16 @@ This supersedes the earlier **pending**, **empty snapshot**, and **IP-blocked** 
 - Initial backup is durable in Turso and does not depend on fixed Vercel egress to serve storefront reads. Automatic refresh after 24 hours may fail on a new IP; failed refresh preserves the last good snapshot.
 - Health-check and outbound-IP diagnostic routes used during troubleshooting were removed from the feature branch after verifying the backup. The public catalog endpoint no longer surfaces an outbound IP.
 - Production is unchanged; feature PR stays a draft and `TOPUP_STORE_ENABLED=false`, with TriPay sandbox not configured. No supplier purchase or customer payment occurred.
+
+## Complete supplier directory expansion — 15 October 2026
+
+- Existing curated Turso catalog stays untouched as a durable backup/fallback; production and checkout flags remain unchanged.
+- New preview-only flag: `TOPUP_FULL_CATALOG_PREVIEW_ENABLED=true`, scoped to feature-branch Preview; `TOPUP_STORE_ENABLED=false` remains mandatory.
+- **Game Feature**: reads the **unfiltered** VIPayment `/api/game-feature type=services` catalog. Categories are derived from the supplier's `game` field, with stable URL slugs, while the original supplier grouping is retained per SKU. The versioned Turso archive retains every valid row index, including unavailable, manual-review, and duplicated SKUs. Ambiguous codes and manual/credential-dependent services are flagged and never enabled for checkout.
+- **Prepaid**: reads the separate VIPayment `/api/prepaid type=services` catalog for mobile credit, data plans and prepaid vouchers. Archive is separately versioned in `topup_prepaid_versions`, `topup_prepaid_items`, `topup_prepaid_active` and `topup_prepaid_refresh`. Every parsed supplier row is stored including unavailable, duplicate, or incomplete SKUs.
+- Pricing uses the same current estimated retail formula (**8% + Rp1,200, rounded up to Rp100**) and hides wholesale supplier cost from HTML/browser endpoints. Do not interpret estimated markup as net profit.
+- The directory is **read-only** and labels reference prices and manual review/unavailable statuses. It includes filters for Game & Voucher vs Pulsa & Data. Only source-validated successful snapshots become active. Failed imports keep previously good backups intact.
+- Initial first-time Game Feature and Prepaid imports are deliberately staged across consecutive requests to avoid simultaneously triggering two potentially expensive wholesale API syncs.
+- `GET /api/topup/full-catalog` returns sanitized per-source snapshot status/count/timestamp for QA only, unavailable outside the branch's Preview flag. It never exposes supplier costs, balances or secrets.
+- **Data proof pending** until both sources report `ready=true` with independently checked counts and representative HTML pages render. Dynamic Vercel IP allowlisting may need a further temporary update before these new source imports can run.
+- Prepaid and Game Feature are **not** every VIPayment product family. Postpaid bills, social-media services, and other non-fixed-amount or specialized APIs are excluded from this top-up/voucher scope and need separate workflows if explicitly commissioned.
