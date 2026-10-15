@@ -10,10 +10,13 @@ const money = (n: number) => 'Rp' + n.toLocaleString('id-ID');
 export function TopupDirectory({ games }: { games: Game[] }) {
   const [query, setQuery] = useState('');
   const [showAvailable, setShowAvailable] = useState(false);
+  const [sourceFilter, setSourceFilter] = useState<'all' | 'game-feature' | 'prepaid'>('all');
+  const hasPrepaid = games.some(game => game.source === 'prepaid');
   const filtered = useMemo(() => games.filter(game =>
     game.name.toLowerCase().includes(query.trim().toLowerCase()) &&
-    (!showAvailable || game.count > 0)
-  ), [games, query, showAvailable]);
+    (!showAvailable || game.count > 0) &&
+    (sourceFilter === 'all' || game.source === sourceFilter)
+  ), [games, query, showAvailable, sourceFilter]);
 
   return (
     <>
@@ -30,6 +33,19 @@ export function TopupDirectory({ games }: { games: Game[] }) {
         </button>
       </div>
 
+      {hasPrepaid && <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label="Jenis produk digital">
+        {([
+          ['all','Semua kategori'],
+          ['game-feature','Game & voucher'],
+          ['prepaid','Pulsa & data']
+        ] as const).map(([value,label])=>(
+          <button key={value} type="button" onClick={()=>setSourceFilter(value)}
+            className={`rounded-lg border px-3 py-2 text-xs font-semibold transition-colors ${
+              sourceFilter===value ? 'border-red-500/40 bg-red-500/10 text-red-200' :
+              'border-white/[0.08] bg-[#11131B] text-zinc-400 hover:text-white'
+            }`}>{label}</button>
+        ))}
+      </div>}
       {filtered.length === 0 ? (
         <div className="rounded-xl border border-white/[0.08] bg-[#11131B] p-12 text-center text-zinc-400">
           Tidak ada game yang cocok. Coba pencarian lain.
