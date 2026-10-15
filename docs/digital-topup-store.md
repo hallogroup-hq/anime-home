@@ -66,3 +66,16 @@ Vercel Preview and Production must use separate test/live API keys and preferabl
 - [ ] Obtain go-live authorization for production. Do not merge while any item fails.
 
 References: https://vip-reseller.co.id/page/api/game-feature and https://tripay.co.id/developer
+
+## BLOCKED — VIPayment IP allowlist (15 October 2026)
+
+- A real VIPayment account is configured as **sensitive Vercel Preview branch-only** environment variables, with no secrets committed to Git.
+- Read-only GET diagnostic against `/api/profile` returned a supplier rejection classified as **IP_RESTRICTION**; this was **not** a successfully authenticated profile response.
+- Separate Vercel function requests showed outgoing IPs changing from `75.101.211.240` to `34.205.45.166`, despite the user whitelisting the former.
+- Do **not** repeatedly add transient Vercel outbound IPs to the supplier allowlist or ship customer checkout on this setup.
+- Vercel Static IP is a costly add-on; Railway Hobby does not offer static egress (Railway Pro is required).
+- Low-budget candidate: Fly.io small Machine with a static egress IPv4 (currently ~$2.19/month for 256 MB compute plus ~$3.60/month for static egress IPv4, before transfer and regional differences). **Not purchased or deployed**; user must approve billing and provisioning.
+- Preferred future architecture: keep customer-facing Next.js on Vercel, relay *only* authenticated supplier requests via a separate fixed-egress service. All supplier and inter-service secrets stay in server environment settings; enforce signing, HTTPS, replay defense, route and method allowlisting, and no unrestricted public proxy.
+- The temporary unauthenticated diagnostics route used solely to identify the issue was removed from the branch after testing. Older immutable Vercel preview snapshots may still exist and should not be used for real testing or payment.
+- `TOPUP_STORE_ENABLED=false` on branch Preview; checkout remains closed. No customer payment or VIPayment order has been attempted.
+- Next gates: approve an affordable fixed-egress provider; provision stable IP; register that IP at VIPayment; verify read-only profile, service listing, SKU status and prices; run sandbox TriPay tests; test end-to-end idempotent fulfillment. Do not merge until pass.
