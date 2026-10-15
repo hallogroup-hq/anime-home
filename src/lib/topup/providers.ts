@@ -95,6 +95,14 @@ export async function vipGetNickname(gameSlug: string, target: string, zone: str
   return { supported: true as const, nickname: response.data.trim().slice(0, 80) };
 }
 
+// Raw supplier Game Feature catalog, for preview-only versioned backup.
+// Do not reuse this unverified dataset for order fulfillment.
+export async function vipAllGameServices():Promise<VIPItem[]> {
+  const result=await vipCall<VIPItem[]>({type:'services'});
+  if(!Array.isArray(result.data)) throw new Error('VIPAY_CATALOG_INVALID');
+  return result.data;
+}
+
 export async function vipCatalog() {
   const result = await vipCall<VIPItem[]>({ type: 'services' });
   if (!Array.isArray(result.data)) throw new Error('VIPAY_CATALOG_INVALID');
