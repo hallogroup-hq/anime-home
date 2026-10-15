@@ -117,3 +117,9 @@ assert.match(gamePage, /prepaidCategory/);
 assert.match(list, /sourceFilter/);
 assert.doesNotMatch(prepaid, /vipCreateOrder|tripayCreatePayment|GOPAY_GATEWAY_API_KEY/);
 console.log('PASS: VIP prepaid backup is versioned, validated, view-only and isolated from payment.');
+
+const fullStatusRoute=read('src/app/api/topup/full-catalog/route.ts');
+assert.match(fullStatusRoute,/fullCatalogPreviewEnabled/);
+assert.match(fullStatusRoute,/snapshotBased:true,checkoutEnabled:false/);
+assert.doesNotMatch(fullStatusRoute,/supplier_cost|cost:|VIPAY_API_KEY|TRIPAY_PRIVATE_KEY/);
+console.log('PASS: full supplier directory backup status API only reveals sanitized readiness and counts.');
