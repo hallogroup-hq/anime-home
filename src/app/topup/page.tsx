@@ -4,6 +4,7 @@ import { ArrowUpRight, ChevronRight, Gamepad2, Package, Search, ShieldCheck, Zap
 import { GAMES, listGamesWithCounts, catalogPreviewEnabled, catalogCapturedAt } from '@/lib/topup/data';
 import { TopupDirectory } from '@/components/topup/TopupDirectory';
 import { fullCategories, fullCatalogMeta, fullCatalogPreviewEnabled } from '@/lib/topup/full-directory';
+import { prepaidCategories, prepaidMeta } from '@/lib/topup/prepaid-directory';
 
 export const metadata: Metadata = {
   title: 'Top Up Game & Voucher Digital',
@@ -17,15 +18,23 @@ export const maxDuration = 60;
 export default async function TopupPage() {
   const previewOnly = catalogPreviewEnabled();
   const fullEnabled = fullCatalogPreviewEnabled();
-  const fullGames = fullEnabled ? await fullCategories().catch(() => []) : [];
+  const previousFullMeta = fullEnabled ? await fullCatalogMeta().catch(() => null) : null;
+  const gameListings = fullEnabled ? await fullCategories().catch(() => []) : [];
+  // Never run two potentially expensive first-time supplier imports on one web request.
+  // On the next visit after Game Feature has a backup, Prepaid is warmed separately.
+  const prepaidListings = fullEnabled && previousFullMeta ? await prepaidCategories().catch(() => []) : [];
+  const fullGames = [...gameListings, ...prepaidListings];
   const counts = fullGames.length ? [] : await listGamesWithCounts().catch(() => []);
   const active = new Map(counts.map(x => [x.slug, x]));
   const games = fullGames.length ? fullGames : GAMES.map(game => ({
     slug: game.slug, name: game.name, short: game.short, accent: game.accent,
     count: active.get(game.slug)?.count || 0, fromPrice: active.get(game.slug)?.starting || null,
   }));
-  const fullMeta = fullGames.length ? await fullCatalogMeta().catch(() => null) : null;
-  const capturedAt = fullMeta?.capturedAt || (previewOnly ? await catalogCapturedAt().catch(() => null) : null);
+  const fullMeta = fullEnabled ? await fullCatalogMeta().catch(() => null) : null;
+  const prepaidBackup = fullEnabled && previousFullMeta ? await prepaidMeta().catch(() => null) : null;
+  const totalArchived = (fullMeta?.total || 0) + (prepaidBackup?.total || 0);
+  const capturedAt = prepaidBackup?.capturedAt || fullMeta?.capturedAt ||
+    (previewOnly ? await catalogCapturedAt().catch(() => null) : null);
 
   return (
     <div className="min-h-screen bg-[#090A0F] text-white">
@@ -72,7 +81,7 @@ export default async function TopupPage() {
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-red-400">Pilih kategori</p>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{fullGames.length ? 'Game, voucher & layanan digital' : 'Top up game'}</h2>
             </div>
-            <p className="text-sm text-zinc-500">{fullMeta ? fullMeta.categories + ' kategori · ' + fullMeta.total.toLocaleString('id-ID') + ' produk terarsip dari VIPayment' : 'Pilih judul untuk melihat nominal yang tersedia'}</p>
+            <p className="text-sm text-zinc-500">{fullMeta ? fullGames.length + ' kategori · ' + totalArchived.toLocaleString('id-ID') + ' produk terarsip dari VIPayment' : 'Pilih judul untuk melihat nominal yang tersedia'}</p>
           </div>
           <TopupDirectory games={games} />
         </section>
