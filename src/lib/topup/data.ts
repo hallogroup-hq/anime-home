@@ -1,6 +1,5 @@
 import 'server-only';
 import { createClient, type Client, type Row } from '@libsql/client';
-import catalogSnapshot from './catalog.snapshot.json';
 
 export type GameConfig = {
   slug: string;
@@ -116,7 +115,6 @@ export function formatProduct(row: Row): DigitalProduct {
 }
 
 export type PublicCatalogProduct = { sku: string; gameSlug: string; name: string; description: string; price: number };
-const previewSnapshot = catalogSnapshot as { source: string; capturedAt: string | null; items: PublicCatalogProduct[] };
 
 
 export function catalogPreviewEnabled() {
@@ -126,16 +124,16 @@ export function catalogPreviewEnabled() {
     process.env.TOPUP_STORE_ENABLED !== 'true';
 }
 
-export function catalogCapturedAt() {
-  return catalogPreviewEnabled() ? previewSnapshot.capturedAt : null;
+export async function catalogCapturedAt() {
+  if (!catalogPreviewEnabled()) return null;
+  const { getLatestCatalogMeta } = await import('./catalog-store');
+  return (await getLatestCatalogMeta())?.capturedAt || null;
 }
 
 export async function publicProductsForGame(slug: string): Promise<PublicCatalogProduct[]> {
   if (catalogPreviewEnabled()) {
-    return previewSnapshot.items.filter(item => item.gameSlug === slug).map(item => ({
-      sku: item.sku, gameSlug: item.gameSlug, name: item.name,
-      description: item.description, price: item.price,
-    }));
+    const { previewCatalogForGame } = await import('./catalog-store');
+    return previewCatalogForGame(slug);
   }
   const products = await productsForGame(slug);
   return products.map(({ sku, gameSlug, name, description, price }) => ({ sku, gameSlug, name, description, price }));
@@ -150,13 +148,8 @@ export async function productsForGame(slug: string) {
 
 export async function listGamesWithCounts() {
   if (catalogPreviewEnabled()) {
-    const grouped = new Map<string, {slug:string; count:number; starting:number}>();
-    for (const p of previewSnapshot.items) {
-      const existing = grouped.get(p.gameSlug);
-      if (existing) { existing.count++; existing.starting = Math.min(existing.starting, p.price); }
-      else grouped.set(p.gameSlug, { slug:p.gameSlug, count:1, starting:p.price });
-    }
-    return [...grouped.values()];
+    const { previewCatalogCounts } = await import('./catalog-store');
+    return previewCatalogCounts();
   }
   if (process.env.TOPUP_STORE_ENABLED !== 'true') return [];
   const db = await topupDb();
