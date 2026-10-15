@@ -99,3 +99,14 @@ References: https://vip-reseller.co.id/page/api/game-feature and https://tripay.
 - Snapshot capture is **not completed yet**: the Vercel outbound IP changed after the last allowed `52.3.231.94` IP. The current function returned `SUPPLIER_UNAVAILABLE` with the observed outbound IPv4 `44.192.48.127` on four consecutive tests. Whitelist it only temporarily for a one-time supplier catalog snapshot acquisition.
 - The temporary branch-guarded GET export route `/api/topup/preview-catalog-export` excludes supplier cost and order functions; remove it promptly after the snapshot is captured. It must **not** be merged into main.
 - The snapshot may become stale, so the customer-facing UI explicitly labels the timestamp and reference prices. Production payment will later use a stable IP and fresh supplier availability checks; never trust snapshot retail prices to fulfill orders.
+
+## Turso catalog backup — versioned, preview-only (October 15, 2026)
+
+- The previously proposed bundled JSON file was removed. This implementation uses new isolated Turso tables: `topup_catalog_snapshots`, `topup_catalog_items`, `topup_catalog_active`, and `topup_catalog_refresh`.
+- A successful supplier read stores parsed game listings, SKU, name, description, cost, retail estimate, availability, source and capture time. Cost is **server-side only** and never returned to the browser.
+- Import writes data into a fresh snapshot ID in batches and verifies row count **before** activating the new snapshot. If the supplier call or DB write fails, any previous active backup remains unchanged.
+- Supplier refresh can occur automatically from preview catalog requests, at most once per minute on failure, and only if the last successful snapshot is older than 24 hours. Preview and store feature flags must be present; checkout remains strictly disabled.
+- Retail UI reads data **from the active database backup** and never requires VIPayment for every visitor. It is a catalog-only reference, not a verified purchase-ready inventory.
+- `GET /api/topup/catalog` reports `backupReady`, `capturedAt` and group counts. When the backup is empty, it also reports the IP egress observed at request time, **only in protected feature-branch preview** to help with VIPayment whitelist troubleshooting.
+- As of initial implementation, database schema and cache logic compiled and passed code CI; an actual verified supplier import is **not claimed** until `backupReady=true` and SKU counts are observed in Turso. The supplier allowed IP may change after deploy.
+- Before enabling production, confirm the isolation of Preview/Production Turso connections, configure fixed outbound IP, validate full supplier catalog taxonomy and required target formats, independently approve retail prices, then test payment and fulfillment.
