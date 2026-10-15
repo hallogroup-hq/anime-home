@@ -121,8 +121,8 @@ async function importFull() {
     args:[id,'game-feature',capturedAt,prepared.length,available,categories]});
   try {
     const statements:Array<{sql:string;args:(string|number|null)[]}>=[];
-    for(let i=0;i<prepared.length;i+=24) {
-      const part=prepared.slice(i,i+24);
+    for(let i=0;i<prepared.length;i+=48) {
+      const part=prepared.slice(i,i+48);
       statements.push({
         sql:`INSERT INTO topup_full_items
           (version_id,row_index,supplier_sku,category_slug,category_name,category_short,
@@ -136,7 +136,7 @@ async function importFull() {
         ])
       });
     }
-    for(let i=0;i<statements.length;i+=5)await client.batch(statements.slice(i,i+5),'write');
+    for(let i=0;i<statements.length;i+=6)await client.batch(statements.slice(i,i+6),'write');
     const verification=await client.execute({sql:`SELECT COUNT(*) AS total,
       COALESCE(SUM(available),0) AS available,COUNT(DISTINCT category_slug) AS categories
       FROM topup_full_items WHERE version_id=?`,args:[id]});
@@ -196,7 +196,7 @@ export async function fullCategoryProducts(slug:string):Promise<FullCatalogItem[
   const rs=await client.execute({sql:`SELECT row_index,supplier_sku,name,description,retail_price,
     available,needs_review,supplier_group FROM topup_full_items
     WHERE version_id=? AND category_slug=? ORDER BY available DESC,retail_price ASC,row_index ASC
-    LIMIT 3000`,args:[meta.id,slug]});
+    `,args:[meta.id,slug]});
   return rs.rows.map(x=>({id:Number(x.row_index),sku:String(x.supplier_sku),
     name:String(x.name),description:String(x.description),
     price:x.retail_price===null?null:Number(x.retail_price),
