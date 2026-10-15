@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Gamepad2, LockKeyhole } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Top Up & Voucher — Segera Hadir',
@@ -10,52 +10,50 @@ export const metadata: Metadata = {
 
 export default function TopupComingSoonPage() {
   return (
-    <div className="min-h-[calc(100vh-200px)] bg-[#090A0F] text-zinc-100">
-      <div className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-16">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-zinc-500">
-          <Link href="/" className="transition-colors hover:text-white">Beranda</Link>
+    <div className="min-h-[calc(100svh-196px)] bg-[#090A0F] text-zinc-100">
+      <div className="mx-auto max-w-6xl px-5 pb-24 pt-8 sm:px-8 sm:pt-11 lg:px-10">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2.5 text-xs text-zinc-500">
+          <Link href="/" className="transition-colors hover:text-zinc-100">Beranda</Link>
           <span aria-hidden="true" className="text-zinc-700">/</span>
-          <span className="text-zinc-300">Top Up</span>
+          <span className="text-zinc-200">Top Up</span>
         </nav>
 
-        <section className="relative mt-9 overflow-hidden rounded-[24px] border border-white/[0.09] bg-[#11131B] px-6 py-12 sm:mt-11 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
-          <div aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[#DC2626]" />
-          <div className="relative max-w-[720px]">
-            <div className="mb-9 inline-flex items-center gap-2 rounded-full border border-red-500/25 bg-red-500/[0.07] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-red-300">
-              <Gamepad2 size={15} aria-hidden="true" />
-              Anime Home Digital
-            </div>
+        <main className="pt-20 sm:pt-28 lg:pt-36">
+          <div className="flex items-center justify-between gap-4 border-b border-white/[0.12] pb-5">
+            <span className="text-xs font-semibold tracking-[0.08em] text-zinc-300">Anime Home / Digital</span>
+            <span className="text-xs font-medium text-red-400">COMING SOON</span>
+          </div>
 
-            <h1 className="max-w-[720px] text-4xl font-extrabold leading-[1.06] tracking-[-0.055em] sm:text-5xl lg:text-6xl">
-              Top up game.
-              <span className="mt-1 block text-red-500">Segera hadir.</span>
+          <section aria-labelledby="topup-heading" className="grid gap-11 pb-20 pt-12 sm:pt-16 lg:grid-cols-[minmax(0,1.4fr)_minmax(240px,0.6fr)] lg:gap-20 lg:pb-28">
+            <h1
+              id="topup-heading"
+              className="max-w-[720px] text-[clamp(3.25rem,6.5vw,5.75rem)] font-bold leading-[1.04] tracking-[-0.072em]"
+            >
+              Top up game,
+              <span className="block text-zinc-500">sebentar lagi.</span>
             </h1>
 
-            <p className="mt-7 max-w-[540px] text-sm leading-7 text-zinc-400 sm:text-base">
-              Kami sedang menyiapkan top up game, voucher, dan produk digital di Anime Home.
-              Katalog dan sistem pembayarannya masih dalam tahap persiapan.
-            </p>
-
-            <div className="mt-9 flex max-w-fit items-center gap-2 rounded-lg border border-white/[0.09] bg-[#0D0F16] px-4 py-3 text-sm text-zinc-300">
-              <LockKeyhole size={16} className="shrink-0 text-zinc-400" aria-hidden="true" />
-              <span>Belum menerima pembelian</span>
+            <div className="max-w-sm lg:pt-3">
+              <p className="text-base leading-7 text-zinc-300">
+                Lagi kami siapin biar kamu bisa top up game dan beli voucher langsung di Anime Home.
+              </p>
+              <p className="mt-5 text-sm leading-6 text-zinc-500">
+                Untuk sekarang, pembelian belum dibuka.
+              </p>
             </div>
+          </section>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Link href="/" className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
-                <ArrowLeft size={17} aria-hidden="true" /> Kembali ke beranda
-              </Link>
-              <Link href="/anime" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.13] px-5 py-3 text-sm font-semibold text-zinc-200 transition-colors hover:border-white/30 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400">
-                Jelajahi anime <ArrowUpRight size={17} aria-hidden="true" />
-              </Link>
-            </div>
+          <div className="flex items-center justify-between gap-6 border-t border-white/[0.12] pt-6">
+            <Link
+              href="/anime"
+              className="group inline-flex items-center gap-2.5 text-sm font-medium text-zinc-200 underline decoration-zinc-700 underline-offset-[6px] transition-colors hover:text-white hover:decoration-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400"
+            >
+              Jelajahi katalog anime
+              <ArrowUpRight aria-hidden="true" size={16} className="text-zinc-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-red-400" />
+            </Link>
+            <span className="hidden text-xs font-medium text-zinc-600 sm:block">ANIME HOME</span>
           </div>
-        </section>
-
-        <div className="mt-7 flex flex-wrap items-center justify-between gap-2 px-1 text-xs text-zinc-500">
-          <span>Game top up & voucher digital</span>
-          <span>ANIME HOME</span>
-        </div>
+        </main>
       </div>
     </div>
   );
