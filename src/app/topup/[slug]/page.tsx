@@ -20,6 +20,7 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
   if (!game || !visibleGame(slug)) notFound();
   const products = await publicProductsForGame(slug).catch(() => []);
   const previewOnly = catalogPreviewEnabled();
+  const capturedAt = previewOnly ? await catalogCapturedAt().catch(()=>null) : null;
   return (
     <div className="min-h-screen bg-[#090A0F]">
       <div className="mx-auto max-w-7xl px-4 pb-28 pt-7 sm:px-6">
@@ -39,7 +40,7 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
             <p className="mt-2 text-sm text-zinc-400">{previewOnly ? "Lihat daftar nominal dan harga referensi dari VIPayment. Pembelian belum dibuka." : "Pilih nominal dan masukkan data akun dengan benar."}</p>
           </div>
         </div>
-        {previewOnly ? <CatalogPreview products={products} capturedAt={catalogCapturedAt()}/> : <TopupCheckout game={{
+        {previewOnly ? <CatalogPreview products={products} capturedAt={capturedAt}/> : <TopupCheckout game={{
           slug: game.slug, name: game.name, targetLabel: game.targetLabel,
           targetHint: game.targetHint, requiresZone: game.requiresZone,
           zoneLabel: game.zoneLabel || 'Zone ID',
