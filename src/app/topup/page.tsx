@@ -18,7 +18,7 @@ export default function TopupComingSoonPage() {
           <span className="text-zinc-200">Top Up</span>
         </nav>
 
-        <main className="pt-20 sm:pt-28 lg:pt-36">
+        <div className="pt-20 sm:pt-28 lg:pt-36">
           <div className="flex items-center justify-between gap-4 border-b border-white/[0.12] pb-5">
             <span className="text-xs font-semibold tracking-[0.08em] text-zinc-300">Anime Home / Digital</span>
             <span className="text-xs font-medium text-red-400">COMING SOON</span>
@@ -35,7 +35,7 @@ export default function TopupComingSoonPage() {
 
             <div className="max-w-sm lg:pt-3">
               <p className="text-base leading-7 text-zinc-300">
-                Lagi kami siapin biar kamu bisa top up game dan beli voucher langsung di Anime Home.
+                Nantinya kamu bisa top up game dan beli voucher digital langsung di Anime Home.
               </p>
               <p className="mt-5 text-sm leading-6 text-zinc-500">
                 Untuk sekarang, pembelian belum dibuka.
@@ -53,7 +53,7 @@ export default function TopupComingSoonPage() {
             </Link>
             <span className="hidden text-xs font-medium text-zinc-600 sm:block">ANIME HOME</span>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );
