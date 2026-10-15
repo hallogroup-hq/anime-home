@@ -89,6 +89,12 @@ export function Navbar() {
               Jadwal Rilis
             </Link>
             <Link
+              href="/topup"
+              className={`transition-colors cursor-pointer ${pathname.startsWith('/topup') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'}`}
+            >
+              Top Up & Voucher
+            </Link>
+            <Link
               href="/discover"
               className={`transition-colors cursor-pointer ${
                 pathname.startsWith('/discover') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
