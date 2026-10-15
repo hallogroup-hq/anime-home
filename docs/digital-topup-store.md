@@ -79,3 +79,13 @@ References: https://vip-reseller.co.id/page/api/game-feature and https://tripay.
 - The temporary unauthenticated diagnostics route used solely to identify the issue was removed from the branch after testing. Older immutable Vercel preview snapshots may still exist and should not be used for real testing or payment.
 - `TOPUP_STORE_ENABLED=false` on branch Preview; checkout remains closed. No customer payment or VIPayment order has been attempted.
 - Next gates: approve an affordable fixed-egress provider; provision stable IP; register that IP at VIPayment; verify read-only profile, service listing, SKU status and prices; run sandbox TriPay tests; test end-to-end idempotent fulfillment. Do not merge until pass.
+
+## VIPayment connectivity proof — 15 October 2026 (after IP whitelist update)
+
+- Customer configured the preview function's observed egress IPv4 `52.3.231.94` in VIPayment IP allowlist, keeping API account on **Development**.
+- **4 of 4** consecutive read-only supplier API tests returned successfully authenticated profile and successfully parsed supplier catalog on the preview deployment with that outbound IP.
+- Per response, the current curated game matching logic processed **5,245** product rows and marked **819** as available. These are unreviewed catalog matches, **not** an approved list of sellable items, nor a guarantee that every SKU is correctly classified. Confirm category/region/product type and actual supplier costs before opening checkout.
+- Test did **not** submit orders, change VIPayment balance, write catalog to the user database, activate TriPay or enable checkout.
+- The short-lived preview smoke-test endpoint was removed from the feature branch immediately after the successful tests. Immutable old preview deployment links may retain that diagnostic until expired; avoid public sharing and restrict/remove old deployments if necessary.
+- The IP is **not stable/guaranteed** for ongoing production. Before enabling purchases, implement a stable outbound-IP solution and confirm the supplier's rules for allowlisting the new IP. Never automatically retry unconfirmed fulfillment or accept payments without verified settlement.
+- Keep `TOPUP_STORE_ENABLED=false`, `TRIPAY_MODE=sandbox`, and this pull request as draft until full payment/fulfillment QA is successful.
