@@ -89,3 +89,13 @@ References: https://vip-reseller.co.id/page/api/game-feature and https://tripay.
 - The short-lived preview smoke-test endpoint was removed from the feature branch immediately after the successful tests. Immutable old preview deployment links may retain that diagnostic until expired; avoid public sharing and restrict/remove old deployments if necessary.
 - The IP is **not stable/guaranteed** for ongoing production. Before enabling purchases, implement a stable outbound-IP solution and confirm the supplier's rules for allowlisting the new IP. Never automatically retry unconfirmed fulfillment or accept payments without verified settlement.
 - Keep `TOPUP_STORE_ENABLED=false`, `TRIPAY_MODE=sandbox`, and this pull request as draft until full payment/fulfillment QA is successful.
+
+## Catalog preview-only snapshot (October 15, 2026)
+
+- User authorized preview display of real VIPayment game SKU names, sell-side prices and status, **without enabling checkout**.
+- An independent flag `TOPUP_CATALOG_PREVIEW_ENABLED=true` is scoped solely to the topup feature branch on Vercel Preview. It does not enable payment or fulfillment; `TOPUP_STORE_ENABLED=false` remains locked.
+- `src/lib/topup/catalog.snapshot.json` stores **only public display fields** (sku, gameSlug, name, description, estimated retail price, capture timestamp), never supplier cost, API credentials or account details. Snapshot is source-derived and must never be populated with fabricated sample products.
+- The read-only preview catalog shows search, sorting, pagination, SKU, retail reference price, and the snapshot timestamp. No checkout form or payment method appears.
+- Snapshot capture is **not completed yet**: the Vercel outbound IP changed after the last allowed `52.3.231.94` IP. The current function returned `SUPPLIER_UNAVAILABLE` with the observed outbound IPv4 `44.192.48.127` on four consecutive tests. Whitelist it only temporarily for a one-time supplier catalog snapshot acquisition.
+- The temporary branch-guarded GET export route `/api/topup/preview-catalog-export` excludes supplier cost and order functions; remove it promptly after the snapshot is captured. It must **not** be merged into main.
+- The snapshot may become stale, so the customer-facing UI explicitly labels the timestamp and reference prices. Production payment will later use a stable IP and fresh supplier availability checks; never trust snapshot retail prices to fulfill orders.
