@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Search } from 'lucide-react';
 
-type Game = { slug: string; name: string; short: string; accent: string; count: number; fromPrice: number | null };
+type Game = { slug: string; name: string; short: string; accent: string; count: number; fromPrice: number | null; total?: number; source?: string };
 const money = (n: number) => 'Rp' + n.toLocaleString('id-ID');
 
 export function TopupDirectory({ games }: { games: Game[] }) {
@@ -52,6 +52,9 @@ export function TopupDirectory({ games }: { games: Game[] }) {
                 <p className="mt-1.5 truncate text-[11px] text-zinc-500">
                   {game.count > 0 && game.fromPrice ? `Mulai ${money(game.fromPrice)}` : 'Belum tersedia'}
                 </p>
+                {typeof game.total === 'number' && (
+                  <p className="mt-1 text-[11px] text-zinc-600">{game.count.toLocaleString('id-ID')} tersedia · {game.total.toLocaleString('id-ID')} produk</p>
+                )}
               </div>
             </Link>
           ))}
