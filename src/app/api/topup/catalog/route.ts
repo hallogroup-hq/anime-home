@@ -9,11 +9,20 @@ export async function GET() {
   try {
     const games = await listGamesWithCounts();
     const capturedAt = await catalogCapturedAt();
+    let outboundIp: string | null = null;
+    if (catalogPreviewEnabled() && !capturedAt) {
+      try {
+        const check = await fetch('https://api4.ipify.org', { cache: 'no-store', signal: AbortSignal.timeout(4000) });
+        const value = (await check.text()).trim();
+        if (check.ok && /^(?:\d{1,3}\.){3}\d{1,3}$/.test(value) && value.split('.').every(part => Number(part) <= 255)) outboundIp = value;
+      } catch { /* no IP diagnostic if network is inaccessible */ }
+    }
     return NextResponse.json({
       games,
       previewCatalog: catalogPreviewEnabled(),
       backupReady: Boolean(capturedAt),
       capturedAt,
+      ...(outboundIp ? { observedPreviewEgressIp: outboundIp } : {}),
     }, { headers: { 'Cache-Control': 'no-store' } });
   } catch {
     return NextResponse.json({
