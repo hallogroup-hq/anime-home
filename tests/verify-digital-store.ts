@@ -103,3 +103,17 @@ assert.match(page, /fullGames\.length/);
 assert.match(list, /game\.total/);
 assert.match(catalogPreview, /Hanya yang tersedia di katalog/);
 console.log('PASS: full supplier catalog snapshot is isolated and handles all supplier categories with safe status labels.');
+
+const prepaid = read('src/lib/topup/prepaid-directory.ts');
+assert.match(providers, /vipAllPrepaidServices/);
+assert.match(providers, /vip-reseller\\.co\\.id\\/api\\/prepaid/);
+assert.match(prepaid, /CREATE TABLE IF NOT EXISTS topup_prepaid_items/);
+assert.match(prepaid, /DUPLICATE_SKU/);
+assert.match(prepaid, /VIP_PREPAID_BACKUP_MISMATCH/);
+assert.match(prepaid, /topup_prepaid_active/);
+assert.match(prepaid, /fullCatalogPreviewEnabled\\(\\)/);
+assert.match(page, /prepaidCategories/);
+assert.match(gamePage, /prepaidCategory/);
+assert.match(list, /sourceFilter/);
+assert.doesNotMatch(prepaid, /vipCreateOrder|tripayCreatePayment|GOPAY_GATEWAY_API_KEY/);
+console.log('PASS: VIP prepaid backup is versioned, validated, view-only and isolated from payment.');
