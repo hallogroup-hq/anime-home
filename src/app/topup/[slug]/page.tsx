@@ -54,7 +54,7 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
           targetHint: game.targetHint, requiresZone: game.requiresZone,
           zoneLabel: game.zoneLabel || 'Zone ID',
         }} products={products.map(p => ({
-          sku: p.sku, name: p.name, price: p.price, description: p.description,
+          sku: p.sku, name: p.name, price: p.price ?? 0, description: p.description,
         }))} />}
       </div>
     </div>
