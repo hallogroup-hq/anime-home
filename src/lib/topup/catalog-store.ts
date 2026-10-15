@@ -113,7 +113,7 @@ export async function ensureCatalogBackup() {
   const db = await catalogDb();
   const claimed = await db.execute({
     sql: `UPDATE topup_catalog_refresh SET last_attempt=CURRENT_TIMESTAMP
-      WHERE id='vip' AND last_attempt < datetime('now','-5 minutes')`,
+      WHERE id='vip' AND last_attempt < datetime('now','-1 minutes')`,
     args:[],
   });
   if (!claimed.rowsAffected) return;
