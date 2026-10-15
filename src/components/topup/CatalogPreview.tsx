@@ -6,18 +6,27 @@ import { Search, SlidersHorizontal, ShieldCheck } from 'lucide-react';
 type Product = { sku: string; name: string; description: string; price: number };
 const money = (price: number) => 'Rp' + price.toLocaleString('id-ID');
 
-export function CatalogPreview({ products, capturedAt }: { products: Product[]; capturedAt: string | null }) {
+export function CatalogPreview({ products, capturedAt, expanded = false }: { products: Product[]; capturedAt: string | null; expanded?: boolean }) {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<'cheapest' | 'name'>('cheapest');
   const [limit, setLimit] = useState(24);
+  const [onlyAvailable, setOnlyAvailable] = useState(false);
   const formattedDate = capturedAt
     ? new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(capturedAt))
     : null;
   const filtered = useMemo(() => {
     const term = query.toLocaleLowerCase('id-ID').trim();
-    const result = products.filter(p => !term || p.name.toLocaleLowerCase('id-ID').includes(term) || p.sku.toLocaleLowerCase('id-ID').includes(term));
-    return result.sort((a, b) => sort === 'cheapest' ? a.price - b.price || a.name.localeCompare(b.name) : a.name.localeCompare(b.name));
-  }, [products, query, sort]);
+    const result = products.filter(p =>
+      (!onlyAvailable || p.available !== false) &&
+      (!term || p.name.toLocaleLowerCase('id-ID').includes(term) ||
+        p.sku.toLocaleLowerCase('id-ID').includes(term) ||
+        p.supplierGroup?.toLocaleLowerCase('id-ID').includes(term)));
+    return result.sort((a, b) =>
+      (a.available === false ? 1 : 0) - (b.available === false ? 1 : 0) ||
+      (sort === 'cheapest'
+        ? (a.price ?? Number.POSITIVE_INFINITY) - (b.price ?? Number.POSITIVE_INFINITY) || a.name.localeCompare(b.name)
+        : a.name.localeCompare(b.name)));
+  }, [products, query, sort, onlyAvailable]);
   const visible = filtered.slice(0, limit);
 
   return (
@@ -27,7 +36,7 @@ export function CatalogPreview({ products, capturedAt }: { products: Product[]; 
           <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-red-400">Katalog produk digital</p>
           <h2 id="catalog-title" className="text-2xl font-bold tracking-tight">Pilihan nominal & harga</h2>
           <p className="mt-2 text-sm text-zinc-400">
-            {products.length} nominal tercatat dari VIPayment
+            {products.length.toLocaleString('id-ID')} produk tercatat dari VIPayment
             {formattedDate ? ' · Pembaruan terakhir ' + formattedDate + ' WIB' : ''}.
           </p>
         </div>
@@ -38,6 +47,7 @@ export function CatalogPreview({ products, capturedAt }: { products: Product[]; 
       <p className="mt-5 rounded-xl border border-white/[0.07] bg-[#0D0F16] p-4 text-xs leading-6 text-zinc-400">
         Harga referensi berdasarkan katalog supplier pada waktu pembaruan, ditambah estimasi margin Anime Home.
         Harga dan ketersediaan dapat berubah sebelum transaksi dibuka. Belum termasuk biaya metode pembayaran.
+        {expanded && ' Beberapa layanan membutuhkan pengiriman manual atau verifikasi data tambahan; tidak semua produk dapat diproses sebagai top-up otomatis.'}
       </p>
       {products.length ? (
         <>
@@ -58,17 +68,24 @@ export function CatalogPreview({ products, capturedAt }: { products: Product[]; 
               </select>
             </label>
           </div>
+          {expanded && <label className="mt-4 flex cursor-pointer items-center gap-2 text-xs text-zinc-300">
+            <input type="checkbox" checked={onlyAvailable} onChange={e=>{setOnlyAvailable(e.target.checked);setLimit(24);}}
+              className="h-4 w-4 accent-red-500"/> Hanya yang tersedia di katalog
+          </label>}
           <p aria-live="polite" className="mt-4 text-xs text-zinc-500">Menampilkan {visible.length} dari {filtered.length} produk</p>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {visible.map(product=> (
-              <article key={product.sku} className="flex min-h-[118px] flex-col justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#0D0F16] p-4">
+              <article key={product.id ?? product.sku} className="flex min-h-[118px] flex-col justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#0D0F16] p-4">
                 <div>
                   <h3 className="text-sm font-semibold leading-6 text-zinc-100">{product.name}</h3>
                   <p className="mt-1 break-all text-[11px] text-zinc-500">SKU {product.sku}</p>
+                  {product.supplierGroup && <p className="mt-1 text-[11px] text-zinc-600">{product.supplierGroup}</p>}
+                  {product.review && <p className="mt-2 text-[11px] font-semibold text-amber-400">Perlu verifikasi cara pemenuhan / SKU</p>}
+                  {!product.review && product.available === false && <p className="mt-2 text-[11px] font-semibold text-zinc-500">Tidak tersedia / tidak lolos validasi</p>}
                 </div>
                 <div className="flex items-end justify-between gap-2">
-                  <span className="text-base font-bold tracking-tight text-white">{money(product.price)}</span>
-                  <span className="text-[11px] text-zinc-500">Lihat harga</span>
+                  <span className="text-base font-bold tracking-tight text-white">{product.price === null ? 'Harga belum tersedia' : money(product.price)}</span>
+                  <span className="text-[11px] text-zinc-500">{product.available === false ? 'Belum tersedia' : 'Harga referensi'}</span>
                 </div>
               </article>
             ))}
