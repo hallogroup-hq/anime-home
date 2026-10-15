@@ -6,6 +6,7 @@ import { GAMES, gameConfig, publicProductsForGame, catalogPreviewEnabled, catalo
 import { CatalogPreview } from '@/components/topup/CatalogPreview';
 import { TopupCheckout } from '@/components/topup/TopupCheckout';
 import { fullCatalogPreviewEnabled, fullCategory, fullCategoryProducts } from '@/lib/topup/full-directory';
+import { prepaidCategory, prepaidProducts } from '@/lib/topup/prepaid-directory';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
@@ -13,14 +14,18 @@ export function generateStaticParams() { return GAMES.map(game => ({ slug: game.
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const game = gameConfig(slug);
-  const expanded = fullCatalogPreviewEnabled() ? await fullCategory(slug).catch(() => null) : null;
+  const expanded = fullCatalogPreviewEnabled()
+    ? await fullCategory(slug).catch(() => null) || await prepaidCategory(slug).catch(() => null)
+    : null;
   return { title: expanded ? expanded.name + ' — Katalog Digital' : game ? 'Top Up ' + game.name : 'Top Up Game', robots: { index: Boolean(game) && !expanded } };
 }
 
 export default async function GameTopupPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const previewOnly = catalogPreviewEnabled();
-  const expanded = fullCatalogPreviewEnabled() ? await fullCategory(slug).catch(() => null) : null;
+  const fullExpanded = fullCatalogPreviewEnabled() ? await fullCategory(slug).catch(() => null) : null;
+  const prepaidExpanded = fullCatalogPreviewEnabled() && !fullExpanded ? await prepaidCategory(slug).catch(() => null) : null;
+  const expanded = fullExpanded || prepaidExpanded;
   const configured = gameConfig(slug);
   if (!expanded && (!configured || !visibleGame(slug))) notFound();
   const game = expanded ? {
@@ -28,7 +33,9 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
     targetLabel: 'ID Tujuan', targetHint: 'Cara pengiriman perlu diverifikasi.',
     requiresZone: false, zoneLabel: 'Server / Zone ID'
   } : configured!;
-  const products = expanded ? await fullCategoryProducts(slug).catch(() => []) : await publicProductsForGame(slug).catch(() => []);
+  const products = fullExpanded ? await fullCategoryProducts(slug).catch(() => []) :
+    prepaidExpanded ? await prepaidProducts(slug).catch(() => []) :
+    await publicProductsForGame(slug).catch(() => []);
   const capturedAt = expanded?.capturedAt || (previewOnly ? await catalogCapturedAt().catch(()=>null) : null);
   return (
     <div className="min-h-screen bg-[#090A0F]">
