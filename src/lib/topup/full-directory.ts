@@ -13,7 +13,7 @@ export type FullCatalogItem = {
 };
 export type FullCatalogCategory = {
   slug:string; name:string; short:string; accent:string; count:number;
-  total:number; fromPrice:number|null; source:'game-feature';
+  total:number; fromPrice:number|null; source:'game-feature'|'prepaid';
 };
 type FullVersion = {id:string;capturedAt:string;total:number;available:number;categories:number};
 const scope='feat/digital-topup-store-foundation-20261014';
