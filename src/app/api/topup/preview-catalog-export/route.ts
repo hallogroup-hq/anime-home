@@ -25,7 +25,7 @@ export async function GET() {
     try {
       const ipResponse = await fetch('https://api4.ipify.org', {cache:'no-store',signal:AbortSignal.timeout(4500)});
       const ip = (await ipResponse.text()).trim();
-      if (ipResponse.ok && /^(?:\\d{1,3}\\.){3}\\d{1,3}$/.test(ip)) observedEgress = ip;
+      if (ipResponse.ok && /^(?:\d{1,3}\.){3}\d{1,3}$/.test(ip)) observedEgress = ip;
     } catch { /* Diagnostics only: do not include upstream errors or credentials. */ }
     return NextResponse.json({error:'SUPPLIER_UNAVAILABLE',observedEgress}, {status:503,headers:{'Cache-Control':'no-store'}});
   }
