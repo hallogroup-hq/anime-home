@@ -1,5 +1,6 @@
 import 'server-only';
 import { createClient, type Client, type Row } from '@libsql/client';
+import catalogSnapshot from './catalog.snapshot.json';
 
 export type GameConfig = {
   slug: string;
@@ -114,6 +115,30 @@ export function formatProduct(row: Row): DigitalProduct {
   };
 }
 
+export type PublicCatalogProduct = { sku: string; gameSlug: string; name: string; description: string; price: number };
+
+export function catalogPreviewEnabled() {
+  return process.env.VERCEL_ENV === 'preview' &&
+    process.env.VERCEL_GIT_COMMIT_REF === 'feat/digital-topup-store-foundation-20261014' &&
+    process.env.TOPUP_CATALOG_PREVIEW_ENABLED === 'true' &&
+    process.env.TOPUP_STORE_ENABLED !== 'true';
+}
+
+export function catalogCapturedAt() {
+  return catalogPreviewEnabled() ? catalogSnapshot.capturedAt : null;
+}
+
+export async function publicProductsForGame(slug: string): Promise<PublicCatalogProduct[]> {
+  if (catalogPreviewEnabled()) {
+    return catalogSnapshot.items.filter(item => item.gameSlug === slug).map(item => ({
+      sku: item.sku, gameSlug: item.gameSlug, name: item.name,
+      description: item.description, price: item.price,
+    }));
+  }
+  const products = await productsForGame(slug);
+  return products.map(({ sku, gameSlug, name, description, price }) => ({ sku, gameSlug, name, description, price }));
+}
+
 export async function productsForGame(slug: string) {
   if (process.env.TOPUP_STORE_ENABLED !== 'true') return [];
   const db = await topupDb();
@@ -122,6 +147,15 @@ export async function productsForGame(slug: string) {
 }
 
 export async function listGamesWithCounts() {
+  if (catalogPreviewEnabled()) {
+    const grouped = new Map<string, {slug:string; count:number; starting:number}>();
+    for (const p of catalogSnapshot.items) {
+      const existing = grouped.get(p.gameSlug);
+      if (existing) { existing.count++; existing.starting = Math.min(existing.starting, p.price); }
+      else grouped.set(p.gameSlug, { slug:p.gameSlug, count:1, starting:p.price });
+    }
+    return [...grouped.values()];
+  }
   if (process.env.TOPUP_STORE_ENABLED !== 'true') return [];
   const db = await topupDb();
   const rs = await db.execute('SELECT game_slug, COUNT(*) AS count, MIN(price) AS starting FROM topup_products WHERE available = 1 GROUP BY game_slug');
