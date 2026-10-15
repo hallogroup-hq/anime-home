@@ -116,6 +116,8 @@ export function formatProduct(row: Row): DigitalProduct {
 }
 
 export type PublicCatalogProduct = { sku: string; gameSlug: string; name: string; description: string; price: number };
+const previewSnapshot = catalogSnapshot as { source: string; capturedAt: string | null; items: PublicCatalogProduct[] };
+
 
 export function catalogPreviewEnabled() {
   return process.env.VERCEL_ENV === 'preview' &&
@@ -125,12 +127,12 @@ export function catalogPreviewEnabled() {
 }
 
 export function catalogCapturedAt() {
-  return catalogPreviewEnabled() ? catalogSnapshot.capturedAt : null;
+  return catalogPreviewEnabled() ? previewSnapshot.capturedAt : null;
 }
 
 export async function publicProductsForGame(slug: string): Promise<PublicCatalogProduct[]> {
   if (catalogPreviewEnabled()) {
-    return catalogSnapshot.items.filter(item => item.gameSlug === slug).map(item => ({
+    return previewSnapshot.items.filter(item => item.gameSlug === slug).map(item => ({
       sku: item.sku, gameSlug: item.gameSlug, name: item.name,
       description: item.description, price: item.price,
     }));
@@ -149,7 +151,7 @@ export async function productsForGame(slug: string) {
 export async function listGamesWithCounts() {
   if (catalogPreviewEnabled()) {
     const grouped = new Map<string, {slug:string; count:number; starting:number}>();
-    for (const p of catalogSnapshot.items) {
+    for (const p of previewSnapshot.items) {
       const existing = grouped.get(p.gameSlug);
       if (existing) { existing.count++; existing.starting = Math.min(existing.starting, p.price); }
       else grouped.set(p.gameSlug, { slug:p.gameSlug, count:1, starting:p.price });
