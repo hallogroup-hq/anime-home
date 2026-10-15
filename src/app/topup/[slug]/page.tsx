@@ -7,6 +7,7 @@ import { CatalogPreview } from '@/components/topup/CatalogPreview';
 import { TopupCheckout } from '@/components/topup/TopupCheckout';
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
 export function generateStaticParams() { return GAMES.map(game => ({ slug: game.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
