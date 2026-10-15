@@ -61,23 +61,20 @@ console.log('PASS: Signature computation, uppercase hex matching, and callback t
 
 const catalogPreview = read('src/components/topup/CatalogPreview.tsx');
 const gamePage = read('src/app/topup/[slug]/page.tsx');
-const snapshot = JSON.parse(read('src/lib/topup/catalog.snapshot.json')) as {
-  source: string; capturedAt: string | null;
-  items: Array<{ sku:string; gameSlug:string; name:string; description:string; price:number }>;
-};
+const backup = read('src/lib/topup/catalog-store.ts');
+assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_snapshots/);
+assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_items/);
+assert.match(backup, /CREATE TABLE IF NOT EXISTS topup_catalog_active/);
+assert.match(backup, /SUPPLIER_SNAPSHOT_COUNT_MISMATCH/);
+assert.match(backup, /await db.batch\(statements.slice/);
+assert.match(backup, /supplier_cost INTEGER NOT NULL/);
+assert.match(backup, /TOPUP_CATALOG_PREVIEW_ENABLED !== 'true'/);
+assert.doesNotMatch(backup, /GOPAY_GATEWAY_API_KEY|TRIPAY_PRIVATE_KEY|vipCreateOrder/);
 assert.match(data, /TOPUP_CATALOG_PREVIEW_ENABLED/);
 assert.match(data, /TOPUP_STORE_ENABLED !== 'true'/);
 assert.match(data, /VERCEL_ENV === 'preview'/);
 assert.match(gamePage, /previewOnly \? <CatalogPreview/);
 assert.match(catalogPreview, /Belum menerima pembelian/);
 assert.doesNotMatch(catalogPreview, /api\/topup\/checkout/);
-assert.ok(snapshot.items.every(x =>
-  typeof x.sku === 'string' && x.sku.length > 1 &&
-  typeof x.name === 'string' && x.name.length > 0 &&
-  typeof x.gameSlug === 'string' &&
-  Number.isSafeInteger(x.price) && x.price > 0
-));
-assert.equal(new Set(snapshot.items.map(x => x.sku)).size, snapshot.items.length);
-assert.ok(snapshot.items.every(x => !('cost' in x) && !('key' in x) && !('sign' in x)));
-console.log('PASS: preview catalog has no checkout, no supplier costs, no duplicate SKUs, and is isolated from production.');
+console.log('PASS: database-backed versioned preview catalog, safe public projections, and checkout isolation.');
 
