@@ -96,6 +96,14 @@ export function Navbar() {
             >
               Merchandise
             </Link>
+            <Link
+              href="/topup"
+              className={`transition-colors cursor-pointer ${
+                pathname.startsWith('/topup') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              Top Up
+            </Link>
           </nav>
         </div>
 
