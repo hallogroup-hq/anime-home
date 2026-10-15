@@ -83,3 +83,23 @@ assert.match(catalogPreview, /Belum menerima pembelian/);
 assert.doesNotMatch(catalogPreview, /api\/topup\/checkout/);
 console.log('PASS: database-backed versioned preview catalog, safe public projections, and checkout isolation.');
 
+
+const full = read('src/lib/topup/full-directory.ts');
+const list = read('src/components/topup/TopupDirectory.tsx');
+const page = read('src/app/topup/page.tsx');
+assert.match(providers, /vipAllGameServices/);
+assert.match(full, /TOPUP_FULL_CATALOG_PREVIEW_ENABLED/);
+assert.match(full, /VERCEL_GIT_COMMIT_REF===scope/);
+assert.match(full, /TOPUP_STORE_ENABLED!=='true'/);
+assert.match(full, /CREATE TABLE IF NOT EXISTS topup_full_items/);
+assert.match(full, /PRIMARY KEY\\(version_id,row_index\\)/);
+assert.match(full, /DUPLICATE_SKU/);
+assert.match(full, /MANUAL_REVIEW/);
+assert.match(full, /VIP_FULL_BACKUP_COUNT_MISMATCH/);
+assert.match(full, /topup_full_active/);
+assert.match(full, /retail_price/);
+assert.doesNotMatch(full, /vipCreateOrder|TRIPAY_PRIVATE_KEY|GOPAY_GATEWAY_API_KEY/);
+assert.match(page, /fullGames\.length/);
+assert.match(list, /game\.total/);
+assert.match(catalogPreview, /Hanya yang tersedia di katalog/);
+console.log('PASS: full supplier catalog snapshot is isolated and handles all supplier categories with safe status labels.');
