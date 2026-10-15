@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { Search, SlidersHorizontal, ShieldCheck } from 'lucide-react';
 
-type Product = { sku: string; name: string; description: string; price: number };
+type Product = { id?: number; sku: string; name: string; description: string; price: number | null; available?: boolean; review?: boolean; supplierGroup?: string };
 const money = (price: number) => 'Rp' + price.toLocaleString('id-ID');
 
 export function CatalogPreview({ products, capturedAt, expanded = false }: { products: Product[]; capturedAt: string | null; expanded?: boolean }) {
