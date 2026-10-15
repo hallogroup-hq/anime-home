@@ -110,3 +110,16 @@ References: https://vip-reseller.co.id/page/api/game-feature and https://tripay.
 - `GET /api/topup/catalog` reports `backupReady`, `capturedAt` and group counts. When the backup is empty, it also reports the IP egress observed at request time, **only in protected feature-branch preview** to help with VIPayment whitelist troubleshooting.
 - As of initial implementation, database schema and cache logic compiled and passed code CI; an actual verified supplier import is **not claimed** until `backupReady=true` and SKU counts are observed in Turso. The supplier allowed IP may change after deploy.
 - Before enabling production, confirm the isolation of Preview/Production Turso connections, configure fixed outbound IP, validate full supplier catalog taxonomy and required target formats, independently approve retail prices, then test payment and fulfillment.
+
+## VERIFIED — first versioned Turso catalog backup (15 October 2026)
+
+This supersedes the earlier **pending**, **empty snapshot**, and **IP-blocked** status notes above.
+
+- Authenticated VIPayment profile and services calls from allowlisted Preview egress IP `52.90.34.251` succeeded.
+- Raw parsed API listing: **5,245 rows**, of which **818** were flagged available in the source response. The supplier supplied **37 extra duplicated SKU occurrences**; all rows whose SKU was repeated were withheld from public listing and retained in a separate private `topup_catalog_duplicate_rows` quarantine table. No ambiguous SKU is sellable.
+- Database active snapshot is **confirmed**: `backupReady=true`, `capturedAt=2026-10-15T09:11:07.088Z` (16:11 WIB), plus **9 game groups with 812 currently available unique SKUs** returned from Turso.
+- Page checks: `/topup`, `/topup/mobile-legends`, `/topup/free-fire`, and `/topup/valorant` returned HTTP 200. The three game pages rendered real SKU retail prices in catalog-only mode, with **no purchase controls**. Empty Wuthering Waves state rendered correctly.
+- Price display is a **reference** from this supplier snapshot and the configured margin formula; it has not been independently approved for sale. Supplier availability can change. Do not enable purchases without live status, margin, target validation and payment gates.
+- Initial backup is durable in Turso and does not depend on fixed Vercel egress to serve storefront reads. Automatic refresh after 24 hours may fail on a new IP; failed refresh preserves the last good snapshot.
+- Health-check and outbound-IP diagnostic routes used during troubleshooting were removed from the feature branch after verifying the backup. The public catalog endpoint no longer surfaces an outbound IP.
+- Production is unchanged; feature PR stays a draft and `TOPUP_STORE_ENABLED=false`, with TriPay sandbox not configured. No supplier purchase or customer payment occurred.
