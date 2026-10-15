@@ -36,7 +36,7 @@ export default async function GameTopupPage({ params }: { params: Promise<{ slug
           <div>
             <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-red-400">Game top up</p>
             <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{game.name}</h1>
-            <p className="mt-2 text-sm text-zinc-400">Pilih nominal dan masukkan data akun dengan benar.</p>
+            <p className="mt-2 text-sm text-zinc-400">{previewOnly ? "Lihat daftar nominal dan harga referensi dari VIPayment. Pembelian belum dibuka." : "Pilih nominal dan masukkan data akun dengan benar."}</p>
           </div>
         </div>
         {previewOnly ? <CatalogPreview products={products} capturedAt={catalogCapturedAt()}/> : <TopupCheckout game={{
