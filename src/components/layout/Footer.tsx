@@ -37,6 +37,7 @@ export function Footer() {
           <Link href="/anime" className="hover:text-white transition-colors">Katalog</Link>
           <Link href="/schedule" className="hover:text-white transition-colors">Jadwal Rilis</Link>
           <Link href="/discover" className="hover:text-white transition-colors">Merchandise</Link>
+          <Link href="/topup" className="hover:text-white transition-colors">Top Up</Link>
         </div>
       </div>
     </footer>
