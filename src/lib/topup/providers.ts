@@ -103,6 +103,30 @@ export async function vipAllGameServices():Promise<VIPItem[]> {
   return result.data;
 }
 
+export type VIPPrepaidItem = {
+  brand?: string; type?: string; category?: string; prepost?: string;
+  code?: string; name?: string; note?: string;
+  price?: { basic?: number; premium?: number; special?: number };
+  status?: string;
+};
+
+// VIP prepaid is a different provider namespace from game-feature.
+// Only read the services directory; do not execute orders here.
+export async function vipAllPrepaidServices():Promise<VIPPrepaidItem[]> {
+  const auth=vipSignature();
+  const response=await fetch('https://vip-reseller.co.id/api/prepaid',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded',Accept:'application/json'},
+    body:new URLSearchParams({...auth,type:'services'}).toString(),
+    cache:'no-store',
+    signal:AbortSignal.timeout(18000)
+  });
+  if(!response.ok)throw new Error('VIP_PREPAID_HTTP_'+response.status);
+  const payload=await response.json() as VIPAnswer<VIPPrepaidItem[]>;
+  if(payload.result!==true||!Array.isArray(payload.data))throw new Error('VIP_PREPAID_LIST_REJECTED');
+  return payload.data;
+}
+
 export async function vipCatalog() {
   const result = await vipCall<VIPItem[]>({ type: 'services' });
   if (!Array.isArray(result.data)) throw new Error('VIPAY_CATALOG_INVALID');
