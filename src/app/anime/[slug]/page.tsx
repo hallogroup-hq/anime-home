@@ -44,19 +44,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const totalEpLabel = isMovie ? 'Full Movie' : `${episodes.length} Episode`;
 
   const pageTitle = `Nonton ${anime.canonicalTitle} Sub Indo (${totalEpLabel})`;
-  const pageDescription = `Streaming dan download ${anime.canonicalTitle} (${anime.year || ''}) subtitle Indonesia lengkap di Anime Home. ${anime.synopsis.slice(0, 160)}... Genre: ${anime.genres.join(', ')}. Status: ${statusLabel}. Multi-server stabil dan lancar tanpa kendala.`;
+  const pageDescription = `Streaming dan download ${anime.canonicalTitle} (${anime.year || ''}) subtitle Indonesia lengkap di Anime Home. ${anime.synopsis.slice(0, 160)}... Nonton anime sub Indo 1080p, 720p, 480p multi-server lancar tanpa kendala. Genre: ${anime.genres.join(', ')}. Status: ${statusLabel}.`;
   const canonicalUrl = `${siteUrl}/anime/${anime.slug}`;
   const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
   const bannerUrl = anime.bannerUrl.startsWith('http') ? anime.bannerUrl : `${siteUrl}${anime.bannerUrl}`;
 
   const keywords = [
     `nonton ${anime.canonicalTitle.toLowerCase()} sub indo`,
+    `streaming ${anime.canonicalTitle.toLowerCase()} sub indo`,
     `${anime.canonicalTitle.toLowerCase()} subtitle indonesia`,
     `streaming ${anime.canonicalTitle.toLowerCase()}`,
     `${anime.canonicalTitle.toLowerCase()} episode lengkap`,
     `download ${anime.canonicalTitle.toLowerCase()} sub indo`,
     `${anime.canonicalTitle.toLowerCase()} full movie sub indo`,
+    `nonton anime ${anime.canonicalTitle.toLowerCase()}`,
     ...anime.genres.map((g) => `anime ${g.toLowerCase()}`),
+    'streaming anime',
+    'streaming anime sub indo',
+    'nonton anime sub indo',
     'anime sub indo',
     'anime home',
   ];
@@ -64,6 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (anime.aliases) {
     anime.aliases.forEach((a) => {
       keywords.push(`nonton ${a.title.toLowerCase()} sub indo`);
+      keywords.push(`streaming ${a.title.toLowerCase()} sub indo`);
     });
   }
 
@@ -177,6 +183,10 @@ export default async function AnimeDetailPage({ params }: PageProps) {
           bestRating: 10,
           ratingCount: 1250,
         },
+        potentialAction: {
+          '@type': 'WatchAction',
+          target: pageUrl,
+        },
       }
     : {
         '@context': 'https://schema.org',
@@ -195,6 +205,10 @@ export default async function AnimeDetailPage({ params }: PageProps) {
           ratingValue: 8.5,
           bestRating: 10,
           ratingCount: 2400,
+        },
+        potentialAction: {
+          '@type': 'WatchAction',
+          target: pageUrl,
         },
       };
 

@@ -10,22 +10,33 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://anime-home-psi.verc
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'ANIME HOME — Streaming Anime Sub Indo Lengkap, Multi-Server & Jadwal Rilis',
+    default: 'ANIME HOME — Streaming Anime Sub Indo Lengkap & Nonton Anime Online',
     template: '%s — Anime Home',
   },
-  description: 'Nonton streaming anime subtitle Indonesia terlengkap dan terupdate. Koleksi Detective Conan Season 1-30 & 28 Movie, Frieren, Jujutsu Kaisen, Solo Leveling, jadwal rilis WIB, dan multi-server lancar tanpa kendala.',
+  description: 'Nonton streaming anime subtitle Indonesia terlengkap dan terupdate. Ribuan episode anime ongoing & completed, Detective Conan Season 1-30 & 28 Movie, Frieren, Jujutsu Kaisen, Solo Leveling, jadwal rilis WIB, dan multi-server lancar tanpa kendala.',
   keywords: [
+    'streaming anime',
+    'streaming anime sub indo',
     'nonton anime sub indo',
+    'nonton anime online',
     'streaming anime subtitle indonesia',
+    'situs nonton anime gratis',
     'anime sub indo lengkap',
+    'download anime sub indo',
+    'animeindo',
+    'samehadaku',
+    'otakudesu',
+    'anoboy',
+    'kuramanime',
     'detective conan sub indo',
     'nonton conan movie 1-28 sub indo',
     'jadwal rilis anime wib',
-    'anime ongoing samehadaku otakudesu',
+    'anime ongoing sub indo',
+    'anime completed sub indo',
     'urutan nonton anime',
     'anime home',
     'anime home store',
-    'merchandise anime indonesia'
+    'merchandise anime indonesia',
   ],
   authors: [{ name: 'Anime Home Team' }],
   creator: 'Anime Home',
@@ -44,7 +55,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'ANIME HOME — Streaming Anime Sub Indo Lengkap & Jadwal Rilis',
+    title: 'ANIME HOME — Streaming Anime Sub Indo Lengkap & Nonton Anime Online',
     description: 'Nonton anime sub Indo multi-server tanpa ribet. Koleksi Detective Conan lengkap episode 1 sampai terbaru, 28 movie canonical, dan update anime ongoing tiap hari.',
     url: siteUrl,
     siteName: 'Anime Home',
@@ -61,7 +72,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ANIME HOME — Streaming Anime Sub Indo Lengkap',
+    title: 'ANIME HOME — Streaming Anime Sub Indo Lengkap & Nonton Anime Online',
     description: 'Streaming anime sub Indo multi-server lancar. Detective Conan lengkap S1-S30 & 28 Movie, Frieren, Jujutsu Kaisen, dan jadwal rilis WIB.',
     images: ['/banners/anime-home-promo-banner.png'],
     creator: '@AnimeHomeID',
@@ -76,6 +87,10 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    yandex: process.env.YANDEX_VERIFICATION || undefined,
   },
 };
 
@@ -96,9 +111,9 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Anime Home',
-    alternateName: ['AnimeHome', 'Anime Home Indonesia', 'AnimeHome.id'],
+    alternateName: ['AnimeHome', 'Anime Home Indonesia', 'AnimeHome.id', 'Streaming Anime Sub Indo', 'Nonton Anime Sub Indo'],
     url: siteUrl,
-    description: 'Platform streaming dan pelacakan anime subtitle Indonesia dengan multi-server video player, takarir terverifikasi, jadwal rilis WIB, dan merchandise resmi.',
+    description: 'Platform streaming dan nonton anime subtitle Indonesia terlengkap dengan multi-server video player, takarir terverifikasi, jadwal rilis WIB, dan merchandise resmi.',
     potentialAction: {
       '@type': 'SearchAction',
       target: {

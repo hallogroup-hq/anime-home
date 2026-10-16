@@ -52,17 +52,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const pageTitle = `Nonton ${anime.canonicalTitle} Episode ${episode.displayNumber} Sub Indo`;
-  const pageDescription = `Nonton streaming ${anime.canonicalTitle} Episode ${episode.displayNumber} (${episode.title}) subtitle Indonesia full HD di Anime Home. Multi-server berkecepatan tinggi lancar, takarir terverifikasi.`;
+  const pageDescription = `Nonton streaming ${anime.canonicalTitle} Episode ${episode.displayNumber} (${episode.title}) subtitle Indonesia full HD 1080p, 720p di Anime Home. Streaming anime sub Indo multi-server lancar tanpa buffer.`;
   const canonicalUrl = `${siteUrl}/watch/${episode.id}`;
   const bannerUrl = anime.bannerUrl.startsWith('http') ? anime.bannerUrl : `${siteUrl}${anime.bannerUrl}`;
   const posterUrl = anime.posterUrl.startsWith('http') ? anime.posterUrl : `${siteUrl}${anime.posterUrl}`;
 
   const keywords = [
     `nonton ${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber} sub indo`,
+    `streaming ${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber} sub indo`,
     `${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber} subtitle indonesia`,
     `${anime.canonicalTitle.toLowerCase()} ep ${episode.displayNumber} sub indo`,
     `streaming ${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber}`,
-    `download ${anime.canonicalTitle.toLowerCase()} ep ${episode.displayNumber}`,
+    `download ${anime.canonicalTitle.toLowerCase()} episode ${episode.displayNumber} sub indo`,
+    `nonton anime ${anime.canonicalTitle.toLowerCase()} sub indo`,
+    'streaming anime',
+    'streaming anime sub indo',
+    'nonton anime sub indo',
     'anime sub indo',
     'anime home',
   ];
@@ -185,12 +190,16 @@ export default async function WatchPage({ params }: PageProps) {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: `${anime.canonicalTitle} Episode ${episode.displayNumber} Sub Indo`,
-    description: `${episode.title}. Nonton anime ${anime.canonicalTitle} Episode ${episode.displayNumber} dengan takarir bahasa Indonesia terverifikasi.`,
+    description: `${episode.title}. Nonton streaming anime ${anime.canonicalTitle} Episode ${episode.displayNumber} dengan subtitle bahasa Indonesia terverifikasi.`,
     thumbnailUrl: posterUrl,
-    uploadDate: '2024-01-01T00:00:00Z',
+    uploadDate: episode.airedAt ? new Date(episode.airedAt).toISOString() : '2024-01-01T00:00:00Z',
     inLanguage: 'id',
     url: pageUrl,
     embedUrl: pageUrl,
+    potentialAction: {
+      '@type': 'WatchAction',
+      target: pageUrl,
+    },
   };
 
   // 2. Schema.org BreadcrumbList

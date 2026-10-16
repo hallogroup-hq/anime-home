@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/anime`,
       lastModified: new Date(),
       changeFrequency: 'daily',
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${siteUrl}/schedule`,
@@ -36,11 +36,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const animeRoutes: MetadataRoute.Sitemap = animeList.map((a) => {
     const isOngoing = a.airingStatus === 'airing';
+    const eps = db.getEpisodesByAnimeId(a.id);
+    const latestEp = eps[eps.length - 1];
+    const lastModified = latestEp?.airedAt ? new Date(latestEp.airedAt) : new Date();
+
     return {
       url: `${siteUrl}/anime/${a.slug}`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: isOngoing ? 'daily' : 'weekly',
-      priority: isOngoing ? 0.9 : 0.8,
+      priority: isOngoing ? 0.95 : 0.85,
     };
   });
 
@@ -48,9 +52,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const playableEpisodes = allEpisodes.filter((e) => e.watchabilityState === 'eligible_verified');
   const episodeRoutes: MetadataRoute.Sitemap = playableEpisodes.map((e) => ({
     url: `${siteUrl}/watch/${e.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
+    lastModified: e.airedAt ? new Date(e.airedAt) : new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.75,
   }));
 
   return [...staticRoutes, ...animeRoutes, ...episodeRoutes];
