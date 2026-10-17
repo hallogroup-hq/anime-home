@@ -29,17 +29,23 @@ async function main() {
       console.log('🌐 Pengunjung website langsung melihat update secara live tanpa perlu nunggu build Vercel.');
     }
 
-    if (process.argv.includes('--push')) {
-      const { execSync } = await import('child_process');
-      console.log('\n🚀 Optional git push enabled: Syncing local JSON backup to repository...');
+  }
+
+  if (process.argv.includes('--push')) {
+    const { execSync } = await import('child_process');
+    const dirtyFiles = execSync('git status --porcelain src/lib/data/live_data.json', { encoding: 'utf8' }).trim();
+    if (report.updates.length > 0 || dirtyFiles.length > 0) {
+      console.log('\n🚀 Git push enabled: Syncing local JSON backup to repository...');
       try {
         execSync('git add src/lib/data/live_data.json scripts/deduplicate_anime.ts src/lib/services/ongoingSyncService.ts scripts/run_ongoing_pipeline.ts', { stdio: 'inherit' });
-        execSync('git commit -m "chore(sync): automated ongoing anime releases update" --allow-empty', { stdio: 'inherit' });
+        execSync('git commit -m "chore(sync): automated ongoing anime releases update"', { stdio: 'inherit' });
         execSync('git push origin main', { stdio: 'inherit' });
         console.log('✅ Berhasil push backup ke repository!');
       } catch (pushErr: any) {
         console.error('⚠️ Gagal auto-push ke git:', pushErr.message);
       }
+    } else {
+      console.log('\nℹ️ Tidak ada perubahan data lokal atau remote untuk di-push.');
     }
   }
 
