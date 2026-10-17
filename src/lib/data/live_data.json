@@ -29,11 +29,11 @@
           "normalizedTitle": "kusuriya-no-hitorigoto"
         }
       ],
+      "seasonReadinessState": "READY_ONGOING",
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Berkala, 19:00 WIB",
-      "seasonReadinessState": "READY_ONGOING",
       "createdAt": "2026-10-17T04:51:45.643Z",
-      "updatedAt": "2026-10-17T04:51:45.643Z"
+      "updatedAt": "2026-10-17T04:52:19.249Z"
     },
     {
       "id": "anime-gensou-suikoden",
@@ -168,14 +168,6 @@
           "title": "Diamond no Ace Act II Season 2",
           "titleType": "canonical",
           "normalizedTitle": "diamond-no-ace-act-ii-season-2"
-        },
-        {
-          "id": "alias-diamond-no-ace-act-ii-season-2-cour-2",
-          "animeId": "anime-diamond-no-ace-act-ii-season-2",
-          "locale": "id-ID",
-          "title": "Diamond no Ace Act II Season 2 Cour 2",
-          "titleType": "alias",
-          "normalizedTitle": "diamond no ace act ii season 2 cour 2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -878,7 +870,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-10T08:37:27.775Z",
-      "updatedAt": "2026-10-10T08:37:27.775Z"
+      "updatedAt": "2026-10-17T04:52:20.450Z"
     },
     {
       "id": "anime-uchi-no-otouto-domo-ga-sumimasen",
@@ -913,7 +905,7 @@
       "totalCanonicalEpisodes": 15,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-10T08:36:14.969Z",
-      "updatedAt": "2026-10-10T08:36:14.969Z"
+      "updatedAt": "2026-10-17T04:52:19.365Z"
     },
     {
       "id": "anime-tougen-anki-nikko-kegon-no-taki-hen",
@@ -965,7 +957,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
+      "updatedAt": "2026-10-17T04:52:20.581Z"
     },
     {
       "id": "anime-tsuihou-sareta-cheat-fuyo-majutsushi",
@@ -1091,7 +1083,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-09T22:09:27.526Z",
-      "updatedAt": "2026-10-09T22:09:27.526Z"
+      "updatedAt": "2026-10-17T04:52:20.235Z"
     },
     {
       "id": "anime-frieren",
@@ -2061,12 +2053,12 @@
         }
       ],
       "seasonReadinessState": "AWAITING_EPISODE",
-      "totalCanonicalEpisodes": 12,
+      "totalCanonicalEpisodes": 1,
       "scheduleWIB": "Selasa, 23:00 WIB",
       "officialPlatformName": "Bstation / Kadokawa",
       "externalFreeWatchUrl": "https://www.bilibili.tv",
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-09T21:40:40.008Z"
+      "updatedAt": "2026-10-17T04:52:19.781Z"
     },
     {
       "id": "anime-returner-s2",
@@ -9465,7 +9457,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 12,
-      "airedEpisodesCount": 0,
+      "airedEpisodesCount": 2,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "AWAITING_EPISODE",
@@ -9473,7 +9465,7 @@
       "externalFreeWatchUrl": "https://www.bilibili.tv",
       "officialPlatformName": "Bstation / Kadokawa",
       "notes": "Menunggu episode perdana.",
-      "updatedAt": "2026-10-09T22:09:27.519Z"
+      "updatedAt": "2026-10-17T04:52:19.781Z"
     },
     {
       "id": "season-returner-2",
@@ -11467,7 +11459,7 @@
       "missingEpisodes": [],
       "readinessState": null,
       "licenseType": null,
-      "updatedAt": "2026-10-09T22:09:27.526Z"
+      "updatedAt": "2026-10-17T04:52:20.235Z"
     },
     {
       "id": "season-tsuihou-sareta-cheat-fuyo-majutsushi-s1",
@@ -11492,12 +11484,12 @@
       "year": 0,
       "seasonPeriod": null,
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 0,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": null,
       "licenseType": null,
-      "updatedAt": "2026-10-09T22:09:27.526Z"
+      "updatedAt": "2026-10-17T04:52:20.581Z"
     },
     {
       "id": "season-uchi-no-otouto-domo-ga-sumimasen-s1",
@@ -11507,12 +11499,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 15,
-      "airedEpisodesCount": 14,
+      "airedEpisodesCount": 15,
       "verifiedEpisodesCount": 15,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:36:14.969Z"
+      "updatedAt": "2026-10-17T04:52:19.365Z"
     },
     {
       "id": "season-toaru-anbu-no-item-s1",
@@ -11522,12 +11514,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 2,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T08:37:27.775Z"
+      "updatedAt": "2026-10-17T04:52:20.450Z"
     },
     {
       "id": "season-steel-ball-run-jojo-no-kimyou-na-bouken-s1",
@@ -11566,9 +11558,9 @@
       "title": "Keroro Gunsou☆ (2026)",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
+      "canonicalEpisodesCount": 3,
       "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
+      "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
@@ -52640,10 +52632,10 @@
       "title": "Hotaru no Yomeiri Episode 2",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T04:51:41.648Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "ep-tougen-anki-nikko-kegon-no-taki-hen-3",
@@ -52654,10 +52646,10 @@
       "title": "Tougen Anki: Nikko Kegon no Taki-hen Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T04:51:41.648Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "ep-kusuriya-no-hitorigoto-3",
@@ -52668,10 +52660,10 @@
       "title": "Kusuriya no Hitorigoto Season 3 Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T04:51:41.648Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "ep-uchi-no-otouto-domo-ga-sumimasen-15",
@@ -52682,10 +52674,10 @@
       "title": "Uchi no Otouto-domo ga Sumimasen Episode 15 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T04:51:41.648Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "ep-kusuriya-no-hitorigoto-season-3-3",
@@ -52696,10 +52688,10 @@
       "title": "Kusuriya no Hitorigoto Season 3 Episode 3 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T04:51:41.648Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "ep-toaru-anbu-no-item-2",
@@ -52710,7 +52702,21 @@
       "title": "Toaru Anbu no Item Episode 2 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T04:51:41.648Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T04:51:41.648Z"
+    },
+    {
+      "id": "ep-keroro-gunsou-2026-3",
+      "animeId": "anime-keroro-gunsou-2026",
+      "ordinal": 3,
+      "displayNumber": "03",
+      "episodeType": "standard",
+      "title": "Keroro Gunsou☆ (2026) Episode 3 Subtitle Indonesia",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-17T07:00:48.369Z",
       "airingState": "aired",
       "subtitleState": "available",
       "watchabilityState": "eligible_verified"
@@ -153545,7 +153551,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T22:09:27.526Z"
+      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "var-ep-kusuriya-no-hitorigoto-season-3-2-beta-1080",
@@ -153560,7 +153566,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T22:09:27.526Z"
+      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
     },
     {
       "id": "var-ep-otk-hyouken-no-majutsushi-ga-sekai-wo-suberu-season-2-1-u48xh",
@@ -242009,7 +242015,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-uchi-no-otouto-domo-ga-sumimasen-ep-15-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0cE55KzBTUWs0ejlQUHBJeU1CNituNU5UclRZOFZ3aGRIQm5IcVBpazZsdA==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=WUxJVHVrZUFnbnFOZENQYWFCY3FTNlgyc0xWVm5tL1JITlk3Um5sZnZTZz0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -242058,36 +242064,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-uchi-no-otouto-domo-ga-sumimasen-15-otaku-desu",
-      "episodeId": "ep-uchi-no-otouto-domo-ga-sumimasen-15",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-uchi-no-otouto-domo-ga-sumimasen-ep-15-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=bkpyV25YVDNkY01XRXNnS2tqaFpsaDBMRjN1UEVJaFFSS3RuOWhMcmtKT05XajlNUUdZNnV2alRrNnJtME5CQldOWTR6M3NmRDhialpwYU05a1JoRkE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-uchi-no-otouto-domo-ga-sumimasen-15-otaku-desu",
-      "episodeId": "ep-uchi-no-otouto-domo-ga-sumimasen-15",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-uchi-no-otouto-domo-ga-sumimasen-ep-15-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=WUxJVHVrZUFnbnFOZENQYWFCY3FTNlgyc0xWVm5tL1JITlk3Um5sZnZTZz0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
@@ -242189,7 +242165,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-firefly-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dWU0a3ZRb1hTSU9LU21FdElCRUF3OXdFTGFKNzZBaSt0Sy9zWXp0RFhQRw==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=dmFYUjVIdDRBWmFyUkZsTkg0WFExOHBkaTNjakd1TzYvZlAzMW5qR3U4VT0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -242243,36 +242219,6 @@
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
     },
     {
-      "id": "var-ep-firefly-2-otaku-desu",
-      "episodeId": "ep-firefly-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-firefly-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=WG5jSTJ4Uzl4TlVKa1R5WVNES2puK1Q4YlZqMGFnWVNXMjdUMGw2Ynh5R25WVkZVY2FOclRCQUV3RnlBbmI2b0ZQN0Jma2JtbUtJdk0wZzlQQVlySkE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-firefly-2-otaku-desu",
-      "episodeId": "ep-firefly-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-firefly-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=dmFYUjVIdDRBWmFyUkZsTkg0WFExOHBkaTNjakd1TzYvZlAzMW5qR3U4VT0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
       "id": "var-ep-firefly-2-otaku-vidhide-720p",
       "episodeId": "ep-firefly-2",
       "providerId": "prov-vidhide",
@@ -242298,36 +242244,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-firefly-2-alpha-720",
-      "episodeId": "ep-firefly-2",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-firefly-ep-2-alpha-720p",
-      "embedUrl": "/embed/player?title=Hotaru%20no%20Yomeiri%20(Firefly%20Wedding)&ep=2&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-firefly-2-beta-1080",
-      "episodeId": "ep-firefly-2",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-firefly-ep-2-beta-1080p",
-      "embedUrl": "/embed/player?title=Hotaru%20no%20Yomeiri%20(Firefly%20Wedding)&ep=2&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
@@ -242369,7 +242285,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-firefly-ep-1-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0bDN6NUl0dmNJa1ViT1RNTTJkcjJadDlGUzRmeXZwa3ZjTGhMNk1TdE9ScA==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=dWRCdndjMWt2NUR6dWZtRXBsY2kzUT09",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -242403,36 +242319,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-firefly-1-otaku-desu",
-      "episodeId": "ep-firefly-1",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-firefly-ep-1-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=bkVMUWxnVDBvUnhydWJLb21TWmFUdjI0ZkFCRy95WUJtZDhNZUJYeWE5RE02M3ZQdDN4L0FWN015VU10OEJZTVlZWkRvN0tQMzlRaFkyQWpReTdidmc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-firefly-1-otaku-desu",
-      "episodeId": "ep-firefly-1",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-firefly-ep-1-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=dWRCdndjMWt2NUR6dWZtRXBsY2kzUT09",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
@@ -242534,7 +242420,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dUhZcGN2RzBwYkxLOG9PWTMyRXlNM1VpOGt2RHBXOWpLV0xqSUVEOSt0TQ==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=QkIreDhDRU0zblBmWkczdm9GdzgwYnh2bGJKZzNEZU9MV0xENEFYMWMybz0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -242583,36 +242469,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-kusuriya-no-hitorigoto-season-3-3-otaku-desu",
-      "episodeId": "ep-kusuriya-no-hitorigoto-season-3-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=d3VtVzl1b2lXWDJESTJkM2RzLysrZDJPS1pPakRtVDlCWitsRDhSOWN3V0tHdmxHaStWQk5kc1Q5dEExRGFPVWpYVE14dll1KzZVcHJRWFd2cnkvbXc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-kusuriya-no-hitorigoto-season-3-3-otaku-desu",
-      "episodeId": "ep-kusuriya-no-hitorigoto-season-3-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=QkIreDhDRU0zblBmWkczdm9GdzgwYnh2bGJKZzNEZU9MV0xENEFYMWMybz0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
@@ -242714,7 +242570,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0clpqTmJqZlYxN1ZxY2p3dU4xMk85Q1Nad3RkMmh5aXQxOEVFMmNMZnNHYQ==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=QkIreDhDRU0zblBmWkczdm9GdzgwYnpzcW92cE81eFRNRlQyajdEbmQzRT0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -242768,36 +242624,6 @@
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
     },
     {
-      "id": "var-ep-kusuriya-no-hitorigoto-season-3-2-otaku-desu",
-      "episodeId": "ep-kusuriya-no-hitorigoto-season-3-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=ZXR3YnBTUllRYmlYeHJ2Ky83UFRTdFAxbnQxRXM0THNzelF0c3ErL2R4TFFMdU9RcThaSEtSR0tkSkQ5QVI1Q0FLWkZYYi84UGkxVGU0OVZDZGo2WkE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-kusuriya-no-hitorigoto-season-3-2-otaku-desu",
-      "episodeId": "ep-kusuriya-no-hitorigoto-season-3-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=QkIreDhDRU0zblBmWkczdm9GdzgwYnpzcW92cE81eFRNRlQyajdEbmQzRT0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
       "id": "var-ep-kusuriya-no-hitorigoto-season-3-2-otaku-vidhide-720p",
       "episodeId": "ep-kusuriya-no-hitorigoto-season-3-2",
       "providerId": "prov-vidhide",
@@ -242823,36 +242649,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-kusuriya-no-hitorigoto-season-3-2-alpha-720",
-      "episodeId": "ep-kusuriya-no-hitorigoto-season-3-2",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-2-alpha-720p",
-      "embedUrl": "/embed/player?title=Kusuriya%20no%20Hitorigoto%20Season%203&ep=2&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-kusuriya-no-hitorigoto-season-3-2-beta-1080",
-      "episodeId": "ep-kusuriya-no-hitorigoto-season-3-2",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-kusuriya-no-hitorigoto-season-3-ep-2-beta-1080p",
-      "embedUrl": "/embed/player?title=Kusuriya%20no%20Hitorigoto%20Season%203&ep=2&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
@@ -242894,7 +242690,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-toaru-anbu-no-item-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aHpxNWRWbnp5RktLY0VWalNGR3laTmkzdWV1UFpYRWFPMDdyRCtiWnhBVQ==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=RGtXdnlZVUxjdHFhbGl0TFkvVmIva2lVOGM0cjM2Vy9XTXNCQU1scXBOMD0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -242943,36 +242739,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-toaru-anbu-no-item-2-otaku-desu",
-      "episodeId": "ep-toaru-anbu-no-item-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-toaru-anbu-no-item-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=WTZHN1E2VEJyM0VZZlowd2V4VWFjb3l4SzdhWGhWanFBMmdaQzU3Y0R0YVhmTG1qV09xN0k2TTMrU085UHRxazA1TWhOWUlyOGJqblV4WFVjMEJZM1E9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
-      "id": "var-ep-toaru-anbu-no-item-2-otaku-desu",
-      "episodeId": "ep-toaru-anbu-no-item-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-toaru-anbu-no-item-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=RGtXdnlZVUxjdHFhbGl0TFkvVmIva2lVOGM0cjM2Vy9XTXNCQU1scXBOMD0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
@@ -243074,7 +242840,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-tougen-anki-nikko-kegon-no-taki-hen-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dHhSNG1RL0NndEdwOEhLMEJCRWdyd0NPWHRySzJZTm16RHFpcUZ5RXpxOQ==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=YVMyRGh1Sk9FTCtlMzh5NThmc1FTMXFtekREZkp4TE5CRDVFUmJRcmVuMFlHeFdRS0JYdWR1dEhWa1BjTzRDQW16ODF3dWRORXVUMEovS1VQZXpjRnc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -243113,21 +242879,6 @@
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
     },
     {
-      "id": "var-ep-tougen-anki-nikko-kegon-no-taki-hen-3-otaku-desu",
-      "episodeId": "ep-tougen-anki-nikko-kegon-no-taki-hen-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-tougen-anki-nikko-kegon-no-taki-hen-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=YVMyRGh1Sk9FTCtlMzh5NThmc1FTMXFtekREZkp4TE5CRDVFUmJRcmVuMFlHeFdRS0JYdWR1dEhWa1BjTzRDQW16ODF3dWRORXVUMEovS1VQZXpjRnc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
-    },
-    {
       "id": "var-ep-tougen-anki-nikko-kegon-no-taki-hen-3-otaku-vidhide-720p",
       "episodeId": "ep-tougen-anki-nikko-kegon-no-taki-hen-3",
       "providerId": "prov-vidhide",
@@ -243158,35 +242909,170 @@
       "lastCheckedAt": "2026-10-17T04:51:41.648Z"
     },
     {
-      "id": "var-ep-tougen-anki-nikko-kegon-no-taki-hen-3-alpha-720",
-      "episodeId": "ep-tougen-anki-nikko-kegon-no-taki-hen-3",
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-vidhide-360p",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/ixubeeh4b7pr",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-mega-360p",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/eO4FRCRK#zPhNLGHVgbewr0enlIOmvjoFeWs1n_TM9dJkY7aQEys",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-desu",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dnM4S2Ruekd2elcyUjhYYk5IcnpYOUp3c3hkZTR0QVN3blpEa3dNd2dQZg==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-vidhide-480p",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/tidl7jpmcxgi",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-mega-480p",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/nSgFBJjJ#m1fCYo9-FNuQpnP5G_mkTKVQ-zrE6LcP5VMuZTlZYjs",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-desu",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=TGRwc3FZeVlPQUE0cDZVQ1dtRllXNktsdUgwS21udVRDYStQYVJvaDlxMjdBcExSWjFWZjFQQXVtRmFDZzlQdEp6QlVoVjZqZ2pOczVJZW03TjMvOFE9PQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-desu",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=MGtMeVcydklaUUVscTFHc1hCTVRuOW5tM1labTl3Zk9zRzczKytMUzlUYz0=",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-vidhide-720p",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/ojoc7ohc1s99",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-otaku-mega-720p",
+      "episodeId": "ep-keroro-gunsou-2026-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/KHgA3A6K#vr31nXzcLqeA9RLGN4pC9WA56xhEyKofcFfLXFuco2g",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
+    },
+    {
+      "id": "var-ep-keroro-gunsou-2026-3-alpha-720",
+      "episodeId": "ep-keroro-gunsou-2026-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
-      "sourceRef": "anime-tougen-anki-nikko-kegon-no-taki-hen-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Tougen%20Anki%3A%20Nikko%20Kegon%20no%20Taki-hen&ep=3&server=Server%20Alpha&quality=720p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Keroro%20Gunsou%E2%98%86%20(2026)&ep=3&server=Server%20Alpha&quality=720p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
     },
     {
-      "id": "var-ep-tougen-anki-nikko-kegon-no-taki-hen-3-beta-1080",
-      "episodeId": "ep-tougen-anki-nikko-kegon-no-taki-hen-3",
+      "id": "var-ep-keroro-gunsou-2026-3-beta-1080",
+      "episodeId": "ep-keroro-gunsou-2026-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
-      "sourceRef": "anime-tougen-anki-nikko-kegon-no-taki-hen-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Tougen%20Anki%3A%20Nikko%20Kegon%20no%20Taki-hen&ep=3&server=Server%20Beta&quality=1080p",
+      "sourceRef": "anime-keroro-gunsou-2026-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Keroro%20Gunsou%E2%98%86%20(2026)&ep=3&server=Server%20Beta&quality=1080p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T04:51:41.648Z"
+      "lastCheckedAt": "2026-10-17T07:00:48.369Z"
     }
   ],
-  "lastSyncAt": "2026-10-17T04:51:41.648Z"
+  "lastSyncAt": "2026-10-17T07:00:48.369Z"
 }
