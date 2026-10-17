@@ -458,10 +458,10 @@
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 2,
+      "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T21:00:48.344Z",
-      "updatedAt": "2026-10-13T09:01:53.203Z"
+      "updatedAt": "2026-10-17T19:46:54.354Z"
     },
     {
       "id": "anime-magicalexplorer",
@@ -497,7 +497,7 @@
       "totalCanonicalEpisodes": 4,
       "scheduleWIB": "Random, 19:00 WIB",
       "createdAt": "2026-10-10T19:01:10.601Z",
-      "updatedAt": "2026-10-10T19:01:10.601Z"
+      "updatedAt": "2026-10-17T19:46:55.892Z"
     },
     {
       "id": "anime-zombie-sagashitemasu",
@@ -532,7 +532,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T19:01:02.486Z",
-      "updatedAt": "2026-10-13T09:01:53.370Z"
+      "updatedAt": "2026-10-17T19:46:56.155Z"
     },
     {
       "id": "anime-shiotaiou-no-satou-san-ga-ore-ni-dake-amai",
@@ -601,7 +601,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-10T16:10:11.403Z",
-      "updatedAt": "2026-10-10T16:10:11.403Z"
+      "updatedAt": "2026-10-17T19:46:56.655Z"
     },
     {
       "id": "anime-yasei-no-last-boss-ga-arawareta-season-2",
@@ -653,7 +653,7 @@
       "totalCanonicalEpisodes": 4,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-10T16:09:57.977Z",
-      "updatedAt": "2026-10-10T16:09:57.977Z"
+      "updatedAt": "2026-10-17T19:46:56.535Z"
     },
     {
       "id": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
@@ -688,7 +688,7 @@
       "totalCanonicalEpisodes": 4,
       "scheduleWIB": "Sabtu, 19:00 WIB",
       "createdAt": "2026-10-10T13:36:38.287Z",
-      "updatedAt": "2026-10-13T09:01:53.937Z"
+      "updatedAt": "2026-10-17T19:46:56.408Z"
     },
     {
       "id": "anime-shuiro-no-kamen",
@@ -2004,7 +2004,7 @@
       "officialPlatformName": "Ani-One Asia / DMM TV",
       "externalFreeWatchUrl": "https://www.youtube.com/@AniOneAsia",
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-13T09:01:52.590Z"
+      "updatedAt": "2026-10-17T19:46:56.032Z"
     },
     {
       "id": "anime-firefly",
@@ -8649,7 +8649,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 18:30 WIB",
       "createdAt": "2026-10-10T13:56:58.617Z",
-      "updatedAt": "2026-10-13T09:01:53.652Z"
+      "updatedAt": "2026-10-17T19:46:56.284Z"
     },
     {
       "id": "anime-black-clover-movie",
@@ -9439,7 +9439,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 12,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "AWAITING_EPISODE",
@@ -9447,7 +9447,7 @@
       "externalFreeWatchUrl": "https://www.youtube.com/@AniOneAsia",
       "officialPlatformName": "Ani-One Asia / DMM",
       "notes": "Menunggu jadwal tayang Oktober 2026.",
-      "updatedAt": "2026-10-13T09:01:52.590Z"
+      "updatedAt": "2026-10-17T19:46:56.032Z"
     },
     {
       "id": "season-firefly-1",
@@ -11589,12 +11589,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 4,
-      "airedEpisodesCount": 3,
+      "airedEpisodesCount": 4,
       "verifiedEpisodesCount": 4,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-13T09:01:53.937Z"
+      "updatedAt": "2026-10-17T19:46:56.408Z"
     },
     {
       "id": "season-yasei-no-last-boss-ga-arawareta-season-2-s2",
@@ -11609,7 +11609,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T16:09:57.977Z"
+      "updatedAt": "2026-10-17T19:46:56.535Z"
     },
     {
       "id": "season-romelia-senki-s1",
@@ -11619,12 +11619,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T16:10:11.403Z"
+      "updatedAt": "2026-10-17T19:46:56.655Z"
     },
     {
       "id": "season-shiotaiou-no-satou-san-ga-ore-ni-dake-amai-s1",
@@ -11649,12 +11649,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-13T09:01:53.370Z"
+      "updatedAt": "2026-10-17T19:46:56.155Z"
     },
     {
       "id": "season-magicalexplorer-s1",
@@ -11664,12 +11664,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 4,
-      "airedEpisodesCount": 3,
+      "airedEpisodesCount": 4,
       "verifiedEpisodesCount": 4,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-10T19:01:10.601Z"
+      "updatedAt": "2026-10-17T19:46:55.892Z"
     },
     {
       "id": "season-kashita-maryoku-s1",
@@ -11678,13 +11678,13 @@
       "title": "Kashita Maryoku",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
+      "canonicalEpisodesCount": 3,
+      "airedEpisodesCount": 3,
+      "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-13T09:01:53.203Z"
+      "updatedAt": "2026-10-17T19:46:54.354Z"
     },
     {
       "id": "season-vertex-force-s1",
@@ -11709,12 +11709,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-13T09:01:53.652Z"
+      "updatedAt": "2026-10-17T19:46:56.284Z"
     },
     {
       "id": "season-ao-no-hako-season-2-s2",
@@ -52744,10 +52744,10 @@
       "title": "Kashita Maryoku Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-zombie-sagashitemasu-3",
@@ -52758,10 +52758,10 @@
       "title": "#Zombie Sagashitemasu Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-romelia-senki-3",
@@ -52772,10 +52772,10 @@
       "title": "Romelia Senki Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-black-clover-s2-3",
@@ -52786,10 +52786,10 @@
       "title": "Black Clover Season 2 Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-yasei-no-last-boss-ga-arawareta-season-2-4",
@@ -52800,10 +52800,10 @@
       "title": "Yasei no Last Boss ga Arawareta! S2 Episode 4",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4",
@@ -52814,10 +52814,10 @@
       "title": "Tensei shita Daiseijo wa Episode 4",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-magicalexplorer-4",
@@ -52828,10 +52828,10 @@
       "title": "Magical★Explorer Episode 4 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     },
     {
       "id": "ep-seitokai-3",
@@ -52842,10 +52842,10 @@
       "title": "Seitokai ni mo Ana wa Aru! Episode 3 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-17T19:46:19.272Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-17T19:46:19.272Z"
     }
   ],
   "variants": [
@@ -243611,7 +243611,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-magicalexplorer-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aXVQaHpRNlg0ZWpZRnU5UEpsRFVoOUNEV2gwWHNBTGZobmhjd2FJOXZyYw==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=dnBGaUwwQkl5V2lmWmx0ZEN4dTdFOWJNN2FYTnpRd0duM0I0QmFnWDJTWXA5T0JXd1pGYjhjaUhoZE1weUZIMmlkRFdBTlkxMUxsYjMzR1d2YXZ5SHc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -243645,21 +243645,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-magicalexplorer-4-otaku-desu",
-      "episodeId": "ep-magicalexplorer-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-magicalexplorer-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=dnBGaUwwQkl5V2lmWmx0ZEN4dTdFOWJNN2FYTnpRd0duM0I0QmFnWDJTWXA5T0JXd1pGYjhjaUhoZE1weUZIMmlkRFdBTlkxMUxsYjMzR1d2YXZ5SHc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
@@ -243761,7 +243746,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-seitokai-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aklyVGNBdGtlOWVsYnV1T2dxYjFTMkdiVDNlWjZkTkJTMG1DVXNNaWZGZg==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=OXIydWFPWTZJZEM5eGM0M202SGF4RFhXNFlIWnF1SFVZWVVtUmVxeHJqVWU1MzB1dEN4VW9IdlZBcWlIQU1BZE9UWTdPMG5uSGxsZXZrelVmdDh3OFE9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -243795,21 +243780,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-seitokai-3-otaku-desu",
-      "episodeId": "ep-seitokai-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-seitokai-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=OXIydWFPWTZJZEM5eGM0M202SGF4RFhXNFlIWnF1SFVZWVVtUmVxeHJqVWU1MzB1dEN4VW9IdlZBcWlIQU1BZE9UWTdPMG5uSGxsZXZrelVmdDh3OFE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
@@ -243911,7 +243881,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-zombie-sagashitemasu-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0Z0VqcVZ5akRlVFhjaThYQ2wzem5sdllBMTE4UlE3elZNaXdZWHI5NGNUaw==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=THdqbTByd2QySjRUb29GZHFtUXB0blQyOUZRemlFUmhCdCtVbUJEeU1MQkhwR0hZdDNPbXRnMVRhZnRNd1hSY3QrdVAxZWlpSjBUd2JkN3ZES21RSmc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -243965,21 +243935,6 @@
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
     },
     {
-      "id": "var-ep-zombie-sagashitemasu-3-otaku-desu",
-      "episodeId": "ep-zombie-sagashitemasu-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-zombie-sagashitemasu-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=THdqbTByd2QySjRUb29GZHFtUXB0blQyOUZRemlFUmhCdCtVbUJEeU1MQkhwR0hZdDNPbXRnMVRhZnRNd1hSY3QrdVAxZWlpSjBUd2JkN3ZES21RSmc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
       "id": "var-ep-zombie-sagashitemasu-3-otaku-vidhide-720p",
       "episodeId": "ep-zombie-sagashitemasu-3",
       "providerId": "prov-vidhide",
@@ -244005,36 +243960,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-zombie-sagashitemasu-3-alpha-720",
-      "episodeId": "ep-zombie-sagashitemasu-3",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-zombie-sagashitemasu-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=%23Zombie%20Sagashitemasu&ep=3&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-zombie-sagashitemasu-3-beta-1080",
-      "episodeId": "ep-zombie-sagashitemasu-3",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-zombie-sagashitemasu-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=%23Zombie%20Sagashitemasu&ep=3&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
@@ -244076,7 +244001,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-black-clover-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dGZzTGJXU2VxWSs0ZUZGT051cThVc21hQ0kyOVBaNU03ejFCcXFPZHIxWQ==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=MWxhSm9GVmxaUDN2QW9QVGZPdVRhd014T2V0THF6dXBjNkQ2b3MvakkxQjdsYXhvY3V5WmNWelBsV2drd3hQdFFCek9wVVB1MnRpRWRNZVFRdlQ4enc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244115,21 +244040,6 @@
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
     },
     {
-      "id": "var-ep-black-clover-s2-3-otaku-desu",
-      "episodeId": "ep-black-clover-s2-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-black-clover-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=MWxhSm9GVmxaUDN2QW9QVGZPdVRhd014T2V0THF6dXBjNkQ2b3MvakkxQjdsYXhvY3V5WmNWelBsV2drd3hQdFFCek9wVVB1MnRpRWRNZVFRdlQ4enc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
       "id": "var-ep-black-clover-s2-3-otaku-vidhide-720p",
       "episodeId": "ep-black-clover-s2-3",
       "providerId": "prov-vidhide",
@@ -244155,36 +244065,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-black-clover-s2-3-alpha-720",
-      "episodeId": "ep-black-clover-s2-3",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-black-clover-s2-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Black%20Clover%20Season%202&ep=3&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-black-clover-s2-3-beta-1080",
-      "episodeId": "ep-black-clover-s2-3",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-black-clover-s2-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Black%20Clover%20Season%202&ep=3&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
@@ -244226,7 +244106,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0b1hpeklWMTNQajJmNkdLK3NQVHpmUzBxay83M0tGWlpGdmpHWk9QQlg2UA==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=NEhYeDc5RnhGSXBmTTkwN0x0S0NPSEZ0amFLdy9ZMXArYVk4dVg5QytwM0d5dm9kTnVxSGhqMWdsSUZSMDhjVTZ0VHRiMFpBZlBmTVNvTksyWHFGRnc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244265,21 +244145,6 @@
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
     },
     {
-      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4-otaku-desu",
-      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=NEhYeDc5RnhGSXBmTTkwN0x0S0NPSEZ0amFLdy9ZMXArYVk4dVg5QytwM0d5dm9kTnVxSGhqMWdsSUZSMDhjVTZ0VHRiMFpBZlBmTVNvTksyWHFGRnc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
       "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4-otaku-vidhide-720p",
       "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4",
       "providerId": "prov-vidhide",
@@ -244305,36 +244170,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4-alpha-720",
-      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-4-alpha-720p",
-      "embedUrl": "/embed/player?title=Tensei%20shita%20Daiseijo%20wa%2C%20Seijo%20de%20Aru%20Koto%20wo%20Hitakakusu&ep=4&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4-beta-1080",
-      "episodeId": "ep-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-4",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu-ep-4-beta-1080p",
-      "embedUrl": "/embed/player?title=Tensei%20shita%20Daiseijo%20wa%2C%20Seijo%20de%20Aru%20Koto%20wo%20Hitakakusu&ep=4&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
@@ -244376,7 +244211,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-yasei-no-last-boss-ga-arawareta-season-2-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dHJGcFR0V3BwU1lpaGsxL0NpT2tMN2JTSTlkWmt5cnBJL21ZOEdxSFpTZw==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=VjA3YTBRclJHZ3RobEpXWU54aXJKSWxJMWlYdnhpYURHeVRpaHJFb2xtZz0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244415,36 +244250,6 @@
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
     },
     {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-4-otaku-desu",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-yasei-no-last-boss-ga-arawareta-season-2-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=QVVHemFMQlZxeEhZdEUvaHVBbHZ4cFhMVmlsamx6L0lHV3dYQ25oKzZjb1lXSVNJTmRLZGNVaDQ5citxMTl0L0tlYjFiejZSN09EZ01aRE5mdE5HaXc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-4-otaku-desu",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-yasei-no-last-boss-ga-arawareta-season-2-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=VjA3YTBRclJHZ3RobEpXWU54aXJKSWxJMWlYdnhpYURHeVRpaHJFb2xtZz0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
       "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-4-otaku-vidhide-720p",
       "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-4",
       "providerId": "prov-vidhide",
@@ -244470,36 +244275,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-4-alpha-720",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-4",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-yasei-no-last-boss-ga-arawareta-season-2-ep-4-alpha-720p",
-      "embedUrl": "/embed/player?title=Yasei%20no%20Last%20Boss%20ga%20Arawareta!%20Season%202&ep=4&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-yasei-no-last-boss-ga-arawareta-season-2-4-beta-1080",
-      "episodeId": "ep-yasei-no-last-boss-ga-arawareta-season-2-4",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-yasei-no-last-boss-ga-arawareta-season-2-ep-4-beta-1080p",
-      "embedUrl": "/embed/player?title=Yasei%20no%20Last%20Boss%20ga%20Arawareta!%20Season%202&ep=4&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
@@ -244541,7 +244316,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-romelia-senki-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0cTVzSXlOaVNsdXN6R1dwVjZmU3VCbzBPeG1FK3NNSW9xM2dqTG5oMGZzWg==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=c3JYWmNkWUNpOXJPWmhlT3Zhbmtydz09",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244580,36 +244355,6 @@
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
     },
     {
-      "id": "var-ep-romelia-senki-3-otaku-desu",
-      "episodeId": "ep-romelia-senki-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-romelia-senki-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=TVI3RmJud1lMODBtaDl2RkZYcFg2UnpQNmFiN0hOY1h0ZDJ5aG9DWVRxTHdibkFWcGhKc3JIT0x3SDc3cDZjelZiSHc0aFFvaHFnR1IxdEFsaTRkMkE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
-      "id": "var-ep-romelia-senki-3-otaku-desu",
-      "episodeId": "ep-romelia-senki-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-romelia-senki-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=c3JYWmNkWUNpOXJPWmhlT3Zhbmtydz09",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
-    },
-    {
       "id": "var-ep-romelia-senki-3-otaku-vidhide-720p",
       "episodeId": "ep-romelia-senki-3",
       "providerId": "prov-vidhide",
@@ -244640,35 +244385,170 @@
       "lastCheckedAt": "2026-10-17T19:46:19.272Z"
     },
     {
-      "id": "var-ep-romelia-senki-3-alpha-720",
-      "episodeId": "ep-romelia-senki-3",
+      "id": "var-ep-kashita-maryoku-3-otaku-vidhide-360p",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/o96gumwa390a",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-mega-360p",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/Wa42mTZY#lE9jXqJ9CGT95IIfllNYYMtlA1RrJFTO2KcgTJjQdlY",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-desu",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dmEzVUo2aGpGdWtLL3VVMG9LdmpJUjROdXp5Z1VXN3JwL2N0YjVHajhqZw==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-vidhide-480p",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/t1b0bnhcgwph",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-mega-480p",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/TegkwJob#LemEfURD0aK9SqwGCP6nCArKArCPeu4BSbgkTWc9DPM",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-desu",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=QVVHemFMQlZxeEhZdEUvaHVBbHZ4czhhWk9ScXVSQzlRclpXZTNxZ0NOckFBVStKbUZiQ3g2dlBScmV2dWg1K1c0cnFpWC9hWWMrOVhVdS80K0hjMXc9PQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-desu",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=ejRpcitnN3Q2THVoWTI1UlplVkNXUT09",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-vidhide-720p",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/0dnb1xhw9h4z",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-otaku-mega-720p",
+      "episodeId": "ep-kashita-maryoku-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/yGBVCLjL#HJvnk_pQDtohi0tdVBclvp15eW-v1Q3WWk5_PC7yKIw",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+    },
+    {
+      "id": "var-ep-kashita-maryoku-3-alpha-720",
+      "episodeId": "ep-kashita-maryoku-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
-      "sourceRef": "anime-romelia-senki-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Romelia%20Senki&ep=3&server=Server%20Alpha&quality=720p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Kashita%20Maryoku&ep=3&server=Server%20Alpha&quality=720p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
     },
     {
-      "id": "var-ep-romelia-senki-3-beta-1080",
-      "episodeId": "ep-romelia-senki-3",
+      "id": "var-ep-kashita-maryoku-3-beta-1080",
+      "episodeId": "ep-kashita-maryoku-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
-      "sourceRef": "anime-romelia-senki-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Romelia%20Senki&ep=3&server=Server%20Beta&quality=1080p",
+      "sourceRef": "anime-kashita-maryoku-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Kashita%20Maryoku&ep=3&server=Server%20Beta&quality=1080p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
     }
   ],
-  "lastSyncAt": "2026-10-17T19:46:19.272Z"
+  "lastSyncAt": "2026-10-17T21:00:52.621Z"
 }
