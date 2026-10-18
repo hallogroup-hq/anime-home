@@ -461,7 +461,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T21:00:48.344Z",
-      "updatedAt": "2026-10-17T19:46:54.354Z"
+      "updatedAt": "2026-10-17T21:01:02.941Z"
     },
     {
       "id": "anime-magicalexplorer",
@@ -11684,7 +11684,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-17T19:46:54.354Z"
+      "updatedAt": "2026-10-17T21:01:02.941Z"
     },
     {
       "id": "season-vertex-force-s1",
@@ -11693,9 +11693,9 @@
       "title": "Vertex Force",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
+      "canonicalEpisodesCount": 3,
       "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
+      "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
@@ -52846,6 +52846,20 @@
       "subtitleState": "available",
       "watchabilityState": "eligible_verified",
       "airedAt": "2026-10-17T19:46:19.272Z"
+    },
+    {
+      "id": "ep-vertex-force-3",
+      "animeId": "anime-vertex-force",
+      "ordinal": 3,
+      "displayNumber": "03",
+      "episodeType": "standard",
+      "title": "Vertex Force Episode 3 Subtitle Indonesia",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-18T03:00:58.782Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
     }
   ],
   "variants": [
@@ -243332,7 +243346,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
     },
     {
       "id": "var-ep-kashita-maryoku-3-beta-1080",
@@ -243347,7 +243361,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T19:46:19.272Z"
+      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
     },
     {
       "id": "var-ep-zombie-sagashitemasu-3-sh-0",
@@ -244421,7 +244435,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-kashita-maryoku-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dmEzVUo2aGpGdWtLL3VVMG9LdmpJUjROdXp5Z1VXN3JwL2N0YjVHajhqZw==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=ejRpcitnN3Q2THVoWTI1UlplVkNXUT09",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244460,36 +244474,6 @@
       "lastCheckedAt": "2026-10-17T21:00:52.621Z"
     },
     {
-      "id": "var-ep-kashita-maryoku-3-otaku-desu",
-      "episodeId": "ep-kashita-maryoku-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=QVVHemFMQlZxeEhZdEUvaHVBbHZ4czhhWk9ScXVSQzlRclpXZTNxZ0NOckFBVStKbUZiQ3g2dlBScmV2dWg1K1c0cnFpWC9hWWMrOVhVdS80K0hjMXc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
-    },
-    {
-      "id": "var-ep-kashita-maryoku-3-otaku-desu",
-      "episodeId": "ep-kashita-maryoku-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-kashita-maryoku-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=ejRpcitnN3Q2THVoWTI1UlplVkNXUT09",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
-    },
-    {
       "id": "var-ep-kashita-maryoku-3-otaku-vidhide-720p",
       "episodeId": "ep-kashita-maryoku-3",
       "providerId": "prov-vidhide",
@@ -244520,35 +244504,155 @@
       "lastCheckedAt": "2026-10-17T21:00:52.621Z"
     },
     {
-      "id": "var-ep-kashita-maryoku-3-alpha-720",
-      "episodeId": "ep-kashita-maryoku-3",
+      "id": "var-ep-vertex-force-3-otaku-vidhide-360p",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/3vsqq9tnn0fe",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-mega-360p",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/mypmxQwQ#GOKl9H6UI2FFLtV1bM6S-CljmdiWlflAjuJH7S_posM",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-desu",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aHFUMWpKd0NtbWwyb0dGWXh3MnBDSlpQUDRSWHRtdWd2di80eS9PcDd3Tw==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-vidhide-480p",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/o7dl7dwjzek3",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-mega-480p",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/yiIiiQKY#C7YuKcWDwzPzaUH1OHNJ1RSJEBkXda6WiMAM79Ve4nA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-desu",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=aFRCVXowVVRISUJGYXlEL3Rib3RvUWpUZ2taWWlqbkJEaTJWNFZsSjY5eWpFQW9ZUGNQU1ZnYnZvOTFTVEc2a0NTdzRzNmR1cnZMVldFaStGRnhzSUE9PQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-vidhide-720p",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/xah6c7pvvc9i",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-otaku-mega-720p",
+      "episodeId": "ep-vertex-force-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-vertex-force-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/L7hBlbKS#150Nf_CxHJJRr44KlCf4E7mLVGcQZuF59X1L6NUvTP0",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
+    },
+    {
+      "id": "var-ep-vertex-force-3-alpha-720",
+      "episodeId": "ep-vertex-force-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
-      "sourceRef": "anime-kashita-maryoku-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Kashita%20Maryoku&ep=3&server=Server%20Alpha&quality=720p",
+      "sourceRef": "anime-vertex-force-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Vertex%20Force&ep=3&server=Server%20Alpha&quality=720p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
     },
     {
-      "id": "var-ep-kashita-maryoku-3-beta-1080",
-      "episodeId": "ep-kashita-maryoku-3",
+      "id": "var-ep-vertex-force-3-beta-1080",
+      "episodeId": "ep-vertex-force-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
-      "sourceRef": "anime-kashita-maryoku-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Kashita%20Maryoku&ep=3&server=Server%20Beta&quality=1080p",
+      "sourceRef": "anime-vertex-force-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Vertex%20Force&ep=3&server=Server%20Beta&quality=1080p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-17T21:00:52.621Z"
+      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
     }
   ],
-  "lastSyncAt": "2026-10-17T21:00:52.621Z"
+  "lastSyncAt": "2026-10-18T03:00:58.782Z"
 }
