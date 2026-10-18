@@ -168,14 +168,6 @@
           "title": "Diamond no Ace Act II Season 2",
           "titleType": "canonical",
           "normalizedTitle": "diamond-no-ace-act-ii-season-2"
-        },
-        {
-          "id": "alias-diamond-no-ace-act-ii-season-2-cour-2",
-          "animeId": "anime-diamond-no-ace-act-ii-season-2",
-          "locale": "id-ID",
-          "title": "Diamond no Ace Act II Season 2 Cour 2",
-          "titleType": "alias",
-          "normalizedTitle": "diamond no ace act ii season 2 cour 2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -225,7 +217,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-12T03:42:21.289Z",
-      "updatedAt": "2026-10-12T03:42:21.289Z"
+      "updatedAt": "2026-10-18T11:51:01.928Z"
     },
     {
       "id": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku",
@@ -431,10 +423,10 @@
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 2,
+      "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-11T01:02:05.681Z",
-      "updatedAt": "2026-10-11T01:02:05.681Z"
+      "updatedAt": "2026-10-18T03:01:11.017Z"
     },
     {
       "id": "anime-kashita-maryoku",
@@ -1660,7 +1652,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 17:00 WIB",
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-13T09:01:52.723Z"
+      "updatedAt": "2026-10-18T11:50:59.610Z"
     },
     {
       "id": "anime-tokyorev-s3",
@@ -8891,7 +8883,7 @@
       "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Minggu, 19:00 WIB",
       "createdAt": "2026-10-10T13:56:58.617Z",
-      "updatedAt": "2026-10-13T09:01:53.053Z"
+      "updatedAt": "2026-10-18T11:51:02.121Z"
     },
     {
       "id": "anime-haikyuu-s4",
@@ -9338,7 +9330,7 @@
       "externalFreeWatchUrl": "https://www.hotstar.com/id",
       "officialPlatformName": "Disney+ Hotstar / NHK",
       "notes": "Simulcast Fall 2026 eksklusif SVOD. Embed YouTube dibatasi pemegang lisensi (Error 153).",
-      "updatedAt": "2026-10-13T09:01:52.723Z"
+      "updatedAt": "2026-10-18T11:50:59.610Z"
     },
     {
       "id": "season-tokyorev-3",
@@ -11710,12 +11702,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-11T01:02:05.681Z"
+      "updatedAt": "2026-10-18T03:01:11.017Z"
     },
     {
       "id": "season-black-clover-season-2-s2",
@@ -11740,12 +11732,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-13T09:01:53.053Z"
+      "updatedAt": "2026-10-18T11:51:02.121Z"
     },
     {
       "id": "season-dragon-ball-super-beerus-s1",
@@ -11835,7 +11827,7 @@
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-12T03:42:21.289Z"
+      "updatedAt": "2026-10-18T11:51:01.928Z"
     },
     {
       "id": "season-diamond-no-ace-act-ii-season-2-s2",
@@ -52872,10 +52864,10 @@
       "title": "Vertex Force Episode 3 Subtitle Indonesia",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-18T03:00:58.782Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-18T03:00:58.782Z"
     },
     {
       "id": "ep-aoashi-3",
@@ -52886,10 +52878,10 @@
       "title": "Ao Ashi S2 Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-18T11:35:18.360Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-18T11:35:18.360Z"
     },
     {
       "id": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2",
@@ -52900,10 +52892,10 @@
       "title": "Mission: Yozakura Family Season 2 Part 2 Episode 2",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-18T11:35:18.360Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-18T11:35:18.360Z"
     },
     {
       "id": "ep-ao-no-hako-s2-3",
@@ -52914,10 +52906,10 @@
       "title": "Ao no Hako Season 2 Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-18T11:35:18.360Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-18T11:35:18.360Z"
     }
   ],
   "variants": [
@@ -244598,7 +244590,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-vertex-force-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aHFUMWpKd0NtbWwyb0dGWXh3MnBDSlpQUDRSWHRtdWd2di80eS9PcDd3Tw==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=aFRCVXowVVRISUJGYXlEL3Rib3RvUWpUZ2taWWlqbkJEaTJWNFZsSjY5eWpFQW9ZUGNQU1ZnYnZvOTFTVEc2a0NTdzRzNmR1cnZMVldFaStGRnhzSUE9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244632,21 +244624,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T03:00:58.782Z"
-    },
-    {
-      "id": "var-ep-vertex-force-3-otaku-desu",
-      "episodeId": "ep-vertex-force-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-vertex-force-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=aFRCVXowVVRISUJGYXlEL3Rib3RvUWpUZ2taWWlqbkJEaTJWNFZsSjY5eWpFQW9ZUGNQU1ZnYnZvOTFTVEc2a0NTdzRzNmR1cnZMVldFaStGRnhzSUE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-18T03:00:58.782Z"
@@ -244868,7 +244845,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0cFRIUENpU09vZCtLc0ppKzZQakxCREx3THJ4cldCRGFuMzcyL3haZUFoUQ==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=bkVMUWxnVDBvUnhydWJLb21TWmFUdVZaV1p3dGxVWklEeGxoS1E1Rzk1OFFVWllXNjZMQnlGam5wd281UGN4bkVFMmJCL0RDNFowWDJnZXlaRk5qS2I1ME0wd2h5Y3ZWNmVsNnBxMkUrb3M9",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -244907,21 +244884,6 @@
       "lastCheckedAt": "2026-10-18T11:35:18.360Z"
     },
     {
-      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2-otaku-desu",
-      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=bkVMUWxnVDBvUnhydWJLb21TWmFUdVZaV1p3dGxVWklEeGxoS1E1Rzk1OFFVWllXNjZMQnlGam5wd281UGN4bkVFMmJCL0RDNFowWDJnZXlaRk5qS2I1ME0wd2h5Y3ZWNmVsNnBxMkUrb3M9",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
-    },
-    {
       "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2-otaku-vidhide-720p",
       "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2",
       "providerId": "prov-vidhide",
@@ -244947,36 +244909,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
-    },
-    {
-      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2-alpha-720",
-      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-2-alpha-720p",
-      "embedUrl": "/embed/player?title=Yozakura-san%20Chi%20no%20Daisakusen%20Season%202%20Part%202&ep=2&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
-    },
-    {
-      "id": "var-ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2-beta-1080",
-      "episodeId": "ep-yozakura-san-chi-no-daisakusen-season-2-part-2-2",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-yozakura-san-chi-no-daisakusen-season-2-part-2-ep-2-beta-1080p",
-      "embedUrl": "/embed/player?title=Yozakura-san%20Chi%20no%20Daisakusen%20Season%202%20Part%202&ep=2&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-18T11:35:18.360Z"
@@ -245018,7 +244950,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-ao-no-hako-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0a3F0V1BxUWhGKzduUVhFQXcvT3NjQS93QkN1RGRiSWpwSVFoRno0cnZhRw==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=ZlRZM1A0aXVLV1M3cWwwVXdtcGh3Zz09",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -245057,36 +244989,6 @@
       "lastCheckedAt": "2026-10-18T11:35:18.360Z"
     },
     {
-      "id": "var-ep-ao-no-hako-s2-3-otaku-desu",
-      "episodeId": "ep-ao-no-hako-s2-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-ao-no-hako-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=MnNCcUZXbjFvQXFIY1N4c3NEY2JpVVdhck1ETVRxd0FtRW55cXEzQW1BY3p2TlBLMlArZm5UUlQ1SzUxRlRLMEYzMW1sQnQwVzhuajFBNUJuZ1lpNXc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
-    },
-    {
-      "id": "var-ep-ao-no-hako-s2-3-otaku-desu",
-      "episodeId": "ep-ao-no-hako-s2-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-ao-no-hako-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=ZlRZM1A0aXVLV1M3cWwwVXdtcGh3Zz09",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
-    },
-    {
       "id": "var-ep-ao-no-hako-s2-3-otaku-vidhide-720p",
       "episodeId": "ep-ao-no-hako-s2-3",
       "providerId": "prov-vidhide",
@@ -245117,35 +245019,110 @@
       "lastCheckedAt": "2026-10-18T11:35:18.360Z"
     },
     {
-      "id": "var-ep-ao-no-hako-s2-3-alpha-720",
-      "episodeId": "ep-ao-no-hako-s2-3",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-ao-no-hako-s2-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Ao%20no%20Hako%20Season%202&ep=3&server=Server%20Alpha&quality=720p",
+      "id": "var-ep-aoashi-3-otaku-vidhide-360p",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/4jdpjilk2ofs",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
-      "priority": 11,
+      "priority": 20,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
     },
     {
-      "id": "var-ep-ao-no-hako-s2-3-beta-1080",
-      "episodeId": "ep-ao-no-hako-s2-3",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-ao-no-hako-s2-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Ao%20no%20Hako%20Season%202&ep=3&server=Server%20Beta&quality=1080p",
+      "id": "var-ep-aoashi-3-otaku-mega-360p",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/6TRX0aKS#hP6Va10Tep5-eDCTQ9LV3GVVRYRddmPzy2Ix_4kKMbY",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
-      "priority": 10,
+      "priority": 18,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T11:35:18.360Z"
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
+    },
+    {
+      "id": "var-ep-aoashi-3-otaku-desu",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=T0dBTEhQMG5GOWZXblpkQXRCb2dvUmwzNWRaOVk5UmtUZXJwNWR0aTg0ND0=",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
+    },
+    {
+      "id": "var-ep-aoashi-3-otaku-vidhide-480p",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/hcqf0njfulqu",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
+    },
+    {
+      "id": "var-ep-aoashi-3-otaku-mega-480p",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/rLIwHZJJ#xx8dXZPdVKB_3Q9EOTwbsnqDj8GC7eHg9_GMIYYefU4",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
+    },
+    {
+      "id": "var-ep-aoashi-3-otaku-vidhide-720p",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/9lv6ypm8icoe",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
+    },
+    {
+      "id": "var-ep-aoashi-3-otaku-mega-720p",
+      "episodeId": "ep-aoashi-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-aoashi-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/TXggkQrZ#qji5HcOOfk6PhKntxaFZ5J8YRXGE6_vYeZZ6QtvTF6A",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-18T14:05:31.125Z"
     }
   ],
-  "lastSyncAt": "2026-10-18T11:35:18.360Z"
+  "lastSyncAt": "2026-10-18T14:05:31.125Z"
 }
