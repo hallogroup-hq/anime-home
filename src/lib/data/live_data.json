@@ -168,14 +168,6 @@
           "title": "Diamond no Ace Act II Season 2",
           "titleType": "canonical",
           "normalizedTitle": "diamond-no-ace-act-ii-season-2"
-        },
-        {
-          "id": "alias-diamond-no-ace-act-ii-season-2-cour-2",
-          "animeId": "anime-diamond-no-ace-act-ii-season-2",
-          "locale": "id-ID",
-          "title": "Diamond no Ace Act II Season 2 Cour 2",
-          "titleType": "alias",
-          "normalizedTitle": "diamond no ace act ii season 2 cour 2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -260,7 +252,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Senin, 19:00 WIB",
       "createdAt": "2026-10-12T03:42:14.001Z",
-      "updatedAt": "2026-10-12T03:42:14.001Z"
+      "updatedAt": "2026-10-19T07:00:49.436Z"
     },
     {
       "id": "anime-mao",
@@ -400,7 +392,7 @@
       "totalCanonicalEpisodes": 2,
       "scheduleWIB": "Berkala, 19:00 WIB",
       "createdAt": "2026-10-11T19:08:30.709Z",
-      "updatedAt": "2026-10-11T19:08:30.709Z"
+      "updatedAt": "2026-10-19T07:00:49.123Z"
     },
     {
       "id": "anime-vertex-force",
@@ -3069,7 +3061,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kanata-kara-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.108Z",
-      "updatedAt": "2026-10-09T11:33:04.108Z"
+      "updatedAt": "2026-10-19T07:00:49.255Z"
     },
     {
       "id": "anime-otk-tank-chair",
@@ -3114,7 +3106,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tank-chair-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.108Z",
-      "updatedAt": "2026-10-13T09:01:52.313Z"
+      "updatedAt": "2026-10-19T07:00:49.587Z"
     },
     {
       "id": "anime-otk-yowaki-max",
@@ -3160,7 +3152,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/yowaki-max-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.109Z",
-      "updatedAt": "2026-10-18T17:01:36.875Z"
+      "updatedAt": "2026-10-19T07:00:49.733Z"
     },
     {
       "id": "anime-otk-saikyosoubi",
@@ -9796,9 +9788,9 @@
       "title": "Doumo, Suki na Hito ni Horegusuri wo Irai sareta Majo desu. Musim Penayangan 2026",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
+      "canonicalEpisodesCount": 3,
       "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
+      "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
@@ -9833,7 +9825,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
@@ -9841,7 +9833,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kanata-kara-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-09T11:33:04.108Z"
+      "updatedAt": "2026-10-19T07:00:49.255Z"
     },
     {
       "id": "season-otk-tank-chair-1",
@@ -9851,7 +9843,7 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 3,
-      "airedEpisodesCount": 2,
+      "airedEpisodesCount": 3,
       "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
@@ -9859,7 +9851,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tank-chair-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-13T09:01:52.313Z"
+      "updatedAt": "2026-10-19T07:00:49.587Z"
     },
     {
       "id": "season-otk-yowaki-max-1",
@@ -9877,7 +9869,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/yowaki-max-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-18T17:01:36.875Z"
+      "updatedAt": "2026-10-19T07:00:49.733Z"
     },
     {
       "id": "season-otk-saikyosoubi-1",
@@ -11755,12 +11747,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 2,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-11T19:08:30.709Z"
+      "updatedAt": "2026-10-19T07:00:49.123Z"
     },
     {
       "id": "season-liar-game-s1",
@@ -11815,12 +11807,12 @@
       "year": 2026,
       "seasonPeriod": "Fall",
       "canonicalEpisodesCount": 2,
-      "airedEpisodesCount": 1,
+      "airedEpisodesCount": 2,
       "verifiedEpisodesCount": 2,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
-      "updatedAt": "2026-10-12T03:42:14.001Z"
+      "updatedAt": "2026-10-19T07:00:49.436Z"
     },
     {
       "id": "season-yozakura-san-chi-no-daisakusen-season-2-part-2-s2",
@@ -52984,10 +52976,10 @@
       "title": "Kanata kara Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-19T07:00:16.400Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-19T07:00:16.400Z"
     },
     {
       "id": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2",
@@ -52998,10 +52990,10 @@
       "title": "Shinja Zero no Megami-sama to Hajimeru Episode 2",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-19T07:00:16.400Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-19T07:00:16.400Z"
     },
     {
       "id": "ep-otk-tank-chair-3",
@@ -53012,10 +53004,10 @@
       "title": "Tank Chair Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-19T07:00:16.400Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-19T07:00:16.400Z"
     },
     {
       "id": "ep-dragon-ball-super-beerus-2",
@@ -53026,7 +53018,35 @@
       "title": "Dragon Ball Super: Beerus Episode 2",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-19T07:00:16.400Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-19T07:00:16.400Z"
+    },
+    {
+      "id": "ep-otk-tensei-goblin-dakedo-shitsumon-aru-4",
+      "animeId": "anime-otk-tensei-goblin-dakedo-shitsumon-aru",
+      "ordinal": 4,
+      "displayNumber": "04",
+      "episodeType": "standard",
+      "title": "Tensei Goblin dakedo Shitsumon Aru Episode 4",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-19T15:01:30.225Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
+    },
+    {
+      "id": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "animeId": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu",
+      "ordinal": 3,
+      "displayNumber": "03",
+      "episodeType": "standard",
+      "title": "Doumo Suki na Hito ni Horegusuri Episode 3",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-19T15:01:30.225Z",
       "airingState": "aired",
       "subtitleState": "available",
       "watchabilityState": "eligible_verified"
@@ -245271,7 +245291,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T17:01:17.170Z"
+      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
       "id": "var-ep-otk-yowaki-max-3-beta-1080",
@@ -245286,7 +245306,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-18T17:01:17.170Z"
+      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
       "id": "var-ep-overgeared-4-sh-0",
@@ -245925,7 +245945,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-otk-kanata-kara-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0a3VSOWZqR2dIZm9PdDcrRlpVb09oRlVVbzNRaXZha3I5M0RoY1ZLVGZUMw==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=MTNPME9nV3hzMGVZSUFmQmRTRW5PVUFCazBaa1V2QXI5WVp6SnlzV0VnQT0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -245979,36 +245999,6 @@
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
-      "id": "var-ep-otk-kanata-kara-3-otaku-desu",
-      "episodeId": "ep-otk-kanata-kara-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-kanata-kara-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=cUhWdWlHM2dKVUl4bFJHWFdFamh5OFZ2QTVJRk4xck9vZDRMa1ZvQlM1TWJ1UUlPMjU4NkdsVXhWQnhUYkNtdWQ3UG10engrV2FQWEo2bytuVnY1a2c9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-otk-kanata-kara-3-otaku-desu",
-      "episodeId": "ep-otk-kanata-kara-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-kanata-kara-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=MTNPME9nV3hzMGVZSUFmQmRTRW5PVUFCazBaa1V2QXI5WVp6SnlzV0VnQT0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
       "id": "var-ep-otk-kanata-kara-3-otaku-vidhide-720p",
       "episodeId": "ep-otk-kanata-kara-3",
       "providerId": "prov-vidhide",
@@ -246034,36 +246024,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-otk-kanata-kara-3-alpha-720",
-      "episodeId": "ep-otk-kanata-kara-3",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-otk-kanata-kara-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Kanata%20kara&ep=3&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-otk-kanata-kara-3-beta-1080",
-      "episodeId": "ep-otk-kanata-kara-3",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-otk-kanata-kara-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Kanata%20kara&ep=3&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
@@ -246105,7 +246065,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0azR2am9RMm5PQnZVVG9GMTVqZXI4aHJNWk00V1FKVXNqdGhGMk92RkMwMA==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=bG9IT2lTOXNpV1FESldaOVcwUDMrT1V1RFhjdDkyWGMxYTdOaGdHd29jYz0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -246159,36 +246119,6 @@
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
-      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2-otaku-desu",
-      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=SnB0S0lTTzZGT0M3cDY1M210R2U1Vnp2UUhEclp4YUZ0VkRoWmdyOXE5YVhrYk1CRnJyTXM3Z0JVTGNJR1AxdGd4TldFQXJIMGhoTHM0WHd1cFVWaXc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2-otaku-desu",
-      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=bG9IT2lTOXNpV1FESldaOVcwUDMrT1V1RFhjdDkyWGMxYTdOaGdHd29jYz0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
       "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2-otaku-vidhide-720p",
       "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2",
       "providerId": "prov-vidhide",
@@ -246214,36 +246144,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2-alpha-720",
-      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-2-alpha-720p",
-      "embedUrl": "/embed/player?title=Shinja%20Zero%20no%20Megami-sama%20to%20Hajimeru%20Isekai%20Kouryaku&ep=2&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2-beta-1080",
-      "episodeId": "ep-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-2",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-ep-2-beta-1080p",
-      "embedUrl": "/embed/player?title=Shinja%20Zero%20no%20Megami-sama%20to%20Hajimeru%20Isekai%20Kouryaku&ep=2&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
@@ -246285,7 +246185,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-otk-tank-chair-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0b2VkVHFNczJQa3NFZXhQbTdRUUc3OGVCU25TcXdpcjRaQUN3K2kxU1k1bg==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=akJOZUxmRGNOK1REY2xyUWVZTUxES2J2Vkpvc1VnTFFkODVTZEN2UE9LdU92TjJDY1M0ZEJmNnpyOU95amFuSm9XTm9kZTV1RVloWTRUMFJ3MFZpNHc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -246339,21 +246239,6 @@
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
-      "id": "var-ep-otk-tank-chair-3-otaku-desu",
-      "episodeId": "ep-otk-tank-chair-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-tank-chair-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=akJOZUxmRGNOK1REY2xyUWVZTUxES2J2Vkpvc1VnTFFkODVTZEN2UE9LdU92TjJDY1M0ZEJmNnpyOU95amFuSm9XTm9kZTV1RVloWTRUMFJ3MFZpNHc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
       "id": "var-ep-otk-tank-chair-3-otaku-vidhide-720p",
       "episodeId": "ep-otk-tank-chair-3",
       "providerId": "prov-vidhide",
@@ -246379,36 +246264,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-otk-tank-chair-3-alpha-720",
-      "episodeId": "ep-otk-tank-chair-3",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-otk-tank-chair-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Tank%20Chair&ep=3&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-otk-tank-chair-3-beta-1080",
-      "episodeId": "ep-otk-tank-chair-3",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-otk-tank-chair-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Tank%20Chair&ep=3&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
@@ -246450,7 +246305,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-otk-yowaki-max-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dDVkRlRlaThCLzEweFIrSXJ1STZsaHlrMzA3eWFqd1pIbnR1SmZxVDlkUQ==",
+      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=alliNDNiYmVIc3hPRjRsMkpwaUIwZnBWRHIzZ0kyY042UlVrUUNXSzN4QT0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -246504,36 +246359,6 @@
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
-      "id": "var-ep-otk-yowaki-max-3-otaku-desu",
-      "episodeId": "ep-otk-yowaki-max-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-yowaki-max-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=THl4U0FCUGFTeTc0NmNuUkJZSXdwd0xTTGJJY3BuTFZoSTNUeURtb1IycFlvcUpoSjJMQXhtV281blFkZStFdg==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
-      "id": "var-ep-otk-yowaki-max-3-otaku-desu",
-      "episodeId": "ep-otk-yowaki-max-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-yowaki-max-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu2/new/hd/index.php?id=alliNDNiYmVIc3hPRjRsMkpwaUIwZnBWRHIzZ0kyY042UlVrUUNXSzN4QT0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
-    },
-    {
       "id": "var-ep-otk-yowaki-max-3-otaku-vidhide-720p",
       "episodeId": "ep-otk-yowaki-max-3",
       "providerId": "prov-vidhide",
@@ -246564,35 +246389,260 @@
       "lastCheckedAt": "2026-10-19T07:00:16.400Z"
     },
     {
-      "id": "var-ep-otk-yowaki-max-3-alpha-720",
-      "episodeId": "ep-otk-yowaki-max-3",
+      "id": "var-ep-otk-tensei-goblin-dakedo-shitsumon-aru-4-sh-0",
+      "episodeId": "ep-otk-tensei-goblin-dakedo-shitsumon-aru-4",
+      "providerId": "prov-blogger",
+      "providerName": "Samehadaku Primary",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-tensei-goblin-dakedo-shitsumon-aru-ep-4-sh-0",
+      "embedUrl": "https://mega.nz/embed/mrRHjKDJ#RZypXPxUUqH8U35Owmos8Ip4du_cCihRCFy1JPgK5KY",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-tensei-goblin-dakedo-shitsumon-aru-4-alpha-720",
+      "episodeId": "ep-otk-tensei-goblin-dakedo-shitsumon-aru-4",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
-      "sourceRef": "anime-otk-yowaki-max-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Yowaki%20Max&ep=3&server=Server%20Alpha&quality=720p",
+      "sourceRef": "anime-otk-tensei-goblin-dakedo-shitsumon-aru-ep-4-alpha-720p",
+      "embedUrl": "/embed/player?title=Tensei%20Goblin%20dakedo%20Shitsumon%20Aru&ep=4&server=Server%20Alpha&quality=720p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
     },
     {
-      "id": "var-ep-otk-yowaki-max-3-beta-1080",
-      "episodeId": "ep-otk-yowaki-max-3",
+      "id": "var-ep-otk-tensei-goblin-dakedo-shitsumon-aru-4-beta-1080",
+      "episodeId": "ep-otk-tensei-goblin-dakedo-shitsumon-aru-4",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
-      "sourceRef": "anime-otk-yowaki-max-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Yowaki%20Max&ep=3&server=Server%20Beta&quality=1080p",
+      "sourceRef": "anime-otk-tensei-goblin-dakedo-shitsumon-aru-ep-4-beta-1080p",
+      "embedUrl": "/embed/player?title=Tensei%20Goblin%20dakedo%20Shitsumon%20Aru&ep=4&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-sh-0",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-blogger",
+      "providerName": "Blogger Official",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-sh-0",
+      "embedUrl": "https://www.blogger.com/video.g?token=AD6v5dzKpPF8FtE2FC_ovYesWmWmRhtbxECW_vCmZcZ0r7gCWw-stT0UJJHsjDLs_g3_CUgDprQ8_emKrjDTnlZG0Mp1HvVZe_CZGhOrmPM46-Q4dXF2eUBTZIYB18ZIk6x9BS3e51A",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-alpha-720",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Doumo%2C%20Suki%20na%20Hito%20ni%20Horegusuri%20wo%20Irai%20sareta%20Majo%20desu.&ep=3&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-beta-1080",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Doumo%2C%20Suki%20na%20Hito%20ni%20Horegusuri%20wo%20Irai%20sareta%20Majo%20desu.&ep=3&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-vidhide-360p",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/b4yy1iuqclh8",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-mega-360p",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/tMhRwDgI#Z8PHLRk7oRrvt3QS9ndLnSp9cmbR2kgY976i8niMf0M",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-desu",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0djRuSmI0Z0JSbk0wK2Q4M2J4aENsSmx3L2FmNW8xQzRFeTVwQVFlSUUvag==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-vidhide-480p",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/tp5456fy4qo0",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-mega-480p",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/UARCxahY#VQgaZkctJ7gxvM7GJxhnUGgZB6OAl4rGBpEilby8H8I",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-desu",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=bkVMUWxnVDBvUnhydWJLb21TWmFUdVZaV1p3dGxVWklEeGxoS1E1Rzk1OG53K1ZoWS9rdEhrYW5XZU44VERUa2lFS2s2aFhNa1J2NGZ0WFp1YmZobTlrVzQzSE9Pd01QN3dDWWxsTlJPc1U9",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-desu",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=VTlMaW9velk1bEZHUm9qUy9JYWVsZz09",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-vidhide-720p",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/0h4yee6ji3bn",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-otaku-mega-720p",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/ER40gIAC#CGlj-0J6B2LPfDJpuIj7_4FY_8L9ibJMldRfZfNSaDg",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-alpha-720",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Doumo%2C%20Suki%20na%20Hito%20ni%20Horegusuri%20wo%20Irai%20sareta%20Majo%20desu.&ep=3&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
+    },
+    {
+      "id": "var-ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3-beta-1080",
+      "episodeId": "ep-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-3",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Doumo%2C%20Suki%20na%20Hito%20ni%20Horegusuri%20wo%20Irai%20sareta%20Majo%20desu.&ep=3&server=Server%20Beta&quality=1080p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T07:00:16.400Z"
+      "lastCheckedAt": "2026-10-19T15:01:30.225Z"
     }
   ],
-  "lastSyncAt": "2026-10-19T07:00:16.400Z"
+  "lastSyncAt": "2026-10-19T15:01:30.225Z"
 }
