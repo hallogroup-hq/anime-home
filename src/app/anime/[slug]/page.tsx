@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
@@ -10,6 +12,11 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    await db.syncWithTurso();
+  } catch (err: any) {
+    console.warn('[AnimeDetailPage] Turso sync fallback:', err.message);
+  }
   const { slug } = await params;
   let anime = db.getAnimeBySlug(slug);
 
@@ -107,6 +114,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function AnimeDetailPage({ params }: PageProps) {
+  try {
+    await db.syncWithTurso();
+  } catch (err: any) {
+    console.warn('[AnimeDetailPage] Turso sync fallback:', err.message);
+  }
   const { slug } = await params;
   let anime = db.getAnimeBySlug(slug);
 

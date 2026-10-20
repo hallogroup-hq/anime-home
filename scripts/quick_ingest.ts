@@ -50,8 +50,9 @@ async function main() {
       });
     }
 
-    if (shouldPush && report.newEpisodesCount > 0) {
-      await autoPush();
+    if (shouldPush) {
+      console.log('\n💡 Catatan: Mode Git Push dinonaktifkan untuk menghemat limit deploy Vercel.');
+      console.log('⚡ Sinkronisasi episode ongoing otomatis tersimpan ke Database Turso Cloud dan live seketika.');
     }
     return;
   }

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/services/store';
@@ -10,6 +12,11 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    await db.syncWithTurso();
+  } catch (err: any) {
+    console.warn('[WatchPage] Turso sync fallback:', err.message);
+  }
   const { episodeId } = await params;
   let episode = db.getEpisodeById(episodeId);
 
@@ -106,6 +113,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function WatchPage({ params }: PageProps) {
+  try {
+    await db.syncWithTurso();
+  } catch (err: any) {
+    console.warn('[WatchPage] Turso sync fallback:', err.message);
+  }
   const { episodeId } = await params;
   let episode = db.getEpisodeById(episodeId);
 

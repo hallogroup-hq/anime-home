@@ -3,7 +3,7 @@ import { deduplicateWithTurso } from './deduplicate_anime';
 
 async function main() {
   console.log('====================================================');
-  console.log('🔄 ANIME HOME — ONGOING AUTO-SYNC PIPELINE (2-HOUR CADENCE)');
+  console.log('🔄 ANIME HOME — ONGOING AUTO-SYNC PIPELINE (DATABASE ONLY)');
   console.log('====================================================\n');
 
   const report = await OngoingSyncService.syncOngoingAnime();
@@ -32,21 +32,8 @@ async function main() {
   }
 
   if (process.argv.includes('--push')) {
-    const { execSync } = await import('child_process');
-    const dirtyFiles = execSync('git status --porcelain src/lib/data/live_data.json', { encoding: 'utf8' }).trim();
-    if (report.updates.length > 0 || dirtyFiles.length > 0) {
-      console.log('\n🚀 Git push enabled: Syncing local JSON backup to repository...');
-      try {
-        execSync('git add src/lib/data/live_data.json scripts/deduplicate_anime.ts src/lib/services/ongoingSyncService.ts scripts/run_ongoing_pipeline.ts', { stdio: 'inherit' });
-        execSync('git commit -m "chore(sync): automated ongoing anime releases update"', { stdio: 'inherit' });
-        execSync('git push origin main', { stdio: 'inherit' });
-        console.log('✅ Berhasil push backup ke repository!');
-      } catch (pushErr: any) {
-        console.error('⚠️ Gagal auto-push ke git:', pushErr.message);
-      }
-    } else {
-      console.log('\nℹ️ Tidak ada perubahan data lokal atau remote untuk di-push.');
-    }
+    console.log('\n💡 Catatan: Mode Git Push dinonaktifkan untuk menghemat limit deploy Vercel.');
+    console.log('⚡ Sinkronisasi berjalan murni via Database Turso Cloud. Vercel Production membaca data live secara dinamis.');
   }
 
   console.log('\n====================================================');

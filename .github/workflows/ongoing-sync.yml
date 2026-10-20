@@ -1,4 +1,4 @@
-name: 🔄 Ongoing Anime 2-Hour Auto-Sync
+name: 🔄 Ongoing Anime 2-Hour Auto-Sync (Database Only)
 
 on:
   schedule:
@@ -7,11 +7,11 @@ on:
   workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   sync:
-    name: Sync Ongoing Anime Releases
+    name: Sync Ongoing Anime Releases to Turso Database
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -28,19 +28,8 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Ongoing Dual-Engine Sync Pipeline
+      - name: Run Ongoing Dual-Engine Sync Pipeline (Direct to Turso Cloud)
         run: npm run cron:ongoing
-
-      - name: Commit and Push if Updates Detected
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet src/lib/data/live_data.json; then
-            echo "✨ New releases detected! Committing and pushing to main..."
-            git add src/lib/data/live_data.json
-            git commit -m "chore(sync): automated ongoing anime update from Samehadaku & Otakudesu"
-            git push origin main
-            echo "🚀 Pushed to main. Vercel deployment automatically triggered!"
-          else
-            echo "✅ No new releases at this interval. Dataset is already fully up to date."
-          fi
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
