@@ -168,6 +168,14 @@
           "title": "Diamond no Ace Act II Season 2",
           "titleType": "canonical",
           "normalizedTitle": "diamond-no-ace-act-ii-season-2"
+        },
+        {
+          "id": "alias-diamond-no-ace-act-ii-season-2-cour-2",
+          "animeId": "anime-diamond-no-ace-act-ii-season-2",
+          "locale": "id-ID",
+          "title": "Diamond no Ace Act II Season 2 Cour 2",
+          "titleType": "alias",
+          "normalizedTitle": "diamond no ace act ii season 2 cour 2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -2773,7 +2781,7 @@
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
-      "totalCanonicalEpisodes": 2,
+      "totalCanonicalEpisodes": 3,
       "scheduleWIB": "Selasa, 20:00 WIB",
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kyouran-reijou-liston-sub-indo/",
@@ -7734,14 +7742,30 @@
           "title": "BLEACH 千年血戦篇",
           "titleType": "japanese",
           "normalizedTitle": "bleach 千年血戦篇"
+        },
+        {
+          "id": "alias-bleach-sennen-kessen-hen---kashin-tan-cour-4",
+          "animeId": "anime-bleach-tybw1",
+          "locale": "id-ID",
+          "title": "Bleach: Sennen Kessen-hen - Kashin-tan (Cour 4)",
+          "titleType": "alias",
+          "normalizedTitle": "bleach sennen kessen hen kashin tan cour 4"
+        },
+        {
+          "id": "alias-bleach-sennen-kessen-hen---kashin-tan",
+          "animeId": "anime-bleach-tybw1",
+          "locale": "id-ID",
+          "title": "Bleach: Sennen Kessen-hen - Kashin-tan",
+          "titleType": "alias",
+          "normalizedTitle": "bleach sennen kessen hen kashin tan"
         }
       ],
       "seasonReadinessState": "READY_COMPLETE",
-      "totalCanonicalEpisodes": 13,
+      "totalCanonicalEpisodes": 1,
       "officialPlatformName": "Production Committee / Crunchyroll / Muse",
       "externalFreeWatchUrl": "https://myanimelist.net/anime/bleach-thousand-year-blood-war",
       "createdAt": "2026-10-10T00:00:00.000Z",
-      "updatedAt": "2026-10-10T00:00:00.000Z"
+      "updatedAt": "2026-10-19T19:01:14.125Z"
     },
     {
       "id": "anime-bleach-tybw2",
@@ -9716,9 +9740,9 @@
       "title": "Kyouran Reijou Nia Liston Musim Penayangan 2026",
       "year": 2026,
       "seasonPeriod": "Fall",
-      "canonicalEpisodesCount": 2,
+      "canonicalEpisodesCount": 3,
       "airedEpisodesCount": 2,
-      "verifiedEpisodesCount": 2,
+      "verifiedEpisodesCount": 3,
       "missingEpisodes": [],
       "readinessState": "READY_ONGOING",
       "licenseType": "free_embed",
@@ -11180,7 +11204,7 @@
       "licenseType": "official_partner",
       "externalFreeWatchUrl": "https://myanimelist.net/anime/bleach-thousand-year-blood-war",
       "officialPlatformName": "Official Platform Partner",
-      "updatedAt": "2026-10-10T00:00:00.000Z"
+      "updatedAt": "2026-10-19T19:01:14.125Z"
     },
     {
       "id": "season-anime-bleach-tybw2",
@@ -53064,6 +53088,20 @@
       "subtitleState": "available",
       "watchabilityState": "eligible_verified",
       "airedAt": "2026-10-19T17:00:23.755Z"
+    },
+    {
+      "id": "ep-otk-kyouran-reijou-nia-liston-3",
+      "animeId": "anime-otk-kyouran-reijou-nia-liston",
+      "ordinal": 3,
+      "displayNumber": "03",
+      "episodeType": "standard",
+      "title": "Kyouran Reijou Nia Liston Episode 3",
+      "durationMinutes": 24,
+      "publishState": "published",
+      "airedAt": "2026-10-20T15:52:32.636Z",
+      "airingState": "aired",
+      "subtitleState": "available",
+      "watchabilityState": "eligible_verified"
     }
   ],
   "variants": [
@@ -132025,7 +132063,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-1-beta-1080",
@@ -132040,7 +132078,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-2-mega-720",
@@ -132100,7 +132138,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-2-beta-1080",
@@ -132115,7 +132153,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-3-mega-720",
@@ -132175,7 +132213,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-3-beta-1080",
@@ -132190,7 +132228,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-4-mega-720",
@@ -132250,7 +132288,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-4-beta-1080",
@@ -132265,7 +132303,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-5-mega-720",
@@ -132325,7 +132363,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-5-beta-1080",
@@ -132340,7 +132378,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-6-mega-720",
@@ -132400,7 +132438,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-6-beta-1080",
@@ -132415,7 +132453,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-7-mega-720",
@@ -132475,7 +132513,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-7-beta-1080",
@@ -132490,7 +132528,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-8-mega-720",
@@ -132550,7 +132588,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-8-beta-1080",
@@ -132565,7 +132603,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-9-mega-720",
@@ -132625,7 +132663,7 @@
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-9-beta-1080",
@@ -132640,7 +132678,7 @@
       "priority": 14,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-09T21:30:17.557Z"
+      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
       "id": "var-ep-bleach-tybw1-10-mega-720",
@@ -246859,7 +246897,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-9-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0cGtjNUNTN2doNnpDOW1hQWZyS0lPQUdUaG1CN0JXZ0hKOVk2N1dhNGZxcg==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=QURibjl2SWxlbE1Zb2dkd3MvSjMzQ1k5STFYSVY1bEMrZ1dxeFQwTXRrVk80THJKVDRZN0JvaHNDUk1MNFF6elR1N2hmeUE3WmxaeEpOTURIcjNKV0E9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -246898,21 +246936,6 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-9-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-9",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-9-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=QURibjl2SWxlbE1Zb2dkd3MvSjMzQ1k5STFYSVY1bEMrZ1dxeFQwTXRrVk80THJKVDRZN0JvaHNDUk1MNFF6elR1N2hmeUE3WmxaeEpOTURIcjNKV0E9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
       "id": "var-ep-bleach-tybw1-9-otaku-vidhide-720p",
       "episodeId": "ep-bleach-tybw1-9",
       "providerId": "prov-vidhide",
@@ -246938,36 +246961,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-9-alpha-720",
-      "episodeId": "ep-bleach-tybw1-9",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-9-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=9&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-9-beta-1080",
-      "episodeId": "ep-bleach-tybw1-9",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-9-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=9&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247009,7 +247002,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-8-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dVRUVklZS0MrZzdtb2llL0tFdFBtR2x0am5hdEpFVlJDaGFlQnZqVnhGVQ==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=UnNVZUZCZndLZ2ljNVpLVGV0Qk1hcjdQcUtoK2JoRWVKTjBCL0t3RXE4Z2Q3Y1MyL0dKbmFmb3dMOVhsWGpMb2dSRlpHOHV4OEM3VHdPY1lXZHBMaEE9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -247048,21 +247041,6 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-8-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-8",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-8-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=UnNVZUZCZndLZ2ljNVpLVGV0Qk1hcjdQcUtoK2JoRWVKTjBCL0t3RXE4Z2Q3Y1MyL0dKbmFmb3dMOVhsWGpMb2dSRlpHOHV4OEM3VHdPY1lXZHBMaEE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
       "id": "var-ep-bleach-tybw1-8-otaku-vidhide-720p",
       "episodeId": "ep-bleach-tybw1-8",
       "providerId": "prov-vidhide",
@@ -247088,36 +247066,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-8-alpha-720",
-      "episodeId": "ep-bleach-tybw1-8",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-8-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=8&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-8-beta-1080",
-      "episodeId": "ep-bleach-tybw1-8",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-8-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=8&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247159,7 +247107,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-7-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aCtFTUIybHpPZ2pqV2d4a3VFVTRvVVczWXRkVlNHSzE2QTBMaGFnSC9YRg==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=a3N5SnJLQjE4c2lpc1ZwcjQ5MTVpZzVORGk5ejdqYTJia2hSSkoySmdQcVAreENhSDNkSTZEbDFqVDhsTGR6UG1kUUNiKzRRSlRRN05lNlJBL211M3huUVZ0bUlFdlRsT3FxWjZ0QXFISkU9",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -247198,21 +247146,6 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-7-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-7",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-7-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=a3N5SnJLQjE4c2lpc1ZwcjQ5MTVpZzVORGk5ejdqYTJia2hSSkoySmdQcVAreENhSDNkSTZEbDFqVDhsTGR6UG1kUUNiKzRRSlRRN05lNlJBL211M3huUVZ0bUlFdlRsT3FxWjZ0QXFISkU9",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
       "id": "var-ep-bleach-tybw1-7-otaku-vidhide-720p",
       "episodeId": "ep-bleach-tybw1-7",
       "providerId": "prov-vidhide",
@@ -247238,36 +247171,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-7-alpha-720",
-      "episodeId": "ep-bleach-tybw1-7",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-7-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=7&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-7-beta-1080",
-      "episodeId": "ep-bleach-tybw1-7",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-7-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=7&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247309,7 +247212,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-6-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0Z2pVTFNpOFNJREpYQUZnQjJwTWhjVzdiMUx6cy82M2gxa1V2WS83YlZ1eg==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=MytBZkZheUt1RHZYbGFacVRjcU1tUmlSTGNCNDB5VTgwSkQrNW9EYUx6ND0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -247348,36 +247251,6 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-6-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-6",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-6-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=aExrK1I5MkxDV2tzZFgxQjZ1cGpXUjBxRGtRT1gwd21GblBvd0hNWVBSaUJUQUFLTUhOQm54M3AvakFGZkZ5bllNRU9DeTJ2bkZ0VFZqV3dRWXdIZ3c9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-6-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-6",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-6-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=MytBZkZheUt1RHZYbGFacVRjcU1tUmlSTGNCNDB5VTgwSkQrNW9EYUx6ND0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
       "id": "var-ep-bleach-tybw1-6-otaku-vidhide-720p",
       "episodeId": "ep-bleach-tybw1-6",
       "providerId": "prov-vidhide",
@@ -247403,36 +247276,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-6-alpha-720",
-      "episodeId": "ep-bleach-tybw1-6",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-6-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=6&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-6-beta-1080",
-      "episodeId": "ep-bleach-tybw1-6",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-6-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=6&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247474,7 +247317,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-5-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0aFR3Q2l0OGt2WkkvSEpENDZyVGN3YVdoTEd6cGM3dm0ybVluSjJqdjd5NA==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=dTB4dW5rSHBIOW9WdmxLNWRqRXE2UWdZNGNSaGVBK0h1RytnbjZsMkRjL1dhMVBROXA5UkFWdzBoYzVYMklrMXNhUmhHTE8rL09IYUp4dXJidTZMc2c9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -247513,21 +247356,6 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-5-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-5",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-5-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=dTB4dW5rSHBIOW9WdmxLNWRqRXE2UWdZNGNSaGVBK0h1RytnbjZsMkRjL1dhMVBROXA5UkFWdzBoYzVYMklrMXNhUmhHTE8rL09IYUp4dXJidTZMc2c9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
       "id": "var-ep-bleach-tybw1-5-otaku-vidhide-720p",
       "episodeId": "ep-bleach-tybw1-5",
       "providerId": "prov-vidhide",
@@ -247553,36 +247381,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-5-alpha-720",
-      "episodeId": "ep-bleach-tybw1-5",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-5-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=5&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-5-beta-1080",
-      "episodeId": "ep-bleach-tybw1-5",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-5-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=5&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247624,7 +247422,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dElxVUhOc053Q1dhQ2hUajFyWUVxSHg0d096MnFjRFgyc2RKUnBWK3dQaQ==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=YnU0Nm9kUE05R0F1aVNnRG80YVB2dWN6eE1XTFhrVjNDTVNhMjFHQlBpS3JvNWNtaFkwdnhWeVpyQi9QZEVKRXRmaGtTbjVlRC80S0t1OVlVSXFtM2JxWEZXeGpHMXFFbUxXN0ZrOUNGSnc9",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -247678,21 +247476,6 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-4-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=YnU0Nm9kUE05R0F1aVNnRG80YVB2dWN6eE1XTFhrVjNDTVNhMjFHQlBpS3JvNWNtaFkwdnhWeVpyQi9QZEVKRXRmaGtTbjVlRC80S0t1OVlVSXFtM2JxWEZXeGpHMXFFbUxXN0ZrOUNGSnc9",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
       "id": "var-ep-bleach-tybw1-4-otaku-vidhide-720p",
       "episodeId": "ep-bleach-tybw1-4",
       "providerId": "prov-vidhide",
@@ -247718,36 +247501,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-4-alpha-720",
-      "episodeId": "ep-bleach-tybw1-4",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-4-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=4&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-4-beta-1080",
-      "episodeId": "ep-bleach-tybw1-4",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-4-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=4&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247834,21 +247587,6 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=TmZ0MVN0ZXJkVGp1cTdVM0JIU0VYOHNsSUJFbnBSN1BySDNVR05XS3NxbmN6enpWb1BvcEh5ZmdsU3JTOVZBTlZzcC9SejdtTTdNUGhTV3JWb09DYmc9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-3-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-3-otaku-desu",
       "embedUrl": "https://desustream.net/dstream/arcg/?id=TmZ0MVN0ZXJkVGp1cTdVM0JIU0VYOHNsSUJFbnBSN1BySDNVR05XS3NxbmN6enpWb1BvcEh5ZmdsU3JTOVZBTldYcmd4a2ZVQkJucEFYdjVIeDJFSVE9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
@@ -247883,36 +247621,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-3-alpha-720",
-      "episodeId": "ep-bleach-tybw1-3",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=3&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-3-beta-1080",
-      "episodeId": "ep-bleach-tybw1-3",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=3&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -247999,36 +247707,6 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=TmZ0MVN0ZXJkVGp1cTdVM0JIU0VYMEpEelVFSmFGMzN3N3J3WEpOSHROak1GUWxxbjh1YXRGVVo4NzAvcWtIdWxkZFl1cXRoN08yMi8zaVJYTXdkTlE9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-2-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-2-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/v5/index.php?id=WndjMmlNeldMSDdjM2JGakd2bEVLRllqSzB5SmNEVGZ4TVE4VStzdHFMcz0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-2-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-2",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-2-otaku-desu",
       "embedUrl": "https://desustream.net/dstream/arcg/?id=TmZ0MVN0ZXJkVGp1cTdVM0JIU0VYMEpEelVFSmFGMzN3N3J3WEpOSHROaGtIK2F3YVROOUlFeWt5d0d5anlEYk5GcWo3UVU0Vko2QVYzeFdic1NSMkE9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
@@ -248063,36 +247741,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-2-alpha-720",
-      "episodeId": "ep-bleach-tybw1-2",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-2-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=2&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-2-beta-1080",
-      "episodeId": "ep-bleach-tybw1-2",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-2-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=2&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
@@ -248149,21 +247797,6 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-bleach-tybw1-ep-1-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/v5/index.php?id=cnJXYW9GRHd0b29ZbWFOZy9BNWtQRlhmOURqSHVQTC9VVWdGWmxmUDJuUT0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
-    },
-    {
-      "id": "var-ep-bleach-tybw1-1-otaku-desu",
-      "episodeId": "ep-bleach-tybw1-1",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-bleach-tybw1-ep-1-otaku-desu",
       "embedUrl": "https://desustream.net/dstream/arcg/?id=UVFIRHBzS1JRVFRLTWFKY0NZWmFPZUtXZE1LMFNwdUpXMURVUEI4NXFFYU1vZlN1NnA4VXd1UER0MXM1MGEra1FNR0VSZXlYWTJOclI1V1JuN0s4RGc9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
@@ -248188,35 +247821,215 @@
       "lastCheckedAt": "2026-10-19T19:00:26.049Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-1-alpha-720",
-      "episodeId": "ep-bleach-tybw1-1",
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-sh-0",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-blogger",
+      "providerName": "Blogger Official",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-sh-0",
+      "embedUrl": "https://www.blogger.com/video.g?token=AD6v5dxDsVuzgUjkh4m8S7vi9B-BgGumYBIg69LLOPE3tjoKLwGJAxEzXs5AD_--efRxEIXyBHYoBmRNQt23dJmjwKAVaKbubD0J8iSx_sM36l-0Akc_9YUXJmums5MB3s_H2B_LO9Zy&#038;origin=sameguru2.blogspot.com",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-alpha-720",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
-      "sourceRef": "anime-bleach-tybw1-ep-1-alpha-720p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=1&server=Server%20Alpha&quality=720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=3&server=Server%20Alpha&quality=720p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
     },
     {
-      "id": "var-ep-bleach-tybw1-1-beta-1080",
-      "episodeId": "ep-bleach-tybw1-1",
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-beta-1080",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
-      "sourceRef": "anime-bleach-tybw1-ep-1-beta-1080p",
-      "embedUrl": "/embed/player?title=Bleach%3A%20Thousand-Year%20Blood%20War&ep=1&server=Server%20Beta&quality=1080p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=3&server=Server%20Beta&quality=1080p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 14,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-vidhide-360p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/1lqo1hot2egj",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-mega-360p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/gER0FSYT#sNQZPNhDsVe4fCPTHsLtbM3t47PVyeSIBLvi7naopMI",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-desu",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0cmF2Wks0QW5Jc0dtaDhVVTJEbUVFamJvMUVQUWtRNk5VSnF4dlRYd25tNg==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-vidhide-480p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/c78qt9694waf",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-mega-480p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/YIxnWTKA#HFGrawY8C-SsU-Gu-8BCvU_WFy31S-BhrxvGGWa7XcY",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-desu",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=QUVkRUh5ZjFXUVJsNUwwNTZJT1YxbHl2MTRDZmlSeW9PaGYyUC9xSTNNa1ZrQzViak05YTlMZS9ISDFtRWYrNnZId0NhT05tQlBqZm5GdDgzUVhBS2swTXY2S1l0b0JWM0dtREF0aVljRjQ9",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-desu",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=Y053Y2JUV0d2bmxxdGxxbUM3OHJEQT09",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-vidhide-720p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/d5szbs0c8abi",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-otaku-mega-720p",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/EQoGjSKZ#JUKDlzsEs-rS3GCkeznNZvGMhFtw1mEBRBZIVRjQIqA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-alpha-720",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-alpha",
+      "providerName": "Server Alpha (Direct Cloud)",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=3&server=Server%20Alpha&quality=720p",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 11,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
+    },
+    {
+      "id": "var-ep-otk-kyouran-reijou-nia-liston-3-beta-1080",
+      "episodeId": "ep-otk-kyouran-reijou-nia-liston-3",
+      "providerId": "prov-beta",
+      "providerName": "Server Beta (FastStream)",
+      "qualityLabel": "1080p",
+      "sourceRef": "anime-otk-kyouran-reijou-nia-liston-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Kyouran%20Reijou%20Nia%20Liston&ep=3&server=Server%20Beta&quality=1080p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-19T19:00:26.049Z"
+      "lastCheckedAt": "2026-10-20T15:52:32.636Z"
     }
   ],
-  "lastSyncAt": "2026-10-19T19:00:26.049Z"
+  "lastSyncAt": "2026-10-20T15:52:32.636Z"
 }
