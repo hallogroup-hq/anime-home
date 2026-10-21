@@ -47,17 +47,33 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
   const todayIdx = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).getDay();
   const todayName = INDONESIAN_DAYS[todayIdx];
 
-  // Ongoing Anime list sorted by latest episode airedAt timestamp
+  // Helper untuk urutan tayang relatif terhadap hari ini di WIB (Hari ini = 0, Kemarin = 1, dst.)
+  const getDayDistance = (scheduleWIB?: string): number => {
+    if (!scheduleWIB) return 50;
+    const day = scheduleWIB.split(',')[0]?.trim();
+    const dayIdx = INDONESIAN_DAYS.indexOf(day);
+    if (dayIdx === -1) return 50; // 'Berkala' atau 'Random'
+    return (todayIdx - dayIdx + 7) % 7;
+  };
+
+  // Ongoing Anime diurutkan secara kronologis berdasarkan kedekatan hari siaran dengan hari ini
+  // diikuti dengan kebaruan timestamp/ordinal episode terbaru
   const ongoingAnime = allAnime
     .filter(a => a.airingStatus === 'airing')
     .sort((a, b) => {
+      const distA = getDayDistance(a.scheduleWIB);
+      const distB = getDayDistance(b.scheduleWIB);
+      if (distA !== distB) {
+        return distA - distB;
+      }
       const epsA = db.getEpisodesByAnimeId(a.id);
       const epsB = db.getEpisodesByAnimeId(b.id);
       const latestA = epsA[epsA.length - 1];
       const latestB = epsB[epsB.length - 1];
       const timeA = latestA?.airedAt ? new Date(latestA.airedAt).getTime() : 0;
       const timeB = latestB?.airedAt ? new Date(latestB.airedAt).getTime() : 0;
-      return timeB - timeA;
+      if (timeB !== timeA) return timeB - timeA;
+      return (latestB?.ordinal || 0) - (latestA?.ordinal || 0);
     });
 
   // Hero anime dynamically follows the latest updated ongoing anime
@@ -65,7 +81,9 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
 
   const filteredOngoing = selectedDay === 'Semua'
     ? ongoingAnime
-    : ongoingAnime.filter(a => a.scheduleWIB?.includes(selectedDay));
+    : selectedDay === 'Lainnya'
+      ? ongoingAnime.filter(a => !INDONESIAN_DAYS.some(d => a.scheduleWIB?.includes(d)))
+      : ongoingAnime.filter(a => a.scheduleWIB?.includes(selectedDay));
 
   const completedAnime = allAnime.filter(a => a.airingStatus === 'completed');
 
@@ -197,7 +215,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
           <section key="latest_episodes" ref={ongoingSectionRef} className="flex flex-col gap-4 scroll-mt-24">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="flex h-2 w-2 rounded-full bg-zinc-400" />
                 <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                   Ongoing
                 </h2>
@@ -217,31 +235,33 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
 
             {/* Day Filter Pills */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {['Semua', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'].map((day) => {
+              {['Semua', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu', 'Lainnya'].map((day) => {
                 const count = day === 'Semua'
                   ? ongoingAnime.length
-                  : ongoingAnime.filter(a => a.scheduleWIB?.includes(day)).length;
+                  : day === 'Lainnya'
+                    ? ongoingAnime.filter(a => !INDONESIAN_DAYS.some(d => a.scheduleWIB?.includes(d))).length
+                    : ongoingAnime.filter(a => a.scheduleWIB?.includes(day)).length;
                 const isSelected = selectedDay === day;
                 const isToday = day === todayName;
                 return (
                   <button
                     key={day}
                     onClick={() => handleDayChange(day)}
-                    className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                       isSelected
-                        ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                        ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-xs'
                         : 'bg-zinc-900/90 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/[0.08]'
                     }`}
                   >
                     <span>{day}</span>
                     {isToday && (
-                      <span className={`text-[9px] px-1.5 py-0.2 rounded-full uppercase tracking-wider font-bold ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-emerald-500/20 text-emerald-400'
+                      <span className={`text-[9px] px-1.5 py-0.2 rounded-full uppercase tracking-wider font-semibold ${
+                        isSelected ? 'bg-zinc-950/10 text-zinc-950' : 'bg-zinc-800 text-zinc-300 border border-white/10'
                       }`}>
                         Hari Ini
                       </span>
                     )}
-                    <span className={`text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>({count})</span>
+                    <span className={`text-[10px] ${isSelected ? 'text-zinc-500' : 'text-zinc-500'}`}>({count})</span>
                   </button>
                 );
               })}
@@ -293,7 +313,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
                           onClick={() => handleOngoingPageSelect(p)}
                           className={`w-8 h-8 rounded-lg font-bold transition-all cursor-pointer ${
                             ongoingPage === p
-                              ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                              ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
                               : 'bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800'
                           }`}
                         >
@@ -312,7 +332,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
 
                       <button
                         onClick={handleOngoingLoadMore}
-                        className="ml-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/[0.08] hover:border-red-500/40 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                        className="ml-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/[0.08] text-zinc-400 hover:text-white transition-colors cursor-pointer"
                       >
                         Muat Lebih Banyak (+25)
                       </button>
@@ -322,7 +342,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
                       {ongoingEndIndex < totalOngoing && (
                         <button
                           onClick={handleOngoingLoadMore}
-                          className="px-4 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 shadow-lg shadow-red-600/30 transition-all cursor-pointer flex items-center gap-1.5"
+                          className="px-4 py-2 rounded-xl bg-zinc-100 text-zinc-950 font-semibold hover:bg-white transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
                         >
                           <span>Muat Lebih Banyak ({totalOngoing - ongoingEndIndex} tersisa)</span>
                         </button>
@@ -459,7 +479,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
                           onClick={() => handleCompletedPageSelect(p)}
                           className={`w-8 h-8 rounded-lg font-bold transition-all cursor-pointer ${
                             completedPage === p
-                              ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                              ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
                               : 'bg-zinc-900 border border-white/[0.08] text-zinc-400 hover:text-white hover:bg-zinc-800'
                           }`}
                         >
@@ -478,7 +498,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
 
                       <button
                         onClick={handleCompletedLoadMore}
-                        className="ml-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/[0.08] hover:border-red-500/40 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                        className="ml-2 px-3 py-1.5 rounded-lg bg-zinc-900/90 border border-white/[0.08] text-zinc-400 hover:text-white transition-colors cursor-pointer"
                       >
                         Muat Lebih Banyak (+25)
                       </button>
@@ -488,7 +508,7 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
                       {completedEndIndex < totalCompleted && (
                         <button
                           onClick={handleCompletedLoadMore}
-                          className="px-4 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 shadow-lg shadow-red-600/30 transition-all cursor-pointer flex items-center gap-1.5"
+                          className="px-4 py-2 rounded-xl bg-zinc-100 text-zinc-950 font-semibold hover:bg-white transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
                         >
                           <span>Muat Lebih Banyak ({totalCompleted - completedEndIndex} tersisa)</span>
                         </button>

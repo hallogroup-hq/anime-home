@@ -56,19 +56,19 @@ export function ScheduleClient({ ongoingAnime }: ScheduleClientProps) {
             <button
               key={d.key}
               onClick={() => setSelectedDay(d.key)}
-              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
                 isSelected
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-xs'
                   : 'bg-zinc-900 border border-white/[0.06] text-zinc-400 hover:text-white hover:bg-zinc-800'
               }`}
             >
               <span>{d.label}</span>
-              <span className={`text-[10px] ${isSelected ? 'text-red-200' : 'text-zinc-500'}`}>
+              <span className={`text-[10px] ${isSelected ? 'text-zinc-500' : 'text-zinc-500'}`}>
                 ({count})
               </span>
               {d.isToday && (
                 <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${
-                  isSelected ? 'bg-black/30 text-white' : 'bg-red-600/20 text-red-400'
+                  isSelected ? 'bg-zinc-900/10 text-zinc-950' : 'bg-zinc-800 text-zinc-300 border border-white/10'
                 }`}>
                   Hari Ini
                 </span>
@@ -127,7 +127,7 @@ export function ScheduleClient({ ongoingAnime }: ScheduleClientProps) {
 
                   <Link
                     href={watchHref}
-                    className="p-2.5 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-red-600 hover:text-white transition-all shrink-0 ml-2 cursor-pointer shadow-sm group-hover:bg-red-600 group-hover:text-white"
+                    className="p-2.5 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white transition-all shrink-0 ml-2 cursor-pointer shadow-xs"
                     title={`Tonton Episode ${epNum}`}
                   >
                     <Play className="h-4 w-4 fill-current" />

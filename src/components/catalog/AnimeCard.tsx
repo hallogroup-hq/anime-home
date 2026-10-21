@@ -44,10 +44,10 @@ export function AnimeCard({ anime, badge, subtitle, href }: AnimeCardProps) {
           </span>
         </div>
 
-        {/* Top Right Schedule / Episode Badge */}
+        {/* Top Right Schedule / Episode Badge (Minimal monochrome badge) */}
         {badge && (
           <div className="absolute top-2 right-2 pointer-events-none z-10">
-            <span className="rounded bg-red-600/95 text-white font-bold px-2 py-0.5 text-[10px] shadow-lg shadow-red-950/50">
+            <span className="rounded bg-zinc-900/90 text-zinc-100 font-semibold px-2 py-0.5 text-[10px] border border-white/10 backdrop-blur-sm shadow-sm">
               {badge}
             </span>
           </div>
@@ -55,7 +55,7 @@ export function AnimeCard({ anime, badge, subtitle, href }: AnimeCardProps) {
 
         {/* Hover Play Button Overlay */}
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white shadow-lg shadow-red-600/40 transform group-hover:scale-110 transition-transform">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-zinc-950 shadow-lg shadow-black/40 transform group-hover:scale-110 transition-transform">
             <Play className="h-5 w-5 fill-current ml-0.5" />
           </div>
         </div>
@@ -66,7 +66,7 @@ export function AnimeCard({ anime, badge, subtitle, href }: AnimeCardProps) {
             {dayName ? `Hari ${dayName}` : anime.year}
           </span>
           {anime.airingStatus === 'airing' && (
-            <span className="rounded bg-emerald-950/80 border border-emerald-500/30 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400">
+            <span className="rounded bg-zinc-900/80 border border-white/10 px-1.5 py-0.5 text-[10px] font-medium text-zinc-300">
               Ongoing
             </span>
           )}
