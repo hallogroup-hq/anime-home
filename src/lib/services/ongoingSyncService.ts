@@ -52,7 +52,7 @@ function unescapeHtml(s: string): string {
 
 function extractSeason(title: string): number | null {
   const norm = unescapeHtml(title).toLowerCase();
-  const m1 = norm.match(/(?:season|s)\s*(\d+)/i);
+  const m1 = norm.match(/(?:season|s|cour|part)\s*(\d+)/i);
   if (m1) return parseInt(m1[1]);
   const m2 = norm.match(/(\d+)(?:st|nd|rd|th)\s*season/i);
   if (m2) return parseInt(m2[1]);
@@ -67,7 +67,7 @@ function extractSeason(title: string): number | null {
 function cleanBaseTitle(title: string): string {
   return unescapeHtml(title)
     .toLowerCase()
-    .replace(/(?:season|s)\s*\d+/gi, ' ')
+    .replace(/(?:season|s|cour|part)\s*\d+/gi, ' ')
     .replace(/\d+(?:st|nd|rd|th)\s*season/gi, ' ')
     .replace(/\b(?:ii|iii|iv|v|vi)\b/gi, ' ')
     .replace(/\b(?:sub\s*indo|subtitle\s*indonesia)\b/gi, ' ')
@@ -87,6 +87,10 @@ const CROSS_SOURCE_SYNONYMS: Record<string, string> = {
   'chii fuyo': 'tsuihou sareta cheat fuyo majutsushi',
   'mission yozakura family': 'yozakura san chi no daisakusen',
   'yozakura family': 'yozakura san chi no daisakusen',
+  'chitose-kun wa ramune bin no naka cour 2': 'chitose-kun wa ramune bin no naka part 2',
+  'chitose-kun wa ramune bin no naka part 2': 'chitose-kun wa ramune bin no naka part 2',
+  'bleach sennen kessen hen kashin tan': 'bleach thousand year blood war kashin tan',
+  'bleach sennen kessen hen kashin tan cour 4': 'bleach thousand year blood war kashin tan',
 };
 
 export class OngoingSyncService {

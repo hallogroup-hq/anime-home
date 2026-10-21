@@ -88,6 +88,11 @@ const MERGE_RULES: MergeRule[] = [
     sourceIds: ['anime-mission-yozakura-family-season-2-part-2'],
     preferredSchedule: 'Minggu, 19:00 WIB',
   },
+  {
+    targetId: 'anime-chitose-kun-wa-ramune-bin-no-naka-part-2',
+    sourceIds: ['anime-chitose-kun-wa-ramune-bin-no-naka-cour-2'],
+    preferredSchedule: 'Selasa, 19:00 WIB',
+  },
 ];
 
 export function deduplicateLiveData(): {

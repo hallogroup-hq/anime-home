@@ -287,17 +287,35 @@ export async function searchAnime(query) {
 }
 
 /**
- * Get currently ongoing anime
+ * Get currently ongoing anime (supports multi-page, default 2 pages = full 7-day broadcast week)
  */
-export async function getOngoingAnime() {
-  const html = await fetchHtml(`${BASE_URL}/ongoing-anime/`);
-  const items = [...html.matchAll(/<div class=['"]detpost['"]>[\s\S]*?<div class=['"]epz['"]>([\s\S]*?)<\/div>[\s\S]*?<div class=['"]epztipe['"]>([\s\S]*?)<\/div>[\s\S]*?<a href=['"]([^'"]+)['"][^>]*>[\s\S]*?<img[^>]+src=['"]([^'"]+)['"][^>]*>[\s\S]*?<h2 class=['"]jdlflm['"]>([^<]+)<\/h2>/gi)];
+export async function getOngoingAnime(maxPages = 2) {
+  const allItems = [];
+  const seenUrls = new Set();
 
-  return items.map(m => ({
-    title: m[5].trim(),
-    latestEpisode: m[1].replace(/<[^>]+>/g, '').trim(),
-    releaseDay: m[2].replace(/<[^>]+>/g, '').trim(),
-    url: m[3].trim(),
-    posterUrl: m[4].trim()
-  }));
+  for (let p = 1; p <= maxPages; p++) {
+    try {
+      const pageUrl = p === 1 ? `${BASE_URL}/ongoing-anime/` : `${BASE_URL}/ongoing-anime/page/${p}/`;
+      const html = await fetchHtml(pageUrl);
+      const items = [...html.matchAll(/<div class=['"]detpost['"]>[\s\S]*?<div class=['"]epz['"]>([\s\S]*?)<\/div>[\s\S]*?<div class=['"]epztipe['"]>([\s\S]*?)<\/div>[\s\S]*?<a href=['"]([^'"]+)['"][^>]*>[\s\S]*?<img[^>]+src=['"]([^'"]+)['"][^>]*>[\s\S]*?<h2 class=['"]jdlflm['"]>([^<]+)<\/h2>/gi)];
+
+      for (const m of items) {
+        const itemUrl = m[3].trim();
+        if (seenUrls.has(itemUrl)) continue;
+        seenUrls.add(itemUrl);
+
+        allItems.push({
+          title: m[5].trim(),
+          latestEpisode: m[1].replace(/<[^>]+>/g, '').trim(),
+          releaseDay: m[2].replace(/<[^>]+>/g, '').trim(),
+          url: itemUrl,
+          posterUrl: m[4].trim()
+        });
+      }
+    } catch (err) {
+      console.warn(`[OtakudesuScraper] Failed to fetch ongoing page ${p}:`, err.message);
+    }
+  }
+
+  return allItems;
 }

@@ -65,17 +65,33 @@ export class SamehadakuScraper {
   }
 
   /**
-   * Fetch latest released episodes from Samehadaku mobile API
+   * Fetch latest released episodes from Samehadaku mobile API (supports multi-page)
    */
-  public static async getLatestReleases(): Promise<SamehadakuLatestItem[]> {
+  public static async getLatestReleases(maxPages: number = 2): Promise<SamehadakuLatestItem[]> {
     try {
-      const raw = await this.fetch('/wp-json/apk/latest');
-      if (!raw) return [];
-      const data = JSON.parse(raw);
-      if (Array.isArray(data)) {
-        return data;
+      const allItems: SamehadakuLatestItem[] = [];
+      const seenUrls = new Set<string>();
+
+      for (let p = 1; p <= maxPages; p++) {
+        const path = p === 1 ? '/wp-json/apk/latest' : `/wp-json/apk/latest?page=${p}`;
+        const raw = await this.fetch(path);
+        if (!raw) continue;
+        try {
+          const data = JSON.parse(raw);
+          if (Array.isArray(data)) {
+            for (const item of data) {
+              const url = (item.data?.url || item.url || '').trim();
+              const title = (item.series_title || item.title || '').trim();
+              const ep = String(item.data?.episode || item.episode || '1');
+              const key = url || `${title}-ep-${ep}`;
+              if (key && seenUrls.has(key)) continue;
+              if (key) seenUrls.add(key);
+              allItems.push(item);
+            }
+          }
+        } catch {}
       }
-      return [];
+      return allItems;
     } catch (err: any) {
       console.warn('[SamehadakuScraper] Failed to fetch latest releases:', err.message);
       return [];
