@@ -160,14 +160,6 @@
           "title": "Chitose-kun wa Ramune Bin no Naka Part 2",
           "titleType": "canonical",
           "normalizedTitle": "chitose-kun-wa-ramune-bin-no-naka-part-2"
-        },
-        {
-          "id": "alias-chitose-kun-wa-ramune-bin-no-naka-cour-2",
-          "animeId": "anime-chitose-kun-wa-ramune-bin-no-naka-part-2",
-          "locale": "id-ID",
-          "title": "Chitose-kun wa Ramune Bin no Naka Cour 2",
-          "titleType": "alias",
-          "normalizedTitle": "chitose kun wa ramune bin no naka cour 2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -203,14 +195,6 @@
           "title": "Diamond no Ace Act II Season 2",
           "titleType": "canonical",
           "normalizedTitle": "diamond-no-ace-act-ii-season-2"
-        },
-        {
-          "id": "alias-diamond-no-ace-act-ii-season-2-cour-2",
-          "animeId": "anime-diamond-no-ace-act-ii-season-2",
-          "locale": "id-ID",
-          "title": "Diamond no Ace Act II Season 2 Cour 2",
-          "titleType": "alias",
-          "normalizedTitle": "diamond no ace act ii season 2 cour 2"
         }
       ],
       "seasonReadinessState": "READY_ONGOING",
@@ -1860,7 +1844,7 @@
       "officialPlatformName": "Muse Indonesia (YouTube)",
       "externalFreeWatchUrl": "https://www.youtube.com/@MuseIndonesia",
       "createdAt": "2026-10-09T21:40:40.008Z",
-      "updatedAt": "2026-10-14T23:01:33.693Z"
+      "updatedAt": "2026-10-21T19:02:25.017Z"
     },
     {
       "id": "anime-dainanaouji-s2",
@@ -2512,7 +2496,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kikansha-mahou-tokubetsu-s2-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.084Z",
-      "updatedAt": "2026-10-14T23:01:33.133Z"
+      "updatedAt": "2026-10-21T19:02:23.763Z"
     },
     {
       "id": "anime-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen",
@@ -2565,7 +2549,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/shin-u-17-world-cup-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.084Z",
-      "updatedAt": "2026-10-14T23:01:32.993Z"
+      "updatedAt": "2026-10-21T19:02:24.759Z"
     },
     {
       "id": "anime-otk-sasaki-to-pii-chan-season-2",
@@ -2674,7 +2658,7 @@
       "officialPlatformName": "Otakudesu Network",
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tensei-deshita-s2-sub-indo/",
       "createdAt": "2026-10-09T11:33:04.084Z",
-      "updatedAt": "2026-10-14T23:01:33.266Z"
+      "updatedAt": "2026-10-21T19:02:24.889Z"
     },
     {
       "id": "anime-otk-sekai-saikyou-no-majo-hajimemashita",
@@ -9426,7 +9410,7 @@
       "externalFreeWatchUrl": "https://www.youtube.com/@MuseIndonesia",
       "officialPlatformName": "Muse Indonesia (YouTube)",
       "notes": "Jadwal siaran Fall 2026 terkonfirmasi. Menunggu rilis episode 1 di kanal Muse Indonesia.",
-      "updatedAt": "2026-10-14T23:01:33.693Z"
+      "updatedAt": "2026-10-21T19:02:25.017Z"
     },
     {
       "id": "season-dainanaouji-2",
@@ -9660,7 +9644,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/kikansha-mahou-tokubetsu-s2-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-14T23:01:33.133Z"
+      "updatedAt": "2026-10-21T19:02:23.763Z"
     },
     {
       "id": "season-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-1",
@@ -9678,7 +9662,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/shin-u-17-world-cup-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-14T23:01:32.993Z"
+      "updatedAt": "2026-10-21T19:02:24.759Z"
     },
     {
       "id": "season-otk-sasaki-to-pii-chan-season-2-1",
@@ -9714,7 +9698,7 @@
       "externalFreeWatchUrl": "https://otakudesu.blog/anime/tensei-deshita-s2-sub-indo/",
       "officialPlatformName": "Otakudesu Network",
       "notes": "Tayang aktif (Ongoing) dengan takarir Indonesia dan pemutar video multi-server.",
-      "updatedAt": "2026-10-14T23:01:33.266Z"
+      "updatedAt": "2026-10-21T19:02:24.889Z"
     },
     {
       "id": "season-otk-sekai-saikyou-no-majo-hajimemashita-1",
@@ -53327,10 +53311,10 @@
       "title": "Kikansha no Mahou wa Tokubetsu desu Season 2 Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-21T19:01:56.154Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-21T19:01:56.154Z"
     },
     {
       "id": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4",
@@ -53341,10 +53325,10 @@
       "title": "Shin Tennis no Oujisama Kesshou Member Ketteisen Episode 4",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-21T19:01:56.154Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-21T19:01:56.154Z"
     },
     {
       "id": "ep-otk-tensei-shitara-ken-deshita-season-2-4",
@@ -53355,10 +53339,10 @@
       "title": "Tensei shitara Ken deshita S2 Episode 4",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-21T19:01:56.154Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-21T19:01:56.154Z"
     },
     {
       "id": "ep-tanmoshi-s2-3",
@@ -53369,10 +53353,10 @@
       "title": "Tantei wa Mou, Shindeiru S2 Episode 3",
       "durationMinutes": 24,
       "publishState": "published",
-      "airedAt": "2026-10-21T19:01:56.154Z",
       "airingState": "aired",
       "subtitleState": "available",
-      "watchabilityState": "eligible_verified"
+      "watchabilityState": "eligible_verified",
+      "airedAt": "2026-10-21T19:01:56.154Z"
     }
   ],
   "variants": [
@@ -250723,7 +250707,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0bi9rbzRRMncxWEhjVFZUaEowOGlBSE5tbUVITmZUN2hYaVcyVHNkUkdocQ==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=Y3JSY0ZZOE5tWmpjaGFobXA0c0RlSktuT0l3NWhCY3Z6WS9zL2F2eVZFR1R1Y1I4NlJLMTdNWEhVQmNqa3pHK3Q2VVQwRU9tdG40TDVlcWpYU3lFM0E9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -250777,21 +250761,6 @@
       "lastCheckedAt": "2026-10-21T19:01:56.154Z"
     },
     {
-      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4-otaku-desu",
-      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=Y3JSY0ZZOE5tWmpjaGFobXA0c0RlSktuT0l3NWhCY3Z6WS9zL2F2eVZFR1R1Y1I4NlJLMTdNWEhVQmNqa3pHK3Q2VVQwRU9tdG40TDVlcWpYU3lFM0E9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
       "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4-otaku-vidhide-720p",
       "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4",
       "providerId": "prov-vidhide",
@@ -250817,36 +250786,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
-      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4-alpha-720",
-      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-4-alpha-720p",
-      "embedUrl": "/embed/player?title=Shin%20Tennis%20no%20Oujisama%3A%20U-17%20World%20Cup%20-%20Kesshou%20Member%20Ketteisen&ep=4&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
-      "id": "var-ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4-beta-1080",
-      "episodeId": "ep-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-4",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-otk-shin-tennis-no-oujisama-u-17-world-cup-kesshou-member-ketteisen-ep-4-beta-1080p",
-      "embedUrl": "/embed/player?title=Shin%20Tennis%20no%20Oujisama%3A%20U-17%20World%20Cup%20-%20Kesshou%20Member%20Ketteisen&ep=4&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-21T19:01:56.154Z"
@@ -250888,7 +250827,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-otk-tensei-shitara-ken-deshita-season-2-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0cUIvbEV3WmRXRFpqK2lQV3c4MDJjenlrSGdBdUZ6NTJYbjQ1TjF2R2loeg==",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=eGU1THNFc3k4YlV4UXQwZllsd0pyNDVvVEsrTWhDbWJOWkdIOElEcmlkNzMvWi9iVkRXanVXL0VPQjdrUWdCQVhKS1NQSGEydGJPSkhyMHpUcndFR3c9PQ==",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -250927,21 +250866,6 @@
       "lastCheckedAt": "2026-10-21T19:01:56.154Z"
     },
     {
-      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-4-otaku-desu",
-      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-4",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-otk-tensei-shitara-ken-deshita-season-2-ep-4-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/arcg/?id=eGU1THNFc3k4YlV4UXQwZllsd0pyNDVvVEsrTWhDbWJOWkdIOElEcmlkNzMvWi9iVkRXanVXL0VPQjdrUWdCQVhKS1NQSGEydGJPSkhyMHpUcndFR3c9PQ==",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
       "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-4-otaku-vidhide-720p",
       "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-4",
       "providerId": "prov-vidhide",
@@ -250967,36 +250891,6 @@
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 18,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
-      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-4-alpha-720",
-      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-4",
-      "providerId": "prov-alpha",
-      "providerName": "Server Alpha (Direct Cloud)",
-      "qualityLabel": "720p",
-      "sourceRef": "anime-otk-tensei-shitara-ken-deshita-season-2-ep-4-alpha-720p",
-      "embedUrl": "/embed/player?title=Tensei%20shitara%20Ken%20deshita%20Season%202&ep=4&server=Server%20Alpha&quality=720p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 11,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
-      "id": "var-ep-otk-tensei-shitara-ken-deshita-season-2-4-beta-1080",
-      "episodeId": "ep-otk-tensei-shitara-ken-deshita-season-2-4",
-      "providerId": "prov-beta",
-      "providerName": "Server Beta (FastStream)",
-      "qualityLabel": "1080p",
-      "sourceRef": "anime-otk-tensei-shitara-ken-deshita-season-2-ep-4-beta-1080p",
-      "embedUrl": "/embed/player?title=Tensei%20shitara%20Ken%20deshita%20Season%202&ep=4&server=Server%20Beta&quality=1080p",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
       "lastCheckedAt": "2026-10-21T19:01:56.154Z"
@@ -251038,7 +250932,7 @@
       "providerName": "DesuStream Fast CDN",
       "qualityLabel": "480p",
       "sourceRef": "anime-tanmoshi-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0c1lkb2QxQ3Zwc3lGRXMwQUN6YjVWbFc4RDAwaGtHblErOUQzZFZwREZpLw==",
+      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=L2NHZ2g5YUZvTlBxbXpQYmJlbDhHVWRwaGFYMnExREZxZnB4NDJvMlpubz0=",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 15,
@@ -251077,21 +250971,6 @@
       "lastCheckedAt": "2026-10-21T19:01:56.154Z"
     },
     {
-      "id": "var-ep-tanmoshi-s2-3-otaku-desu",
-      "episodeId": "ep-tanmoshi-s2-3",
-      "providerId": "prov-desu",
-      "providerName": "DesuStream Fast CDN",
-      "qualityLabel": "480p",
-      "sourceRef": "anime-tanmoshi-s2-ep-3-otaku-desu",
-      "embedUrl": "https://desustream.net/dstream/ondesu/new/hd/index.php?id=L2NHZ2g5YUZvTlBxbXpQYmJlbDhHVWRwaGFYMnExREZxZnB4NDJvMlpubz0=",
-      "audioLocale": "ja-JP",
-      "subtitleLocale": "id-ID",
-      "priority": 15,
-      "verificationState": "verified",
-      "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
-    },
-    {
       "id": "var-ep-tanmoshi-s2-3-otaku-vidhide-720p",
       "episodeId": "ep-tanmoshi-s2-3",
       "providerId": "prov-vidhide",
@@ -251122,35 +251001,170 @@
       "lastCheckedAt": "2026-10-21T19:01:56.154Z"
     },
     {
-      "id": "var-ep-tanmoshi-s2-3-alpha-720",
-      "episodeId": "ep-tanmoshi-s2-3",
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-vidhide-360p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-vidhide-360p",
+      "embedUrl": "https://odvidhide.com/embed/u9glln281u04",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-mega-360p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 360p",
+      "qualityLabel": "360p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-mega-360p",
+      "embedUrl": "https://mega.nz/embed/m3RkHKwY#MguRjjuM27gJopWzi0owaSG9_CUQS0_AQB22iYNt3a4",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-desu",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/odcdn/?id=TXdXSlhBdGVKMGNnWkQyZHF4NWR0dFNiN20vVTd4TWYxcWZGNExFUzJnMEgxbVp3ZGdSQ3dvdE5nUzQwZDZydw==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-blogs-480p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-blogger",
+      "providerName": "Google Blogger CDN 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-blogs-480p",
+      "embedUrl": "https://www.blogger.com/video.g?token=AD6v5dxB3jxZnS70IXzt-Txu1uJn5qIWxCItAsxZEKCHgAHEANYlx0ZfkMBtEQZ2TtHLyTXOW19DBaxqGUYiu635NuzbUiD4-TCLagZhriNJ6ikLY-bWYG2mfQ79yswQMDP7b1adJfM&amp;origin=odongoing2deredesu.blogspot.com",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 19,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-vidhide-480p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-vidhide-480p",
+      "embedUrl": "https://odvidhide.com/embed/cwsio3lcpekf",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-mega-480p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 480p",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-mega-480p",
+      "embedUrl": "https://mega.nz/embed/3vgliSaY#jua7nNNZHM-Er66qAVwNNprxnAtfnMjQP03r5LgXrHA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-desu",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-desu",
+      "providerName": "DesuStream Fast CDN",
+      "qualityLabel": "480p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-desu",
+      "embedUrl": "https://desustream.net/dstream/arcg/?id=MitVZlY1SFRBbjZxOW0xRmJ6cFBlS1ExVHZnejRTbC81MXljVUxmbjhzaTRFR2RYTENXZEE0c09PRnhMZ0FBalJ2ZnFzMTE5QnpPbXpnWDdLNlNtalE9PQ==",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 15,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-vidhide-720p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-vidhide",
+      "providerName": "Vidhide High-Speed 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-vidhide-720p",
+      "embedUrl": "https://odvidhide.com/embed/uatqno82q6q4",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 20,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-otaku-mega-720p",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
+      "providerId": "prov-mega",
+      "providerName": "Mega Cloud Player 720p",
+      "qualityLabel": "720p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-otaku-mega-720p",
+      "embedUrl": "https://mega.nz/embed/S7xAXS5Y#I3uaNl42ASfelwk5EONlRDEUrghbmmyx-3iW73KrudA",
+      "audioLocale": "ja-JP",
+      "subtitleLocale": "id-ID",
+      "priority": 18,
+      "verificationState": "verified",
+      "moderationState": "approved",
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
+    },
+    {
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-alpha-720",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
       "providerId": "prov-alpha",
       "providerName": "Server Alpha (Direct Cloud)",
       "qualityLabel": "720p",
-      "sourceRef": "anime-tanmoshi-s2-ep-3-alpha-720p",
-      "embedUrl": "/embed/player?title=Tantei%20wa%20Mou%2C%20Shindeiru.%20Season%202&ep=3&server=Server%20Alpha&quality=720p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-alpha-720p",
+      "embedUrl": "/embed/player?title=Kikansha%20no%20Mahou%20wa%20Tokubetsu%20desu%20Season%202&ep=3&server=Server%20Alpha&quality=720p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 11,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
     },
     {
-      "id": "var-ep-tanmoshi-s2-3-beta-1080",
-      "episodeId": "ep-tanmoshi-s2-3",
+      "id": "var-ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3-beta-1080",
+      "episodeId": "ep-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-3",
       "providerId": "prov-beta",
       "providerName": "Server Beta (FastStream)",
       "qualityLabel": "1080p",
-      "sourceRef": "anime-tanmoshi-s2-ep-3-beta-1080p",
-      "embedUrl": "/embed/player?title=Tantei%20wa%20Mou%2C%20Shindeiru.%20Season%202&ep=3&server=Server%20Beta&quality=1080p",
+      "sourceRef": "anime-otk-kikansha-no-mahou-wa-tokubetsu-desu-season-2-ep-3-beta-1080p",
+      "embedUrl": "/embed/player?title=Kikansha%20no%20Mahou%20wa%20Tokubetsu%20desu%20Season%202&ep=3&server=Server%20Beta&quality=1080p",
       "audioLocale": "ja-JP",
       "subtitleLocale": "id-ID",
       "priority": 10,
       "verificationState": "verified",
       "moderationState": "approved",
-      "lastCheckedAt": "2026-10-21T19:01:56.154Z"
+      "lastCheckedAt": "2026-10-21T19:42:33.931Z"
     }
   ],
-  "lastSyncAt": "2026-10-21T19:01:56.154Z"
+  "lastSyncAt": "2026-10-21T19:42:33.931Z"
 }
