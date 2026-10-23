@@ -47,25 +47,11 @@ export function HomeClient({ initialAnime, initialEpisodes }: HomeClientProps) {
   const todayIdx = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).getDay();
   const todayName = INDONESIAN_DAYS[todayIdx];
 
-  // Helper untuk urutan tayang relatif terhadap hari ini di WIB (Hari ini = 0, Kemarin = 1, dst.)
-  const getDayDistance = (scheduleWIB?: string): number => {
-    if (!scheduleWIB) return 50;
-    const day = scheduleWIB.split(',')[0]?.trim();
-    const dayIdx = INDONESIAN_DAYS.indexOf(day);
-    if (dayIdx === -1) return 50; // 'Berkala' atau 'Random'
-    return (todayIdx - dayIdx + 7) % 7;
-  };
-
-  // Ongoing Anime diurutkan secara kronologis berdasarkan kedekatan hari siaran dengan hari ini
-  // diikuti dengan kebaruan timestamp/ordinal episode terbaru
+  // Ongoing Anime diurutkan murni berdasarkan kebaruan update episode (airedAt timestamp / ordinal)
+  // Anime yang belum memiliki update episode baru tidak boleh maju ke halaman depan
   const ongoingAnime = allAnime
     .filter(a => a.airingStatus === 'airing')
     .sort((a, b) => {
-      const distA = getDayDistance(a.scheduleWIB);
-      const distB = getDayDistance(b.scheduleWIB);
-      if (distA !== distB) {
-        return distA - distB;
-      }
       const epsA = db.getEpisodesByAnimeId(a.id);
       const epsB = db.getEpisodesByAnimeId(b.id);
       const latestA = epsA[epsA.length - 1];
